@@ -5,9 +5,9 @@
             <name>Asserv2015</name>
             <creation-uuid>546c1dd0-0200-4c55-9953-c4fec61ce431</creation-uuid>
             <make-project-type>0</make-project-type>
-            <c-extensions/>
+            <c-extensions>c</c-extensions>
             <cpp-extensions/>
-            <header-extensions/>
+            <header-extensions>h</header-extensions>
             <asminc-extensions/>
             <sourceEncoding>ISO-8859-1</sourceEncoding>
             <make-dep-projects/>
