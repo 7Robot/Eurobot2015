@@ -1,7 +1,6 @@
-build/default/production/main.o:  \
-main.c  \
+build/default/production/user.o:  \
+user.c  \
 user.h  \
- lib_asserv/lib_asserv_default.h  \
 lib_asserv/lib_asserv.h  \
  lib_asserv/private/motion.h  \
 lib_asserv/private/extern_globals_asserv.h  \
