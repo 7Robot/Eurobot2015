@@ -1,6 +1,7 @@
 build/default/production/main.o:  \
 main.c  \
 user.h  \
+ax12.h  \
  lib_asserv/lib_asserv_default.h  \
 lib_asserv/lib_asserv.h  \
  lib_asserv/private/motion.h  \

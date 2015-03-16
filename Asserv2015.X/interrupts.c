@@ -5,15 +5,15 @@
 #include <timer.h>
 #include <uart.h>
 
-#include "extern_globals.h"
+//#include "extern_globals.h"
 #include "user.h"
 #include <libpic30.h>
-#include "tests.h"
+//#include "tests.h"
 #include "lib_asserv/lib_asserv.h"
 #include "motor.h"
-#include "ax12.h"
-#include "atp-asserv.h"
-#include "actions_ax12.h"
+//#include "ax12.h"
+//#include "atp-asserv.h"
+//#include "actions_ax12.h"
 
 void InitTimers()
 {
@@ -184,7 +184,7 @@ void __attribute__((interrupt,auto_psv)) _T2Interrupt(void) {
     tics_g = (int)POS1CNT;
     tics_d = (int)POS2CNT;
     // effectuer un pas de déplacement
-    motion_step(tics_g,tics_d, &commande_g, &commande_d);
+   // motion_step(tics_g,tics_d, &commande_g, &commande_d);
     // mettre ici les pwm gauche et droit
     PWM_Moteurs(commande_g, commande_d);
 }
@@ -195,7 +195,7 @@ void __attribute__((interrupt,auto_psv)) _T2Interrupt(void) {
 void __attribute__((interrupt, no_auto_psv)) _U2RXInterrupt(void){
     _U2RXIF = 0; // On baisse le FLAG
     led = !led;
-    InterruptAX();
+//    InterruptAX();
 }
 
 void __attribute__((__interrupt__, no_auto_psv)) _U2TXInterrupt(void){
@@ -260,7 +260,7 @@ void __attribute__ ((__interrupt__, no_auto_psv)) _CNInterrupt(void)
 {
     if (!PIN_LAISSE)
     {
-        SendStart(BOUTON_COULEUR);
+//        SendStart(BOUTON_COULEUR);
     }
     else
     {
