@@ -27,11 +27,11 @@ Command:
   build/default/debug/lib_asserv/private/tools.o \
   build/default/debug/interrupts.o \
   build/default/debug/ax12.o \
-  -T/tmp/tmp00003eb3.00 \
-  -T/tmp/tmp00003eb3.01 \
-  -T/tmp/tmp00003eb3.02 \
-  -T/tmp/tmp00003eb3.03 \
-  -T/tmp/tmp00003eb3.04 \
+  -T/tmp/tmp000042ca.00 \
+  -T/tmp/tmp000042ca.01 \
+  -T/tmp/tmp000042ca.02 \
+  -T/tmp/tmp000042ca.03 \
+  -T/tmp/tmp000042ca.04 \
   --defsym=__MPLAB_BUILD=1 \
   --defsym=__MPLAB_DEBUG=1 \
   --defsym=__DEBUG=1 \
@@ -119,12 +119,12 @@ Program Memory  [Origin = 0x200, Length = 0x15600]
 section                    address   length (PC units)   length (bytes) (dec)
 -------                    -------   -----------------   --------------------
 .text                        0x200               0x51e           0x7ad  (1965)
-.text                        0x71e               0x9ba           0xe97  (3735)
-.init.delay32               0x10d8                0x1c            0x2a  (42)
-.dinit                      0x10f4                0x1c            0x2a  (42)
-.text                       0x1110                0x12            0x1b  (27)
+.text                        0x71e               0x9be           0xe9d  (3741)
+.init.delay32               0x10dc                0x1c            0x2a  (42)
+.dinit                      0x10f8                0x1c            0x2a  (42)
+.text                       0x1114                0x12            0x1b  (27)
 
-                     Total program memory used (bytes):         0x16b3  (5811) 4%
+                     Total program memory used (bytes):         0x16b9  (5817) 4%
 
 
 Data Memory  [Origin = 0x800, Length = 0x4000]
@@ -241,8 +241,8 @@ External Symbols in Program Memory (by address):
                   0x00106e                  __CNInterrupt
                   0x001098                  _ConfigureOscillator
                   0x0010c8                  _Init_All
-                  0x0010d8                  ___delay32
-                  0x001110                  _main
+                  0x0010dc                  ___delay32
+                  0x001114                  _main
 
 External Symbols in Program Memory (by name):
 
@@ -287,7 +287,7 @@ External Symbols in Program Memory (by name):
                   0x00102e                  __U2RXInterrupt
                   0x00105c                  __U2TXInterrupt
                   0x00034e                  ___addsf3
-                  0x0010d8                  ___delay32
+                  0x0010dc                  ___delay32
                   0x000408                  ___divsf3
                   0x00048c                  ___eqsf2
                   0x000494                  ___fixsfsi
@@ -314,7 +314,7 @@ External Symbols in Program Memory (by name):
                   0x0004da                  _fmodf
                   0x000e98                  _limit_float
                   0x000ee8                  _limit_int
-                  0x001110                  _main
+                  0x001114                  _main
                   0x000f20                  _principal_angle
 
 Memory Configuration
@@ -553,14 +553,14 @@ __FUID3
  .debug_abbrev    0x000299        0x106 build/default/debug/interrupts.o
  .debug_abbrev    0x00039f        0x1bb build/default/debug/ax12.o
 
-.debug_line       0x000000        0xc72
+.debug_line       0x000000        0xc82
  *(.debug_line)
  .debug_line      0x000000         0xa6 build/default/debug/main.o
  .debug_line      0x0000a6        0x349 build/default/debug/motor.o
- .debug_line      0x0003ef         0xe8 build/default/debug/user.o
- .debug_line      0x0004d7         0xe8 build/default/debug/lib_asserv/private/tools.o
- .debug_line      0x0005bf        0x223 build/default/debug/interrupts.o
- .debug_line      0x0007e2        0x490 build/default/debug/ax12.o
+ .debug_line      0x0003ef         0xf8 build/default/debug/user.o
+ .debug_line      0x0004e7         0xe8 build/default/debug/lib_asserv/private/tools.o
+ .debug_line      0x0005cf        0x223 build/default/debug/interrupts.o
+ .debug_line      0x0007f2        0x490 build/default/debug/ax12.o
 
 .debug_frame      0x000000        0x2a8
  *(.debug_frame)
@@ -2088,7 +2088,7 @@ __c30_signature
  .nbss              0x086e          0x2 /opt/microchip/xc16/v1.24/bin/bin/../../lib/libm-elf.a(errno.eo)
                     0x086e                  _errno
 
-.text             0x00071e        0x9ba
+.text             0x00071e        0x9be
  .text            0x00071e        0x40e build/default/debug/motor.o
                   0x00071e                  _Init_PWM
                   0x000762                  _Init_QEI
@@ -2125,17 +2125,17 @@ __c30_signature
                   0x00105c                  __U2TXInterrupt
                   0x001064                  __SPI2Interrupt
                   0x00106e                  __CNInterrupt
- .text            0x001098         0x40 build/default/debug/user.o
+ .text            0x001098         0x44 build/default/debug/user.o
                   0x001098                  _ConfigureOscillator
                   0x0010c8                  _Init_All
 
-.init.delay32     0x0010d8         0x1c
- .init.delay32    0x0010d8         0x1c /opt/microchip/xc16/v1.24/bin/bin/../../lib/libpic30-elf.a(delay32.eo)
-                  0x0010d8                  ___delay32
+.init.delay32     0x0010dc         0x1c
+ .init.delay32    0x0010dc         0x1c /opt/microchip/xc16/v1.24/bin/bin/../../lib/libpic30-elf.a(delay32.eo)
+                  0x0010dc                  ___delay32
 
-.dinit            0x0010f4         0x1c
- .dinit           0x0010f4         0x1c data_init
+.dinit            0x0010f8         0x1c
+ .dinit           0x0010f8         0x1c data_init
 
-.text             0x001110         0x12
- .text            0x001110         0x12 build/default/debug/main.o
-                  0x001110                  _main
+.text             0x001114         0x12
+ .text            0x001114         0x12 build/default/debug/main.o
+                  0x001114                  _main

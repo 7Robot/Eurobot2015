@@ -43,8 +43,8 @@ void Init_All(){
     /* Initialize IO ports and peripherals */
     InitTimers();
     __delay_ms(500);
-   // Init_PWM();
-    //Init_QEI();
+    Init_PWM();
+    Init_QEI();
     //InitSick();
    // motion_init(SendDone);
     //AtpInit();

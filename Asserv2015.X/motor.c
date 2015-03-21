@@ -30,9 +30,9 @@ void Init_PWM(void)
 
     // sorties High du pwm
     // remapage au fil, on oublie la pin 2H (seem really dead, even in GPIO)
-    PWM1CON1bits.PEN1H = 1;
-    PWM1CON1bits.PEN2H = 0;
-    PWM1CON1bits.PEN3H = 1;
+    PWM1CON1bits.PEN1H = 1; // sortie pwm
+    PWM1CON1bits.PEN2H = 1; // sortie pwm
+    PWM1CON1bits.PEN3H = 0;
 
     // sorties Low (opposé du High, on ne l'utilise pas)
     PWM1CON1bits.PEN1L = 0;
@@ -68,7 +68,7 @@ void Init_QEI(void)
     // ce sont des pins dites remapable,
     // ce qui veut dire que l'on peut choisir presque toutes les IO du PIC
     RPINR14bits.QEA1R = 22; // 25 = pin RP25
-    RPINR14bits.QEB1R = 25;
+    RPINR14bits.QEB1R = 24;
 
 
     // module QEI2 identique = Moteur Droit
@@ -79,7 +79,7 @@ void Init_QEI(void)
 
     // configuration des pins A et B du module
     RPINR16bits.QEA2R = 23; // 23 = pin RP23
-    RPINR16bits.QEB2R = 24;
+    RPINR16bits.QEB2R = 25;
 }
 
 
