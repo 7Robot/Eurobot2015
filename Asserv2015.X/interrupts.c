@@ -17,7 +17,8 @@
 
 void InitTimers()
 {
-    _ODCB5 = 1; // Open drain sur la pin RB5(pour les AX12)
+    TRISBbits.TRISB7=1; //Pin RB7 en entr�e pour les AX12
+    _ODCB7 = 1; // Open drain sur la pin RB7(pour les AX12)
     _NSTDIS = 0; // activation de la priorité des interruptions
     AD1PCFGL = 0xFFFF; //Pins analogiques en numérique pour que ATP marche !!
 

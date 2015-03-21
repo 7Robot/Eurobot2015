@@ -14,35 +14,25 @@
  */
 
 
-/********Les pragmas on en mangerait********/
-// FBS
-#pragma config BWRP = WRPROTECT_OFF     // Boot Segment Write Protect (Boot Segment may be written)
-#pragma config BSS = NO_FLASH           // Boot Segment Program Flash Code Protection (No Boot program Flash segment)
-#pragma config RBS = NO_RAM             // Boot Segment RAM Protection (No Boot RAM)
-
-// FSS
-#pragma config SWRP = WRPROTECT_OFF     // Secure Segment Program Write Protect (Secure segment may be written)
-#pragma config SSS = NO_FLASH           // Secure Segment Program Flash Code Protection (No Secure Segment)
-#pragma config RSS = NO_RAM             // Secure Segment Data RAM Protection (No Secure RAM)
-
-// FGS
-#pragma config GWRP = OFF               // General Code Segment Write Protect (User program memory is not write-protected)
-#pragma config GSS = OFF                // General Segment Code Protection (User program memory is not code-protected)
-
-
-// FWDT
-#pragma config WDTPOST = PS32768        // Watchdog Timer Postscaler (1:32,768)
-#pragma config WDTPRE = PR128           // WDT Prescaler (1:128)
-#pragma config WINDIS = OFF             // Watchdog Timer Window (Watchdog Timer in Non-Window mode)
-#pragma config FWDTEN = OFF             // Watchdog Timer Enable (Watchdog timer enabled/disabled by user software)
-
-
-// FICD
-#pragma config ICS = PGD3               // Comm Channel Select (Communicate on PGC3/EMUC3 and PGD3/EMUD3)
-#pragma config JTAGEN = OFF             // JTAG Port Enable (JTAG is Disabled)
 
 /********Headers********/
 #include <xc.h>
+/******************************************************************************/
+/* Configuartion                                                              */
+/******************************************************************************/
+
+// Select Oscillator and switching.
+_FOSCSEL(FNOSC_FRCPLL & IESO_OFF);
+// Select clock.
+_FOSC(POSCMD_NONE & OSCIOFNC_ON & IOL1WAY_ON & FCKSM_CSDCMD);
+// Watchdog Timer.
+_FWDT(FWDTEN_OFF);
+// Select debug channel.
+_FICD(ICS_PGD3 & JTAGEN_OFF);
+
+_FPOR(PWMPIN_OFF);
+
+
 #include <stdint.h>        /* Includes uint16_t definition                    */
 #include <stdbool.h>       /* Includes true/false definition                  */
 #include <uart.h>
@@ -58,17 +48,12 @@
 
 
 int main(int argc, char** argv) {
-
-    long i = 0;
-    // test du portB
-    TRISB = 0x0;
+Init_All();
 
     while (1) // boucle principale
     {
-        for(i=0;i<10000;i++) {}
-        PORTB = 0xFF;
-        for(i=0;i<10000;i++) {}
-        PORTB = 0x00;
+
+        PutAX(254,AX_ID,1);
     }
 }
 

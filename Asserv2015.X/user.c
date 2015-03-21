@@ -35,19 +35,19 @@ void ConfigureOscillator(void)
     while (!OSCCONbits.LOCK);       // attente que la PLL soit lockée sur se nouvelle configuration.
 }
 
+
 // initialize all things
 void Init_All(){
     /* Configure the oscillator for the device */
     ConfigureOscillator();
     /* Initialize IO ports and peripherals */
-    //InitTimers();
+    InitTimers();
     __delay_ms(500);
-    Init_PWM();
-    Init_QEI();
+   // Init_PWM();
+    //Init_QEI();
     //InitSick();
    // motion_init(SendDone);
     //AtpInit();
-    __delay_ms(500);
     //Init_CN();
 
 }

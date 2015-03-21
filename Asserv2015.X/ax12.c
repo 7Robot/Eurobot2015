@@ -39,14 +39,15 @@ responseAXtype responseAX;
 void SetTX() {
     __builtin_write_OSCCONL(OSCCON & 0xBF);
     _U2RXR = 31;
-    _RP5R = 0b00101;  // RP25 = U2TX (p.167)
+    _RP7R = 0b00101;  // RP25 = U2TX (p.167)
     __builtin_write_OSCCONL(OSCCON | 0x40);
 }
 
 void SetRX() {
     __builtin_write_OSCCONL(OSCCON & 0xBF);
-     _RP5R = 0;
-    _U2RXR = 5; // RP5 = U2RX (p.165)
+    
+     _RP7R = 0;
+    _U2RXR = 7; // RP5 = U2RX (p.165)
     __builtin_write_OSCCONL(OSCCON | 0x40);
 }
 
