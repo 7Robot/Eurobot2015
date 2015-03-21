@@ -53,7 +53,8 @@ Init_All();
     while (1) // boucle principale
     {
 
-        PutAX(254,AX_ID,1);
+        PWM_Moteurs_gauche(40);
+        PWM_Moteurs_droit(40);
     }
 }
 

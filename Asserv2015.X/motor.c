@@ -181,5 +181,5 @@ void PWM_Moteurs_droit(float DC)
 
     // calcul des temps High des moteurs (cf datasheet)
     // RMQ : ici la précision est 2 fois plus grande que pour P1TPER
-    P1DC3 =  (int) (30*fabs(DC));
+    P1DC2 =  (int) (30*fabs(DC));
 }
