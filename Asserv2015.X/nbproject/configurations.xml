@@ -17,6 +17,7 @@
       <itemPath>lib_asserv/private/pid.h</itemPath>
       <itemPath>globals.h</itemPath>
       <itemPath>ax12.h</itemPath>
+      <itemPath>actions_ax12.h</itemPath>
     </logicalFolder>
     <logicalFolder name="LinkerScript"
                    displayName="Linker Files"
@@ -31,6 +32,7 @@
       <itemPath>lib_asserv/private/tools.c</itemPath>
       <itemPath>interrupts.c</itemPath>
       <itemPath>ax12.c</itemPath>
+      <itemPath>actions_ax12.c</itemPath>
     </logicalFolder>
     <logicalFolder name="ExternalFiles"
                    displayName="Important Files"
@@ -200,7 +202,7 @@
         <property key="REAL TIME CLOCK AND CALENDAR" value="true"/>
         <property key="SPI 1" value="true"/>
         <property key="SPI 2" value="true"/>
-        <property key="SecureSegment.SegmentProgramming" value="FullChipProgramming"/>
+        <property key="SecureSegment.SegmentProgramming" value="SegmentProgrammingAll"/>
         <property key="TIMER1" value="true"/>
         <property key="TIMER2" value="true"/>
         <property key="TIMER3" value="true"/>
@@ -211,6 +213,7 @@
         <property key="ToolFirmwareOption.UseLatestFirmware" value="true"/>
         <property key="UART 1" value="true"/>
         <property key="UART 2" value="true"/>
+        <property key="firmware.download.all" value="false"/>
         <property key="hwtoolclock.frcindebug" value="false"/>
         <property key="memories.aux" value="false"/>
         <property key="memories.bootflash" value="true"/>
