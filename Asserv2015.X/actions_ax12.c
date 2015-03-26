@@ -22,27 +22,27 @@ void choose_arm(int arm) {
 /****************************** Init Position *********************************/
 /******************************************************************************/
 
-void init_arm(int arm) {
+void init_arm() {
 
     PutAX(rab, AX_TORQUE_LIMIT, maxtork);
     __delay_ms(40);
     PutAX(pince, AX_TORQUE_LIMIT, maxtork);
     __delay_ms(40);
-    PutAX(asc, AX_TORQUE_LIMIT, maxtork);
+  //  PutAX(asc, AX_TORQUE_LIMIT, maxtork);
     __delay_ms(40);
 
     PutAX(rab, AX_MOVING_SPEED, 650);
     __delay_ms(40);
     PutAX(pince, AX_MOVING_SPEED, 650);
     __delay_ms(40);
-    PutAX(asc, AX_MOVING_SPEED, 650);
+    //PutAX(asc, AX_MOVING_SPEED, 650);
     __delay_ms(40);
 
     PutAX(rab, AX_GOAL_POSITION, 512);
     __delay_ms(100);
     PutAX(pince, AX_GOAL_POSITION, 205);
     __delay_ms(100);
-    PutAX(asc, AX_GOAL_POSITION, 205);
+    //PutAX(asc, AX_GOAL_POSITION, 205);
     __delay_ms(500);
 
 }

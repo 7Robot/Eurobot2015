@@ -16,7 +16,7 @@
 #define tub            1    // le reservoir
 
 void choose_arm(int);
-void init_arm(int);
+void init_arm();
 void charg_gobelet(void);
 
 #endif	/* ACTIONS_AX12_H */

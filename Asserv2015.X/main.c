@@ -44,6 +44,7 @@ _FPOR(PWMPIN_OFF);
 #include "lib_asserv/lib_asserv_default.h"
 #include "lib_asserv/lib_asserv.h"
 #include "motor.h"
+#include "actions_ax12.h"
 
 
 
@@ -58,6 +59,7 @@ int main(int argc, char** argv) {
         PWM_Moteurs_gauche(-25);
 
         __delay_ms(1000);
+        init_arm();
         PWM_Moteurs_droit(0);
         PWM_Moteurs_gauche(0);
         __delay_ms(1000);
