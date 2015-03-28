@@ -18,7 +18,7 @@ volatile MotionSequence motionSequence;
 /******************************    Fonctions    *******************************/
 
 // initialiser la lib d'asservissement
-void motion_init(void(*_done)(void)) {
+void motion_init() {
     Position posZero = {0,0,0};
     Speed v_max = DEFAULT_CONSTRAINT_V_MAX;
     Acceleration a_max = DEFAULT_CONSTRAINT_A_MAX;
@@ -33,10 +33,10 @@ void motion_init(void(*_done)(void)) {
     motionSequence.pos_seq[1] = posZero;
     motionSequence.stop_distance[0] = DEFAULT_STOP_DISTANCE;
     motionSequence.stop_distance[1] = DEFAULT_STOP_DISTANCE;
-    done = _done;
+//    done = _done;
     odo_init();
     asserv_init();
-    debug_init();
+    //debug_init();
     motion_initialized = 1;
 }
 
@@ -127,7 +127,7 @@ int motion_done(){
 void check_blocked(Speed speed,Speed order){
     if (fabs(speed.v - order.v)>0.1 || fabs(speed.vt - order.vt)>0.4 ){
         if (blocked == BLOCK_LIMIT){
-            SendBlocked();
+//            SendBlocked(); relatif a l'atp
             motion_free();
         }
         if (blocked < BLOCK_LIMIT+1){blocked++;}

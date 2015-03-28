@@ -6,8 +6,8 @@
 
 // Position absolue du robot (x, y, et theta)
 typedef struct {
-    float x; // en mÃ¨tre
-    float y; // en mÃ¨tre
+    float x; // en mètre
+    float y; // en mètre
     float t; // en radian
 } Position;
 
@@ -49,7 +49,7 @@ typedef struct {
 /******************************    Fonctions    *******************************/
 
 // initialiser la lib d'asservissement
-void motion_init(void(*_done)(void));
+void motion_init(void); //modif du senddone
 
 // assigner des valeurs Ã  la position (x, y et theta)
 void set_position(Position pos);

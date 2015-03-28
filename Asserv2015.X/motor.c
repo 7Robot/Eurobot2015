@@ -68,8 +68,8 @@ void Init_QEI(void)
     // configuration des pins A et B du module
     // ce sont des pins dites remapable,
     // ce qui veut dire que l'on peut choisir presque toutes les IO du PIC
-    RPINR14bits.QEA1R = 22; // 25 = pin RP25
-    RPINR14bits.QEB1R = 24;
+    RPINR14bits.QEA1R = 24; // 25 = pin RP25
+    RPINR14bits.QEB1R = 22;
 
 
     // module QEI2 identique = Moteur Droit
@@ -97,7 +97,7 @@ void PWM_Moteurs(float DC_gauche, float DC_droit)
     //MOTOR_1B_O = !DC_positif;
 
     // pins de sens du moteur droit
-    DC_positif = (DC_gauche >= 0);
+    DC_positif = (DC_gauche < 0);
     //MOTOR_2A_O = !DC_positif;
     //MOTOR_2B_O = DC_positif;
 
@@ -151,7 +151,7 @@ void PWM_Moteurs_gauche(float DC)
     int DC_positif;
 
     // pins de sens du moteur gauche
-    DC_positif = (DC >= 0);
+    DC_positif = (DC < 0); // => changer en fonction des sens des moteurs
     MOTOR_DIR1 = !DC_positif;
     //MOTOR_2B_O = DC_positif;
 

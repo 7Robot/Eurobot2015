@@ -185,9 +185,9 @@ void __attribute__((interrupt,auto_psv)) _T2Interrupt(void) {
     tics_g = (int)POS1CNT;
     tics_d = (int)POS2CNT;
     // effectuer un pas de déplacement
-    //motion_step(tics_g,tics_d, &commande_g, &commande_d);
+   motion_step(tics_g,tics_d, &commande_g, &commande_d);
     // mettre ici les pwm gauche et droit
-    //PWM_Moteurs(commande_g, commande_d);
+   PWM_Moteurs(commande_g, commande_d);
 }
 
 /*************************************************
@@ -208,49 +208,7 @@ void __attribute__((__interrupt__, no_auto_psv)) _U2TXInterrupt(void){
 void __attribute__((interrupt, no_auto_psv)) _SPI2Interrupt(void){
     led=1;
     IFS2bits.SPI2IF = 0;
-//    if ((actionBras & BOUGIE_init_arm) == BOUGIE_init_arm) {
-//        init_arm(numBras);
-//        actionBras &= ~BOUGIE_init_arm;
-//
-//    } else if ((actionBras & BOUGIE_catch_arm) == BOUGIE_catch_arm) {
-//       catch_arm( numBras);
-//        actionBras &= ~BOUGIE_catch_arm;
-//
-//    } else if ((actionBras & BOUGIE_stock_arm) == BOUGIE_stock_arm) {
-//        stock_arm(numBras);
-//        actionBras &= ~BOUGIE_stock_arm;
-//
-//    } else if ((actionBras & BOUGIE_pull_arm) == BOUGIE_pull_arm) {
-//        pull_arm( numBras);
-//        actionBras &= ~BOUGIE_pull_arm;
-//
-//    } else if ((actionBras & BOUGIE_push_arm) == BOUGIE_push_arm) {
-//        push_arm( numBras);
-//        actionBras &= ~BOUGIE_push_arm;
-//
-//    } else if ((actionBras & BOUGIE_launch_net) == BOUGIE_launch_net) {
-//        launch_net();
-//        actionBras &= ~BOUGIE_launch_net;
-//
-//    } else if ((actionBras & BOUGIE_convoyer) == BOUGIE_convoyer) {
-//        convoyer();
-//        actionBras &= ~BOUGIE_convoyer;
-//
-//    } else if ((actionBras & BOUGIE_slight_convoyer) == BOUGIE_slight_convoyer) {
-//        slight_convoyer();
-//        actionBras &= ~BOUGIE_slight_convoyer;
-//
-//    } else if ((actionBras & BOUGIE_raise_arm) == BOUGIE_raise_arm ) {
-//        raise_arm( numBras);
-//        actionBras &= ~BOUGIE_raise_arm;
-//
-//    } else if ((actionBras & BOUGIE_salut) == BOUGIE_salut ) {
-//        salut( numBras);
-//        actionBras &= ~BOUGIE_salut;
-//    }  else if ((actionBras & BOUGIE_poulet) == BOUGIE_poulet ) {
-//        poulet();
-//        actionBras &= ~BOUGIE_poulet;
-//    }
+
     
 }
 

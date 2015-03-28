@@ -7,7 +7,7 @@
 /*##############################   MOTION   ##################################*/
 
 // initialiser la lib d'asservissement
-void motion_init(void(*_done)(void));
+void motion_init(void); // void(*_done)(void)
 
 // consignes de déplacements du robot
 void motion_free(); // passer en roue libre

@@ -30,7 +30,7 @@ _FWDT(FWDTEN_OFF);
 // Select debug channel.
 _FICD(ICS_PGD3 & JTAGEN_OFF);
 
-_FPOR(PWMPIN_OFF);
+_FPOR(PWMPIN_ON);
 
 
 #include <stdint.h>        /* Includes uint16_t definition                    */
@@ -53,22 +53,22 @@ int main(int argc, char** argv) {
     //float valf = 0, sens = 1;
     Init_All();
 
+   Position Coord;
+    Coord.x = 0;
+    Coord.y = 0;
+    Coord.t = 0;
+
+    //set_position(Coord);
+   // __delay_ms(500);
+
+    Coord.y = 0.5;
+    motion_pos(Coord);
+    __delay_ms(2000);
+
     while (1) // boucle principale
     {
-        PWM_Moteurs_droit(25);
-        PWM_Moteurs_gauche(-25);
+        motion_free();
 
-        __delay_ms(1000);
-        init_arm();
-        PWM_Moteurs_droit(0);
-        PWM_Moteurs_gauche(0);
-        __delay_ms(1000);
-        PWM_Moteurs_droit(-25);
-        PWM_Moteurs_gauche(25);
-        __delay_ms(1000);
-        PWM_Moteurs_droit(0);
-        PWM_Moteurs_gauche(0);
-        __delay_ms(1000);
     }
 }
 
