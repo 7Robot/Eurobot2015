@@ -38,10 +38,10 @@
       <logicalFolder name="f1" displayName="ConfigurationSRC" projectFiles="true">
         <itemPath>lib_asserv/private/tools.c</itemPath>
         <itemPath>user.c</itemPath>
+        <itemPath>interrupts.c</itemPath>
       </logicalFolder>
       <itemPath>main.c</itemPath>
       <itemPath>motor.c</itemPath>
-      <itemPath>interrupts.c</itemPath>
       <itemPath>ax12.c</itemPath>
       <itemPath>actions_ax12.c</itemPath>
     </logicalFolder>

@@ -35,7 +35,20 @@ void InitTimers()
     ConfigIntUART2(UART_RX_INT_PR5 & UART_RX_INT_EN
                  & UART_TX_INT_PR5 & UART_TX_INT_DIS);
     
-    // activation du timer 2
+    OpenUART1(UART_EN & UART_IDLE_CON & UART_IrDA_DISABLE & UART_MODE_FLOW
+        & UART_UEN_00 & UART_DIS_WAKE & UART_DIS_LOOPBACK
+        & UART_DIS_ABAUD & UART_UXRX_IDLE_ONE & UART_BRGH_SIXTEEN
+        & UART_NO_PAR_8BIT & UART_1STOPBIT,
+          UART_INT_TX_BUF_EMPTY & UART_IrDA_POL_INV_ZERO
+        & UART_SYNC_BREAK_DISABLED & UART_TX_ENABLE & UART_TX_BUF_NOT_FUL & UART_INT_RX_CHAR
+        & UART_ADR_DETECT_DIS & UART_RX_OVERRUN_CLEAR,
+          BRGVALAX12);
+
+
+    ConfigIntUART1(UART_RX_INT_PR6 & UART_RX_INT_EN
+                 & UART_TX_INT_PR6 & UART_TX_INT_DIS);
+    
+    // activation du Timer2
     OpenTimer2(T2_ON &
                 T2_IDLE_CON &
                 T2_GATE_OFF &
@@ -45,10 +58,13 @@ void InitTimers()
     ConfigIntTimer2(T2_INT_PRIOR_4 & T2_INT_ON);
     
     // Ici interruption des actions des bras
-    IFS2bits.SPI2IF = 0; // Flag SPI2 Event Interrupt Priority
-    IPC8bits.SPI2IP = 2; // Priority SPI2 Event Interrupt Priority
-    IEC2bits.SPI2IE = 1; //Enable SPI2 Event Interrupt Priority
+    //IFS2bits.SPI2IF = 0; // Flag SPI2 Event Interrupt Priority
+    //IPC8bits.SPI2IP = 2; // Priority SPI2 Event Interrupt Priority
+    //IEC2bits.SPI2IE = 1; //Enable SPI2 Event Interrupt Priority
 
+    //Remapage uart 1
+    _U1RXR = 18;
+    _RP4R = 0b0011;  // RP4 = U1TX (p.167)
 
     
 
