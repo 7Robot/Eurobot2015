@@ -92,14 +92,28 @@ void PWM_Moteurs(float DC_gauche, float DC_droit)
     int DC_positif;
 
     // pins de sens du moteur gauche
-    DC_positif = (DC_droit >= 0);
-    //MOTOR_1A_O = DC_positif;
-    //MOTOR_1B_O = !DC_positif;
+
+    if (DC_droit >= 0) {
+        MOTOR_DIR2 = 0;
+    }
+    else {
+        MOTOR_DIR2 = 1;
+    }
+
+    if (DC_droit >= 0) {
+        MOTOR_DIR1 = 1;
+    }
+    else {
+        MOTOR_DIR1 = 0;
+    }
+
+    //MOTOR_DIR1= 0;
+
 
     // pins de sens du moteur droit
     DC_positif = (DC_gauche < 0);
-    //MOTOR_2A_O = !DC_positif;
-    //MOTOR_2B_O = DC_positif;
+
+
 
     P1TPER = 1500;
 

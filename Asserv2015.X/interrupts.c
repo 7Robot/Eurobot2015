@@ -193,9 +193,9 @@ void __attribute__((interrupt,auto_psv)) _T2Interrupt(void) {
     // on baisse le flag
     _T2IF = 0;
     // compteurs QEI gauche et droit
-    volatile static int tics_g, tics_d;
+    float tics_g, tics_d;
     // commandes gauches et droite
-    volatile static float commande_g, commande_d;
+    static float commande_g, commande_d;
 
     // récupération des données des compteurs qei gauche et droit
     tics_g = (int)POS1CNT;
@@ -211,7 +211,6 @@ void __attribute__((interrupt,auto_psv)) _T2Interrupt(void) {
 *************************************************/
 void __attribute__((interrupt, no_auto_psv)) _U2RXInterrupt(void){
     _U2RXIF = 0; // On baisse le FLAG
-    led = !led;
 //    InterruptAX();
 }
 
@@ -219,8 +218,14 @@ void __attribute__((__interrupt__, no_auto_psv)) _U2TXInterrupt(void){
    _U2TXIF = 0; // clear TX interrupt flag
 }
 
+void __attribute__((interrupt, no_auto_psv)) _U1RXInterrupt(void){
+    _U1RXIF = 0; // On baisse le FLAG
+}
 
-// interruption lié au bras du robot
+void __attribute__((__interrupt__, no_auto_psv)) _U1TXInterrupt(void){
+    _U1TXIF = 0; // clear TX interrupt flag
+}
+
 void __attribute__((interrupt, no_auto_psv)) _SPI2Interrupt(void){
     led=1;
     IFS2bits.SPI2IF = 0;

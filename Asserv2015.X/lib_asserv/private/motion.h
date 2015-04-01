@@ -92,7 +92,7 @@ int motion_done();
 void check_blocked(Speed speed,Speed order);
 
 // renvoie les commandes des roues gauche et droite (appelé par l'interruption toutes les 5 ms)
-void motion_step(int tics_g, int tics_d, float *commande_g, float *commande_d);
+void motion_step(float tics_g,float tics_d, float *commande_g, float *commande_d);
 
 
 #endif // _MOTION_H_
