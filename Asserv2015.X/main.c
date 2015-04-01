@@ -53,27 +53,30 @@ int main(int argc, char** argv) {
     //float valf = 0, sens = 1;
     Init_All();
 
-    Speed test;
-    test.v = 0.1;
-    test.vt = 0;
-//   Position Coord;
-//    Coord.x = 0;
-//    Coord.y = 0;
-//    Coord.t = 0;
-//
-//    set_position(Coord);
-//    __delay_ms(500);
-//
-//    Coord.x = 0.1;
-//    motion_pos(Coord);
+   Position Coord;
+    Coord.x = 0;
+    Coord.y = 0;
+    Coord.t = 0;
 
-      motion_speed(test); // CONSIGNE DE VITESSE
+    set_position(Coord);
+    __delay_ms(50);
+    init_ax12();
+    __delay_ms(4000);
 
+
+
+    Coord.x = 1;
+    motion_pos(Coord);
+    __delay_ms(2000);
+    charg_gobelet();
+
+    Coord.x = 0;
+    motion_pos(Coord);
+    __delay_ms(2000);
 
 
     while (1) // boucle principale
     {
-        
     }
 }
 

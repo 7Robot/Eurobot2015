@@ -40,8 +40,8 @@ void Init_PWM(void)
     PWM1CON1bits.PEN3L = 0;
 
     P1TPER = 1500;
-    // réglage des rapports cycliques, pour l'instant on mets 0 lors de l'initialisation
-    P1DC1 = 0;
+
+    P1DC1 = 0;// réglage des rapports cycliques, pour l'instant on mets 0 lors de l'initialisation
     P1DC2 = 0;
 
     MOTOR_BREAK1_tris = 0;
@@ -100,14 +100,13 @@ void PWM_Moteurs(float DC_gauche, float DC_droit)
         MOTOR_DIR2 = 1;
     }
 
-    if (DC_droit >= 0) {
+    if (DC_gauche >= 0) {
         MOTOR_DIR1 = 1;
     }
     else {
         MOTOR_DIR1 = 0;
     }
 
-    //MOTOR_DIR1= 0;
 
 
     // pins de sens du moteur droit
@@ -135,13 +134,9 @@ void PWM_Moteurs_Detail(float frequence, float DC_gauche, float DC_droit)
 
     // pins de sens du moteur gauche
     DC_positif = DC_droit >= 0;
-    //MOTOR_1A_O = DC_positif;
-    //MOTOR_1B_O = !DC_positif;
 
     // pins de sens du moteur droit
-    DC_positif = DC_gauche >= 0;
-    //MOTOR_2A_O = !DC_positif;
-    //MOTOR_2B_O = DC_positif;
+    DC_positif = DC_gauche < 0;
 
     // calcul du nombre de cycles pour avoir la bonne fréquence (FCY/frequence)
     P1TPER = (int) limit_int((long int)(FCY/frequence),P1TPER_MIN,P1TPER_MAX);
@@ -167,9 +162,7 @@ void PWM_Moteurs_gauche(float DC)
     // pins de sens du moteur gauche
     DC_positif = (DC < 0); // => changer en fonction des sens des moteurs
     MOTOR_DIR1 = !DC_positif;
-    //MOTOR_2B_O = DC_positif;
 
-    //P1TPER = 1500;
 
     // limitation des Duty-Cycle
     DC = limit_float(DC,-DC_MAX,DC_MAX);
