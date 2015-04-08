@@ -82,18 +82,6 @@ void charg_gobelet(void)
 
 
 
-//    PutAX(tub,AX_GOAL_POSITION,300); //reouvre legerement le porte gobelet
-//    __delay_ms(1000);
-//    PutAX(asc,AX_GOAL_POSITION,940); //remonte la pince a max
-//    __delay_ms(3000);
-//    PutAX(tub,AX_GOAL_POSITION,260); //referme le porte gob
-//    __delay_ms(1000);
-//    PutAX(pince,AX_GOAL_POSITION,250); // reouvre la pince
-//    __delay_ms(3000);
-//    PutAX(asc,AX_GOAL_POSITION,00); // la redescent a mi hauteur
-//    __delay_ms(1000);
-
-
 }
 
 /******************************************************************************/

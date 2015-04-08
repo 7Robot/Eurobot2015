@@ -21,7 +21,7 @@ void motion_angle(float abs_angle); // tourner pour être à un angle (absolu) a
 int motion_done();
 
 // renvoie les commandes des roues gauche et droite (appelé par l'interruption toutes les 10 ms)
-void motion_step(float tics_g,float tics_d, float *commande_g, float *commande_d);
+void motion_step(int tics_g,int tics_d, float *commande_g, float *commande_d);
 
 /*############################   MOTION STATE   ##############################*/
 

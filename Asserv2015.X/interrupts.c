@@ -193,7 +193,7 @@ void __attribute__((interrupt,auto_psv)) _T2Interrupt(void) {
     // on baisse le flag
     _T2IF = 0;
     // compteurs QEI gauche et droit
-    float tics_g, tics_d;
+    static volatile int tics_g, tics_d;
     // commandes gauches et droite
     static float commande_g, commande_d;
 
