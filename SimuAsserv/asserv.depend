@@ -1,0 +1,109 @@
+# depslib dependency file v1.0
+1427738194 source:/home/archi/projets/asserv/asserv.c
+
+1428440678 source:/home/archi/projets/asserv/motion.c
+	"config.h"
+	"motion.h"
+	"odo.h"
+	"asserv.h"
+
+1428439388 /home/archi/projets/asserv/config.h
+
+1428438119 /home/archi/projets/asserv/motion.h
+
+1428440653 /home/archi/projets/asserv/odo.h
+
+1427738102 /home/archi/projets/asserv/asserv.h
+
+1428441613 source:/home/archi/projets/asserv/odo.c
+	"config.h"
+	"odo.h"
+	"asserv.h"
+	"math.h"
+	"motion.h"
+	<stdio.h>
+
+1428441739 source:/home/archi/projets/asserv/main.c
+	<stdio.h>
+	<stdlib.h>
+	"motion.h"
+	"odo.h"
+
+1429044183 source:/home/archi/7Robot/Asserv/asserv/asserv.c
+	"config.h"
+	"odo.h"
+	"asserv.h"
+	"math.h"
+	"motion.h"
+	<stdio.h>
+	"asserv.h"
+
+1429044063 source:/home/archi/7Robot/Asserv/asserv/main.c
+	<stdio.h>
+	<stdlib.h>
+	"motion.h"
+	"odo.h"
+	"asserv.h"
+
+1428586646 /home/archi/7Robot/Asserv/asserv/motion.h
+
+1428497959 /home/archi/7Robot/Asserv/asserv/odo.h
+
+1428960221 source:/home/archi/7Robot/Asserv/asserv/motion.c
+	"config.h"
+	"motion.h"
+	"odo.h"
+	"asserv.h"
+
+1428959954 /home/archi/7Robot/Asserv/asserv/config.h
+
+1428929105 /home/archi/7Robot/Asserv/asserv/asserv.h
+	"motion.h"
+
+1428960926 source:/home/archi/7Robot/Asserv/asserv/odo.c
+	"config.h"
+	"odo.h"
+	"asserv.h"
+	"math.h"
+	"motion.h"
+	<stdio.h>
+
+1429231475 source:/home/archi/Programmation/Asserv/asserv/asserv.c
+	"config.h"
+	"odo.h"
+	"asserv.h"
+	"math.h"
+	"motion.h"
+	<stdio.h>
+	"asserv.h"
+
+1429270640 /home/archi/Programmation/Asserv/asserv/config.h
+
+1429118304 /home/archi/Programmation/Asserv/asserv/odo.h
+
+1429125466 /home/archi/Programmation/Asserv/asserv/asserv.h
+	"motion.h"
+
+1429118304 /home/archi/Programmation/Asserv/asserv/motion.h
+
+1429266341 source:/home/archi/Programmation/Asserv/asserv/main.c
+	<stdio.h>
+	<stdlib.h>
+	"motion.h"
+	"odo.h"
+	"asserv.h"
+
+1429118304 source:/home/archi/Programmation/Asserv/asserv/motion.c
+	"config.h"
+	"motion.h"
+	"odo.h"
+	"asserv.h"
+
+1429118304 source:/home/archi/Programmation/Asserv/asserv/odo.c
+	"config.h"
+	"odo.h"
+	"asserv.h"
+	"math.h"
+	"motion.h"
+	<stdio.h>
+
