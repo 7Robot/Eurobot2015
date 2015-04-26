@@ -7,6 +7,7 @@
 #include <fstream>
 #include <time.h>
 #include <unistd.h>
+#include <cstdlib>
 
 #include "a_star.h"
 #include "heuristic.h"
