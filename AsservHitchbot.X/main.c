@@ -33,12 +33,13 @@ _FICD(ICS_PGD3 & JTAGEN_OFF);
 _FPOR(PWMPIN_ON);
 
 
-#include <stdint.h>        /* Includes uint16_t definition                    */
-#include <stdbool.h>       /* Includes true/false definition                  */
+#include <stdint.h>        // Includes uint16_t definition
+#include <stdio.h>         // Includes sprintf
+#include <stdbool.h>       // Includes true/false definition
 #include <uart.h>
 #include <math.h>
-#include "user.h"          /* User funct/params, such as InitApp              */
-#include "qei.h"           /* QEI definitions for easier use                  */
+#include "user.h"          // User funct/params, such as InitApp
+#include "qei.h"           // QEI definitions for easier use
 #include <libpic30.h>
 #include "ax12.h"
 #include "lib_asserv/lib_asserv_default.h"
