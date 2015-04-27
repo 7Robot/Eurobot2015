@@ -250,7 +250,6 @@ void __attribute__ ((__interrupt__, no_auto_psv)) _CNInterrupt(void)
     {
         __delay_ms(500);
     }
-    IFS1bits.CNIF = 0; // Clear CN interrupt
 
     if (!MOT_SENSOR_PIN_L)
     {
@@ -260,4 +259,6 @@ void __attribute__ ((__interrupt__, no_auto_psv)) _CNInterrupt(void)
     {
         WriteUART1('R');
     }
+
+    IFS1bits.CNIF = 0; // Clear CN interrupt
 }

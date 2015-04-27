@@ -58,13 +58,15 @@ int main(int argc, char** argv) {
 //    test.vt = 0;
 //    motion_speed(test);
 
+    int pouet = 0;
     while (1) // boucle principale
     {
         long int delay=0;
-        for (delay=0; delay<800000; delay++);
-        //char msg[16]="";
-        //sprintf(msg, "%d\n", MOT_SENSOR_PIN_L);
-        //writeStringToUART(MOT_SENSOR_PIN_L);
+        for (delay=0; delay<80000; delay++);
+        pouet=_RC8;
+        char msg[16]="";
+        sprintf(msg, "%d\n\r", pouet);
+        writeStringToUART(msg);
 
 //   Position Coord;
 //    Coord.x = 0;
