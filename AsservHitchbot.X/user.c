@@ -51,3 +51,10 @@ void Init_All(){
     //Init_CN();
 
 }
+
+void writeStringToUART (const char *msg)
+{
+    while(*msg)    {
+        WriteUART1(*msg++);
+    }
+}
