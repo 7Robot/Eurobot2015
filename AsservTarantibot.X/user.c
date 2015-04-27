@@ -44,10 +44,16 @@ void Init_All(){
     InitTimers();
     __delay_ms(500);
     Init_PWM();
-    //Init_QEI(); //QEI non utilisés sur Bottox
     //InitSick();
     motion_init(); // start asserv
     //AtpInit();
     //Init_CN();
 
+}
+
+void writeStringToUART (const char *msg)
+{
+    while(*msg)    {
+        WriteUART1(*msg++);
+    }
 }

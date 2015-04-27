@@ -13,7 +13,7 @@
 #include "heuristic.h"
 #include "serialib.h"
 
-#define DEVICE_PORT "/dev/ttyUSB0"      // FTDI
+#define DEVICE_PORT "/dev/ttyACM1"      // FTDI
 
 using namespace std;
 

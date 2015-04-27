@@ -34,6 +34,7 @@ _FPOR(PWMPIN_ON);
 
 
 #include <stdint.h>        /* Includes uint16_t definition                    */
+#include <stdio.h>
 #include <stdbool.h>       /* Includes true/false definition                  */
 #include <uart.h>
 #include <math.h>
@@ -45,8 +46,6 @@ _FPOR(PWMPIN_ON);
 #include "lib_asserv/lib_asserv.h"
 #include "motor.h"
 #include "actions_ax12.h"
-
-
 
 
 int main(int argc, char** argv) {
@@ -61,7 +60,12 @@ int main(int argc, char** argv) {
 
     while (1) // boucle principale
     {
-        WriteUART1('a');
+        long int delay=0;
+        for (delay=0; delay<800000; delay++);
+        //char msg[16]="";
+        //sprintf(msg, "%d\n", MOT_SENSOR_PIN_L);
+        //writeStringToUART(MOT_SENSOR_PIN_L);
+
 //   Position Coord;
 //    Coord.x = 0;
 //    Coord.y = 0;
@@ -83,4 +87,5 @@ int main(int argc, char** argv) {
 //    __delay_ms(2000);
     }
 }
+
 
