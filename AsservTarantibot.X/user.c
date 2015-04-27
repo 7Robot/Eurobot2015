@@ -47,7 +47,7 @@ void Init_All(){
     //InitSick();
     motion_init(); // start asserv
     //AtpInit();
-    //Init_CN();
+    Init_CN();
 
 }
 

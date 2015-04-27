@@ -76,9 +76,11 @@ void Init_CN()
     _TRISC3 = 1;  // input for laisse
     _TRISC9 = 1;  // input for motor sensor
     _TRISC8 = 1;  // input for motor sensor
+
     _CN28IE = 1; // Enable CN28 pin for interrupt detection
     _CN20IE = 1; // Enable CN20 pin for interrupt detection (motor sensor)
     _CN19IE = 1; // Enable CN19 pin for interrupt detection (motor sensor)
+
     IPC4bits.CNIP = 3; //Interrupt level 3
     IEC1bits.CNIE = 1; // Enable CN interrupts
     IFS1bits.CNIF = 0; // Reset CN interrupt
@@ -253,11 +255,11 @@ void __attribute__ ((__interrupt__, no_auto_psv)) _CNInterrupt(void)
 
     if (!MOT_SENSOR_PIN_L)
     {
-        WriteUART1('L');
+        writeStringToUART("L");
     }
     if (!MOT_SENSOR_PIN_R)
     {
-        WriteUART1('R');
+        writeStringToUART("R");
     }
 
     IFS1bits.CNIF = 0; // Clear CN interrupt
