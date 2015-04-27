@@ -1,2 +1,44 @@
-*.sublime-project
-*.sublime-workspace
+# GENERIC files
+*~
+.~*
+*.swp
+*.orig
+
+# MPLAB-X files
+*.d
+*.pre
+*.p1
+*.lst
+*.sym
+*.obj
+*.o
+*.sdb
+*.obj.dmp
+*.map
+
+# MPLAB-X folders
+asserv_fatman/html/
+asserv_fatman/nbproject/private/
+asserv_fatman/nbproject/Package-*.bash
+asserv_fatman/build/
+asserv_fatman/nbbuild/
+asserv_fatman/dist/
+asserv_fatman/nbdist/
+asserv_fatman/nbactions.xml
+asserv_fatman/nb-configuration.xml
+asserv_fatman/funclist
+asserv_fatman/nbproject/Makefile-*
+asserv_fatman/disassembly/
+
+EUR_2014_asserv.X/html/
+EUR_2014_asserv.X/nbproject/private/
+EUR_2014_asserv.X/nbproject/Package-*.bash
+EUR_2014_asserv.X/build/
+EUR_2014_asserv.X/nbbuild/
+EUR_2014_asserv.X/dist/
+EUR_2014_asserv.X/nbdist/
+EUR_2014_asserv.X/nbactions.xml
+EUR_2014_asserv.X/nb-configuration.xml
+EUR_2014_asserv.X/funclist
+EUR_2014_asserv.X/nbproject/Makefile-*
+EUR_2014_asserv.X/disassembly/
