@@ -2,6 +2,7 @@
 
 #include <stdint.h>        /* Includes uint16_t definition   */
 #include <stdbool.h>       /* Includes true/false definition */
+#include <stdio.h>
 #include <timer.h>
 #include <uart.h>
 
@@ -11,9 +12,14 @@
 //#include "tests.h"
 #include "lib_asserv/lib_asserv.h"
 #include "motor.h"
+#include "user.h"
 //#include "ax12.h"
 //#include "atp-asserv.h"
 //#include "actions_ax12.h"
+
+
+char msg[15]="";
+static volatile int tics_g, tics_d;
 
 void InitTimers()
 {
@@ -199,13 +205,12 @@ void __attribute__((interrupt,auto_psv)) _T2Interrupt(void) {
     // on baisse le flag
     _T2IF = 0;
     // compteurs QEI gauche et droit
-    static volatile int tics_g, tics_d;
     // commandes gauches et droite
     static float commande_g, commande_d;
 
     // récupération des données des compteurs qei gauche et droit
-    tics_g = (int)POS1CNT;
-    tics_d = (int)POS2CNT;
+   // tics_g = (int)POS1CNT;
+   // tics_d = (int)POS2CNT;
     // effectuer un pas de déplacement
    motion_step(tics_g,tics_d, &commande_g, &commande_d);
     // mettre ici les pwm gauche et droit
@@ -244,6 +249,8 @@ void __attribute__((interrupt, no_auto_psv)) _SPI2Interrupt(void){
 
 void __attribute__ ((__interrupt__, no_auto_psv)) _CNInterrupt(void)
 {
+    
+
     if (!PIN_LAISSE)
     {
 //        SendStart(BOUTON_COULEUR);
@@ -255,12 +262,16 @@ void __attribute__ ((__interrupt__, no_auto_psv)) _CNInterrupt(void)
 
     if (!MOT_SENSOR_PIN_L)
     {
-        writeStringToUART("L");
+        tics_g ++;
     }
     if (!MOT_SENSOR_PIN_R)
     {
-        writeStringToUART("R");
+        tics_d ++;
+
     }
+    
+    sprintf(msg, "%d\n\r", tics_g);
+    writeStringToUART(msg);
 
     IFS1bits.CNIF = 0; // Clear CN interrupt
 }

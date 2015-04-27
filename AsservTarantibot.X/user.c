@@ -15,6 +15,7 @@
 //#include "atp.h"
 //#include "sick.h"
 #include "motor.h"
+#include "uart.h"
 
 /******************************************************************************/
 /* User Functions                                                             */
