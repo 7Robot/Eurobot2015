@@ -18,7 +18,7 @@
 //#include "actions_ax12.h"
 
 
-char msg[15]="";
+char msg[16]="";
 volatile int tics_g, tics_d;
 
 void InitTimers()
@@ -254,30 +254,32 @@ char lastMotorStateR=0;
 void __attribute__ ((__interrupt__, no_auto_psv)) _CNInterrupt(void)
 {
 
-
+/*
     if (!PIN_LAISSE)
     {
-//        SendStart(BOUTON_COULEUR);
+        SendStart(BOUTON_COULEUR);
     }
     else
     {
         __delay_ms(500);
     }
-
+*/
     if (MOT_SENSOR_PIN_L != lastMotorStateL)
     {
         lastMotorStateL=MOT_SENSOR_PIN_L;
         tics_g ++;
+        sprintf(msg, "L%d", tics_g);
+        writeStringToUART(msg);
     }
-    if (!MOT_SENSOR_PIN_R != lastMotorStateR)
+    if (MOT_SENSOR_PIN_R != lastMotorStateR)
     {
         lastMotorStateR=MOT_SENSOR_PIN_R;
         tics_d ++;
-
+        sprintf(msg, "R%d", tics_d);
+        writeStringToUART(msg);
     }
 
-//    sprintf(msg, "%d\n\r", tics_g);
-//    writeStringToUART(msg);
+    writeStringToUART("\n\r");
 
     IFS1bits.CNIF = 0; // Clear CN interrupt
 }

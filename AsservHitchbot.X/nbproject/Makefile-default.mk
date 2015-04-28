@@ -45,6 +45,7 @@ OBJECTDIR=build/${CND_CONF}/${IMAGE_TYPE}
 DISTDIR=dist/${CND_CONF}/${IMAGE_TYPE}
 
 # Source Files Quoted if spaced
+<<<<<<< HEAD
 SOURCEFILES_QUOTED_IF_SPACED=lib_asserv/private/asserv.c lib_asserv/private/debug.c lib_asserv/private/motion.c lib_asserv/private/odo.c lib_asserv/private/pid.c lib_asserv/private/tools.c user.c interrupts.c main.c motor.c ax12.c actions_ax12.c sick.c
 
 # Object Files Quoted if spaced
@@ -56,6 +57,19 @@ OBJECTFILES=${OBJECTDIR}/lib_asserv/private/asserv.o ${OBJECTDIR}/lib_asserv/pri
 
 # Source Files
 SOURCEFILES=lib_asserv/private/asserv.c lib_asserv/private/debug.c lib_asserv/private/motion.c lib_asserv/private/odo.c lib_asserv/private/pid.c lib_asserv/private/tools.c user.c interrupts.c main.c motor.c ax12.c actions_ax12.c sick.c
+=======
+SOURCEFILES_QUOTED_IF_SPACED=lib_asserv/private/asserv.c lib_asserv/private/debug.c lib_asserv/private/motion.c lib_asserv/private/odo.c lib_asserv/private/pid.c lib_asserv/private/tools.c user.c interrupts.c main.c motor.c ax12.c actions_ax12.c communication.c
+
+# Object Files Quoted if spaced
+OBJECTFILES_QUOTED_IF_SPACED=${OBJECTDIR}/lib_asserv/private/asserv.o ${OBJECTDIR}/lib_asserv/private/debug.o ${OBJECTDIR}/lib_asserv/private/motion.o ${OBJECTDIR}/lib_asserv/private/odo.o ${OBJECTDIR}/lib_asserv/private/pid.o ${OBJECTDIR}/lib_asserv/private/tools.o ${OBJECTDIR}/user.o ${OBJECTDIR}/interrupts.o ${OBJECTDIR}/main.o ${OBJECTDIR}/motor.o ${OBJECTDIR}/ax12.o ${OBJECTDIR}/actions_ax12.o ${OBJECTDIR}/communication.o
+POSSIBLE_DEPFILES=${OBJECTDIR}/lib_asserv/private/asserv.o.d ${OBJECTDIR}/lib_asserv/private/debug.o.d ${OBJECTDIR}/lib_asserv/private/motion.o.d ${OBJECTDIR}/lib_asserv/private/odo.o.d ${OBJECTDIR}/lib_asserv/private/pid.o.d ${OBJECTDIR}/lib_asserv/private/tools.o.d ${OBJECTDIR}/user.o.d ${OBJECTDIR}/interrupts.o.d ${OBJECTDIR}/main.o.d ${OBJECTDIR}/motor.o.d ${OBJECTDIR}/ax12.o.d ${OBJECTDIR}/actions_ax12.o.d ${OBJECTDIR}/communication.o.d
+
+# Object Files
+OBJECTFILES=${OBJECTDIR}/lib_asserv/private/asserv.o ${OBJECTDIR}/lib_asserv/private/debug.o ${OBJECTDIR}/lib_asserv/private/motion.o ${OBJECTDIR}/lib_asserv/private/odo.o ${OBJECTDIR}/lib_asserv/private/pid.o ${OBJECTDIR}/lib_asserv/private/tools.o ${OBJECTDIR}/user.o ${OBJECTDIR}/interrupts.o ${OBJECTDIR}/main.o ${OBJECTDIR}/motor.o ${OBJECTDIR}/ax12.o ${OBJECTDIR}/actions_ax12.o ${OBJECTDIR}/communication.o
+
+# Source Files
+SOURCEFILES=lib_asserv/private/asserv.c lib_asserv/private/debug.c lib_asserv/private/motion.c lib_asserv/private/odo.c lib_asserv/private/pid.c lib_asserv/private/tools.c user.c interrupts.c main.c motor.c ax12.c actions_ax12.c communication.c
+>>>>>>> 51a9069d6be001d1b53b34be258c400d52e13825
 
 
 CFLAGS=
@@ -166,12 +180,21 @@ ${OBJECTDIR}/actions_ax12.o: actions_ax12.c  nbproject/Makefile-${CND_CONF}.mk
 	${MP_CC} $(MP_EXTRA_CC_PRE)  actions_ax12.c  -o ${OBJECTDIR}/actions_ax12.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MMD -MF "${OBJECTDIR}/actions_ax12.o.d"      -g -D__DEBUG -D__MPLAB_DEBUGGER_PK3=1    -omf=elf -mlarge-code -mlarge-data -O0 -msmart-io=1 -Wall -msfr-warn=off
 	@${FIXDEPS} "${OBJECTDIR}/actions_ax12.o.d" $(SILENT)  -rsi ${MP_CC_DIR}../ 
 	
+<<<<<<< HEAD
 ${OBJECTDIR}/sick.o: sick.c  nbproject/Makefile-${CND_CONF}.mk
 	@${MKDIR} "${OBJECTDIR}" 
 	@${RM} ${OBJECTDIR}/sick.o.d 
 	@${RM} ${OBJECTDIR}/sick.o 
 	${MP_CC} $(MP_EXTRA_CC_PRE)  sick.c  -o ${OBJECTDIR}/sick.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MMD -MF "${OBJECTDIR}/sick.o.d"      -g -D__DEBUG -D__MPLAB_DEBUGGER_PK3=1    -omf=elf -mlarge-code -mlarge-data -O0 -msmart-io=1 -Wall -msfr-warn=off
 	@${FIXDEPS} "${OBJECTDIR}/sick.o.d" $(SILENT)  -rsi ${MP_CC_DIR}../ 
+=======
+${OBJECTDIR}/communication.o: communication.c  nbproject/Makefile-${CND_CONF}.mk
+	@${MKDIR} "${OBJECTDIR}" 
+	@${RM} ${OBJECTDIR}/communication.o.d 
+	@${RM} ${OBJECTDIR}/communication.o 
+	${MP_CC} $(MP_EXTRA_CC_PRE)  communication.c  -o ${OBJECTDIR}/communication.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MMD -MF "${OBJECTDIR}/communication.o.d"      -g -D__DEBUG -D__MPLAB_DEBUGGER_PK3=1    -omf=elf -mlarge-code -mlarge-data -O0 -msmart-io=1 -Wall -msfr-warn=off
+	@${FIXDEPS} "${OBJECTDIR}/communication.o.d" $(SILENT)  -rsi ${MP_CC_DIR}../ 
+>>>>>>> 51a9069d6be001d1b53b34be258c400d52e13825
 	
 else
 ${OBJECTDIR}/lib_asserv/private/asserv.o: lib_asserv/private/asserv.c  nbproject/Makefile-${CND_CONF}.mk
@@ -258,12 +281,21 @@ ${OBJECTDIR}/actions_ax12.o: actions_ax12.c  nbproject/Makefile-${CND_CONF}.mk
 	${MP_CC} $(MP_EXTRA_CC_PRE)  actions_ax12.c  -o ${OBJECTDIR}/actions_ax12.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MMD -MF "${OBJECTDIR}/actions_ax12.o.d"        -g -omf=elf -mlarge-code -mlarge-data -O0 -msmart-io=1 -Wall -msfr-warn=off
 	@${FIXDEPS} "${OBJECTDIR}/actions_ax12.o.d" $(SILENT)  -rsi ${MP_CC_DIR}../ 
 	
+<<<<<<< HEAD
 ${OBJECTDIR}/sick.o: sick.c  nbproject/Makefile-${CND_CONF}.mk
 	@${MKDIR} "${OBJECTDIR}" 
 	@${RM} ${OBJECTDIR}/sick.o.d 
 	@${RM} ${OBJECTDIR}/sick.o 
 	${MP_CC} $(MP_EXTRA_CC_PRE)  sick.c  -o ${OBJECTDIR}/sick.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MMD -MF "${OBJECTDIR}/sick.o.d"        -g -omf=elf -mlarge-code -mlarge-data -O0 -msmart-io=1 -Wall -msfr-warn=off
 	@${FIXDEPS} "${OBJECTDIR}/sick.o.d" $(SILENT)  -rsi ${MP_CC_DIR}../ 
+=======
+${OBJECTDIR}/communication.o: communication.c  nbproject/Makefile-${CND_CONF}.mk
+	@${MKDIR} "${OBJECTDIR}" 
+	@${RM} ${OBJECTDIR}/communication.o.d 
+	@${RM} ${OBJECTDIR}/communication.o 
+	${MP_CC} $(MP_EXTRA_CC_PRE)  communication.c  -o ${OBJECTDIR}/communication.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MMD -MF "${OBJECTDIR}/communication.o.d"        -g -omf=elf -mlarge-code -mlarge-data -O0 -msmart-io=1 -Wall -msfr-warn=off
+	@${FIXDEPS} "${OBJECTDIR}/communication.o.d" $(SILENT)  -rsi ${MP_CC_DIR}../ 
+>>>>>>> 51a9069d6be001d1b53b34be258c400d52e13825
 	
 endif
 
