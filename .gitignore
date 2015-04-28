@@ -42,3 +42,7 @@ EUR_2014_asserv.X/nb-configuration.xml
 EUR_2014_asserv.X/funclist
 EUR_2014_asserv.X/nbproject/Makefile-*
 EUR_2014_asserv.X/disassembly/
+
+# Sublime text
+*.sublime-project
+*.sublime-workspace
