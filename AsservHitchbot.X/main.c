@@ -62,7 +62,6 @@ int main(int argc, char** argv) {
 
     while (1) // boucle principale
     {
-        WriteUART1('a');
 //   Position Coord;
 //    Coord.x = 0;
 //    Coord.y = 0;

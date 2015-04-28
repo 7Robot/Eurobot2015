@@ -20,6 +20,7 @@
       <itemPath>globals.h</itemPath>
       <itemPath>ax12.h</itemPath>
       <itemPath>actions_ax12.h</itemPath>
+      <itemPath>sick.h</itemPath>
     </logicalFolder>
     <logicalFolder name="LinkerScript"
                    displayName="Linker Files"
@@ -44,6 +45,7 @@
       <itemPath>motor.c</itemPath>
       <itemPath>ax12.c</itemPath>
       <itemPath>actions_ax12.c</itemPath>
+      <itemPath>sick.c</itemPath>
     </logicalFolder>
     <logicalFolder name="ExternalFiles"
                    displayName="Important Files"
