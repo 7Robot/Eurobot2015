@@ -4,7 +4,7 @@
 #include "motor.h"
 #include <math.h>
 #include "user.h"
-#include "tools.h"
+#include "lib_asserv/private/tools.h"
 
 void Init_PWM(void)
 {

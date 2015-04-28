@@ -9,15 +9,13 @@
 #include "user.h"          /* User funct/params, such as InitApp              */
 #include "qei.h"           /* QEI definitions for easier use                  */
 #include <libpic30.h>
-#include "motion.h"
 //#include "tests.h"
-//#include "lib_asserv/lib_asserv.h"
+#include "lib_asserv/lib_asserv.h"
 //#include "atp-asserv.h"
 //#include "atp.h"
 //#include "sick.h"
 #include "motor.h"
 #include "uart.h"
-
 
 /******************************************************************************/
 /* User Functions                                                             */

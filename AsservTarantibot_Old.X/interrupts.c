@@ -10,7 +10,7 @@
 #include "user.h"
 #include <libpic30.h>
 //#include "tests.h"
-#include "motion.h"
+#include "lib_asserv/lib_asserv.h"
 #include "motor.h"
 #include "user.h"
 //#include "ax12.h"
@@ -40,7 +40,7 @@ void InitTimers()
 
     ConfigIntUART2(UART_RX_INT_PR5 & UART_RX_INT_EN
                  & UART_TX_INT_PR5 & UART_TX_INT_DIS);
-
+    
     OpenUART1(UART_EN & UART_IDLE_CON & UART_IrDA_DISABLE & UART_MODE_FLOW
         & UART_UEN_00 & UART_DIS_WAKE & UART_DIS_LOOPBACK
         & UART_DIS_ABAUD & UART_UXRX_IDLE_ONE & UART_BRGH_SIXTEEN
@@ -53,7 +53,7 @@ void InitTimers()
 
     ConfigIntUART1(UART_RX_INT_PR6 & UART_RX_INT_EN
                  & UART_TX_INT_PR6 & UART_TX_INT_DIS);
-
+    
     // activation du Timer2
     OpenTimer2(T2_ON &
                 T2_IDLE_CON &
@@ -62,7 +62,7 @@ void InitTimers()
                 T2_SOURCE_INT, 3125 ); // 3125 pour 5ms
     // configuration des interruptions
     ConfigIntTimer2(T2_INT_PRIOR_4 & T2_INT_ON);
-
+    
     // Ici interruption des actions des bras
     //IFS2bits.SPI2IF = 0; // Flag SPI2 Event Interrupt Priority
     //IPC8bits.SPI2IP = 2; // Priority SPI2 Event Interrupt Priority
@@ -72,7 +72,7 @@ void InitTimers()
     _U1RXR = 18;
     _RP4R = 0b0011;  // RP4 = U1TX (p.167)
 
-
+    
 
 }
 
@@ -241,7 +241,7 @@ void __attribute__((interrupt, no_auto_psv)) _SPI2Interrupt(void){
     led=1;
     IFS2bits.SPI2IF = 0;
 
-
+    
 }
 
 /**********************************************/
@@ -253,7 +253,7 @@ char lastMotorStateR=0;
 
 void __attribute__ ((__interrupt__, no_auto_psv)) _CNInterrupt(void)
 {
-
+    
 
     if (!PIN_LAISSE)
     {
@@ -275,9 +275,9 @@ void __attribute__ ((__interrupt__, no_auto_psv)) _CNInterrupt(void)
         tics_d ++;
 
     }
-
-//    sprintf(msg, "%d\n\r", tics_g);
-//    writeStringToUART(msg);
+    
+    sprintf(msg, "%d %d\n\r", tics_g, tics_d);
+    writeStringToUART(msg);
 
     IFS1bits.CNIF = 0; // Clear CN interrupt
 }
