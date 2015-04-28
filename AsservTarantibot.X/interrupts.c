@@ -19,7 +19,7 @@
 
 
 char msg[15]="";
-static volatile int tics_g, tics_d;
+volatile int tics_g, tics_d;
 
 void InitTimers()
 {
@@ -245,7 +245,11 @@ void __attribute__((interrupt, no_auto_psv)) _SPI2Interrupt(void){
 }
 
 /**********************************************/
-/* CN interrupt for boutons */
+/* CN interrupt for boutons and motor sensor  */
+/**********************************************/
+
+char lastMotorStateL=0;
+char lastMotorStateR=0;
 
 void __attribute__ ((__interrupt__, no_auto_psv)) _CNInterrupt(void)
 {
@@ -260,18 +264,20 @@ void __attribute__ ((__interrupt__, no_auto_psv)) _CNInterrupt(void)
         __delay_ms(500);
     }
 
-    if (!MOT_SENSOR_PIN_L)
+    if (MOT_SENSOR_PIN_L != lastMotorStateL)
     {
+        lastMotorStateL=MOT_SENSOR_PIN_L;
         tics_g ++;
     }
-    if (!MOT_SENSOR_PIN_R)
+    if (!MOT_SENSOR_PIN_R != lastMotorStateR)
     {
+        lastMotorStateR=MOT_SENSOR_PIN_R;
         tics_d ++;
 
     }
     
-    sprintf(msg, "%d\n\r", tics_g);
-    writeStringToUART(msg);
+//    sprintf(msg, "%d\n\r", tics_g);
+//    writeStringToUART(msg);
 
     IFS1bits.CNIF = 0; // Clear CN interrupt
 }
