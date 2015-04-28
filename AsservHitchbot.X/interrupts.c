@@ -238,13 +238,17 @@ void __attribute__((interrupt, no_auto_psv)) _SPI2Interrupt(void){
 
 void __attribute__ ((__interrupt__, no_auto_psv)) _CNInterrupt(void)
 {
-    if (!PIN_LAISSE)
+/*    if (!PIN_LAISSE)
     {
-//        SendStart(BOUTON_COULEUR);
+       SendStart(BOUTON_COULEUR);
+
+
+
     }
     else
     {
         __delay_ms(500);
     }
+  */
     IFS1bits.CNIF = 0; // Clear CN interrupt
 }
