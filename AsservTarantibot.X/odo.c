@@ -49,6 +49,7 @@ void odo_step(int tics_g,int tics_d) {
 
     tics_g_old=tics_g;
     tics_d_old=tics_d;
+    printf("DiffG%f DiffDD%f \n\r",diff_g,diff_d);
 
     float distance = (diff_g+diff_d)/2;
     float angle = (diff_d-diff_g)/spacing;
@@ -61,6 +62,8 @@ void odo_step(int tics_g,int tics_d) {
     //mise a jour de la vitesse
     speed_current.v=distance/period;
     speed_current.vt=angle/period;
+
+    printf("Sp_cur_v%f Sp_cur_vt%f \n\r",speed_current.v,speed_current.vt);
 
     acc_current.a=speed_current.v-speed_old.v;
     acc_current.at=speed_current.vt-speed_old.vt;

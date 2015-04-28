@@ -51,7 +51,7 @@ _FPOR(PWMPIN_ON);
 int main(int argc, char** argv) {
     //float valf = 0, sens = 1;
     Init_All();
-/*
+
     Position Coord;
     Coord.x = 0;
     Coord.y = 0;
@@ -59,10 +59,10 @@ int main(int argc, char** argv) {
 
     //test de vitesse
     Speed test ;
-    test.v=0.001;
+    test.v=0.01;
     test.vt = 0;
     motion_speed(test);
-*/
+
     while (1) // boucle principale
     {
     }

@@ -12,8 +12,8 @@ Speed speed_goal;
 Error error_speed_v = {0,0,0};
 Error error_speed_vt = {0,0,0};
 
-PID pid_speed_v = {10,10,10};
-PID pid_speed_vt = {10,10,10};
+PID pid_speed_v = {100,0,0};
+PID pid_speed_vt = {100,0,0};
 extern FILE* fichier_v ;
 extern FILE* fichier_vt ;
 int asserv_done = 0;
@@ -40,13 +40,15 @@ void speed_asserv_step(Speed speed_current,Acceleration acc_current, float *cmg,
 
     E_v=speed_rampe.v-speed_current.v;
     E_vt=speed_rampe.vt-speed_current.vt;
+    //printf("E_v%f E_vt%f \n\r",E_v,E_vt);
 
-
-if(E_v<speed_threshold && E_vt<speed_threshold){ // asserv_done = 1 si on a atteint la vitesse voulue
-    asserv_done=1;
-    printf("asserv terminée !");
-    printf("\n");
-}
+    /*
+    if(E_v<speed_threshold && E_vt<speed_threshold){ // asserv_done = 1 si on a atteint la vitesse voulue
+        asserv_done=1;
+        printf("asserv terminée !");
+        printf("\n");
+    }
+    */
 
     error_speed_v.Ed= E_v-error_speed_v.Ep; // écriture des erreurs v
     error_speed_v.Ei= error_speed_v.Ep+E_v;

@@ -213,6 +213,7 @@ void __attribute__((interrupt,auto_psv)) _T2Interrupt(void) {
    // tics_d = (int)POS2CNT;
     // effectuer un pas de déplacement
    motion_step(tics_g,tics_d, &commande_g, &commande_d);
+   //printf("TicsG%d TicsD%d \n\r",tics_g,tics_d);
     // mettre ici les pwm gauche et droit
    PWM_Moteurs(commande_g, commande_d);
 }
@@ -268,18 +269,12 @@ void __attribute__ ((__interrupt__, no_auto_psv)) _CNInterrupt(void)
     {
         lastMotorStateL=MOT_SENSOR_PIN_L;
         tics_g ++;
-        sprintf(msg, "L%d", tics_g);
-        writeStringToUART(msg);
     }
     if (MOT_SENSOR_PIN_R != lastMotorStateR)
     {
         lastMotorStateR=MOT_SENSOR_PIN_R;
         tics_d ++;
-        sprintf(msg, "R%d", tics_d);
-        writeStringToUART(msg);
     }
-
-    writeStringToUART("\n\r");
 
     IFS1bits.CNIF = 0; // Clear CN interrupt
 }
