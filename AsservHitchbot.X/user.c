@@ -47,7 +47,6 @@ void Init_All(){
     Init_QEI();
     //InitSick();
     motion_init(); // start asserv
-    //AtpInit();
     //Init_CN();
 
 }
