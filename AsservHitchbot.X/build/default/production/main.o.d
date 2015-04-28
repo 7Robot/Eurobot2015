@@ -12,4 +12,5 @@ lib_asserv/private/motion.h  \
 lib_asserv/private/odo.h  \
  lib_asserv/private/debug.h  \
 motor.h  \
-actions_ax12.h 
+actions_ax12.h  \
+communication.h 
