@@ -42,16 +42,16 @@ _FPOR(PWMPIN_ON);
 #include "qei.h"           // QEI definitions for easier use
 #include <libpic30.h>
 #include "ax12.h"
-#include "motion.h"
-
+#include "lib_asserv/lib_asserv_default.h"
+#include "lib_asserv/lib_asserv.h"
 #include "motor.h"
 #include "actions_ax12.h"
 
-
+extern volatile int tics_g, tics_d;
 int main(int argc, char** argv) {
     //float valf = 0, sens = 1;
     Init_All();
-/*
+
     Position Coord;
     Coord.x = 0;
     Coord.y = 0;
@@ -59,12 +59,26 @@ int main(int argc, char** argv) {
 
     //test de vitesse
     Speed test ;
-    test.v=0.001;
+    test.v=0.1;
     test.vt = 0;
     motion_speed(test);
-*/
+
+
     while (1) // boucle principale
     {
+
+//
+//
+//    init_ax12();
+//
+//    Coord.x = 1;
+//    motion_pos(Coord);
+//    __delay_ms(2000);
+//    charg_gobelet();
+//    __delay_ms(50);
+//    Coord.x = 0;
+//    motion_pos(Coord);
+//    __delay_ms(2000);
     }
 }
 

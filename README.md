@@ -8,7 +8,9 @@
      /_/    |_| \_\___/|____/ \___/ \__|
                               7robot.fr
 
+Gathering repository for the 2015 Robotics French Cup code.
+
 Note : RP7 -> uart2
 
-Gathering repository for the 2015 Robotics French Cup code.
+* Tarantibot
 
