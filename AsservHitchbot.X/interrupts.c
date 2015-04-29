@@ -220,7 +220,7 @@ void __attribute__((__interrupt__, no_auto_psv)) _U2TXInterrupt(void){
 
 void __attribute__((interrupt, no_auto_psv)) _U1RXInterrupt(void){
     _U1RXIF = 0; // On baisse le FLAG
-    AnalyzeCommandFromPi();
+    //AnalyzeCommandFromPi();
 }
 
 void __attribute__((__interrupt__, no_auto_psv)) _U1TXInterrupt(void){
