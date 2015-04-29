@@ -48,7 +48,7 @@ void Init_All(){
     __delay_ms(500);
     Init_PWM();
     //InitSick();
-    motion_init(); // start asserv
+    //motion_init(); // start asserv
     //AtpInit();
     Init_CN();
 

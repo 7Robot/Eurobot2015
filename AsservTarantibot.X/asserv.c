@@ -1,3 +1,4 @@
+/*
 #include "config.h"
 #include "odo.h"
 #include "asserv.h"
@@ -29,8 +30,8 @@ void asserv_init(){ // remise à zéro pour une nouvelle consigne
     asserv_done = 0;
     C_v=0;
     C_vt=0;
-    /*error_speed_v = {0,0,0};
-    error_speed_vt = {0,0,0};*/
+    //error_speed_v = {0,0,0};
+    //error_speed_vt = {0,0,0};
 }
 
 
@@ -44,13 +45,13 @@ void speed_asserv_step(Speed speed_current,Acceleration acc_current, float *cmg,
     //printf("Spd_rmp%f Spd_cur%f \n\r",speed_rampe.v,speed_current.v);
     //printf("E_v%f E_vt%f \n\r",E_v,E_vt);
 
-    /*
-    if(E_v<speed_threshold && E_vt<speed_threshold){ // asserv_done = 1 si on a atteint la vitesse voulue
-        asserv_done=1;
-        printf("asserv terminée !");
-        printf("\n");
-    }
-    */
+    
+    //if(E_v<speed_threshold && E_vt<speed_threshold){ // asserv_done = 1 si on a atteint la vitesse voulue
+    //    asserv_done=1;
+    //    printf("asserv terminée !");
+    //    printf("\n");
+    //}
+    
 
     error_speed_v.Ed= E_v-error_speed_v.Ep; // écriture des erreurs v
     error_speed_v.Ei= error_speed_v.Ep+E_v;
@@ -122,3 +123,4 @@ void init_rampe(Speed speed_current,Speed speed_consigne,Acceleration acc_curren
 
 }
 
+*/

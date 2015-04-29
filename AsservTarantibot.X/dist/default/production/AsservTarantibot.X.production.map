@@ -21,6 +21,9 @@ Command:
   -L/opt/microchip/xc16/v1.24/bin/bin/../../support/dsPIC33E/gld \
   -L/opt/microchip/xc16/v1.24/bin/bin/../../lib/dsPIC33F \
   -L/opt/microchip/xc16/v1.24/bin/bin/../../support/dsPIC33F/gld \
+  build/default/production/asserv.o \
+  build/default/production/motion.o \
+  build/default/production/odo.o \
   build/default/production/user.o \
   build/default/production/interrupts.o \
   build/default/production/main.o \
@@ -28,9 +31,6 @@ Command:
   build/default/production/ax12.o \
   build/default/production/actions_ax12.o \
   build/default/production/tools.o \
-  build/default/production/asserv.o \
-  build/default/production/motion.o \
-  build/default/production/odo.o \
   --defsym=__MPLAB_BUILD=1 \
   -Tp33FJ128MC804.gld.00 \
   --stack=16 \
@@ -81,19 +81,17 @@ Archive member included because of file (symbol)
 /opt/microchip/xc16/v1.24/bin/bin/../../lib/libpic30-elf.a(delay32.eo)
                               build/default/production/user.o (___delay32)
 /opt/microchip/xc16/v1.24/bin/bin/../../lib/libm-elf.a(addsf3.eo)
-                              build/default/production/tools.o (___subsf3)
-/opt/microchip/xc16/v1.24/bin/bin/../../lib/libm-elf.a(cosf.eo)
-                              build/default/production/odo.o (_cosf)
+                              build/default/production/interrupts.o (___subsf3)
 /opt/microchip/xc16/v1.24/bin/bin/../../lib/libm-elf.a(divsf3.eo)
                               build/default/production/motor.o (___divsf3)
 /opt/microchip/xc16/v1.24/bin/bin/../../lib/libm-elf.a(feqltle.eo)
                               build/default/production/motor.o (___ltsf2)
 /opt/microchip/xc16/v1.24/bin/bin/../../lib/libm-elf.a(fgtge.eo)
-                              build/default/production/tools.o (___gtsf2)
+                              build/default/production/interrupts.o (___gtsf2)
 /opt/microchip/xc16/v1.24/bin/bin/../../lib/libm-elf.a(fixsfsi.eo)
                               build/default/production/motor.o (_(float, int, long long, short, float, short, int))
 /opt/microchip/xc16/v1.24/bin/bin/../../lib/libm-elf.a(floatsisf.eo)
-                              build/default/production/odo.o (___floatsisf)
+                              build/default/production/interrupts.o (___floatsisf)
 /opt/microchip/xc16/v1.24/bin/bin/../../lib/libm-elf.a(floatunsisf.eo)
                               build/default/production/motor.o (___floatunsisf)
 /opt/microchip/xc16/v1.24/bin/bin/../../lib/libm-elf.a(fmodf.eo)
@@ -109,11 +107,7 @@ Archive member included because of file (symbol)
 /opt/microchip/xc16/v1.24/bin/bin/../../lib/libm-elf.a(futil.eo)
                               /opt/microchip/xc16/v1.24/bin/bin/../../lib/libm-elf.a(addsf3.eo) (__fPropagateNaN)
 /opt/microchip/xc16/v1.24/bin/bin/../../lib/libm-elf.a(mulsf3.eo)
-                              build/default/production/motor.o (___mulsf3)
-/opt/microchip/xc16/v1.24/bin/bin/../../lib/libm-elf.a(sincosf.eo)
-                              /opt/microchip/xc16/v1.24/bin/bin/../../lib/libm-elf.a(cosf.eo) (__sincosf)
-/opt/microchip/xc16/v1.24/bin/bin/../../lib/libm-elf.a(sinf.eo)
-                              build/default/production/odo.o (_sinf)
+                              build/default/production/interrupts.o (___mulsf3)
 /opt/microchip/xc16/v1.24/bin/bin/../../lib/libm-elf.a(errno.eo)
                               /opt/microchip/xc16/v1.24/bin/bin/../../lib/libm-elf.a(fmodrem.eo) (_errno)
 /opt/microchip/xc16/v1.24/bin/bin/../../lib/libm-elf.a(fcompare.eo)
@@ -122,19 +116,81 @@ Archive member included because of file (symbol)
                               /opt/microchip/xc16/v1.24/bin/bin/../../lib/libm-elf.a(floatsisf.eo) (___floatdisf)
 /opt/microchip/xc16/v1.24/bin/bin/../../lib/libm-elf.a(floatundisf.eo)
                               /opt/microchip/xc16/v1.24/bin/bin/../../lib/libm-elf.a(floatunsisf.eo) (___floatundisf)
+/opt/microchip/xc16/v1.24/bin/bin/../../lib/libc-elf.a(printf_fF.XXeo)
+                              build/default/production/interrupts.o (__printf_fF)
+/opt/microchip/xc16/v1.24/bin/bin/../../lib/libc-elf.a(_iob.eo)
+                              /opt/microchip/xc16/v1.24/bin/bin/../../lib/libc-elf.a(printf_fF.XXeo) (__iob)
+/opt/microchip/xc16/v1.24/bin/bin/../../lib/libc-elf.a(doprnt_fF.XXeo)
+                              /opt/microchip/xc16/v1.24/bin/bin/../../lib/libc-elf.a(printf_fF.XXeo) (__vfprintf_fF)
+/opt/microchip/xc16/v1.24/bin/bin/../../lib/libc-elf.a(fputc.eo)
+                              /opt/microchip/xc16/v1.24/bin/bin/../../lib/libc-elf.a(doprnt_fF.XXeo) (_fputc)
+/opt/microchip/xc16/v1.24/bin/bin/../../lib/libc-elf.a(powers.eo)
+                              /opt/microchip/xc16/v1.24/bin/bin/../../lib/libc-elf.a(doprnt_fF.XXeo) (__powers_)
+/opt/microchip/xc16/v1.24/bin/bin/../../lib/libc-elf.a(flsbuf.eo)
+                              /opt/microchip/xc16/v1.24/bin/bin/../../lib/libc-elf.a(fputc.eo) (__flsbuf)
+/opt/microchip/xc16/v1.24/bin/bin/../../lib/libpic30-elf.a(write.eo)
+                              /opt/microchip/xc16/v1.24/bin/bin/../../lib/libc-elf.a(fputc.eo) (_write)
+/opt/microchip/xc16/v1.24/bin/bin/../../lib/libpic30-elf.a(c30_uart.eo)
+                              /opt/microchip/xc16/v1.24/bin/bin/../../lib/libpic30-elf.a(write.eo) (___C30_UART)
+/opt/microchip/xc16/v1.24/bin/bin/../../lib/libm-elf.a(adddf3.eo)
+                              /opt/microchip/xc16/v1.24/bin/bin/../../lib/libc-elf.a(doprnt_fF.XXeo) (___adddf3)
+/opt/microchip/xc16/v1.24/bin/bin/../../lib/libm-elf.a(deqltle.eo)
+                              /opt/microchip/xc16/v1.24/bin/bin/../../lib/libc-elf.a(doprnt_fF.XXeo) (___ltdf2)
+/opt/microchip/xc16/v1.24/bin/bin/../../lib/libm-elf.a(dgtge.eo)
+                              /opt/microchip/xc16/v1.24/bin/bin/../../lib/libc-elf.a(doprnt_fF.XXeo) (___gedf2)
+/opt/microchip/xc16/v1.24/bin/bin/../../lib/libm-elf.a(divdf3.eo)
+                              /opt/microchip/xc16/v1.24/bin/bin/../../lib/libc-elf.a(doprnt_fF.XXeo) (___divdf3)
+/opt/microchip/xc16/v1.24/bin/bin/../../lib/libm-elf.a(dne.eo)
+                              /opt/microchip/xc16/v1.24/bin/bin/../../lib/libc-elf.a(doprnt_fF.XXeo) (___nedf2)
+/opt/microchip/xc16/v1.24/bin/bin/../../lib/libm-elf.a(dpack.eo)
+                              /opt/microchip/xc16/v1.24/bin/bin/../../lib/libm-elf.a(adddf3.eo) (__dpack)
+/opt/microchip/xc16/v1.24/bin/bin/../../lib/libm-elf.a(dunpack2.eo)
+                              /opt/microchip/xc16/v1.24/bin/bin/../../lib/libm-elf.a(adddf3.eo) (__dunpack2)
+/opt/microchip/xc16/v1.24/bin/bin/../../lib/libm-elf.a(extendsfdf.eo)
+                              /opt/microchip/xc16/v1.24/bin/bin/../../lib/libc-elf.a(doprnt_fF.XXeo) (___extendsfdf2)
+/opt/microchip/xc16/v1.24/bin/bin/../../lib/libm-elf.a(fixunsdfdi.eo)
+                              /opt/microchip/xc16/v1.24/bin/bin/../../lib/libc-elf.a(doprnt_fF.XXeo) (___fixunsdfdi)
+/opt/microchip/xc16/v1.24/bin/bin/../../lib/libm-elf.a(floatundidf.eo)
+                              /opt/microchip/xc16/v1.24/bin/bin/../../lib/libc-elf.a(doprnt_fF.XXeo) (___floatundidf)
+/opt/microchip/xc16/v1.24/bin/bin/../../lib/libm-elf.a(frexp.eo)
+                              /opt/microchip/xc16/v1.24/bin/bin/../../lib/libc-elf.a(doprnt_fF.XXeo) (_frexpl)
+/opt/microchip/xc16/v1.24/bin/bin/../../lib/libm-elf.a(muldf3.eo)
+                              /opt/microchip/xc16/v1.24/bin/bin/../../lib/libc-elf.a(doprnt_fF.XXeo) (___muldf3)
+/opt/microchip/xc16/v1.24/bin/bin/../../lib/libm-elf.a(subdf3.eo)
+                              /opt/microchip/xc16/v1.24/bin/bin/../../lib/libc-elf.a(doprnt_fF.XXeo) (___subdf3)
+/opt/microchip/xc16/v1.24/bin/bin/../../lib/libm-elf.a(udivsi3.eo)
+                              /opt/microchip/xc16/v1.24/bin/bin/../../lib/libc-elf.a(doprnt_fF.XXeo) (___udivsi3)
+/opt/microchip/xc16/v1.24/bin/bin/../../lib/libm-elf.a(mulsi3.eo)
+                              /opt/microchip/xc16/v1.24/bin/bin/../../lib/libc-elf.a(doprnt_fF.XXeo) (___mulsi3)
+/opt/microchip/xc16/v1.24/bin/bin/../../lib/libm-elf.a(divmoddi3.eo)
+                              /opt/microchip/xc16/v1.24/bin/bin/../../lib/libc-elf.a(doprnt_fF.XXeo) (___udivdi3)
+/opt/microchip/xc16/v1.24/bin/bin/../../lib/libm-elf.a(muldi3.eo)
+                              /opt/microchip/xc16/v1.24/bin/bin/../../lib/libc-elf.a(doprnt_fF.XXeo) (___muldi3)
+/opt/microchip/xc16/v1.24/bin/bin/../../lib/libm-elf.a(dcompare.eo)
+                              /opt/microchip/xc16/v1.24/bin/bin/../../lib/libm-elf.a(deqltle.eo) (__dcompare)
+/opt/microchip/xc16/v1.24/bin/bin/../../lib/libm-elf.a(dpropagateNaN.eo)
+                              /opt/microchip/xc16/v1.24/bin/bin/../../lib/libm-elf.a(dunpack2.eo) (__dPropagateNaN)
+/opt/microchip/xc16/v1.24/bin/bin/../../lib/libm-elf.a(dtype.eo)
+                              /opt/microchip/xc16/v1.24/bin/bin/../../lib/libm-elf.a(dcompare.eo) (__dtype)
+/opt/microchip/xc16/v1.24/bin/bin/../../lib/libm-elf.a(dunpack.eo)
+                              /opt/microchip/xc16/v1.24/bin/bin/../../lib/libm-elf.a(dunpack2.eo) (__dunpack)
+/opt/microchip/xc16/v1.24/bin/bin/../../lib/libm-elf.a(umuldi3.eo)
+                              /opt/microchip/xc16/v1.24/bin/bin/../../lib/libm-elf.a(muldi3.eo) (___umuldi3)
 
 
 Program Memory  [Origin = 0x200, Length = 0x15600]
 
 section                    address   length (PC units)   length (bytes) (dec)
 -------                    -------   -----------------   --------------------
-.text                        0x200               0x66e           0x9a5  (2469)
-.text                        0x86e              0x11b0          0x1a88  (6792)
-.dinit                      0x1a1e                0x44            0x66  (102)
-.text                       0x1a62                0x36            0x51  (81)
-.init.delay32               0x1a98                0x1c            0x2a  (42)
+.text                        0x200              0x1b0c          0x2892  (10386)
+.const                      0x1d0c                0x24            0x36  (54)
+.text                       0x1d30               0x952           0xdfb  (3579)
+.dinit                      0x2682               0x1dc           0x2ca  (714)
+.text                       0x285e               0x30a           0x48f  (1167)
+.init.delay32               0x2b68                0x1c            0x2a  (42)
+.text                       0x2b84                 0xc            0x12  (18)
 
-                     Total program memory used (bytes):         0x250e  (9486) 7%
+                     Total program memory used (bytes):         0x3e58  (15960) 12%
 
 
 Data Memory  [Origin = 0x800, Length = 0x4000]
@@ -142,13 +198,21 @@ Data Memory  [Origin = 0x800, Length = 0x4000]
 section                    address      alignment gaps    total length  (dec)
 -------                    -------      --------------    -------------------
 .nbss                        0x800                   0             0x2  (2)
-.bss                         0x802                   0            0x98  (152)
-.data                        0x89a                   0            0x18  (24)
-.bss                         0x8b2                   0            0x10  (16)
-.data                        0x8c2                   0             0x2  (2)
-.bss                         0x8c4                   0             0x2  (2)
+.data._powers_               0x802                   0            0xb0  (176)
+.data._npowers_              0x8b2                   0            0xb0  (176)
+.data.dpowers                0x962                   0            0xa0  (160)
+.bss                         0xa02                   0            0x2a  (42)
+.data._iob                   0xa2c                   0            0x24  (36)
+.data                        0xa50                   0            0x18  (24)
+.bss                         0xa68                   0            0x10  (16)
+.data                        0xa78                   0             0x2  (2)
+.data._Files                 0xa7a                   0             0x2  (2)
+.bss._outdone                0xa7c                   0             0x2  (2)
+.bss._sibuf                  0xa7e                   0             0x2  (2)
+.bss._sobuf                  0xa80                   0             0x2  (2)
+.data.__C30_UART             0xa82                   0             0x2  (2)
 
-                        Total data memory used (bytes):           0xc6  (198) 1%
+                        Total data memory used (bytes):          0x284  (644) 3%
 
 
 Dynamic Memory Usage
@@ -156,78 +220,66 @@ Dynamic Memory Usage
 region                     address                      maximum length  (dec)
 ------                     -------                      ---------------------
 heap                             0                                   0  (0)
-stack                        0x8c6                              0x3f3a  (16186)
+stack                        0xa84                              0x3d7c  (15740)
 
-                        Maximum dynamic memory (bytes):         0x3f3a  (16186)
+                        Maximum dynamic memory (bytes):         0x3d7c  (15740)
 
 
 External Symbols in Data Memory (by address):
 
-                    0x0802                  _pos_old
-                    0x080e                  _speed_old
-                    0x0816                  _acc_old
-                    0x0822                  _pos_current
-                    0x082e                  _speed_current
-                    0x0836                  _acc_current
-                    0x0842                  _tics_g_old
-                    0x0844                  _tics_d_old
-                    0x0846                  _speed_rampe
-                    0x084e                  _speed_goal
-                    0x0856                  _error_speed_v
-                    0x0862                  _error_speed_vt
-                    0x086e                  _asserv_done
-                    0x0870                  _rampe_statev
-                    0x0872                  _rampe_statevt
-                    0x0874                  _C_v
-                    0x0878                  _C_vt
-                    0x087c                  _msg
-                    0x088c                  _tics_g
-                    0x088e                  _tics_d
-                    0x0890                  _lastMotorStateL
-                    0x0891                  _lastMotorStateR
-                    0x089a                  _pid_speed_v
-                    0x08a6                  _pid_speed_vt
-                    0x08b2                  _checksumAX
-                    0x08b4                  _responseReadyAX
-                    0x08b6                  _responseAX
-                    0x08be                  _expected
-                    0x08c0                  _received
-                    0x08c2                  _posAX
-                    0x08c4                  _motion_state
+                    0x0802                  __powers_
+                    0x08b2                  __npowers_
+                    0x0a02                  _msg
+                    0x0a12                  _tics_g
+                    0x0a14                  _tics_d
+                    0x0a16                  _old_tics_g
+                    0x0a18                  _old_tics_d
+                    0x0a1a                  _commande_g
+                    0x0a1e                  _commande_d
+                    0x0a22                  _diff_cons_g_I
+                    0x0a26                  _diff_cons_d_I
+                    0x0a2a                  _lastMotorStateL
+                    0x0a2b                  _lastMotorStateR
+                    0x0a2c                  __iob
+                    0x0a68                  _checksumAX
+                    0x0a6a                  _responseReadyAX
+                    0x0a6c                  _responseAX
+                    0x0a74                  _expected
+                    0x0a76                  _received
+                    0x0a78                  _posAX
+                    0x0a7a                  __Files
+                    0x0a7c                  __outdone
+                    0x0a7e                  __sibuf
+                    0x0a80                  __sobuf
+                    0x0a82                  ___C30_UART
 
 External Symbols in Data Memory (by name):
 
-                    0x0874                  _C_v
-                    0x0878                  _C_vt
-                    0x0836                  _acc_current
-                    0x0816                  _acc_old
-                    0x086e                  _asserv_done
-                    0x08b2                  _checksumAX
-                    0x0856                  _error_speed_v
-                    0x0862                  _error_speed_vt
-                    0x08be                  _expected
-                    0x0890                  _lastMotorStateL
-                    0x0891                  _lastMotorStateR
-                    0x08c4                  _motion_state
-                    0x087c                  _msg
-                    0x089a                  _pid_speed_v
-                    0x08a6                  _pid_speed_vt
-                    0x08c2                  _posAX
-                    0x0822                  _pos_current
-                    0x0802                  _pos_old
-                    0x0870                  _rampe_statev
-                    0x0872                  _rampe_statevt
-                    0x08c0                  _received
-                    0x08b6                  _responseAX
-                    0x08b4                  _responseReadyAX
-                    0x082e                  _speed_current
-                    0x084e                  _speed_goal
-                    0x080e                  _speed_old
-                    0x0846                  _speed_rampe
-                    0x088e                  _tics_d
-                    0x0844                  _tics_d_old
-                    0x088c                  _tics_g
-                    0x0842                  _tics_g_old
+                    0x0a7a                  __Files
+                    0x0a82                  ___C30_UART
+                    0x0a2c                  __iob
+                    0x08b2                  __npowers_
+                    0x0a7c                  __outdone
+                    0x0802                  __powers_
+                    0x0a7e                  __sibuf
+                    0x0a80                  __sobuf
+                    0x0a68                  _checksumAX
+                    0x0a1e                  _commande_d
+                    0x0a1a                  _commande_g
+                    0x0a26                  _diff_cons_d_I
+                    0x0a22                  _diff_cons_g_I
+                    0x0a74                  _expected
+                    0x0a2a                  _lastMotorStateL
+                    0x0a2b                  _lastMotorStateR
+                    0x0a02                  _msg
+                    0x0a18                  _old_tics_d
+                    0x0a16                  _old_tics_g
+                    0x0a78                  _posAX
+                    0x0a76                  _received
+                    0x0a6c                  _responseAX
+                    0x0a6a                  _responseReadyAX
+                    0x0a14                  _tics_d
+                    0x0a12                  _tics_g
 
 External Symbols in Program Memory (by address):
 
@@ -236,190 +288,232 @@ External Symbols in Program Memory (by address):
                   0x00023c                  __data_init
                   0x00023c                  __data_init_standard
                   0x00029a                  __DefaultInterrupt
-                  0x00029e                  _ConfigIntTimer2
-                  0x0002c2                  _OpenTimer2
-                  0x0002cc                  _BusyUART2
-                  0x0002d6                  _ConfigIntUART1
-                  0x00031e                  _ConfigIntUART2
-                  0x000366                  _DataRdyUART2
-                  0x00036c                  _OpenUART1
-                  0x000374                  _OpenUART2
-                  0x00037c                  _ReadUART2
-                  0x00038e                  _WriteUART2
-                  0x00039c                  ___subsf3
-                  0x00039e                  ___addsf3
-                  0x000458                  _cosf
-                  0x00045c                  ___divsf3
-                  0x0004e0                  ___lesf2
-                  0x0004e0                  ___eqsf2
-                  0x0004e0                  ___ltsf2
-                  0x0004e4                  ___gtsf2
-                  0x0004e4                  ___gesf2
-                  0x0004e8                  ___fixsfsi
-                  0x00052a                  ___floatsisf
-                  0x000530                  ___floatunsisf
-                  0x000534                  _fmodf
-                  0x000538                  __fmodrem
-                  0x0005d6                  __fpack
-                  0x000622                  __funpack
-                  0x00064c                  __funpack2
-                  0x00065c                  __fPropagateNaN
-                  0x00066e                  __fbopExit
-                  0x000676                  __fbopReturnNaN
-                  0x00067c                  ___mulsf3
-                  0x0006e4                  __sincosf
-                  0x0007b6                  _sinf
-                  0x0007ba                  __fcompare
-                  0x0007f0                  ___floatdisf
-                  0x000810                  ___floatundisf
-                  0x00086e                  _SetTX
-                  0x0008a8                  _SetRX
-                  0x0008e4                  _PushUART
-                  0x00090c                  _PushHeaderAX
-                  0x000938                  _PushBufferAX
-                  0x000960                  _PushFooterAX
-                  0x00097e                  _InterruptAX
-                  0x000a6c                  _PingAX
-                  0x000a7e                  _ReadAX
-                  0x000a9c                  _WriteAX
-                  0x000ac2                  _RegWriteAX
-                  0x000ae8                  _ActionAX
-                  0x000afa                  _ResetAX
-                  0x000b0c                  _RegisterLenAX
-                  0x000b94                  _PutAX
-                  0x000bba                  _GetAX
-                  0x000bd6                  _Init_PWM
-                  0x000c1e                  _PWM_Moteurs
-                  0x000cee                  _PWM_Moteurs_Detail
-                  0x000e1a                  _PWM_Moteurs_gauche
-                  0x000e8c                  _PWM_Moteurs_droit
-                  0x000f00                  _asserv_init
-                  0x000f32                  _speed_asserv_step
-                  0x00109e                  _rampe
-                  0x0011a0                  _init_rampe
-                  0x001218                  _odo_init
-                  0x00128a                  _odo_step
-                  0x00144c                  _step
-                  0x001496                  _decalage_angulaire
-                  0x001528                  _choose_arm
-                  0x001530                  _init_ax12
-                  0x00160e                  _charg_gobelet
-                  0x0016c8                  _InitTimers
-                  0x00171a                  _Init_CN
-                  0x00173c                  __T2Interrupt
-                  0x001780                  __U2RXInterrupt
-                  0x001788                  __U2TXInterrupt
-                  0x001790                  __U1RXInterrupt
-                  0x001798                  __U1TXInterrupt
-                  0x0017a0                  __SPI2Interrupt
-                  0x0017aa                  __CNInterrupt
-                  0x0017fe                  _limit_float
-                  0x001852                  _limit_int
-                  0x00188a                  _principal_angle
-                  0x00191c                  _motion_init
-                  0x00192e                  _motion_step
-                  0x001992                  _motion_stop
-                  0x00199c                  _motion_speed
-                  0x0019ce                  _ConfigureOscillator
-                  0x0019fe                  _Init_All
-                  0x001a62                  _main
-                  0x001a98                  ___delay32
+                  0x0002fe                  _ConfigIntTimer2
+                  0x000322                  _OpenTimer2
+                  0x00032c                  _BusyUART2
+                  0x000336                  _ConfigIntUART1
+                  0x00037e                  _ConfigIntUART2
+                  0x0003c6                  _DataRdyUART2
+                  0x0003cc                  _OpenUART1
+                  0x0003d4                  _OpenUART2
+                  0x0003dc                  _ReadUART2
+                  0x0003ee                  _WriteUART2
+                  0x0003fc                  ___subsf3
+                  0x0003fe                  ___addsf3
+                  0x0004b8                  ___divsf3
+                  0x00053c                  ___lesf2
+                  0x00053c                  ___eqsf2
+                  0x00053c                  ___ltsf2
+                  0x000540                  ___gtsf2
+                  0x000540                  ___gesf2
+                  0x000544                  ___fixsfsi
+                  0x000586                  ___floatsisf
+                  0x00058c                  ___floatunsisf
+                  0x000590                  _fmodf
+                  0x000594                  __fmodrem
+                  0x000632                  __fpack
+                  0x00067e                  __funpack
+                  0x0006a8                  __funpack2
+                  0x0006b8                  __fPropagateNaN
+                  0x0006ca                  __fbopExit
+                  0x0006d2                  __fbopReturnNaN
+                  0x0006d8                  ___mulsf3
+                  0x000740                  __fcompare
+                  0x000776                  ___floatdisf
+                  0x000796                  ___floatundisf
+                  0x0007f4                  __printf_fF
+                  0x00097c                  __vfprintf_fF
+                  0x0014ce                  ___adddf3
+                  0x0015c8                  ___ledf2
+                  0x0015c8                  ___eqdf2
+                  0x0015c8                  ___ltdf2
+                  0x0015d2                  ___gedf2
+                  0x0015d2                  ___gtdf2
+                  0x0015dc                  ___divdf3
+                  0x001690                  ___nedf2
+                  0x00169a                  __dpack
+                  0x0016f2                  __dunpack2
+                  0x001714                  __dreturnNaN
+                  0x00171a                  __dunpack2exit
+                  0x001724                  ___extendsfdf2
+                  0x001762                  ___fixunsdfdi
+                  0x0017c4                  ___floatundidf
+                  0x00181a                  _frexpl
+                  0x00181a                  _frexp
+                  0x001854                  ___muldf3
+                  0x00193e                  ___subdf3
+                  0x001942                  ___udivsi3
+                  0x001962                  ___mulp32eds3
+                  0x001962                  ___mulp32peds3
+                  0x001962                  ___mulsi3
+                  0x0019e0                  ___udivmoddi3
+                  0x001ac4                  ___udivdi3
+                  0x001ad2                  ___umoddi3
+                  0x001ada                  ___divdi3
+                  0x001b3a                  ___moddi3
+                  0x001b96                  ___muldi3
+                  0x001be8                  __dcompare
+                  0x001c3a                  __dPropagateNaN
+                  0x001c56                  __dtype
+                  0x001c7a                  __dunpack
+                  0x001cc8                  ___umuldi3
+                  0x001d30                  _SetTX
+                  0x001d6a                  _SetRX
+                  0x001da6                  _PushUART
+                  0x001dce                  _PushHeaderAX
+                  0x001dfa                  _PushBufferAX
+                  0x001e22                  _PushFooterAX
+                  0x001e40                  _InterruptAX
+                  0x001f2e                  _PingAX
+                  0x001f40                  _ReadAX
+                  0x001f5e                  _WriteAX
+                  0x001f84                  _RegWriteAX
+                  0x001faa                  _ActionAX
+                  0x001fbc                  _ResetAX
+                  0x001fce                  _RegisterLenAX
+                  0x002056                  _PutAX
+                  0x00207c                  _GetAX
+                  0x002098                  _Init_PWM
+                  0x0020e0                  _PWM_Moteurs
+                  0x0021b0                  _PWM_Moteurs_Detail
+                  0x0022dc                  _PWM_Moteurs_gauche
+                  0x00234e                  _PWM_Moteurs_droit
+                  0x0023c2                  _InitTimers
+                  0x002414                  _Init_CN
+                  0x002436                  __T2Interrupt
+                  0x002604                  __U2RXInterrupt
+                  0x00260c                  __U2TXInterrupt
+                  0x002614                  __U1RXInterrupt
+                  0x00261c                  __U1TXInterrupt
+                  0x002624                  __SPI2Interrupt
+                  0x00262e                  __CNInterrupt
+                  0x00285e                  _choose_arm
+                  0x002866                  _init_ax12
+                  0x002944                  _charg_gobelet
+                  0x0029fe                  _limit_float
+                  0x002a52                  _limit_int
+                  0x002a8a                  _principal_angle
+                  0x002b1c                  _ConfigureOscillator
+                  0x002b4c                  _Init_All
+                  0x002b68                  ___delay32
+                  0x002b84                  _main
 
 External Symbols in Program Memory (by name):
 
-                  0x000ae8                  _ActionAX
-                  0x0002cc                  _BusyUART2
-                  0x00029e                  _ConfigIntTimer2
-                  0x0002d6                  _ConfigIntUART1
-                  0x00031e                  _ConfigIntUART2
-                  0x0019ce                  _ConfigureOscillator
-                  0x000366                  _DataRdyUART2
-                  0x000bba                  _GetAX
-                  0x0016c8                  _InitTimers
-                  0x0019fe                  _Init_All
-                  0x00171a                  _Init_CN
-                  0x000bd6                  _Init_PWM
-                  0x00097e                  _InterruptAX
-                  0x0002c2                  _OpenTimer2
-                  0x00036c                  _OpenUART1
-                  0x000374                  _OpenUART2
-                  0x000c1e                  _PWM_Moteurs
-                  0x000cee                  _PWM_Moteurs_Detail
-                  0x000e8c                  _PWM_Moteurs_droit
-                  0x000e1a                  _PWM_Moteurs_gauche
-                  0x000a6c                  _PingAX
-                  0x000938                  _PushBufferAX
-                  0x000960                  _PushFooterAX
-                  0x00090c                  _PushHeaderAX
-                  0x0008e4                  _PushUART
-                  0x000b94                  _PutAX
-                  0x000a7e                  _ReadAX
-                  0x00037c                  _ReadUART2
-                  0x000ac2                  _RegWriteAX
-                  0x000b0c                  _RegisterLenAX
-                  0x000afa                  _ResetAX
-                  0x0008a8                  _SetRX
-                  0x00086e                  _SetTX
-                  0x000a9c                  _WriteAX
-                  0x00038e                  _WriteUART2
-                  0x0017aa                  __CNInterrupt
+                  0x001faa                  _ActionAX
+                  0x00032c                  _BusyUART2
+                  0x0002fe                  _ConfigIntTimer2
+                  0x000336                  _ConfigIntUART1
+                  0x00037e                  _ConfigIntUART2
+                  0x002b1c                  _ConfigureOscillator
+                  0x0003c6                  _DataRdyUART2
+                  0x00207c                  _GetAX
+                  0x0023c2                  _InitTimers
+                  0x002b4c                  _Init_All
+                  0x002414                  _Init_CN
+                  0x002098                  _Init_PWM
+                  0x001e40                  _InterruptAX
+                  0x000322                  _OpenTimer2
+                  0x0003cc                  _OpenUART1
+                  0x0003d4                  _OpenUART2
+                  0x0020e0                  _PWM_Moteurs
+                  0x0021b0                  _PWM_Moteurs_Detail
+                  0x00234e                  _PWM_Moteurs_droit
+                  0x0022dc                  _PWM_Moteurs_gauche
+                  0x001f2e                  _PingAX
+                  0x001dfa                  _PushBufferAX
+                  0x001e22                  _PushFooterAX
+                  0x001dce                  _PushHeaderAX
+                  0x001da6                  _PushUART
+                  0x002056                  _PutAX
+                  0x001f40                  _ReadAX
+                  0x0003dc                  _ReadUART2
+                  0x001f84                  _RegWriteAX
+                  0x001fce                  _RegisterLenAX
+                  0x001fbc                  _ResetAX
+                  0x001d6a                  _SetRX
+                  0x001d30                  _SetTX
+                  0x001f5e                  _WriteAX
+                  0x0003ee                  _WriteUART2
+                  0x00262e                  __CNInterrupt
                   0x00029a                  __DefaultInterrupt
-                  0x0017a0                  __SPI2Interrupt
-                  0x00173c                  __T2Interrupt
-                  0x001790                  __U1RXInterrupt
-                  0x001798                  __U1TXInterrupt
-                  0x001780                  __U2RXInterrupt
-                  0x001788                  __U2TXInterrupt
-                  0x00039e                  ___addsf3
-                  0x001a98                  ___delay32
-                  0x00045c                  ___divsf3
-                  0x0004e0                  ___eqsf2
-                  0x0004e8                  ___fixsfsi
-                  0x0007f0                  ___floatdisf
-                  0x00052a                  ___floatsisf
-                  0x000810                  ___floatundisf
-                  0x000530                  ___floatunsisf
-                  0x0004e4                  ___gesf2
-                  0x0004e4                  ___gtsf2
-                  0x0004e0                  ___lesf2
-                  0x0004e0                  ___ltsf2
-                  0x00067c                  ___mulsf3
-                  0x00039c                  ___subsf3
+                  0x002624                  __SPI2Interrupt
+                  0x002436                  __T2Interrupt
+                  0x002614                  __U1RXInterrupt
+                  0x00261c                  __U1TXInterrupt
+                  0x002604                  __U2RXInterrupt
+                  0x00260c                  __U2TXInterrupt
+                  0x0014ce                  ___adddf3
+                  0x0003fe                  ___addsf3
+                  0x002b68                  ___delay32
+                  0x0015dc                  ___divdf3
+                  0x001ada                  ___divdi3
+                  0x0004b8                  ___divsf3
+                  0x0015c8                  ___eqdf2
+                  0x00053c                  ___eqsf2
+                  0x001724                  ___extendsfdf2
+                  0x000544                  ___fixsfsi
+                  0x001762                  ___fixunsdfdi
+                  0x000776                  ___floatdisf
+                  0x000586                  ___floatsisf
+                  0x0017c4                  ___floatundidf
+                  0x000796                  ___floatundisf
+                  0x00058c                  ___floatunsisf
+                  0x0015d2                  ___gedf2
+                  0x000540                  ___gesf2
+                  0x0015d2                  ___gtdf2
+                  0x000540                  ___gtsf2
+                  0x0015c8                  ___ledf2
+                  0x00053c                  ___lesf2
+                  0x0015c8                  ___ltdf2
+                  0x00053c                  ___ltsf2
+                  0x001b3a                  ___moddi3
+                  0x001854                  ___muldf3
+                  0x001b96                  ___muldi3
+                  0x001962                  ___mulp32eds3
+                  0x001962                  ___mulp32peds3
+                  0x0006d8                  ___mulsf3
+                  0x001962                  ___mulsi3
+                  0x001690                  ___nedf2
+                  0x00193e                  ___subdf3
+                  0x0003fc                  ___subsf3
+                  0x001ac4                  ___udivdi3
+                  0x0019e0                  ___udivmoddi3
+                  0x001942                  ___udivsi3
+                  0x001ad2                  ___umoddi3
+                  0x001cc8                  ___umuldi3
+                  0x001c3a                  __dPropagateNaN
                   0x00023c                  __data_init
                   0x00023c                  __data_init_standard
-                  0x00065c                  __fPropagateNaN
-                  0x00066e                  __fbopExit
-                  0x000676                  __fbopReturnNaN
-                  0x0007ba                  __fcompare
-                  0x000538                  __fmodrem
-                  0x0005d6                  __fpack
-                  0x000622                  __funpack
-                  0x00064c                  __funpack2
+                  0x001be8                  __dcompare
+                  0x00169a                  __dpack
+                  0x001714                  __dreturnNaN
+                  0x001c56                  __dtype
+                  0x001c7a                  __dunpack
+                  0x0016f2                  __dunpack2
+                  0x00171a                  __dunpack2exit
+                  0x0006b8                  __fPropagateNaN
+                  0x0006ca                  __fbopExit
+                  0x0006d2                  __fbopReturnNaN
+                  0x000740                  __fcompare
+                  0x000594                  __fmodrem
+                  0x000632                  __fpack
+                  0x00067e                  __funpack
+                  0x0006a8                  __funpack2
+                  0x0007f4                  __printf_fF
                   0x00022c                  __psv_init
                   0x000200                  __resetPRI
-                  0x0006e4                  __sincosf
-                  0x000f00                  _asserv_init
-                  0x00160e                  _charg_gobelet
-                  0x001528                  _choose_arm
-                  0x000458                  _cosf
-                  0x001496                  _decalage_angulaire
-                  0x000534                  _fmodf
-                  0x001530                  _init_ax12
-                  0x0011a0                  _init_rampe
-                  0x0017fe                  _limit_float
-                  0x001852                  _limit_int
-                  0x001a62                  _main
-                  0x00191c                  _motion_init
-                  0x00199c                  _motion_speed
-                  0x00192e                  _motion_step
-                  0x001992                  _motion_stop
-                  0x001218                  _odo_init
-                  0x00128a                  _odo_step
-                  0x00188a                  _principal_angle
-                  0x00109e                  _rampe
-                  0x0007b6                  _sinf
-                  0x000f32                  _speed_asserv_step
-                  0x00144c                  _step
+                  0x00097c                  __vfprintf_fF
+                  0x002944                  _charg_gobelet
+                  0x00285e                  _choose_arm
+                  0x000590                  _fmodf
+                  0x00181a                  _frexp
+                  0x00181a                  _frexpl
+                  0x002866                  _init_ax12
+                  0x0029fe                  _limit_float
+                  0x002a52                  _limit_int
+                  0x002b84                  _main
+                  0x002a8a                  _principal_angle
 
 Memory Configuration
 
@@ -446,6 +540,9 @@ FUID3            0xf80016           0x000002
 
 Linker script and memory map
 
+LOAD build/default/production/asserv.o
+LOAD build/default/production/motion.o
+LOAD build/default/production/odo.o
 LOAD build/default/production/user.o
 LOAD build/default/production/interrupts.o
 LOAD build/default/production/main.o
@@ -453,9 +550,6 @@ LOAD build/default/production/motor.o
 LOAD build/default/production/ax12.o
 LOAD build/default/production/actions_ax12.o
 LOAD build/default/production/tools.o
-LOAD build/default/production/asserv.o
-LOAD build/default/production/motion.o
-LOAD build/default/production/odo.o
                     0x0001                  __MPLAB_BUILD = 0x1
 LOAD /opt/microchip/xc16/v1.24/bin/bin/../../lib/dsPIC33F/libp33FJ128MC804-elf.a
 LOAD /opt/microchip/xc16/v1.24/bin/bin/../../lib/libfx-elf.a
@@ -487,7 +581,7 @@ LOAD /opt/microchip/xc16/v1.24/bin/bin/../../lib/libfx-elf.a
                   0x000002          0x2 SHORT 0x0 ((ABSOLUTE (__reset) >> 0x10) & 0x7f)
                   0x000003          0x2 SHORT 0x0
 
-.text             0x000200        0x66e
+.text             0x000200       0x1b0c
  *(.init)
  .init            0x000200         0x3c /opt/microchip/xc16/v1.24/bin/bin/../../lib/libpic30-elf.a(crt0_standard.o)
                   0x000200                  __reset
@@ -502,86 +596,171 @@ LOAD /opt/microchip/xc16/v1.24/bin/bin/../../lib/libfx-elf.a
  .isr             0x00029a          0x4 default_isr
                   0x00029a                  __DefaultInterrupt
  *(.libc)
+ .libc            0x00029e         0x60 /opt/microchip/xc16/v1.24/bin/bin/../../lib/libpic30-elf.a(write.eo)
+                  0x00029e                  _write
  *(.libm)
  *(.libdsp)
  *(.lib*)
- .libperi         0x00029e         0x24 /opt/microchip/xc16/v1.24/bin/bin/../../lib/dsPIC33F/libp33FJ128MC804-elf.a(ConfigIntTimer2.o)
-                  0x00029e                  _ConfigIntTimer2
- .libperi         0x0002c2          0xa /opt/microchip/xc16/v1.24/bin/bin/../../lib/dsPIC33F/libp33FJ128MC804-elf.a(OpenTimer2.o)
-                  0x0002c2                  _OpenTimer2
- .libperi         0x0002cc          0xa /opt/microchip/xc16/v1.24/bin/bin/../../lib/dsPIC33F/libp33FJ128MC804-elf.a(BusyUART2.o)
-                  0x0002cc                  _BusyUART2
- .libperi         0x0002d6         0x48 /opt/microchip/xc16/v1.24/bin/bin/../../lib/dsPIC33F/libp33FJ128MC804-elf.a(ConfigIntUART1.o)
-                  0x0002d6                  _ConfigIntUART1
- .libperi         0x00031e         0x48 /opt/microchip/xc16/v1.24/bin/bin/../../lib/dsPIC33F/libp33FJ128MC804-elf.a(ConfigIntUART2.o)
-                  0x00031e                  _ConfigIntUART2
- .libperi         0x000366          0x6 /opt/microchip/xc16/v1.24/bin/bin/../../lib/dsPIC33F/libp33FJ128MC804-elf.a(DataRdyUART2.o)
-                  0x000366                  _DataRdyUART2
- .libperi         0x00036c          0x8 /opt/microchip/xc16/v1.24/bin/bin/../../lib/dsPIC33F/libp33FJ128MC804-elf.a(OpenUART1.o)
-                  0x00036c                  _OpenUART1
- .libperi         0x000374          0x8 /opt/microchip/xc16/v1.24/bin/bin/../../lib/dsPIC33F/libp33FJ128MC804-elf.a(OpenUART2.o)
-                  0x000374                  _OpenUART2
- .libperi         0x00037c         0x12 /opt/microchip/xc16/v1.24/bin/bin/../../lib/dsPIC33F/libp33FJ128MC804-elf.a(ReadUART2.o)
-                  0x00037c                  _ReadUART2
- .libperi         0x00038e          0xe /opt/microchip/xc16/v1.24/bin/bin/../../lib/dsPIC33F/libp33FJ128MC804-elf.a(WriteUART2.o)
-                  0x00038e                  _WriteUART2
- .libm.subsf3     0x00039c         0xbc /opt/microchip/xc16/v1.24/bin/bin/../../lib/libm-elf.a(addsf3.eo)
-                  0x00039c                  ___subsf3
-                  0x00039e                  ___addsf3
- .libm.cosf       0x000458          0x4 /opt/microchip/xc16/v1.24/bin/bin/../../lib/libm-elf.a(cosf.eo)
-                  0x000458                  _cosf
- .libm.divfs3     0x00045c         0x84 /opt/microchip/xc16/v1.24/bin/bin/../../lib/libm-elf.a(divsf3.eo)
-                  0x00045c                  ___divsf3
- .libm.eqsf2      0x0004e0          0x4 /opt/microchip/xc16/v1.24/bin/bin/../../lib/libm-elf.a(feqltle.eo)
-                  0x0004e0                  ___lesf2
-                  0x0004e0                  ___eqsf2
-                  0x0004e0                  ___ltsf2
- .libm.gtsf2      0x0004e4          0x4 /opt/microchip/xc16/v1.24/bin/bin/../../lib/libm-elf.a(fgtge.eo)
-                  0x0004e4                  ___gtsf2
-                  0x0004e4                  ___gesf2
- .libm.fixsfsi    0x0004e8         0x42 /opt/microchip/xc16/v1.24/bin/bin/../../lib/libm-elf.a(fixsfsi.eo)
-                  0x0004e8                  _(float, int, long long, short, float, short, int)
+ .libperi         0x0002fe         0x24 /opt/microchip/xc16/v1.24/bin/bin/../../lib/dsPIC33F/libp33FJ128MC804-elf.a(ConfigIntTimer2.o)
+                  0x0002fe                  _ConfigIntTimer2
+ .libperi         0x000322          0xa /opt/microchip/xc16/v1.24/bin/bin/../../lib/dsPIC33F/libp33FJ128MC804-elf.a(OpenTimer2.o)
+                  0x000322                  _OpenTimer2
+ .libperi         0x00032c          0xa /opt/microchip/xc16/v1.24/bin/bin/../../lib/dsPIC33F/libp33FJ128MC804-elf.a(BusyUART2.o)
+                  0x00032c                  _BusyUART2
+ .libperi         0x000336         0x48 /opt/microchip/xc16/v1.24/bin/bin/../../lib/dsPIC33F/libp33FJ128MC804-elf.a(ConfigIntUART1.o)
+                  0x000336                  _ConfigIntUART1
+ .libperi         0x00037e         0x48 /opt/microchip/xc16/v1.24/bin/bin/../../lib/dsPIC33F/libp33FJ128MC804-elf.a(ConfigIntUART2.o)
+                  0x00037e                  _ConfigIntUART2
+ .libperi         0x0003c6          0x6 /opt/microchip/xc16/v1.24/bin/bin/../../lib/dsPIC33F/libp33FJ128MC804-elf.a(DataRdyUART2.o)
+                  0x0003c6                  _DataRdyUART2
+ .libperi         0x0003cc          0x8 /opt/microchip/xc16/v1.24/bin/bin/../../lib/dsPIC33F/libp33FJ128MC804-elf.a(OpenUART1.o)
+                  0x0003cc                  _OpenUART1
+ .libperi         0x0003d4          0x8 /opt/microchip/xc16/v1.24/bin/bin/../../lib/dsPIC33F/libp33FJ128MC804-elf.a(OpenUART2.o)
+                  0x0003d4                  _OpenUART2
+ .libperi         0x0003dc         0x12 /opt/microchip/xc16/v1.24/bin/bin/../../lib/dsPIC33F/libp33FJ128MC804-elf.a(ReadUART2.o)
+                  0x0003dc                  _ReadUART2
+ .libperi         0x0003ee          0xe /opt/microchip/xc16/v1.24/bin/bin/../../lib/dsPIC33F/libp33FJ128MC804-elf.a(WriteUART2.o)
+                  0x0003ee                  _WriteUART2
+ .libm.subsf3     0x0003fc         0xbc /opt/microchip/xc16/v1.24/bin/bin/../../lib/libm-elf.a(addsf3.eo)
+                  0x0003fc                  ___subsf3
+                  0x0003fe                  ___addsf3
+ .libm.divfs3     0x0004b8         0x84 /opt/microchip/xc16/v1.24/bin/bin/../../lib/libm-elf.a(divsf3.eo)
+                  0x0004b8                  ___divsf3
+ .libm.eqsf2      0x00053c          0x4 /opt/microchip/xc16/v1.24/bin/bin/../../lib/libm-elf.a(feqltle.eo)
+                  0x00053c                  ___lesf2
+                  0x00053c                  ___eqsf2
+                  0x00053c                  ___ltsf2
+ .libm.gtsf2      0x000540          0x4 /opt/microchip/xc16/v1.24/bin/bin/../../lib/libm-elf.a(fgtge.eo)
+                  0x000540                  ___gtsf2
+                  0x000540                  ___gesf2
+ .libm.fixsfsi    0x000544         0x42 /opt/microchip/xc16/v1.24/bin/bin/../../lib/libm-elf.a(fixsfsi.eo)
+                  0x000544                  _(float, int, long long, short, float, short, int)
  .libm.floatsisf
-                  0x00052a          0x6 /opt/microchip/xc16/v1.24/bin/bin/../../lib/libm-elf.a(floatsisf.eo)
-                  0x00052a                  ___floatsisf
+                  0x000586          0x6 /opt/microchip/xc16/v1.24/bin/bin/../../lib/libm-elf.a(floatsisf.eo)
+                  0x000586                  ___floatsisf
  .libm.floatunsisf
-                  0x000530          0x4 /opt/microchip/xc16/v1.24/bin/bin/../../lib/libm-elf.a(floatunsisf.eo)
-                  0x000530                  ___floatunsisf
- .libm.fmodf      0x000534          0x4 /opt/microchip/xc16/v1.24/bin/bin/../../lib/libm-elf.a(fmodf.eo)
-                  0x000534                  _fmodf
- .libm.fmodrem    0x000538         0x9e /opt/microchip/xc16/v1.24/bin/bin/../../lib/libm-elf.a(fmodrem.eo)
-                  0x000538                  __fmodrem
- .libm.fpack      0x0005d6         0x4c /opt/microchip/xc16/v1.24/bin/bin/../../lib/libm-elf.a(fpack.eo)
-                  0x0005d6                  __fpack
- .libm.funpack    0x000622         0x2a /opt/microchip/xc16/v1.24/bin/bin/../../lib/libm-elf.a(funpack.eo)
-                  0x000622                  __funpack
+                  0x00058c          0x4 /opt/microchip/xc16/v1.24/bin/bin/../../lib/libm-elf.a(floatunsisf.eo)
+                  0x00058c                  ___floatunsisf
+ .libm.fmodf      0x000590          0x4 /opt/microchip/xc16/v1.24/bin/bin/../../lib/libm-elf.a(fmodf.eo)
+                  0x000590                  _fmodf
+ .libm.fmodrem    0x000594         0x9e /opt/microchip/xc16/v1.24/bin/bin/../../lib/libm-elf.a(fmodrem.eo)
+                  0x000594                  __fmodrem
+ .libm.fpack      0x000632         0x4c /opt/microchip/xc16/v1.24/bin/bin/../../lib/libm-elf.a(fpack.eo)
+                  0x000632                  __fpack
+ .libm.funpack    0x00067e         0x2a /opt/microchip/xc16/v1.24/bin/bin/../../lib/libm-elf.a(funpack.eo)
+                  0x00067e                  __funpack
  .libm.funpack2
-                  0x00064c         0x10 /opt/microchip/xc16/v1.24/bin/bin/../../lib/libm-elf.a(funpack2.eo)
-                  0x00064c                  __funpack2
+                  0x0006a8         0x10 /opt/microchip/xc16/v1.24/bin/bin/../../lib/libm-elf.a(funpack2.eo)
+                  0x0006a8                  __funpack2
  .libm.fPropagateNaN
-                  0x00065c         0x12 /opt/microchip/xc16/v1.24/bin/bin/../../lib/libm-elf.a(futil.eo)
-                  0x00065c                  __fPropagateNaN
+                  0x0006b8         0x12 /opt/microchip/xc16/v1.24/bin/bin/../../lib/libm-elf.a(futil.eo)
+                  0x0006b8                  __fPropagateNaN
  .libm.fbobExit
-                  0x00066e          0x8 /opt/microchip/xc16/v1.24/bin/bin/../../lib/libm-elf.a(futil.eo)
-                  0x00066e                  __fbopExit
+                  0x0006ca          0x8 /opt/microchip/xc16/v1.24/bin/bin/../../lib/libm-elf.a(futil.eo)
+                  0x0006ca                  __fbopExit
  .libm.fbopReturnNaN
-                  0x000676          0x6 /opt/microchip/xc16/v1.24/bin/bin/../../lib/libm-elf.a(futil.eo)
-                  0x000676                  __fbopReturnNaN
- .libm.mulsf3     0x00067c         0x68 /opt/microchip/xc16/v1.24/bin/bin/../../lib/libm-elf.a(mulsf3.eo)
-                  0x00067c                  ___mulsf3
- .libm.sincosf    0x0006e4         0xd2 /opt/microchip/xc16/v1.24/bin/bin/../../lib/libm-elf.a(sincosf.eo)
-                  0x0006e4                  __sincosf
- .libm.sinf       0x0007b6          0x4 /opt/microchip/xc16/v1.24/bin/bin/../../lib/libm-elf.a(sinf.eo)
-                  0x0007b6                  _sinf
+                  0x0006d2          0x6 /opt/microchip/xc16/v1.24/bin/bin/../../lib/libm-elf.a(futil.eo)
+                  0x0006d2                  __fbopReturnNaN
+ .libm.mulsf3     0x0006d8         0x68 /opt/microchip/xc16/v1.24/bin/bin/../../lib/libm-elf.a(mulsf3.eo)
+                  0x0006d8                  ___mulsf3
  .libm.fcompare
-                  0x0007ba         0x36 /opt/microchip/xc16/v1.24/bin/bin/../../lib/libm-elf.a(fcompare.eo)
-                  0x0007ba                  __fcompare
+                  0x000740         0x36 /opt/microchip/xc16/v1.24/bin/bin/../../lib/libm-elf.a(fcompare.eo)
+                  0x000740                  __fcompare
  .libm.floatdisf
-                  0x0007f0         0x20 /opt/microchip/xc16/v1.24/bin/bin/../../lib/libm-elf.a(floatdisf.eo)
-                  0x0007f0                  ___floatdisf
+                  0x000776         0x20 /opt/microchip/xc16/v1.24/bin/bin/../../lib/libm-elf.a(floatdisf.eo)
+                  0x000776                  ___floatdisf
  .libm.floatundisf
-                  0x000810         0x5e /opt/microchip/xc16/v1.24/bin/bin/../../lib/libm-elf.a(floatundisf.eo)
-                  0x000810                  ___floatundisf
+                  0x000796         0x5e /opt/microchip/xc16/v1.24/bin/bin/../../lib/libm-elf.a(floatundisf.eo)
+                  0x000796                  ___floatundisf
+ .libc._printf_fF
+                  0x0007f4          0xe /opt/microchip/xc16/v1.24/bin/bin/../../lib/libc-elf.a(printf_fF.XXeo)
+                  0x0007f4                  __printf_fF
+ .libc.fround     0x000802         0xba /opt/microchip/xc16/v1.24/bin/bin/../../lib/libc-elf.a(doprnt_fF.XXeo)
+ .libc.scale      0x0008bc         0xc0 /opt/microchip/xc16/v1.24/bin/bin/../../lib/libc-elf.a(doprnt_fF.XXeo)
+ .libc._vfprintf_fF
+                  0x00097c        0xa42 /opt/microchip/xc16/v1.24/bin/bin/../../lib/libc-elf.a(doprnt_fF.XXeo)
+                  0x00097c                  __vfprintf_fF
+ .libc.fputc      0x0013be         0x88 /opt/microchip/xc16/v1.24/bin/bin/../../lib/libc-elf.a(fputc.eo)
+                  0x0013be                  _fputc
+ .libc._flsbuf    0x001446         0x84 /opt/microchip/xc16/v1.24/bin/bin/../../lib/libc-elf.a(flsbuf.eo)
+                  0x001446                  __flsbuf
+ .libc.dowrite    0x0014ca          0x4 /opt/microchip/xc16/v1.24/bin/bin/../../lib/libpic30-elf.a(write.eo)
+ .libm.adddf3     0x0014ce         0xfa /opt/microchip/xc16/v1.24/bin/bin/../../lib/libm-elf.a(adddf3.eo)
+                  0x0014ce                  ___adddf3
+ .libm.eqdf2      0x0015c8          0xa /opt/microchip/xc16/v1.24/bin/bin/../../lib/libm-elf.a(deqltle.eo)
+                  0x0015c8                  ___ledf2
+                  0x0015c8                  ___eqdf2
+                  0x0015c8                  ___ltdf2
+ .libm.gtdf2      0x0015d2          0xa /opt/microchip/xc16/v1.24/bin/bin/../../lib/libm-elf.a(dgtge.eo)
+                  0x0015d2                  ___gedf2
+                  0x0015d2                  ___gtdf2
+ .libm.divdf3     0x0015dc         0xb4 /opt/microchip/xc16/v1.24/bin/bin/../../lib/libm-elf.a(divdf3.eo)
+                  0x0015dc                  ___divdf3
+ .libm.nedf2      0x001690          0xa /opt/microchip/xc16/v1.24/bin/bin/../../lib/libm-elf.a(dne.eo)
+                  0x001690                  ___nedf2
+ .libm.dpack      0x00169a         0x58 /opt/microchip/xc16/v1.24/bin/bin/../../lib/libm-elf.a(dpack.eo)
+                  0x00169a                  __dpack
+ .libm.dunpack2
+                  0x0016f2         0x32 /opt/microchip/xc16/v1.24/bin/bin/../../lib/libm-elf.a(dunpack2.eo)
+                  0x0016f2                  __dunpack2
+                  0x001714                  __dreturnNaN
+                  0x00171a                  __dunpack2exit
+ .libm.extendsfdf2
+                  0x001724         0x3e /opt/microchip/xc16/v1.24/bin/bin/../../lib/libm-elf.a(extendsfdf.eo)
+                  0x001724                  ___extendsfdf2
+ .libm.fixunsdfdi
+                  0x001762         0x62 /opt/microchip/xc16/v1.24/bin/bin/../../lib/libm-elf.a(fixunsdfdi.eo)
+                  0x001762                  ___fixunsdfdi
+ .libm.floatundidf
+                  0x0017c4         0x56 /opt/microchip/xc16/v1.24/bin/bin/../../lib/libm-elf.a(floatundidf.eo)
+                  0x0017c4                  ___floatundidf
+ .libm.frexp      0x00181a         0x3a /opt/microchip/xc16/v1.24/bin/bin/../../lib/libm-elf.a(frexp.eo)
+                  0x00181a                  _frexpl
+                  0x00181a                  _frexp
+ .libm.muldf3     0x001854         0xea /opt/microchip/xc16/v1.24/bin/bin/../../lib/libm-elf.a(muldf3.eo)
+                  0x001854                  ___muldf3
+ .libm.subdf3     0x00193e          0x4 /opt/microchip/xc16/v1.24/bin/bin/../../lib/libm-elf.a(subdf3.eo)
+                  0x00193e                  ___subdf3
+ .libm.udivsi3    0x001942         0x20 /opt/microchip/xc16/v1.24/bin/bin/../../lib/libm-elf.a(udivsi3.eo)
+                  0x001942                  ___udivsi3
+ .libm.mulsi3     0x001962          0xc /opt/microchip/xc16/v1.24/bin/bin/../../lib/libm-elf.a(mulsi3.eo)
+                  0x001962                  ___mulp32eds3
+                  0x001962                  ___mulp32peds3
+                  0x001962                  ___mulsi3
+ .libm.__PplusBdi
+                  0x00196e         0x28 /opt/microchip/xc16/v1.24/bin/bin/../../lib/libm-elf.a(divmoddi3.eo)
+ .libm.__PminusBdi
+                  0x001996         0x4a /opt/microchip/xc16/v1.24/bin/bin/../../lib/libm-elf.a(divmoddi3.eo)
+ .libm.__udivmoddi3
+                  0x0019e0         0xe4 /opt/microchip/xc16/v1.24/bin/bin/../../lib/libm-elf.a(divmoddi3.eo)
+                  0x0019e0                  ___udivmoddi3
+ .libm.__udivdi3
+                  0x001ac4          0xe /opt/microchip/xc16/v1.24/bin/bin/../../lib/libm-elf.a(divmoddi3.eo)
+                  0x001ac4                  ___udivdi3
+ .libm.__umoddi3
+                  0x001ad2          0x8 /opt/microchip/xc16/v1.24/bin/bin/../../lib/libm-elf.a(divmoddi3.eo)
+                  0x001ad2                  ___umoddi3
+ .libm.__divdi3
+                  0x001ada         0x60 /opt/microchip/xc16/v1.24/bin/bin/../../lib/libm-elf.a(divmoddi3.eo)
+                  0x001ada                  ___divdi3
+ .libm.__moddi3
+                  0x001b3a         0x5c /opt/microchip/xc16/v1.24/bin/bin/../../lib/libm-elf.a(divmoddi3.eo)
+                  0x001b3a                  ___moddi3
+ .libm.__muldi3
+                  0x001b96         0x52 /opt/microchip/xc16/v1.24/bin/bin/../../lib/libm-elf.a(muldi3.eo)
+                  0x001b96                  ___muldi3
+ .libm.dcompare
+                  0x001be8         0x52 /opt/microchip/xc16/v1.24/bin/bin/../../lib/libm-elf.a(dcompare.eo)
+                  0x001be8                  __dcompare
+ .libm.dPropagateNaN
+                  0x001c3a         0x1c /opt/microchip/xc16/v1.24/bin/bin/../../lib/libm-elf.a(dpropagateNaN.eo)
+                  0x001c3a                  __dPropagateNaN
+ .libm.dtype      0x001c56         0x24 /opt/microchip/xc16/v1.24/bin/bin/../../lib/libm-elf.a(dtype.eo)
+                  0x001c56                  __dtype
+ .libm.dunpack    0x001c7a         0x4e /opt/microchip/xc16/v1.24/bin/bin/../../lib/libm-elf.a(dunpack.eo)
+                  0x001c7a                  __dunpack
+ .libm.umuldi3    0x001cc8         0x44 /opt/microchip/xc16/v1.24/bin/bin/../../lib/libm-elf.a(umuldi3.eo)
+                  0x001cc8                  ___umuldi3
 
 usercode
  *(usercode)
@@ -630,68 +809,59 @@ __FUID3
 .comment
  *(.comment)
 
-.debug_info       0x000000       0x44d5
+.debug_info       0x000000       0x3cb9
  *(.debug_info)
- .debug_info      0x000000        0x652 build/default/production/user.o
- .debug_info      0x000652       0x1835 build/default/production/interrupts.o
- .debug_info      0x001e87        0x288 build/default/production/main.o
- .debug_info      0x00210f        0xa27 build/default/production/motor.o
- .debug_info      0x002b36        0xc87 build/default/production/ax12.o
- .debug_info      0x0037bd        0x181 build/default/production/actions_ax12.o
- .debug_info      0x00393e        0x18d build/default/production/tools.o
- .debug_info      0x003acb        0x43a build/default/production/asserv.o
- .debug_info      0x003f05        0x23a build/default/production/motion.o
- .debug_info      0x00413f        0x396 build/default/production/odo.o
+ .debug_info      0x000000        0x649 build/default/production/user.o
+ .debug_info      0x000649       0x1ac0 build/default/production/interrupts.o
+ .debug_info      0x002109        0x1f4 build/default/production/main.o
+ .debug_info      0x0022fd        0xa27 build/default/production/motor.o
+ .debug_info      0x002d24        0xc87 build/default/production/ax12.o
+ .debug_info      0x0039ab        0x181 build/default/production/actions_ax12.o
+ .debug_info      0x003b2c        0x18d build/default/production/tools.o
  *(.gnu.linkonce.wi.*)
 
-.debug_abbrev     0x000000        0x8cb
+.debug_abbrev     0x000000        0x5d2
  *(.debug_abbrev)
- .debug_abbrev    0x000000         0xba build/default/production/user.o
- .debug_abbrev    0x0000ba        0x14b build/default/production/interrupts.o
- .debug_abbrev    0x000205         0x99 build/default/production/main.o
- .debug_abbrev    0x00029e         0xfc build/default/production/motor.o
- .debug_abbrev    0x00039a        0x1bb build/default/production/ax12.o
- .debug_abbrev    0x000555         0x5a build/default/production/actions_ax12.o
- .debug_abbrev    0x0005af         0x6d build/default/production/tools.o
- .debug_abbrev    0x00061c         0xec build/default/production/asserv.o
- .debug_abbrev    0x000708         0xc1 build/default/production/motion.o
- .debug_abbrev    0x0007c9        0x102 build/default/production/odo.o
+ .debug_abbrev    0x000000          0x1 build/default/production/asserv.o
+ .debug_abbrev    0x000001          0x1 build/default/production/motion.o
+ .debug_abbrev    0x000002          0x1 build/default/production/odo.o
+ .debug_abbrev    0x000003         0xba build/default/production/user.o
+ .debug_abbrev    0x0000bd        0x136 build/default/production/interrupts.o
+ .debug_abbrev    0x0001f3         0x61 build/default/production/main.o
+ .debug_abbrev    0x000254         0xfc build/default/production/motor.o
+ .debug_abbrev    0x000350        0x1bb build/default/production/ax12.o
+ .debug_abbrev    0x00050b         0x5a build/default/production/actions_ax12.o
+ .debug_abbrev    0x000565         0x6d build/default/production/tools.o
 
-.debug_line       0x000000       0x1357
+.debug_line       0x000000        0xf16
  *(.debug_line)
- .debug_line      0x000000        0x100 build/default/production/user.o
- .debug_line      0x000100        0x2a8 build/default/production/interrupts.o
- .debug_line      0x0003a8         0xda build/default/production/main.o
- .debug_line      0x000482        0x29f build/default/production/motor.o
- .debug_line      0x000721        0x490 build/default/production/ax12.o
- .debug_line      0x000bb1        0x1e4 build/default/production/actions_ax12.o
- .debug_line      0x000d95         0xd5 build/default/production/tools.o
- .debug_line      0x000e6a        0x1c8 build/default/production/asserv.o
- .debug_line      0x001032        0x114 build/default/production/motion.o
- .debug_line      0x001146        0x211 build/default/production/odo.o
+ .debug_line      0x000000         0x24 build/default/production/asserv.o
+ .debug_line      0x000024         0x24 build/default/production/motion.o
+ .debug_line      0x000048         0x24 build/default/production/odo.o
+ .debug_line      0x00006c         0xf8 build/default/production/user.o
+ .debug_line      0x000164        0x32c build/default/production/interrupts.o
+ .debug_line      0x000490         0x9e build/default/production/main.o
+ .debug_line      0x00052e        0x29f build/default/production/motor.o
+ .debug_line      0x0007cd        0x490 build/default/production/ax12.o
+ .debug_line      0x000c5d        0x1e4 build/default/production/actions_ax12.o
+ .debug_line      0x000e41         0xd5 build/default/production/tools.o
 
-.debug_frame      0x000000        0x440
+.debug_frame      0x000000        0x320
  *(.debug_frame)
  .debug_frame     0x000000         0x34 build/default/production/user.o
- .debug_frame     0x000034         0xa4 build/default/production/interrupts.o
- .debug_frame     0x0000d8         0x24 build/default/production/main.o
- .debug_frame     0x0000fc         0x64 build/default/production/motor.o
- .debug_frame     0x000160        0x114 build/default/production/ax12.o
- .debug_frame     0x000274         0x44 build/default/production/actions_ax12.o
- .debug_frame     0x0002b8         0x44 build/default/production/tools.o
- .debug_frame     0x0002fc         0x54 build/default/production/asserv.o
- .debug_frame     0x000350         0x9c build/default/production/motion.o
- .debug_frame     0x0003ec         0x54 build/default/production/odo.o
+ .debug_frame     0x000034         0xc8 build/default/production/interrupts.o
+ .debug_frame     0x0000fc         0x24 build/default/production/main.o
+ .debug_frame     0x000120         0x64 build/default/production/motor.o
+ .debug_frame     0x000184        0x114 build/default/production/ax12.o
+ .debug_frame     0x000298         0x44 build/default/production/actions_ax12.o
+ .debug_frame     0x0002dc         0x44 build/default/production/tools.o
 
-.debug_str        0x000000        0x28c
+.debug_str        0x000000        0x1e2
  *(.debug_str)
  .debug_str       0x000000         0x21 build/default/production/user.o
- .debug_str       0x000021         0xbc build/default/production/interrupts.o
- .debug_str       0x0000dd         0x5c build/default/production/motor.o
- .debug_str       0x000139         0x58 build/default/production/ax12.o
- .debug_str       0x000191         0x8e build/default/production/asserv.o
- .debug_str       0x00021f         0x27 build/default/production/motion.o
- .debug_str       0x000246         0x46 build/default/production/odo.o
+ .debug_str       0x000021        0x10d build/default/production/interrupts.o
+ .debug_str       0x00012e         0x5c build/default/production/motor.o
+ .debug_str       0x00018a         0x58 build/default/production/ax12.o
 
 .debug_loc
  *(.debug_loc)
@@ -700,33 +870,27 @@ __FUID3
  *(.debug_macinfo)
 
 .debug_pubnames
-                  0x000000        0x5cf
+                  0x000000        0x40f
  *(.debug_pubnames)
  .debug_pubnames
                   0x000000         0x37 build/default/production/user.o
  .debug_pubnames
-                  0x000037         0xf4 build/default/production/interrupts.o
+                  0x000037        0x154 build/default/production/interrupts.o
  .debug_pubnames
-                  0x00012b         0x50 build/default/production/main.o
+                  0x00018b         0x50 build/default/production/main.o
  .debug_pubnames
-                  0x00017b         0x73 build/default/production/motor.o
+                  0x0001db         0x73 build/default/production/motor.o
  .debug_pubnames
-                  0x0001ee        0x13c build/default/production/ax12.o
+                  0x00024e        0x13c build/default/production/ax12.o
  .debug_pubnames
-                  0x00032a         0x41 build/default/production/actions_ax12.o
+                  0x00038a         0x41 build/default/production/actions_ax12.o
  .debug_pubnames
-                  0x00036b         0x44 build/default/production/tools.o
- .debug_pubnames
-                  0x0003af         0xfa build/default/production/asserv.o
- .debug_pubnames
-                  0x0004a9         0x64 build/default/production/motion.o
- .debug_pubnames
-                  0x00050d         0xc2 build/default/production/odo.o
+                  0x0003cb         0x44 build/default/production/tools.o
 
 .debug_ranges
  *(.debug_ranges)
 
-.debug_aranges    0x000000         0xf0
+.debug_aranges    0x000000         0xa8
  *(.debug_aranges)
  .debug_aranges
                   0x000000         0x18 build/default/production/user.o
@@ -742,12 +906,6 @@ __FUID3
                   0x000078         0x18 build/default/production/actions_ax12.o
  .debug_aranges
                   0x000090         0x18 build/default/production/tools.o
- .debug_aranges
-                  0x0000a8         0x18 build/default/production/asserv.o
- .debug_aranges
-                  0x0000c0         0x18 build/default/production/motion.o
- .debug_aranges
-                  0x0000d8         0x18 build/default/production/odo.o
 
 .ivt              0x000004         0xfc
                   0x000004          0x4 LONG 0x29a DEFINED (__ReservedTrap0)?ABSOLUTE (__ReservedTrap0):ABSOLUTE (__DefaultInterrupt)
@@ -765,19 +923,19 @@ __FUID3
                   0x00001c          0x4 LONG 0x29a DEFINED (__DMA0Interrupt)?ABSOLUTE (__DMA0Interrupt):ABSOLUTE (__DefaultInterrupt)
                   0x00001e          0x4 LONG 0x29a DEFINED (__IC2Interrupt)?ABSOLUTE (__IC2Interrupt):ABSOLUTE (__DefaultInterrupt)
                   0x000020          0x4 LONG 0x29a DEFINED (__OC2Interrupt)?ABSOLUTE (__OC2Interrupt):ABSOLUTE (__DefaultInterrupt)
-                  0x000022          0x4 LONG 0x173c DEFINED (__T2Interrupt)?ABSOLUTE (__T2Interrupt):ABSOLUTE (__DefaultInterrupt)
+                  0x000022          0x4 LONG 0x2436 DEFINED (__T2Interrupt)?ABSOLUTE (__T2Interrupt):ABSOLUTE (__DefaultInterrupt)
                   0x000024          0x4 LONG 0x29a DEFINED (__T3Interrupt)?ABSOLUTE (__T3Interrupt):ABSOLUTE (__DefaultInterrupt)
                   0x000026          0x4 LONG 0x29a DEFINED (__SPI1ErrInterrupt)?ABSOLUTE (__SPI1ErrInterrupt):ABSOLUTE (__DefaultInterrupt)
                   0x000028          0x4 LONG 0x29a DEFINED (__SPI1Interrupt)?ABSOLUTE (__SPI1Interrupt):ABSOLUTE (__DefaultInterrupt)
-                  0x00002a          0x4 LONG 0x1790 DEFINED (__U1RXInterrupt)?ABSOLUTE (__U1RXInterrupt):ABSOLUTE (__DefaultInterrupt)
-                  0x00002c          0x4 LONG 0x1798 DEFINED (__U1TXInterrupt)?ABSOLUTE (__U1TXInterrupt):ABSOLUTE (__DefaultInterrupt)
+                  0x00002a          0x4 LONG 0x2614 DEFINED (__U1RXInterrupt)?ABSOLUTE (__U1RXInterrupt):ABSOLUTE (__DefaultInterrupt)
+                  0x00002c          0x4 LONG 0x261c DEFINED (__U1TXInterrupt)?ABSOLUTE (__U1TXInterrupt):ABSOLUTE (__DefaultInterrupt)
                   0x00002e          0x4 LONG 0x29a DEFINED (__ADC1Interrupt)?ABSOLUTE (__ADC1Interrupt):ABSOLUTE (__DefaultInterrupt)
                   0x000030          0x4 LONG 0x29a DEFINED (__DMA1Interrupt)?ABSOLUTE (__DMA1Interrupt):ABSOLUTE (__DefaultInterrupt)
                   0x000032          0x4 LONG 0x29a DEFINED (__Interrupt15)?ABSOLUTE (__Interrupt15):ABSOLUTE (__DefaultInterrupt)
                   0x000034          0x4 LONG 0x29a DEFINED (__SI2C1Interrupt)?ABSOLUTE (__SI2C1Interrupt):ABSOLUTE (__DefaultInterrupt)
                   0x000036          0x4 LONG 0x29a DEFINED (__MI2C1Interrupt)?ABSOLUTE (__MI2C1Interrupt):ABSOLUTE (__DefaultInterrupt)
                   0x000038          0x4 LONG 0x29a DEFINED (__CMPInterrupt)?ABSOLUTE (__CMPInterrupt):ABSOLUTE (__DefaultInterrupt)
-                  0x00003a          0x4 LONG 0x17aa DEFINED (__CNInterrupt)?ABSOLUTE (__CNInterrupt):ABSOLUTE (__DefaultInterrupt)
+                  0x00003a          0x4 LONG 0x262e DEFINED (__CNInterrupt)?ABSOLUTE (__CNInterrupt):ABSOLUTE (__DefaultInterrupt)
                   0x00003c          0x4 LONG 0x29a DEFINED (__INT1Interrupt)?ABSOLUTE (__INT1Interrupt):ABSOLUTE (__DefaultInterrupt)
                   0x00003e          0x4 LONG 0x29a DEFINED (__Interrupt21)?ABSOLUTE (__Interrupt21):ABSOLUTE (__DefaultInterrupt)
                   0x000040          0x4 LONG 0x29a DEFINED (__IC7Interrupt)?ABSOLUTE (__IC7Interrupt):ABSOLUTE (__DefaultInterrupt)
@@ -788,10 +946,10 @@ __FUID3
                   0x00004a          0x4 LONG 0x29a DEFINED (__T4Interrupt)?ABSOLUTE (__T4Interrupt):ABSOLUTE (__DefaultInterrupt)
                   0x00004c          0x4 LONG 0x29a DEFINED (__T5Interrupt)?ABSOLUTE (__T5Interrupt):ABSOLUTE (__DefaultInterrupt)
                   0x00004e          0x4 LONG 0x29a DEFINED (__INT2Interrupt)?ABSOLUTE (__INT2Interrupt):ABSOLUTE (__DefaultInterrupt)
-                  0x000050          0x4 LONG 0x1780 DEFINED (__U2RXInterrupt)?ABSOLUTE (__U2RXInterrupt):ABSOLUTE (__DefaultInterrupt)
-                  0x000052          0x4 LONG 0x1788 DEFINED (__U2TXInterrupt)?ABSOLUTE (__U2TXInterrupt):ABSOLUTE (__DefaultInterrupt)
+                  0x000050          0x4 LONG 0x2604 DEFINED (__U2RXInterrupt)?ABSOLUTE (__U2RXInterrupt):ABSOLUTE (__DefaultInterrupt)
+                  0x000052          0x4 LONG 0x260c DEFINED (__U2TXInterrupt)?ABSOLUTE (__U2TXInterrupt):ABSOLUTE (__DefaultInterrupt)
                   0x000054          0x4 LONG 0x29a DEFINED (__SPI2ErrInterrupt)?ABSOLUTE (__SPI2ErrInterrupt):ABSOLUTE (__DefaultInterrupt)
-                  0x000056          0x4 LONG 0x17a0 DEFINED (__SPI2Interrupt)?ABSOLUTE (__SPI2Interrupt):ABSOLUTE (__DefaultInterrupt)
+                  0x000056          0x4 LONG 0x2624 DEFINED (__SPI2Interrupt)?ABSOLUTE (__SPI2Interrupt):ABSOLUTE (__DefaultInterrupt)
                   0x000058          0x4 LONG 0x29a DEFINED (__C1RxRdyInterrupt)?ABSOLUTE (__C1RxRdyInterrupt):ABSOLUTE (__DefaultInterrupt)
                   0x00005a          0x4 LONG 0x29a DEFINED (__C1Interrupt)?ABSOLUTE (__C1Interrupt):ABSOLUTE (__DefaultInterrupt)
                   0x00005c          0x4 LONG 0x29a DEFINED (__DMA3Interrupt)?ABSOLUTE (__DMA3Interrupt):ABSOLUTE (__DefaultInterrupt)
@@ -893,19 +1051,19 @@ __FUID3
                   0x00011c          0x4 LONG 0x29a DEFINED (__AltDMA0Interrupt)?ABSOLUTE (__AltDMA0Interrupt):DEFINED (__DMA0Interrupt)?ABSOLUTE (__DMA0Interrupt):ABSOLUTE (__DefaultInterrupt)
                   0x00011e          0x4 LONG 0x29a DEFINED (__AltIC2Interrupt)?ABSOLUTE (__AltIC2Interrupt):DEFINED (__IC2Interrupt)?ABSOLUTE (__IC2Interrupt):ABSOLUTE (__DefaultInterrupt)
                   0x000120          0x4 LONG 0x29a DEFINED (__AltOC2Interrupt)?ABSOLUTE (__AltOC2Interrupt):DEFINED (__OC2Interrupt)?ABSOLUTE (__OC2Interrupt):ABSOLUTE (__DefaultInterrupt)
-                  0x000122          0x4 LONG 0x173c DEFINED (__AltT2Interrupt)?ABSOLUTE (__AltT2Interrupt):DEFINED (__T2Interrupt)?ABSOLUTE (__T2Interrupt):ABSOLUTE (__DefaultInterrupt)
+                  0x000122          0x4 LONG 0x2436 DEFINED (__AltT2Interrupt)?ABSOLUTE (__AltT2Interrupt):DEFINED (__T2Interrupt)?ABSOLUTE (__T2Interrupt):ABSOLUTE (__DefaultInterrupt)
                   0x000124          0x4 LONG 0x29a DEFINED (__AltT3Interrupt)?ABSOLUTE (__AltT3Interrupt):DEFINED (__T3Interrupt)?ABSOLUTE (__T3Interrupt):ABSOLUTE (__DefaultInterrupt)
                   0x000126          0x4 LONG 0x29a DEFINED (__AltSPI1ErrInterrupt)?ABSOLUTE (__AltSPI1ErrInterrupt):DEFINED (__SPI1ErrInterrupt)?ABSOLUTE (__SPI1ErrInterrupt):ABSOLUTE (__DefaultInterrupt)
                   0x000128          0x4 LONG 0x29a DEFINED (__AltSPI1Interrupt)?ABSOLUTE (__AltSPI1Interrupt):DEFINED (__SPI1Interrupt)?ABSOLUTE (__SPI1Interrupt):ABSOLUTE (__DefaultInterrupt)
-                  0x00012a          0x4 LONG 0x1790 DEFINED (__AltU1RXInterrupt)?ABSOLUTE (__AltU1RXInterrupt):DEFINED (__U1RXInterrupt)?ABSOLUTE (__U1RXInterrupt):ABSOLUTE (__DefaultInterrupt)
-                  0x00012c          0x4 LONG 0x1798 DEFINED (__AltU1TXInterrupt)?ABSOLUTE (__AltU1TXInterrupt):DEFINED (__U1TXInterrupt)?ABSOLUTE (__U1TXInterrupt):ABSOLUTE (__DefaultInterrupt)
+                  0x00012a          0x4 LONG 0x2614 DEFINED (__AltU1RXInterrupt)?ABSOLUTE (__AltU1RXInterrupt):DEFINED (__U1RXInterrupt)?ABSOLUTE (__U1RXInterrupt):ABSOLUTE (__DefaultInterrupt)
+                  0x00012c          0x4 LONG 0x261c DEFINED (__AltU1TXInterrupt)?ABSOLUTE (__AltU1TXInterrupt):DEFINED (__U1TXInterrupt)?ABSOLUTE (__U1TXInterrupt):ABSOLUTE (__DefaultInterrupt)
                   0x00012e          0x4 LONG 0x29a DEFINED (__AltADC1Interrupt)?ABSOLUTE (__AltADC1Interrupt):DEFINED (__ADC1Interrupt)?ABSOLUTE (__ADC1Interrupt):ABSOLUTE (__DefaultInterrupt)
                   0x000130          0x4 LONG 0x29a DEFINED (__AltDMA1Interrupt)?ABSOLUTE (__AltDMA1Interrupt):DEFINED (__DMA1Interrupt)?ABSOLUTE (__DMA1Interrupt):ABSOLUTE (__DefaultInterrupt)
                   0x000132          0x4 LONG 0x29a DEFINED (__AltInterrupt15)?ABSOLUTE (__AltInterrupt15):DEFINED (__Interrupt15)?ABSOLUTE (__Interrupt15):ABSOLUTE (__DefaultInterrupt)
                   0x000134          0x4 LONG 0x29a DEFINED (__AltSI2C1Interrupt)?ABSOLUTE (__AltSI2C1Interrupt):DEFINED (__SI2C1Interrupt)?ABSOLUTE (__SI2C1Interrupt):ABSOLUTE (__DefaultInterrupt)
                   0x000136          0x4 LONG 0x29a DEFINED (__AltMI2C1Interrupt)?ABSOLUTE (__AltMI2C1Interrupt):DEFINED (__MI2C1Interrupt)?ABSOLUTE (__MI2C1Interrupt):ABSOLUTE (__DefaultInterrupt)
                   0x000138          0x4 LONG 0x29a DEFINED (__AltCMPInterrupt)?ABSOLUTE (__AltCMPInterrupt):DEFINED (__CMPInterrupt)?ABSOLUTE (__CMPInterrupt):ABSOLUTE (__DefaultInterrupt)
-                  0x00013a          0x4 LONG 0x17aa DEFINED (__AltCNInterrupt)?ABSOLUTE (__AltCNInterrupt):DEFINED (__CNInterrupt)?ABSOLUTE (__CNInterrupt):ABSOLUTE (__DefaultInterrupt)
+                  0x00013a          0x4 LONG 0x262e DEFINED (__AltCNInterrupt)?ABSOLUTE (__AltCNInterrupt):DEFINED (__CNInterrupt)?ABSOLUTE (__CNInterrupt):ABSOLUTE (__DefaultInterrupt)
                   0x00013c          0x4 LONG 0x29a DEFINED (__AltINT1Interrupt)?ABSOLUTE (__AltINT1Interrupt):DEFINED (__INT1Interrupt)?ABSOLUTE (__INT1Interrupt):ABSOLUTE (__DefaultInterrupt)
                   0x00013e          0x4 LONG 0x29a DEFINED (__AltInterrupt21)?ABSOLUTE (__AltInterrupt21):DEFINED (__Interrupt21)?ABSOLUTE (__Interrupt21):ABSOLUTE (__DefaultInterrupt)
                   0x000140          0x4 LONG 0x29a DEFINED (__AltIC7Interrupt)?ABSOLUTE (__AltIC7Interrupt):DEFINED (__IC7Interrupt)?ABSOLUTE (__IC7Interrupt):ABSOLUTE (__DefaultInterrupt)
@@ -916,10 +1074,10 @@ __FUID3
                   0x00014a          0x4 LONG 0x29a DEFINED (__AltT4Interrupt)?ABSOLUTE (__AltT4Interrupt):DEFINED (__T4Interrupt)?ABSOLUTE (__T4Interrupt):ABSOLUTE (__DefaultInterrupt)
                   0x00014c          0x4 LONG 0x29a DEFINED (__AltT5Interrupt)?ABSOLUTE (__AltT5Interrupt):DEFINED (__T5Interrupt)?ABSOLUTE (__T5Interrupt):ABSOLUTE (__DefaultInterrupt)
                   0x00014e          0x4 LONG 0x29a DEFINED (__AltINT2Interrupt)?ABSOLUTE (__AltINT2Interrupt):DEFINED (__INT2Interrupt)?ABSOLUTE (__INT2Interrupt):ABSOLUTE (__DefaultInterrupt)
-                  0x000150          0x4 LONG 0x1780 DEFINED (__AltU2RXInterrupt)?ABSOLUTE (__AltU2RXInterrupt):DEFINED (__U2RXInterrupt)?ABSOLUTE (__U2RXInterrupt):ABSOLUTE (__DefaultInterrupt)
-                  0x000152          0x4 LONG 0x1788 DEFINED (__AltU2TXInterrupt)?ABSOLUTE (__AltU2TXInterrupt):DEFINED (__U2TXInterrupt)?ABSOLUTE (__U2TXInterrupt):ABSOLUTE (__DefaultInterrupt)
+                  0x000150          0x4 LONG 0x2604 DEFINED (__AltU2RXInterrupt)?ABSOLUTE (__AltU2RXInterrupt):DEFINED (__U2RXInterrupt)?ABSOLUTE (__U2RXInterrupt):ABSOLUTE (__DefaultInterrupt)
+                  0x000152          0x4 LONG 0x260c DEFINED (__AltU2TXInterrupt)?ABSOLUTE (__AltU2TXInterrupt):DEFINED (__U2TXInterrupt)?ABSOLUTE (__U2TXInterrupt):ABSOLUTE (__DefaultInterrupt)
                   0x000154          0x4 LONG 0x29a DEFINED (__AltSPI2ErrInterrupt)?ABSOLUTE (__AltSPI2ErrInterrupt):DEFINED (__SPI2ErrInterrupt)?ABSOLUTE (__SPI2ErrInterrupt):ABSOLUTE (__DefaultInterrupt)
-                  0x000156          0x4 LONG 0x17a0 DEFINED (__AltSPI2Interrupt)?ABSOLUTE (__AltSPI2Interrupt):DEFINED (__SPI2Interrupt)?ABSOLUTE (__SPI2Interrupt):ABSOLUTE (__DefaultInterrupt)
+                  0x000156          0x4 LONG 0x2624 DEFINED (__AltSPI2Interrupt)?ABSOLUTE (__AltSPI2Interrupt):DEFINED (__SPI2Interrupt)?ABSOLUTE (__SPI2Interrupt):ABSOLUTE (__DefaultInterrupt)
                   0x000158          0x4 LONG 0x29a DEFINED (__AltC1RxRdyInterrupt)?ABSOLUTE (__AltC1RxRdyInterrupt):DEFINED (__C1RxRdyInterrupt)?ABSOLUTE (__C1RxRdyInterrupt):ABSOLUTE (__DefaultInterrupt)
                   0x00015a          0x4 LONG 0x29a DEFINED (__AltC1Interrupt)?ABSOLUTE (__AltC1Interrupt):DEFINED (__C1Interrupt)?ABSOLUTE (__C1Interrupt):ABSOLUTE (__DefaultInterrupt)
                   0x00015c          0x4 LONG 0x29a DEFINED (__AltDMA3Interrupt)?ABSOLUTE (__AltDMA3Interrupt):DEFINED (__DMA3Interrupt)?ABSOLUTE (__DMA3Interrupt):ABSOLUTE (__DefaultInterrupt)
@@ -2120,238 +2278,297 @@ OUTPUT(dist/default/production/AsservTarantibot.X.production.elf elf32-pic30)
 LOAD default_isr
 LOAD data_init
 
-.debug_pubtypes
-                  0x0000f0        0x4aa
- .debug_pubtypes
-                  0x0000f0         0x75 build/default/production/user.o
- .debug_pubtypes
-                  0x000165        0x1dd build/default/production/interrupts.o
- .debug_pubtypes
-                  0x000342         0x29 build/default/production/main.o
- .debug_pubtypes
-                  0x00036b         0xd0 build/default/production/motor.o
- .debug_pubtypes
-                  0x00043b         0xa7 build/default/production/ax12.o
- .debug_pubtypes
-                  0x0004e2         0x12 build/default/production/actions_ax12.o
- .debug_pubtypes
-                  0x0004f4         0x3f build/default/production/asserv.o
- .debug_pubtypes
-                  0x000533         0x2d build/default/production/motion.o
- .debug_pubtypes
-                  0x000560         0x3a build/default/production/odo.o
-
 __c30_signature
-                  0x00059a        0x108
+                  0x0000a8        0x1aa
  __c30_signature
-                  0x00059a          0x6 build/default/production/user.o
+                  0x0000a8          0x6 build/default/production/asserv.o
  __c30_signature
-                  0x0005a0          0x6 build/default/production/interrupts.o
+                  0x0000ae          0x6 build/default/production/motion.o
  __c30_signature
-                  0x0005a6          0x6 build/default/production/main.o
+                  0x0000b4          0x6 build/default/production/odo.o
  __c30_signature
-                  0x0005ac          0x6 build/default/production/motor.o
+                  0x0000ba          0x6 build/default/production/user.o
  __c30_signature
-                  0x0005b2          0x6 build/default/production/ax12.o
+                  0x0000c0          0x6 build/default/production/interrupts.o
  __c30_signature
-                  0x0005b8          0x6 build/default/production/actions_ax12.o
+                  0x0000c6          0x6 build/default/production/main.o
  __c30_signature
-                  0x0005be          0x6 build/default/production/tools.o
+                  0x0000cc          0x6 build/default/production/motor.o
  __c30_signature
-                  0x0005c4          0x6 build/default/production/asserv.o
+                  0x0000d2          0x6 build/default/production/ax12.o
  __c30_signature
-                  0x0005ca          0x6 build/default/production/motion.o
+                  0x0000d8          0x6 build/default/production/actions_ax12.o
  __c30_signature
-                  0x0005d0          0x6 build/default/production/odo.o
+                  0x0000de          0x6 build/default/production/tools.o
  __c30_signature
-                  0x0005d6          0x6 /opt/microchip/xc16/v1.24/bin/bin/../../lib/dsPIC33F/libp33FJ128MC804-elf.a(ConfigIntTimer2.o)
+                  0x0000e4          0x6 /opt/microchip/xc16/v1.24/bin/bin/../../lib/dsPIC33F/libp33FJ128MC804-elf.a(ConfigIntTimer2.o)
  __c30_signature
-                  0x0005dc          0x6 /opt/microchip/xc16/v1.24/bin/bin/../../lib/dsPIC33F/libp33FJ128MC804-elf.a(OpenTimer2.o)
+                  0x0000ea          0x6 /opt/microchip/xc16/v1.24/bin/bin/../../lib/dsPIC33F/libp33FJ128MC804-elf.a(OpenTimer2.o)
  __c30_signature
-                  0x0005e2          0x6 /opt/microchip/xc16/v1.24/bin/bin/../../lib/dsPIC33F/libp33FJ128MC804-elf.a(BusyUART2.o)
+                  0x0000f0          0x6 /opt/microchip/xc16/v1.24/bin/bin/../../lib/dsPIC33F/libp33FJ128MC804-elf.a(BusyUART2.o)
  __c30_signature
-                  0x0005e8          0x6 /opt/microchip/xc16/v1.24/bin/bin/../../lib/dsPIC33F/libp33FJ128MC804-elf.a(ConfigIntUART1.o)
+                  0x0000f6          0x6 /opt/microchip/xc16/v1.24/bin/bin/../../lib/dsPIC33F/libp33FJ128MC804-elf.a(ConfigIntUART1.o)
  __c30_signature
-                  0x0005ee          0x6 /opt/microchip/xc16/v1.24/bin/bin/../../lib/dsPIC33F/libp33FJ128MC804-elf.a(ConfigIntUART2.o)
+                  0x0000fc          0x6 /opt/microchip/xc16/v1.24/bin/bin/../../lib/dsPIC33F/libp33FJ128MC804-elf.a(ConfigIntUART2.o)
  __c30_signature
-                  0x0005f4          0x6 /opt/microchip/xc16/v1.24/bin/bin/../../lib/dsPIC33F/libp33FJ128MC804-elf.a(DataRdyUART2.o)
+                  0x000102          0x6 /opt/microchip/xc16/v1.24/bin/bin/../../lib/dsPIC33F/libp33FJ128MC804-elf.a(DataRdyUART2.o)
  __c30_signature
-                  0x0005fa          0x6 /opt/microchip/xc16/v1.24/bin/bin/../../lib/dsPIC33F/libp33FJ128MC804-elf.a(OpenUART1.o)
+                  0x000108          0x6 /opt/microchip/xc16/v1.24/bin/bin/../../lib/dsPIC33F/libp33FJ128MC804-elf.a(OpenUART1.o)
  __c30_signature
-                  0x000600          0x6 /opt/microchip/xc16/v1.24/bin/bin/../../lib/dsPIC33F/libp33FJ128MC804-elf.a(OpenUART2.o)
+                  0x00010e          0x6 /opt/microchip/xc16/v1.24/bin/bin/../../lib/dsPIC33F/libp33FJ128MC804-elf.a(OpenUART2.o)
  __c30_signature
-                  0x000606          0x6 /opt/microchip/xc16/v1.24/bin/bin/../../lib/dsPIC33F/libp33FJ128MC804-elf.a(ReadUART2.o)
+                  0x000114          0x6 /opt/microchip/xc16/v1.24/bin/bin/../../lib/dsPIC33F/libp33FJ128MC804-elf.a(ReadUART2.o)
  __c30_signature
-                  0x00060c          0x6 /opt/microchip/xc16/v1.24/bin/bin/../../lib/dsPIC33F/libp33FJ128MC804-elf.a(WriteUART2.o)
+                  0x00011a          0x6 /opt/microchip/xc16/v1.24/bin/bin/../../lib/dsPIC33F/libp33FJ128MC804-elf.a(WriteUART2.o)
  __c30_signature
-                  0x000612          0x6 /opt/microchip/xc16/v1.24/bin/bin/../../lib/libpic30-elf.a(crt0_standard.o)
+                  0x000120          0x6 /opt/microchip/xc16/v1.24/bin/bin/../../lib/libpic30-elf.a(crt0_standard.o)
  __c30_signature
-                  0x000618          0x6 /opt/microchip/xc16/v1.24/bin/bin/../../lib/libpic30-elf.a(data_init_standard.o)
+                  0x000126          0x6 /opt/microchip/xc16/v1.24/bin/bin/../../lib/libpic30-elf.a(data_init_standard.o)
  __c30_signature
-                  0x00061e          0x6 /opt/microchip/xc16/v1.24/bin/bin/../../lib/libpic30-elf.a(delay32.eo)
+                  0x00012c          0x6 /opt/microchip/xc16/v1.24/bin/bin/../../lib/libpic30-elf.a(delay32.eo)
  __c30_signature
-                  0x000624          0x6 /opt/microchip/xc16/v1.24/bin/bin/../../lib/libm-elf.a(addsf3.eo)
+                  0x000132          0x6 /opt/microchip/xc16/v1.24/bin/bin/../../lib/libm-elf.a(addsf3.eo)
  __c30_signature
-                  0x00062a          0x6 /opt/microchip/xc16/v1.24/bin/bin/../../lib/libm-elf.a(cosf.eo)
+                  0x000138          0x6 /opt/microchip/xc16/v1.24/bin/bin/../../lib/libm-elf.a(divsf3.eo)
  __c30_signature
-                  0x000630          0x6 /opt/microchip/xc16/v1.24/bin/bin/../../lib/libm-elf.a(divsf3.eo)
+                  0x00013e          0x6 /opt/microchip/xc16/v1.24/bin/bin/../../lib/libm-elf.a(feqltle.eo)
  __c30_signature
-                  0x000636          0x6 /opt/microchip/xc16/v1.24/bin/bin/../../lib/libm-elf.a(feqltle.eo)
+                  0x000144          0x6 /opt/microchip/xc16/v1.24/bin/bin/../../lib/libm-elf.a(fgtge.eo)
  __c30_signature
-                  0x00063c          0x6 /opt/microchip/xc16/v1.24/bin/bin/../../lib/libm-elf.a(fgtge.eo)
+                  0x00014a          0x6 /opt/microchip/xc16/v1.24/bin/bin/../../lib/libm-elf.a(fixsfsi.eo)
  __c30_signature
-                  0x000642          0x6 /opt/microchip/xc16/v1.24/bin/bin/../../lib/libm-elf.a(fixsfsi.eo)
+                  0x000150          0x6 /opt/microchip/xc16/v1.24/bin/bin/../../lib/libm-elf.a(floatsisf.eo)
  __c30_signature
-                  0x000648          0x6 /opt/microchip/xc16/v1.24/bin/bin/../../lib/libm-elf.a(floatsisf.eo)
+                  0x000156          0x6 /opt/microchip/xc16/v1.24/bin/bin/../../lib/libm-elf.a(floatunsisf.eo)
  __c30_signature
-                  0x00064e          0x6 /opt/microchip/xc16/v1.24/bin/bin/../../lib/libm-elf.a(floatunsisf.eo)
+                  0x00015c          0x6 /opt/microchip/xc16/v1.24/bin/bin/../../lib/libm-elf.a(fmodf.eo)
  __c30_signature
-                  0x000654          0x6 /opt/microchip/xc16/v1.24/bin/bin/../../lib/libm-elf.a(fmodf.eo)
+                  0x000162          0x6 /opt/microchip/xc16/v1.24/bin/bin/../../lib/libm-elf.a(fmodrem.eo)
  __c30_signature
-                  0x00065a          0x6 /opt/microchip/xc16/v1.24/bin/bin/../../lib/libm-elf.a(fmodrem.eo)
+                  0x000168          0x6 /opt/microchip/xc16/v1.24/bin/bin/../../lib/libm-elf.a(fpack.eo)
  __c30_signature
-                  0x000660          0x6 /opt/microchip/xc16/v1.24/bin/bin/../../lib/libm-elf.a(fpack.eo)
+                  0x00016e          0x6 /opt/microchip/xc16/v1.24/bin/bin/../../lib/libm-elf.a(funpack.eo)
  __c30_signature
-                  0x000666          0x6 /opt/microchip/xc16/v1.24/bin/bin/../../lib/libm-elf.a(funpack.eo)
+                  0x000174          0x6 /opt/microchip/xc16/v1.24/bin/bin/../../lib/libm-elf.a(funpack2.eo)
  __c30_signature
-                  0x00066c          0x6 /opt/microchip/xc16/v1.24/bin/bin/../../lib/libm-elf.a(funpack2.eo)
+                  0x00017a          0x6 /opt/microchip/xc16/v1.24/bin/bin/../../lib/libm-elf.a(futil.eo)
  __c30_signature
-                  0x000672          0x6 /opt/microchip/xc16/v1.24/bin/bin/../../lib/libm-elf.a(futil.eo)
+                  0x000180          0x6 /opt/microchip/xc16/v1.24/bin/bin/../../lib/libm-elf.a(mulsf3.eo)
  __c30_signature
-                  0x000678          0x6 /opt/microchip/xc16/v1.24/bin/bin/../../lib/libm-elf.a(mulsf3.eo)
+                  0x000186          0x6 /opt/microchip/xc16/v1.24/bin/bin/../../lib/libm-elf.a(errno.eo)
  __c30_signature
-                  0x00067e          0x6 /opt/microchip/xc16/v1.24/bin/bin/../../lib/libm-elf.a(sincosf.eo)
+                  0x00018c          0x6 /opt/microchip/xc16/v1.24/bin/bin/../../lib/libm-elf.a(fcompare.eo)
  __c30_signature
-                  0x000684          0x6 /opt/microchip/xc16/v1.24/bin/bin/../../lib/libm-elf.a(sinf.eo)
+                  0x000192          0x6 /opt/microchip/xc16/v1.24/bin/bin/../../lib/libm-elf.a(floatdisf.eo)
  __c30_signature
-                  0x00068a          0x6 /opt/microchip/xc16/v1.24/bin/bin/../../lib/libm-elf.a(errno.eo)
+                  0x000198          0x6 /opt/microchip/xc16/v1.24/bin/bin/../../lib/libm-elf.a(floatundisf.eo)
  __c30_signature
-                  0x000690          0x6 /opt/microchip/xc16/v1.24/bin/bin/../../lib/libm-elf.a(fcompare.eo)
+                  0x00019e          0x6 /opt/microchip/xc16/v1.24/bin/bin/../../lib/libc-elf.a(printf_fF.XXeo)
  __c30_signature
-                  0x000696          0x6 /opt/microchip/xc16/v1.24/bin/bin/../../lib/libm-elf.a(floatdisf.eo)
+                  0x0001a4          0x6 /opt/microchip/xc16/v1.24/bin/bin/../../lib/libc-elf.a(_iob.eo)
  __c30_signature
-                  0x00069c          0x6 /opt/microchip/xc16/v1.24/bin/bin/../../lib/libm-elf.a(floatundisf.eo)
+                  0x0001aa          0x6 /opt/microchip/xc16/v1.24/bin/bin/../../lib/libc-elf.a(doprnt_fF.XXeo)
+ __c30_signature
+                  0x0001b0          0x6 /opt/microchip/xc16/v1.24/bin/bin/../../lib/libc-elf.a(fputc.eo)
+ __c30_signature
+                  0x0001b6          0x6 /opt/microchip/xc16/v1.24/bin/bin/../../lib/libc-elf.a(powers.eo)
+ __c30_signature
+                  0x0001bc          0x6 /opt/microchip/xc16/v1.24/bin/bin/../../lib/libc-elf.a(flsbuf.eo)
+ __c30_signature
+                  0x0001c2          0x6 /opt/microchip/xc16/v1.24/bin/bin/../../lib/libpic30-elf.a(write.eo)
+ __c30_signature
+                  0x0001c8          0x6 /opt/microchip/xc16/v1.24/bin/bin/../../lib/libpic30-elf.a(c30_uart.eo)
+ __c30_signature
+                  0x0001ce          0x6 /opt/microchip/xc16/v1.24/bin/bin/../../lib/libm-elf.a(adddf3.eo)
+ __c30_signature
+                  0x0001d4          0x6 /opt/microchip/xc16/v1.24/bin/bin/../../lib/libm-elf.a(deqltle.eo)
+ __c30_signature
+                  0x0001da          0x6 /opt/microchip/xc16/v1.24/bin/bin/../../lib/libm-elf.a(dgtge.eo)
+ __c30_signature
+                  0x0001e0          0x6 /opt/microchip/xc16/v1.24/bin/bin/../../lib/libm-elf.a(divdf3.eo)
+ __c30_signature
+                  0x0001e6          0x6 /opt/microchip/xc16/v1.24/bin/bin/../../lib/libm-elf.a(dne.eo)
+ __c30_signature
+                  0x0001ec          0x6 /opt/microchip/xc16/v1.24/bin/bin/../../lib/libm-elf.a(dpack.eo)
+ __c30_signature
+                  0x0001f2          0x6 /opt/microchip/xc16/v1.24/bin/bin/../../lib/libm-elf.a(dunpack2.eo)
+ __c30_signature
+                  0x0001f8          0x6 /opt/microchip/xc16/v1.24/bin/bin/../../lib/libm-elf.a(extendsfdf.eo)
+ __c30_signature
+                  0x0001fe          0x6 /opt/microchip/xc16/v1.24/bin/bin/../../lib/libm-elf.a(fixunsdfdi.eo)
+ __c30_signature
+                  0x000204          0x6 /opt/microchip/xc16/v1.24/bin/bin/../../lib/libm-elf.a(floatundidf.eo)
+ __c30_signature
+                  0x00020a          0x6 /opt/microchip/xc16/v1.24/bin/bin/../../lib/libm-elf.a(frexp.eo)
+ __c30_signature
+                  0x000210          0x6 /opt/microchip/xc16/v1.24/bin/bin/../../lib/libm-elf.a(muldf3.eo)
+ __c30_signature
+                  0x000216          0x6 /opt/microchip/xc16/v1.24/bin/bin/../../lib/libm-elf.a(subdf3.eo)
+ __c30_signature
+                  0x00021c          0x6 /opt/microchip/xc16/v1.24/bin/bin/../../lib/libm-elf.a(udivsi3.eo)
+ __c30_signature
+                  0x000222          0x6 /opt/microchip/xc16/v1.24/bin/bin/../../lib/libm-elf.a(mulsi3.eo)
+ __c30_signature
+                  0x000228          0x6 /opt/microchip/xc16/v1.24/bin/bin/../../lib/libm-elf.a(divmoddi3.eo)
+ __c30_signature
+                  0x00022e          0x6 /opt/microchip/xc16/v1.24/bin/bin/../../lib/libm-elf.a(muldi3.eo)
+ __c30_signature
+                  0x000234          0x6 /opt/microchip/xc16/v1.24/bin/bin/../../lib/libm-elf.a(dcompare.eo)
+ __c30_signature
+                  0x00023a          0x6 /opt/microchip/xc16/v1.24/bin/bin/../../lib/libm-elf.a(dpropagateNaN.eo)
+ __c30_signature
+                  0x000240          0x6 /opt/microchip/xc16/v1.24/bin/bin/../../lib/libm-elf.a(dtype.eo)
+ __c30_signature
+                  0x000246          0x6 /opt/microchip/xc16/v1.24/bin/bin/../../lib/libm-elf.a(dunpack.eo)
+ __c30_signature
+                  0x00024c          0x6 /opt/microchip/xc16/v1.24/bin/bin/../../lib/libm-elf.a(umuldi3.eo)
+
+.debug_pubtypes
+                  0x000252        0x40a
+ .debug_pubtypes
+                  0x000252         0x75 build/default/production/user.o
+ .debug_pubtypes
+                  0x0002c7        0x1fa build/default/production/interrupts.o
+ .debug_pubtypes
+                  0x0004c1         0x12 build/default/production/main.o
+ .debug_pubtypes
+                  0x0004d3         0xd0 build/default/production/motor.o
+ .debug_pubtypes
+                  0x0005a3         0xa7 build/default/production/ax12.o
+ .debug_pubtypes
+                  0x00064a         0x12 build/default/production/actions_ax12.o
 
 .nbss               0x0800          0x2
  .nbss              0x0800          0x2 /opt/microchip/xc16/v1.24/bin/bin/../../lib/libm-elf.a(errno.eo)
                     0x0800                  _errno
 
-.bss                0x0802         0x98
- .bss               0x0802         0x44 build/default/production/odo.o
-                    0x0802                  _pos_old
-                    0x080e                  _speed_old
-                    0x0816                  _acc_old
-                    0x0822                  _pos_current
-                    0x082e                  _speed_current
-                    0x0836                  _acc_current
-                    0x0842                  _tics_g_old
-                    0x0844                  _tics_d_old
- .bss               0x0846         0x36 build/default/production/asserv.o
-                    0x0846                  _speed_rampe
-                    0x084e                  _speed_goal
-                    0x0856                  _error_speed_v
-                    0x0862                  _error_speed_vt
-                    0x086e                  _asserv_done
-                    0x0870                  _rampe_statev
-                    0x0872                  _rampe_statevt
-                    0x0874                  _C_v
-                    0x0878                  _C_vt
- .bss               0x087c         0x1e build/default/production/interrupts.o
-                    0x087c                  _msg
-                    0x088c                  _tics_g
-                    0x088e                  _tics_d
-                    0x0890                  _lastMotorStateL
-                    0x0891                  _lastMotorStateR
+.data._powers_      0x0802         0xb0
+ .data._powers_
+                    0x0802         0xb0 /opt/microchip/xc16/v1.24/bin/bin/../../lib/libc-elf.a(powers.eo)
+                    0x0802                  __powers_
 
-.data               0x089a         0x18
- .data              0x089a         0x18 build/default/production/asserv.o
-                    0x089a                  _pid_speed_v
-                    0x08a6                  _pid_speed_vt
+.data._npowers_
+                    0x08b2         0xb0
+ .data._npowers_
+                    0x08b2         0xb0 /opt/microchip/xc16/v1.24/bin/bin/../../lib/libc-elf.a(powers.eo)
+                    0x08b2                  __npowers_
 
-.bss                0x08b2         0x10
- .bss               0x08b2         0x10 build/default/production/ax12.o
-                    0x08b2                  _checksumAX
-                    0x08b4                  _responseReadyAX
-                    0x08b6                  _responseAX
-                    0x08be                  _expected
-                    0x08c0                  _received
+.data.dpowers       0x0962         0xa0
+ .data.dpowers      0x0962         0xa0 /opt/microchip/xc16/v1.24/bin/bin/../../lib/libc-elf.a(doprnt_fF.XXeo)
 
-.data               0x08c2          0x2
- .data              0x08c2          0x2 build/default/production/ax12.o
-                    0x08c2                  _posAX
+.bss                0x0a02         0x2a
+ .bss               0x0a02         0x2a build/default/production/interrupts.o
+                    0x0a02                  _msg
+                    0x0a12                  _tics_g
+                    0x0a14                  _tics_d
+                    0x0a16                  _old_tics_g
+                    0x0a18                  _old_tics_d
+                    0x0a1a                  _commande_g
+                    0x0a1e                  _commande_d
+                    0x0a22                  _diff_cons_g_I
+                    0x0a26                  _diff_cons_d_I
+                    0x0a2a                  _lastMotorStateL
+                    0x0a2b                  _lastMotorStateR
 
-.bss                0x08c4          0x2
- .bss               0x08c4          0x2 build/default/production/motion.o
-                    0x08c4                  _motion_state
+.data._iob          0x0a2c         0x24
+ .data._iob         0x0a2c         0x24 /opt/microchip/xc16/v1.24/bin/bin/../../lib/libc-elf.a(_iob.eo)
+                    0x0a2c                  __iob
 
-.text             0x00086e       0x11b0
- .text            0x00086e        0x368 build/default/production/ax12.o
-                  0x00086e                  _SetTX
-                  0x0008a8                  _SetRX
-                  0x0008e4                  _PushUART
-                  0x00090c                  _PushHeaderAX
-                  0x000938                  _PushBufferAX
-                  0x000960                  _PushFooterAX
-                  0x00097e                  _InterruptAX
-                  0x000a6c                  _PingAX
-                  0x000a7e                  _ReadAX
-                  0x000a9c                  _WriteAX
-                  0x000ac2                  _RegWriteAX
-                  0x000ae8                  _ActionAX
-                  0x000afa                  _ResetAX
-                  0x000b0c                  _RegisterLenAX
-                  0x000b94                  _PutAX
-                  0x000bba                  _GetAX
- .text            0x000bd6        0x32a build/default/production/motor.o
-                  0x000bd6                  _Init_PWM
-                  0x000c1e                  _PWM_Moteurs
-                  0x000cee                  _PWM_Moteurs_Detail
-                  0x000e1a                  _PWM_Moteurs_gauche
-                  0x000e8c                  _PWM_Moteurs_droit
- .text            0x000f00        0x318 build/default/production/asserv.o
-                  0x000f00                  _asserv_init
-                  0x000f32                  _speed_asserv_step
-                  0x00109e                  _rampe
-                  0x0011a0                  _init_rampe
- .text            0x001218        0x310 build/default/production/odo.o
-                  0x001218                  _odo_init
-                  0x00128a                  _odo_step
-                  0x00144c                  _step
-                  0x001496                  _decalage_angulaire
- .text            0x001528        0x1a0 build/default/production/actions_ax12.o
-                  0x001528                  _choose_arm
-                  0x001530                  _init_ax12
-                  0x00160e                  _charg_gobelet
- .text            0x0016c8        0x136 build/default/production/interrupts.o
-                  0x0016c8                  _InitTimers
-                  0x00171a                  _Init_CN
-                  0x00173c                  __T2Interrupt
-                  0x001780                  __U2RXInterrupt
-                  0x001788                  __U2TXInterrupt
-                  0x001790                  __U1RXInterrupt
-                  0x001798                  __U1TXInterrupt
-                  0x0017a0                  __SPI2Interrupt
-                  0x0017aa                  __CNInterrupt
- .text            0x0017fe        0x11e build/default/production/tools.o
-                  0x0017fe                  _limit_float
-                  0x001852                  _limit_int
-                  0x00188a                  _principal_angle
- .text            0x00191c         0xb2 build/default/production/motion.o
-                  0x00191c                  _motion_init
-                  0x00192e                  _motion_step
-                  0x001992                  _motion_stop
-                  0x00199c                  _motion_speed
- .text            0x0019ce         0x50 build/default/production/user.o
-                  0x0019ce                  _ConfigureOscillator
-                  0x0019fe                  _Init_All
+.data               0x0a50         0x18
+ .data              0x0a50         0x18 /opt/microchip/xc16/v1.24/bin/bin/../../lib/libc-elf.a(doprnt_fF.XXeo)
 
-.dinit            0x001a1e         0x44
- .dinit           0x001a1e         0x44 data_init
+.bss                0x0a68         0x10
+ .bss               0x0a68         0x10 build/default/production/ax12.o
+                    0x0a68                  _checksumAX
+                    0x0a6a                  _responseReadyAX
+                    0x0a6c                  _responseAX
+                    0x0a74                  _expected
+                    0x0a76                  _received
 
-.text             0x001a62         0x36
- .text            0x001a62         0x36 build/default/production/main.o
-                  0x001a62                  _main
+.data               0x0a78          0x2
+ .data              0x0a78          0x2 build/default/production/ax12.o
+                    0x0a78                  _posAX
 
-.init.delay32     0x001a98         0x1c
- .init.delay32    0x001a98         0x1c /opt/microchip/xc16/v1.24/bin/bin/../../lib/libpic30-elf.a(delay32.eo)
-                  0x001a98                  ___delay32
+.data._Files        0x0a7a          0x2
+ .data._Files       0x0a7a          0x2 /opt/microchip/xc16/v1.24/bin/bin/../../lib/libc-elf.a(_iob.eo)
+                    0x0a7a                  __Files
+
+.bss._outdone       0x0a7c          0x2
+ .bss._outdone      0x0a7c          0x2 /opt/microchip/xc16/v1.24/bin/bin/../../lib/libc-elf.a(_iob.eo)
+                    0x0a7c                  __outdone
+
+.bss._sibuf         0x0a7e          0x2
+ .bss._sibuf        0x0a7e          0x2 /opt/microchip/xc16/v1.24/bin/bin/../../lib/libc-elf.a(_iob.eo)
+                    0x0a7e                  __sibuf
+
+.bss._sobuf         0x0a80          0x2
+ .bss._sobuf        0x0a80          0x2 /opt/microchip/xc16/v1.24/bin/bin/../../lib/libc-elf.a(_iob.eo)
+                    0x0a80                  __sobuf
+
+.data.__C30_UART
+                    0x0a82          0x2
+ .data.__C30_UART
+                    0x0a82          0x2 /opt/microchip/xc16/v1.24/bin/bin/../../lib/libpic30-elf.a(c30_uart.eo)
+                    0x0a82                  ___C30_UART
+
+.const              0x9d0c         0x24 load address 0x001d0c  
+ .const             0x9d0c         0x24 build/default/production/interrupts.o
+
+.text             0x001d30        0x952
+ .text            0x001d30        0x368 build/default/production/ax12.o
+                  0x001d30                  _SetTX
+                  0x001d6a                  _SetRX
+                  0x001da6                  _PushUART
+                  0x001dce                  _PushHeaderAX
+                  0x001dfa                  _PushBufferAX
+                  0x001e22                  _PushFooterAX
+                  0x001e40                  _InterruptAX
+                  0x001f2e                  _PingAX
+                  0x001f40                  _ReadAX
+                  0x001f5e                  _WriteAX
+                  0x001f84                  _RegWriteAX
+                  0x001faa                  _ActionAX
+                  0x001fbc                  _ResetAX
+                  0x001fce                  _RegisterLenAX
+                  0x002056                  _PutAX
+                  0x00207c                  _GetAX
+ .text            0x002098        0x32a build/default/production/motor.o
+                  0x002098                  _Init_PWM
+                  0x0020e0                  _PWM_Moteurs
+                  0x0021b0                  _PWM_Moteurs_Detail
+                  0x0022dc                  _PWM_Moteurs_gauche
+                  0x00234e                  _PWM_Moteurs_droit
+ .text            0x0023c2        0x2c0 build/default/production/interrupts.o
+                  0x0023c2                  _InitTimers
+                  0x002414                  _Init_CN
+                  0x002436                  __T2Interrupt
+                  0x002604                  __U2RXInterrupt
+                  0x00260c                  __U2TXInterrupt
+                  0x002614                  __U1RXInterrupt
+                  0x00261c                  __U1TXInterrupt
+                  0x002624                  __SPI2Interrupt
+                  0x00262e                  __CNInterrupt
+
+.dinit            0x002682        0x1dc
+ .dinit           0x002682        0x1dc data_init
+
+.text             0x00285e        0x30a
+ .text            0x00285e        0x1a0 build/default/production/actions_ax12.o
+                  0x00285e                  _choose_arm
+                  0x002866                  _init_ax12
+                  0x002944                  _charg_gobelet
+ .text            0x0029fe        0x11e build/default/production/tools.o
+                  0x0029fe                  _limit_float
+                  0x002a52                  _limit_int
+                  0x002a8a                  _principal_angle
+ .text            0x002b1c         0x4c build/default/production/user.o
+                  0x002b1c                  _ConfigureOscillator
+                  0x002b4c                  _Init_All
+
+.init.delay32     0x002b68         0x1c
+ .init.delay32    0x002b68         0x1c /opt/microchip/xc16/v1.24/bin/bin/../../lib/libpic30-elf.a(delay32.eo)
+                  0x002b68                  ___delay32
+
+.text             0x002b84          0xc
+ .text            0x002b84          0xc build/default/production/main.o
+                  0x002b84                  _main

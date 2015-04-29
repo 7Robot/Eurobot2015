@@ -3,6 +3,7 @@
 #include <stdint.h>        /* Includes uint16_t definition   */
 #include <stdbool.h>       /* Includes true/false definition */
 #include <stdio.h>
+#include <stdlib.h>
 #include <timer.h>
 #include <uart.h>
 
@@ -19,7 +20,9 @@
 
 
 char msg[16]="";
-volatile int tics_g, tics_d;
+volatile int tics_g, tics_d, old_tics_g, old_tics_d;
+float commande_g=0, commande_d=0, diff_cons_g_I=0, diff_cons_d_I=0;
+
 
 void InitTimers()
 {
@@ -54,6 +57,7 @@ void InitTimers()
     ConfigIntUART1(UART_RX_INT_PR6 & UART_RX_INT_EN
                  & UART_TX_INT_PR6 & UART_TX_INT_DIS);
 
+
     // activation du Timer2
     OpenTimer2(T2_ON &
                 T2_IDLE_CON &
@@ -62,7 +66,6 @@ void InitTimers()
                 T2_SOURCE_INT, 3125 ); // 3125 pour 5ms
     // configuration des interruptions
     ConfigIntTimer2(T2_INT_PRIOR_4 & T2_INT_ON);
-
     // Ici interruption des actions des bras
     //IFS2bits.SPI2IF = 0; // Flag SPI2 Event Interrupt Priority
     //IPC8bits.SPI2IP = 2; // Priority SPI2 Event Interrupt Priority
@@ -91,6 +94,125 @@ void Init_CN()
     IEC1bits.CNIE = 1; // Enable CN interrupts
     IFS1bits.CNIF = 0; // Reset CN interrupt
 }
+
+/******************************************************************************/
+/* Interrupt Routines                                                         */
+/******************************************************************************/
+
+/* TODO Add interrupt routine code here. */
+
+void __attribute__((interrupt,auto_psv)) _T2Interrupt(void) {
+
+    // compteurs QEI gauche et droit
+    // commandes gauches et droite
+
+   // récupération des données des compteurs qei gauche et droit
+   // tics_g = (int)POS1CNT;
+   // tics_d = (int)POS2CNT;
+   // effectuer un pas de déplacement
+   //motion_step(tics_g,tics_d, &commande_g, &commande_d);
+   //printf("TicsG%d TicsD%d \n\r",tics_g,tics_d);
+   // mettre ici les pwm gauche et droit
+
+    float diff_g=100*(tics_g-old_tics_g);
+    float diff_d=100*(tics_d-old_tics_d);
+
+    float diff_cons_g=100*0.01;
+    float diff_cons_d=100*0.01;
+
+    old_tics_g=tics_g;
+    old_tics_d=tics_d;
+
+    float erreur_g=diff_cons_g-diff_g;
+    float erreur_d=diff_cons_d-diff_d;
+
+    diff_cons_g_I=diff_cons_g_I+erreur_g;
+    diff_cons_d_I=diff_cons_d_I+erreur_g;
+
+    commande_g=400*erreur_g+diff_cons_g_I;
+    commande_d=400*erreur_d+diff_cons_d_I;
+
+    commande_g=commande_g*(commande_g>0);
+    commande_d=commande_d*(commande_d>0);
+
+    if (commande_g>0) MOTOR_BREAK1=0;
+    else MOTOR_BREAK1=1;
+
+    if (commande_d>0) MOTOR_BREAK2=0;
+    else MOTOR_BREAK2=1;
+
+    PWM_Moteurs(commande_g, commande_d);
+
+    //printf("TicsG%d TicsD%d \n\r",tics_g,tics_d);
+    //printf("diff_g%f diff_d%f \n\r",diff_g,diff_d);
+    printf("diff_cons_g_I%f diff_cons_d_I%f \n\r",diff_cons_g_I,diff_cons_d_I);
+    // on baisse le flag
+    _T2IF = 0;
+}
+
+/*************************************************
+* TX et RX Interrupt *
+*************************************************/
+void __attribute__((interrupt, no_auto_psv)) _U2RXInterrupt(void){
+    _U2RXIF = 0; // On baisse le FLAG
+//    InterruptAX();
+}
+
+void __attribute__((__interrupt__, no_auto_psv)) _U2TXInterrupt(void){
+   _U2TXIF = 0; // clear TX interrupt flag
+}
+
+void __attribute__((interrupt, no_auto_psv)) _U1RXInterrupt(void){
+    _U1RXIF = 0; // On baisse le FLAG
+}
+
+void __attribute__((__interrupt__, no_auto_psv)) _U1TXInterrupt(void){
+    _U1TXIF = 0; // clear TX interrupt flag
+}
+
+void __attribute__((interrupt, no_auto_psv)) _SPI2Interrupt(void){
+    led=1;
+    IFS2bits.SPI2IF = 0;
+
+
+}
+
+/**********************************************/
+/* CN interrupt for boutons and motor sensor  */
+/**********************************************/
+
+char lastMotorStateL=0;
+char lastMotorStateR=0;
+
+void __attribute__ ((__interrupt__, no_auto_psv)) _CNInterrupt(void)
+{
+
+/*
+    if (!PIN_LAISSE)
+    {
+        SendStart(BOUTON_COULEUR);
+    }
+    else
+    {
+        __delay_ms(500);
+    }
+*/
+    if (MOT_SENSOR_PIN_L != lastMotorStateL)
+    {
+        lastMotorStateL=MOT_SENSOR_PIN_L;
+        tics_g ++;
+    }
+    if (MOT_SENSOR_PIN_R != lastMotorStateR)
+    {
+        lastMotorStateR=MOT_SENSOR_PIN_R;
+        tics_d ++;
+    }
+    //printf("TicsG%d TicsD%d \n\r",tics_g,tics_d);
+
+    IFS1bits.CNIF = 0; // Clear CN interrupt
+}
+
+
 
 /******************************************************************************/
 /* Interrupt Vector Options                                                   */
@@ -195,89 +317,3 @@ void Init_CN()
 /* release.  For XC16, refer to the MPLAB XC16 C Compiler User's Guide in the */
 /* <XC16 compiler instal directory>/doc folder.                               */
 /*                                                                            */
-/******************************************************************************/
-/* Interrupt Routines                                                         */
-/******************************************************************************/
-
-/* TODO Add interrupt routine code here. */
-
-void __attribute__((interrupt,auto_psv)) _T2Interrupt(void) {
-
-    // compteurs QEI gauche et droit
-    // commandes gauches et droite
-    static float commande_g, commande_d;
-
-    // récupération des données des compteurs qei gauche et droit
-   // tics_g = (int)POS1CNT;
-   // tics_d = (int)POS2CNT;
-    // effectuer un pas de déplacement
-   motion_step(tics_g,tics_d, &commande_g, &commande_d);
-   //printf("TicsG%d TicsD%d \n\r",tics_g,tics_d);
-   // mettre ici les pwm gauche et droit
-   PWM_Moteurs(commande_g, commande_d);
-   //printf("CommG%f CommD%f \n\r",commande_g,commande_d);
-    // on baisse le flag
-    _T2IF = 0;
-}
-
-/*************************************************
-* TX et RX Interrupt *
-*************************************************/
-void __attribute__((interrupt, no_auto_psv)) _U2RXInterrupt(void){
-    _U2RXIF = 0; // On baisse le FLAG
-//    InterruptAX();
-}
-
-void __attribute__((__interrupt__, no_auto_psv)) _U2TXInterrupt(void){
-   _U2TXIF = 0; // clear TX interrupt flag
-}
-
-void __attribute__((interrupt, no_auto_psv)) _U1RXInterrupt(void){
-    _U1RXIF = 0; // On baisse le FLAG
-}
-
-void __attribute__((__interrupt__, no_auto_psv)) _U1TXInterrupt(void){
-    _U1TXIF = 0; // clear TX interrupt flag
-}
-
-void __attribute__((interrupt, no_auto_psv)) _SPI2Interrupt(void){
-    led=1;
-    IFS2bits.SPI2IF = 0;
-
-
-}
-
-/**********************************************/
-/* CN interrupt for boutons and motor sensor  */
-/**********************************************/
-
-char lastMotorStateL=0;
-char lastMotorStateR=0;
-
-void __attribute__ ((__interrupt__, no_auto_psv)) _CNInterrupt(void)
-{
-
-/*
-    if (!PIN_LAISSE)
-    {
-        SendStart(BOUTON_COULEUR);
-    }
-    else
-    {
-        __delay_ms(500);
-    }
-*/
-    if (MOT_SENSOR_PIN_L != lastMotorStateL)
-    {
-        lastMotorStateL=MOT_SENSOR_PIN_L;
-        tics_g ++;
-    }
-    if (MOT_SENSOR_PIN_R != lastMotorStateR)
-    {
-        lastMotorStateR=MOT_SENSOR_PIN_R;
-        tics_d ++;
-    }
-    //printf("TicsG%d TicsD%d \n\r",tics_g,tics_d);
-
-    IFS1bits.CNIF = 0; // Clear CN interrupt
-}

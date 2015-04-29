@@ -1,3 +1,4 @@
+/*
 #include "config.h"
 #include "odo.h"
 #include "asserv.h"
@@ -106,4 +107,4 @@ float decalage_angulaire(float angle){
         return alpha;
     }
 }
-
+*/
