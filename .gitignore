@@ -17,18 +17,9 @@
 *.map
 
 # MPLAB-X folders
-**/html/
-**/nbproject/private/
-**/nbproject/Package-*.bash
+**/nbproject/
 **/build/
-**/nbbuild/
 **/dist/
-**/nbdist/
-**/nbactions.xml
-**/nb-configuration.xml
-**/funclist
-**/nbproject/Makefile-*
-**/disassembly/
 
 # Sublime text
 *.sublime-project
