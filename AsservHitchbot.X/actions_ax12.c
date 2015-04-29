@@ -77,7 +77,7 @@ void charg_spot(void)
     PutAX(tub,AX_GOAL_POSITION,270); //referme le tube
         while ( pos_checker = GetAX(tub,AX_PRESENT_POSITION) != 270);
     PutAX(pince,AX_GOAL_POSITION,255); //ouvre la pince
-        while ( pos_checker = GetAX(pince,AX_PRESENT_POSITION) != 255);
+        while ( pos_checker = GetAX(pince,AX_PRESENT_POSITION) != 255); */
 }
 
 
