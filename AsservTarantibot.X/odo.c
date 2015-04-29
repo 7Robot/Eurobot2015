@@ -42,18 +42,25 @@ void odo_init(){ // démarrage de l'odométrie
 
 }
 
-void odo_step(int tics_g,int tics_d) {
+void odo_step(int ticsOdo_g,int ticsOdo_d) {
     step(); // old = new
-    float diff_g = (tics_g - tics_g_old)*meter_by_tic;
-    float diff_d = (tics_d - tics_d_old)*meter_by_tic;
 
-    //printf("TicsGodo%d TicsDodo%d \n\r",tics_g,tics_d);
-    tics_g_old=tics_g;
-    tics_d_old=tics_d;
+    float diff_g = ((float)ticsOdo_g - (float)tics_g_old)*meter_by_tic;
+    float diff_d = ((float)ticsOdo_d - (float)tics_d_old)*meter_by_tic;
+
+
+    //printf("TicsGodo%d TicsDodo%d \n\r",ticsOdo_g,ticsOdo_d);
+
     //printf("DiffG%f DiffDD%f \n\r",diff_g,diff_d);
 
-    float distance = (diff_g+diff_d)/2;
+    tics_g_old=ticsOdo_g;
+    tics_d_old=ticsOdo_d;
+
+
+
+    float distance = (diff_g+diff_d)/2.;
     float angle = (diff_d-diff_g)/spacing;
+    //printf("Dist%f Angle%f \n\r",distance,angle);
 
     //mise a jour de la position
     pos_current.x =pos_old.x+distance*cos(pos_old.t+0.5*angle);

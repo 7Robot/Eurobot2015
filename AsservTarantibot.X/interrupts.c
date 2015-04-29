@@ -87,7 +87,7 @@ void Init_CN()
     _CN20IE = 1; // Enable CN20 pin for interrupt detection (motor sensor)
     _CN19IE = 1; // Enable CN19 pin for interrupt detection (motor sensor)
 
-    IPC4bits.CNIP = 3; //Interrupt level 3
+    IPC4bits.CNIP = 6; //Interrupt level 3
     IEC1bits.CNIE = 1; // Enable CN interrupts
     IFS1bits.CNIF = 0; // Reset CN interrupt
 }
@@ -202,8 +202,7 @@ void Init_CN()
 /* TODO Add interrupt routine code here. */
 
 void __attribute__((interrupt,auto_psv)) _T2Interrupt(void) {
-    // on baisse le flag
-    _T2IF = 0;
+
     // compteurs QEI gauche et droit
     // commandes gauches et droite
     static float commande_g, commande_d;
@@ -214,8 +213,10 @@ void __attribute__((interrupt,auto_psv)) _T2Interrupt(void) {
     // effectuer un pas de déplacement
    motion_step(tics_g,tics_d, &commande_g, &commande_d);
    //printf("TicsG%d TicsD%d \n\r",tics_g,tics_d);
-    // mettre ici les pwm gauche et droit
+   // mettre ici les pwm gauche et droit
    PWM_Moteurs(commande_g, commande_d);
+    // on baisse le flag
+    _T2IF = 0;
 }
 
 /*************************************************

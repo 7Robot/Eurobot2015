@@ -95,10 +95,10 @@ void PWM_Moteurs(float DC_gauche, float DC_droit)
     // pins de sens du moteur gauche
 
     if (DC_droit >= 0) {
-        MOTOR_DIR2 = 1;
+        MOTOR_DIR2 = 0;
     }
     else {
-        MOTOR_DIR2 = 0;
+        MOTOR_DIR2 = 1;
     }
 
     if (DC_gauche >= 0) {
