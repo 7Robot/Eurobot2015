@@ -275,6 +275,7 @@ void __attribute__ ((__interrupt__, no_auto_psv)) _CNInterrupt(void)
         lastMotorStateR=MOT_SENSOR_PIN_R;
         tics_d ++;
     }
+    //printf("TicsG%d TicsD%d \n\r",tics_g,tics_d);
 
     IFS1bits.CNIF = 0; // Clear CN interrupt
 }
