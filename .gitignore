@@ -17,31 +17,31 @@
 *.map
 
 # MPLAB-X folders
-AsservHitchbot.X/html/
-AsservHitchbot.X/nbproject/private/
+AsservHitchbot.X/html/*
+AsservHitchbot.X/nbproject/private/*
 AsservHitchbot.X/nbproject/Package-*.bash
-AsservHitchbot.X/build/
-AsservHitchbot.X/nbbuild/
-AsservHitchbot.X/dist/
-AsservHitchbot.X/nbdist/
+AsservHitchbot.X/build/*
+AsservHitchbot.X/nbbuild/*
+AsservHitchbot.X/dist/*
+AsservHitchbot.X/nbdist/*
 AsservHitchbot.X/nbactions.xml
 AsservHitchbot.X/nb-configuration.xml
 AsservHitchbot.X/funclist
 AsservHitchbot.X/nbproject/Makefile-*
-AsservHitchbot.X/disassembly/
+AsservHitchbot.X/disassembly/*
 
-AsservTarantibot.X/html/
-AsservTarantibot.X/nbproject/private/
+AsservTarantibot.X/html/*
+AsservTarantibot.X/nbproject/private/*
 AsservTarantibot.X/nbproject/Package-*.bash
-AsservTarantibot.X/build/
-AsservTarantibot.X/nbbuild/
-AsservTarantibot.X/dist/
-AsservTarantibot.X/nbdist/
+AsservTarantibot.X/build/*
+AsservTarantibot.X/nbbuild/*
+AsservTarantibot.X/dist/*
+AsservTarantibot.X/nbdist/*
 AsservTarantibot.X/nbactions.xml
 AsservTarantibot.X/nb-configuration.xml
 AsservTarantibot.X/funclist
 AsservTarantibot.X/nbproject/Makefile-*
-AsservTarantibot.X/disassembly/
+AsservTarantibot.X/disassembly/*
 
 # Sublime text
 *.sublime-project

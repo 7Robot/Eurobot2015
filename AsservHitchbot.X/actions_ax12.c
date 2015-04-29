@@ -57,27 +57,28 @@ void Init_ax12() {
 void charg_spot(void)
 {
     float pos_checker = 0;
-
+/*
     PutAX(rab,AX_GOAL_POSITION,330); //rabat la piece
-        while ( pos_checker = GetAX(rab,AX_PRESENT_POSITION) != 330){    }
+        while ( pos_checker = GetAX(rab,AX_PRESENT_POSITION) != 330);
     PutAX(rab,AX_GOAL_POSITION,600); //reouvre
-        while ( pos_checker = GetAX(rab,AX_PRESENT_POSITION) != 600){    }
+        while ( pos_checker = GetAX(rab,AX_PRESENT_POSITION) != 600);
     PutAX(tub,AX_GOAL_POSITION,350); //reouvre legerement le tub
-        while ( pos_checker = GetAX(tub,AX_PRESENT_POSITION) != 350){    }
+        while ( pos_checker = GetAX(tub,AX_PRESENT_POSITION) != 350);
     PutAX(pince,AX_GOAL_POSITION,255); //ouvre la pince
-        while ( pos_checker = GetAX(pince,AX_PRESENT_POSITION) != 255){    }
+        while ( pos_checker = GetAX(pince,AX_PRESENT_POSITION) != 255);
     PutAX(asc,AX_GOAL_POSITION,945); //descent la pince
-        while ( pos_checker = GetAX(asc,AX_PRESENT_POSITION) != 945){    }
+        while ( pos_checker = GetAX(asc,AX_PRESENT_POSITION) != 945);
     PutAX(pince,AX_GOAL_POSITION,170); //ferme la pince
-        while ( pos_checker = GetAX(pince,AX_PRESENT_POSITION) != 170){    }
+        while ( pos_checker = GetAX(pince,AX_PRESENT_POSITION) != 170);
     PutAX(tub,AX_GOAL_POSITION,400); //remonte a moitié la piece et bloque
-        while ( pos_checker = GetAX(tub,AX_PRESENT_POSITION) != 400){    }
+        while ( pos_checker = GetAX(tub,AX_PRESENT_POSITION) != 400);
     PutAX(asc,AX_GOAL_POSITION,320); //remonte la pince
-        while ( pos_checker = GetAX(asc,AX_PRESENT_POSITION) != 320){    }
+        while ( pos_checker = GetAX(asc,AX_PRESENT_POSITION) != 320);
     PutAX(tub,AX_GOAL_POSITION,270); //referme le tube
-        while ( pos_checker = GetAX(tub,AX_PRESENT_POSITION) != 270){    }
+        while ( pos_checker = GetAX(tub,AX_PRESENT_POSITION) != 270);
     PutAX(pince,AX_GOAL_POSITION,255); //ouvre la pince
-        while ( pos_checker = GetAX(pince,AX_PRESENT_POSITION) != 255){    }
+        while ( pos_checker = GetAX(pince,AX_PRESENT_POSITION) != 255);
+*/
 }
 
 
