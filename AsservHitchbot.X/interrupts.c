@@ -11,6 +11,7 @@
 //#include "tests.h"
 #include "lib_asserv/lib_asserv.h"
 #include "motor.h"
+#include "communication.h"
 //#include "ax12.h"
 //#include "atp-asserv.h"
 //#include "actions_ax12.h"

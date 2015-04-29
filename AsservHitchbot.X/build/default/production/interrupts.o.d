@@ -9,4 +9,5 @@ lib_asserv/private/asserv.h  \
 lib_asserv/private/pid.h  \
  lib_asserv/private/odo.h  \
 lib_asserv/private/debug.h  \
-motor.h 
+motor.h  \
+ communication.h 

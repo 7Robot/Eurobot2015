@@ -55,8 +55,6 @@ int main(int argc, char** argv) {
     //float valf = 0, sens = 1;
     Init_All();
 
-    Init_All();
-
 ////test de vitesse
 //    Speed test ;
 //    test.v=0.1;
@@ -72,11 +70,8 @@ int main(int argc, char** argv) {
 
     //motion_pos(Coord)
        __delay_ms(50);
-   Init_ax12();
-//
-//
-    //init_ax12();
-//
+
+
     Coord.x = 1;
     motion_pos(Coord);
    __delay_ms(2000);

@@ -209,7 +209,8 @@ void pos_asserv_step(Odo *odo, float *commande_g, float *commande_d){
     float y = odo->state->pos.y;
     float d = sqrt((x_o-x)*(x_o-x) + (y_o-y)*(y_o-y));
     float dt = principal_angle(atan2f(y_o-y,x_o-x) - odo->state->pos.t);
-    float v_o, vt_o, v_oc, vt_oc;
+    float v_o, vt_o;
+    float v_oc, vt_oc;
     float epsi = PI * 0.1;
 
     // si on est arrivé on ne bouge plus

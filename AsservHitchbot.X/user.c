@@ -14,6 +14,7 @@
 //#include "atp-asserv.h"
 //#include "atp.h"
 //#include "sick.h"
+#include "actions_ax12.h"
 #include "motor.h"
 
 /******************************************************************************/
@@ -45,6 +46,7 @@ void Init_All(){
     __delay_ms(500);
     Init_PWM();
     Init_QEI();
+    Init_ax12();
     //InitSick();
     motion_init(); // start asserv
     //Init_CN();
