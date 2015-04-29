@@ -55,11 +55,36 @@ int main(int argc, char** argv) {
     //float valf = 0, sens = 1;
     Init_All();
 
+    Init_All();
+
 ////test de vitesse
 //    Speed test ;
 //    test.v=0.1;
 //    test.vt = 0;
 //    motion_speed(test);
+   Position Coord;
+
+    Coord.x = 0;
+    Coord.y = 0;
+    Coord.t = 0;
+//
+   set_position(Coord);
+
+    //motion_pos(Coord)
+       __delay_ms(50);
+   Init_ax12();
+//
+//
+    //init_ax12();
+//
+    Coord.x = 1;
+    motion_pos(Coord);
+   __delay_ms(2000);
+   charg_spot();
+    __delay_ms(50);
+    Coord.x = 0;
+    motion_pos(Coord);
+    __delay_ms(2000);
 
     while (1) // boucle principale
     {

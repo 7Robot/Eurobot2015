@@ -80,10 +80,10 @@ void InitSick()
    //AD1PCFGLbits.PCFG4 = 0;
    //AD1PCFGLbits.PCFG5 = 0;
    /* COM A ENLEVER SUR DSPIC AVEC 8 PINS ANALOGIQUES */
-   AD1PCFGLbits.PCFG1 = 0;
+   AD1PCFGLbits.PCFG4 = 0;
+   AD1PCFGLbits.PCFG5 = 0;
    AD1PCFGLbits.PCFG6 = 0;
    AD1PCFGLbits.PCFG7 = 0;
-   AD1PCFGLbits.PCFG8 = 0;
 
    //Configuration du Timer 5, pour l'ADC
     OpenTimer5(T5_ON & T5_GATE_OFF & T5_PS_1_256 & T5_SOURCE_INT, 15625);
