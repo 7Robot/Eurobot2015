@@ -45,6 +45,7 @@ void AnalyzeCommandFromPi (void)
         ReceivedStringFromPi[CharFromPiNumber] = b;
         /*** Full frame received and available in ReceivedStringFromPi ***/
         SelectActionFromPi();
+        CharFromPiNumber=0;
     }
 }
 
