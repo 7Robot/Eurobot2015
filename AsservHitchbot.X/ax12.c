@@ -45,9 +45,9 @@ void SetTX() {
 
 void SetRX() {
     __builtin_write_OSCCONL(OSCCON & 0xBF);
-    
-     _RP7R = 0;
-    _U2RXR = 7; // RP5 = U2RX (p.165)
+
+    _U2RXR = 10; // RP5 = U2RX (p.165)
+    _RP7R = 31;
     __builtin_write_OSCCONL(OSCCON | 0x40);
 }
 
