@@ -17,31 +17,31 @@
 *.map
 
 # MPLAB-X folders
-asserv_fatman/html/
-asserv_fatman/nbproject/private/
-asserv_fatman/nbproject/Package-*.bash
-asserv_fatman/build/
-asserv_fatman/nbbuild/
-asserv_fatman/dist/
-asserv_fatman/nbdist/
-asserv_fatman/nbactions.xml
-asserv_fatman/nb-configuration.xml
-asserv_fatman/funclist
-asserv_fatman/nbproject/Makefile-*
-asserv_fatman/disassembly/
+AsservHitchbot.X/html/
+AsservHitchbot.X/nbproject/private/
+AsservHitchbot.X/nbproject/Package-*.bash
+AsservHitchbot.X/build/
+AsservHitchbot.X/nbbuild/
+AsservHitchbot.X/dist/
+AsservHitchbot.X/nbdist/
+AsservHitchbot.X/nbactions.xml
+AsservHitchbot.X/nb-configuration.xml
+AsservHitchbot.X/funclist
+AsservHitchbot.X/nbproject/Makefile-*
+AsservHitchbot.X/disassembly/
 
-EUR_2014_asserv.X/html/
-EUR_2014_asserv.X/nbproject/private/
-EUR_2014_asserv.X/nbproject/Package-*.bash
-EUR_2014_asserv.X/build/
-EUR_2014_asserv.X/nbbuild/
-EUR_2014_asserv.X/dist/
-EUR_2014_asserv.X/nbdist/
-EUR_2014_asserv.X/nbactions.xml
-EUR_2014_asserv.X/nb-configuration.xml
-EUR_2014_asserv.X/funclist
-EUR_2014_asserv.X/nbproject/Makefile-*
-EUR_2014_asserv.X/disassembly/
+AsservTarantibot.X/html/
+AsservTarantibot.X/nbproject/private/
+AsservTarantibot.X/nbproject/Package-*.bash
+AsservTarantibot.X/build/
+AsservTarantibot.X/nbbuild/
+AsservTarantibot.X/dist/
+AsservTarantibot.X/nbdist/
+AsservTarantibot.X/nbactions.xml
+AsservTarantibot.X/nb-configuration.xml
+AsservTarantibot.X/funclist
+AsservTarantibot.X/nbproject/Makefile-*
+AsservTarantibot.X/disassembly/
 
 # Sublime text
 *.sublime-project
