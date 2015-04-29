@@ -10,7 +10,7 @@
 #include "user.h"
 #include <libpic30.h>
 //#include "tests.h"
-#include "lib_asserv/lib_asserv.h"
+#include "motion.h"
 #include "motor.h"
 #include "user.h"
 //#include "ax12.h"
@@ -18,7 +18,7 @@
 //#include "actions_ax12.h"
 
 
-char msg[15]="";
+char msg[16]="";
 volatile int tics_g, tics_d;
 
 void InitTimers()
@@ -40,7 +40,7 @@ void InitTimers()
 
     ConfigIntUART2(UART_RX_INT_PR5 & UART_RX_INT_EN
                  & UART_TX_INT_PR5 & UART_TX_INT_DIS);
-    
+
     OpenUART1(UART_EN & UART_IDLE_CON & UART_IrDA_DISABLE & UART_MODE_FLOW
         & UART_UEN_00 & UART_DIS_WAKE & UART_DIS_LOOPBACK
         & UART_DIS_ABAUD & UART_UXRX_IDLE_ONE & UART_BRGH_SIXTEEN
@@ -53,7 +53,7 @@ void InitTimers()
 
     ConfigIntUART1(UART_RX_INT_PR6 & UART_RX_INT_EN
                  & UART_TX_INT_PR6 & UART_TX_INT_DIS);
-    
+
     // activation du Timer2
     OpenTimer2(T2_ON &
                 T2_IDLE_CON &
@@ -62,7 +62,7 @@ void InitTimers()
                 T2_SOURCE_INT, 3125 ); // 3125 pour 5ms
     // configuration des interruptions
     ConfigIntTimer2(T2_INT_PRIOR_4 & T2_INT_ON);
-    
+
     // Ici interruption des actions des bras
     //IFS2bits.SPI2IF = 0; // Flag SPI2 Event Interrupt Priority
     //IPC8bits.SPI2IP = 2; // Priority SPI2 Event Interrupt Priority
@@ -72,7 +72,7 @@ void InitTimers()
     _U1RXR = 18;
     _RP4R = 0b0011;  // RP4 = U1TX (p.167)
 
-    
+
 
 }
 
@@ -87,7 +87,7 @@ void Init_CN()
     _CN20IE = 1; // Enable CN20 pin for interrupt detection (motor sensor)
     _CN19IE = 1; // Enable CN19 pin for interrupt detection (motor sensor)
 
-    IPC4bits.CNIP = 3; //Interrupt level 3
+    IPC4bits.CNIP = 6; //Interrupt level 3
     IEC1bits.CNIE = 1; // Enable CN interrupts
     IFS1bits.CNIF = 0; // Reset CN interrupt
 }
@@ -202,8 +202,7 @@ void Init_CN()
 /* TODO Add interrupt routine code here. */
 
 void __attribute__((interrupt,auto_psv)) _T2Interrupt(void) {
-    // on baisse le flag
-    _T2IF = 0;
+
     // compteurs QEI gauche et droit
     // commandes gauches et droite
     static float commande_g, commande_d;
@@ -213,8 +212,12 @@ void __attribute__((interrupt,auto_psv)) _T2Interrupt(void) {
    // tics_d = (int)POS2CNT;
     // effectuer un pas de déplacement
    motion_step(tics_g,tics_d, &commande_g, &commande_d);
-    // mettre ici les pwm gauche et droit
+   //printf("TicsG%d TicsD%d \n\r",tics_g,tics_d);
+   // mettre ici les pwm gauche et droit
    PWM_Moteurs(commande_g, commande_d);
+   //printf("CommG%f CommD%f \n\r",commande_g,commande_d);
+    // on baisse le flag
+    _T2IF = 0;
 }
 
 /*************************************************
@@ -241,7 +244,7 @@ void __attribute__((interrupt, no_auto_psv)) _SPI2Interrupt(void){
     led=1;
     IFS2bits.SPI2IF = 0;
 
-    
+
 }
 
 /**********************************************/
@@ -253,31 +256,28 @@ char lastMotorStateR=0;
 
 void __attribute__ ((__interrupt__, no_auto_psv)) _CNInterrupt(void)
 {
-    
 
+/*
     if (!PIN_LAISSE)
     {
-//        SendStart(BOUTON_COULEUR);
+        SendStart(BOUTON_COULEUR);
     }
     else
     {
         __delay_ms(500);
     }
-
+*/
     if (MOT_SENSOR_PIN_L != lastMotorStateL)
     {
         lastMotorStateL=MOT_SENSOR_PIN_L;
         tics_g ++;
     }
-    if (!MOT_SENSOR_PIN_R != lastMotorStateR)
+    if (MOT_SENSOR_PIN_R != lastMotorStateR)
     {
         lastMotorStateR=MOT_SENSOR_PIN_R;
         tics_d ++;
-
     }
-    
-    sprintf(msg, "%d %d\n\r", tics_g, tics_d);
-    writeStringToUART(msg);
+    //printf("TicsG%d TicsD%d \n\r",tics_g,tics_d);
 
     IFS1bits.CNIF = 0; // Clear CN interrupt
 }

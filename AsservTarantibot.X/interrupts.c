@@ -215,6 +215,7 @@ void __attribute__((interrupt,auto_psv)) _T2Interrupt(void) {
    //printf("TicsG%d TicsD%d \n\r",tics_g,tics_d);
    // mettre ici les pwm gauche et droit
    PWM_Moteurs(commande_g, commande_d);
+   //printf("CommG%f CommD%f \n\r",commande_g,commande_d);
     // on baisse le flag
     _T2IF = 0;
 }

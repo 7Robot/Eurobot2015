@@ -35,7 +35,6 @@ go here. */
 void ConfigureOscillator(void); /* Handles clock switching/osc initialization */
 void InitTimers();
 void Init_CN(void);
-void writeStringToUART (const char* msg);
 // initialize all things
 void Init_All();
 

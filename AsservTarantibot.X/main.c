@@ -59,7 +59,7 @@ int main(int argc, char** argv) {
 
     //test de vitesse
     Speed test ;
-    test.v=0.00001;
+    test.v=0.15;
     test.vt = 0;
     motion_speed(test);
 
