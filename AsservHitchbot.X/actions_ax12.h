@@ -10,7 +10,8 @@
 
 
 
-#define rab           7  // le rabateur
+#define rabd           7  // le rabateur
+#define rabg           14  // le rabateur
 #define pince          9  // la pince
 #define asc           11 // l'ascenceur
 #define tub            1    // le reservoir
