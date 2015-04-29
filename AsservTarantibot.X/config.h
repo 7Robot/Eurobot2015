@@ -8,7 +8,7 @@
 #define DEFAULT_CONSTRAINT_A_MAX 0.1
 #define DEFAULT_CONSTRAINT_AT_MAX 0.2
 #define DEFAULT_CONSTRAINT_VT_T_MAX 0.10
-
+/*
 #define speed_threshold 0.05 // A ajuster au systeme, attention a ne pas etre trop greedy
 
 // Define Odométrie
@@ -19,6 +19,5 @@
 #define period 0.005
 #define DEFAULT_STOP_DISTANCE 0.01
 #define PI 3.1415
-
-
+*/
 #endif //fin

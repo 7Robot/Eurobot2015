@@ -87,6 +87,8 @@ void Init_QEI(void)
 
 // Applique un PWM en ne réglant que les Duty-Cycle (compris entre -100 et 100)
 // la fréquence du PWM est automatiquement réglée à 26.667 kHz (P1TPER=1500)
+// Pont H 1 Break : RA7
+// Pont H 2 Break : RB11
 void PWM_Moteurs(float DC_gauche, float DC_droit)
 {
     // variable temporaire servant a connaitre le signe des Duty-Cycle
@@ -112,8 +114,6 @@ void PWM_Moteurs(float DC_gauche, float DC_droit)
 
     // pins de sens du moteur droit
     DC_positif = (DC_gauche < 0);
-
-
 
     P1TPER = 1500;
 
