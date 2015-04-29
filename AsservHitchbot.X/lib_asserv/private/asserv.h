@@ -23,7 +23,7 @@ typedef struct {
 typedef struct {
     Position pos_order;
     float stop_distance;
-    float kp; // coef proportionnel qui doit être plus petit que l'accélération max
+    float kp; // coef proportionnel qui doit Ãªtre plus petit que l'accÃ©lÃ©ration max
     MotionState *state;
     MotionConstraint *constraint;
     int done;
@@ -53,14 +53,14 @@ typedef struct {
 
 /******************************    Fonctions    *******************************/
 
-// initialiser le mode et les différents asservissements
+// initialiser le mode et les diffÃ©rents asservissements
 void asserv_init();
 
-// assigner 2 PID et des contraintes à l'asservissement en vitesse
+// assigner 2 PID et des contraintes Ã  l'asservissement en vitesse
 void set_speedAsserv_pids(Pid pid_delta, Pid pid_alpha);
 void set_speedAsserv_constraint(MotionConstraint *constraint);
 
-// choisir le mode d'asservissement (désactivé, en position, en vitesse)
+// choisir le mode d'asservissement (dÃ©sactivÃ©, en position, en vitesse)
 void set_asserv_off();
 void set_asserv_pos_mode();
 void set_asserv_speed_mode();
@@ -71,7 +71,7 @@ void set_asserv_seq_mode();
 float get_cons_v();
 float get_cons_vt();
 
-// contraindre les vitesses et accélérations autorisées
+// contraindre les vitesses et accÃ©lÃ©rations autorisÃ©es
 void constrain_speed(float v, float vt, float *v_constrained, float *vt_constrained);
 void constrain_speed_order();
 
@@ -82,7 +82,7 @@ void pos_asserv_step(Odo *odo, float *commande_g, float *commande_d);
 void angle_asserv_step(Odo *odo, float *commande_g, float *commande_d);
 void seq_asserv_step(Odo *odo, float *commande_g, float *commande_d);
 
-// indique si l'asservissement en cours a terminé
+// indique si l'asservissement en cours a terminÃ©
 int asserv_done();
 
 
