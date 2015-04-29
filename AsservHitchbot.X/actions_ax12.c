@@ -56,7 +56,7 @@ void Init_ax12() {
 
 void charg_spot(void)
 {
-    float pos_checker = 0;
+//    float pos_checker = 0;
 /*
     PutAX(rab,AX_GOAL_POSITION,330); //rabat la piece
         while ( pos_checker = GetAX(rab,AX_PRESENT_POSITION) != 330){    }
