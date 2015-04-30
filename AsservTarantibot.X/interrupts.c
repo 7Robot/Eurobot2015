@@ -114,26 +114,74 @@ void __attribute__((interrupt,auto_psv)) _T2Interrupt(void) {
    //printf("TicsG%d TicsD%d \n\r",tics_g,tics_d);
    // mettre ici les pwm gauche et droit
 
-    float diff_g=100*(tics_g-old_tics_g);
-    float diff_d=100*(tics_d-old_tics_d);
+//    float diff_g=100*(tics_g-old_tics_g);
+//    float diff_d=100*(tics_d-old_tics_d);
+//
+//    float diff_cons_g=100*0.01;
+//    float diff_cons_d=100*0.01;
+//
+//    old_tics_g=tics_g;
+//    old_tics_d=tics_d;
+//
+//    float erreur_g=diff_cons_g-diff_g;
+//    float erreur_d=diff_cons_d-diff_d;
+//
+//    diff_cons_g_I=diff_cons_g_I+erreur_g;
+//    diff_cons_d_I=diff_cons_d_I+erreur_g;
+//
+//    commande_g=400*erreur_g+diff_cons_g_I;
+//    commande_d=400*erreur_d+diff_cons_d_I;
+//
+//    commande_g=commande_g*(commande_g>0);
+//    commande_d=commande_d*(commande_d>0);
 
-    float diff_cons_g=100*0.01;
-    float diff_cons_d=100*0.01;
+    int tics_d;
+    int tics_g;
+    int tics_d_old=0;
+    int tics_g_old=0;
 
-    old_tics_g=tics_g;
-    old_tics_d=tics_d;
+    int V_d;
+    int V_g;
+    int Vcons_d=100;
+    int Vcons_g=100;
 
-    float erreur_g=diff_cons_g-diff_g;
-    float erreur_d=diff_cons_d-diff_d;
+    int erreur_d = 0;
+    int erreur_g = 0;
 
-    diff_cons_g_I=diff_cons_g_I+erreur_g;
-    diff_cons_d_I=diff_cons_d_I+erreur_g;
+    int somme_erreur_d = 0 ;
+    int somme_erreur_g = 0 ;
 
-    commande_g=400*erreur_g+diff_cons_g_I;
-    commande_d=400*erreur_d+diff_cons_d_I;
+    int erreur_d_old = 0;
+    int erreur_g_old = 0;
 
-    commande_g=commande_g*(commande_g>0);
-    commande_d=commande_d*(commande_d>0);
+    int var_erreur_d = 0;
+    int var_erreur_g = 0;
+
+    float commande_d = 0;
+    float commande_g = 0;
+
+    float Kp=1;
+    float Ki=0;
+    float Kd=0;
+
+    V_d = tics_d - tics_d_old;
+    V_g = tics_g - tics_g_old;
+
+    erreur_d = Vcons_d - V_d;
+    erreur_g = Vcons_g - V_g;
+
+    somme_erreur_d += erreur_d;
+    somme_erreur_g += erreur_g;
+
+    var_erreur_d = erreur_d - erreur_d_old;
+    var_erreur_g = erreur_g - erreur_g_old;
+
+    commande_d = Kp*erreur_d + Ki*somme_erreur_d + Kd*var_erreur_d;
+    commande_g = Kp*erreur_g + Ki*somme_erreur_g + Kd*var_erreur_g;
+
+    erreur_d_old = erreur_d;
+    erreur_g_old = erreur_g;
+
 
     if (commande_g>0) MOTOR_BREAK1=0;
     else MOTOR_BREAK1=1;
