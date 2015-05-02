@@ -8,13 +8,13 @@
 //#include "extern_globals.h"
 #include "user.h"
 #include <libpic30.h>
-//#include "tests.h"
 #include "lib_asserv/lib_asserv.h"
 #include "motor.h"
 #include "communication.h"
-//#include "ax12.h"
-//#include "atp-asserv.h"
-//#include "actions_ax12.h"
+
+//debug
+#include "uart.h"
+
 
 void InitTimers()
 {
@@ -192,7 +192,7 @@ void Init_CN()
 
 void __attribute__((interrupt,auto_psv)) _T2Interrupt(void) {
     // on baisse le flag
-    _T2IF = 0;
+    
     // compteurs QEI gauche et droit
     static volatile int tics_g, tics_d;
     // commandes gauches et droite
@@ -205,6 +205,8 @@ void __attribute__((interrupt,auto_psv)) _T2Interrupt(void) {
    motion_step(tics_g,tics_d, &commande_g, &commande_d);
     // mettre ici les pwm gauche et droit
    PWM_Moteurs(commande_g, commande_d);
+   
+   _T2IF = 0;
 }
 
 /*************************************************

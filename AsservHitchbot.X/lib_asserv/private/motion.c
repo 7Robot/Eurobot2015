@@ -3,8 +3,10 @@
 #include "asserv.h"
 #include "odo.h"
 #include "debug.h"
+#include "uart.h"
 #include "../lib_asserv_default.h"
 #include <math.h>
+#include "../../communication.h"
 
 /******************************    Variables    *******************************/
 volatile float motion_initialized = 0;
@@ -147,12 +149,8 @@ void motion_step(int tics_g, int tics_d, float *commande_g, float *commande_d){
         asserv_step(&odo, commande_g, commande_d);
         // indique si on est arrivé
         if (asserv_done()){
-            if (asserv_mode != ASSERV_MODE_OFF){done();}
+            if (asserv_mode != ASSERV_MODE_OFF){SendDone();}
             motion_free();
         }
     }
-}
-
-void done() {
-    printf("done");
 }

@@ -3,6 +3,7 @@
 
 void AnalyzeCommandFromPi (void);
 void SelectActionFromPi (void);
+void SendDone(void);
 
 #endif	/* COMMUNICATION_H */
 

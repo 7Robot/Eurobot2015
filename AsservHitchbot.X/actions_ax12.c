@@ -7,6 +7,7 @@
 #include <uart.h>
 #include <delay.h>
 #include "actions_ax12.h"
+#include "communication.h"
 
 #define maxtork 400
 
@@ -95,6 +96,7 @@ void charg_spot(void)
     PutAX(pince,AX_GOAL_POSITION,255); //ouvre la pince
     __delay_ms(1000);
 //        while (   != 255) GetAX(pince,AX_PRESENT_POSITION);
+    SendDone();
 }
 
 
