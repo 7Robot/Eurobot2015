@@ -2,4 +2,4 @@ build/default/production/motor.o:  \
 motor.c  \
 motor.h  \
 user.h  \
-tools.h 
+ lib_asserv/private/tools.h 

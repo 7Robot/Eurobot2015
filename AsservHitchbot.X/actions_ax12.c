@@ -62,7 +62,7 @@ void Init_ax12() {
 
 void charg_spot(void)
 {
-int k;
+//int k;
     PutAX(rabd,AX_GOAL_POSITION,450); //rabat la piece 700
     __delay_ms(700);
 //        while (  != 330) GetAX(rab,AX_PRESENT_POSITION); 200

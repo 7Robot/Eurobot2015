@@ -11,9 +11,9 @@
 #include "user.h"
 #include <libpic30.h>
 //#include "tests.h"
-#include "motion.h"
 #include "motor.h"
 #include "user.h"
+#include "lib_asserv/lib_asserv.h"
 //#include "ax12.h"
 //#include "atp-asserv.h"
 //#include "actions_ax12.h"
@@ -134,7 +134,7 @@ void __attribute__((interrupt,auto_psv)) _T2Interrupt(void) {
 //
 //    commande_g=commande_g*(commande_g>0);
 //    commande_d=commande_d*(commande_d>0);
-
+/*
     int tics_d;
     int tics_g;
     int tics_d_old=0;
@@ -194,7 +194,10 @@ void __attribute__((interrupt,auto_psv)) _T2Interrupt(void) {
     //printf("TicsG%d TicsD%d \n\r",tics_g,tics_d);
     //printf("diff_g%f diff_d%f \n\r",diff_g,diff_d);
     printf("diff_cons_g_I%f diff_cons_d_I%f \n\r",diff_cons_g_I,diff_cons_d_I);
-    // on baisse le flag
+    // on baisse le flag*/
+   motion_step(tics_g,tics_d, &commande_g, &commande_d);
+    // mettre ici les pwm gauche et droit
+   PWM_Moteurs(commande_g, commande_d);
     _T2IF = 0;
 }
 
