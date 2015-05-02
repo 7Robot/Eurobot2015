@@ -1,3 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?><project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/1"/>
+    <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/1">
+        <file>file:/home/archi/7robot/Eurobot2015/AsservTarantibot.X/main.c</file>
+        <file>file:/home/archi/7robot/Eurobot2015/AsservTarantibot.X/lib_asserv/lib_asserv.h</file>
+        <file>file:/home/archi/7robot/Eurobot2015/AsservTarantibot.X/lib_asserv/lib_asserv_default.h</file>
+        <file>file:/home/archi/7robot/Eurobot2015/AsservTarantibot.X/interrupts.c</file>
+        <file>file:/home/archi/7robot/Eurobot2015/AsservTarantibot.X/user.c</file>
+        <file>file:/home/archi/7robot/Eurobot2015/AsservTarantibot.X/motor.c</file>
+    </open-files>
 </project-private>

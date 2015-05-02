@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?><project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/1"/>
+<<<<<<< HEAD
+=======
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/1">
         <file>file:/home/robin/7Robot/Eurobot2015/AsservHitchbot.X/ax12.c</file>
         <file>file:/home/robin/7Robot/Eurobot2015/AsservHitchbot.X/ax12.h</file>
@@ -7,4 +9,5 @@
         <file>file:/home/robin/7Robot/Eurobot2015/AsservHitchbot.X/user.c</file>
         <file>file:/home/robin/7Robot/Eurobot2015/AsservHitchbot.X/actions_ax12.c</file>
     </open-files>
+>>>>>>> 6703ba33cc815f8fdc48fdc3614e5c971249346e
 </project-private>

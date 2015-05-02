@@ -15,7 +15,7 @@
 #endif
 
 #ifndef DEFAULT_CONSTRAINT_A_MAX
-#define DEFAULT_CONSTRAINT_A_MAX {0.5, 0.5, 0.10}
+#define DEFAULT_CONSTRAINT_A_MAX {0.5, 1.4, 0.10}
 #endif
 
 #ifndef BLOCK_LIMIT
@@ -27,7 +27,7 @@
 /*############################################################################*/
 
 #ifndef DEFAULT_ODO_COEFS
-#define DEFAULT_ODO_COEFS {54640, 0.000018302, 0.2732}
+#define DEFAULT_ODO_COEFS {1000, 0.001, 0.2732}
 #endif
 
 #ifndef DEFAULT_PERIOD
@@ -42,7 +42,7 @@
 #define DEFAULT_ASSERV_MODE ASSERV_MODE_OFF
 #endif
 #ifndef DEFAULT_STOP_DISTANCE
-#define DEFAULT_STOP_DISTANCE 0.015
+#define DEFAULT_STOP_DISTANCE 0.01
 #endif
 
 /*############################################################################*/

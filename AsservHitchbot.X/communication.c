@@ -17,7 +17,9 @@
 #include "communication.h"
 #include <stdio.h>
 #include <stdlib.h>
-#include "lib_asserv/private/motion.h"
+#include "lib_asserv/lib_asserv_default.h"
+#include "lib_asserv/lib_asserv.h"
+#include "actions_ax12.h"
 
 char ReceivedStringFromPi[50] = {0};
 int CharFromPiNumber = 0;
@@ -75,5 +77,23 @@ void SelectActionFromPi()
         ReceivedStringFromPi[cursorPosition+floatLength] = ';';
         
         motion_pos(MOVE);
+       // for (k=0;k<50;k++) {
+        //   ReceivedStringFromPi[k]=0;
+       // }
+        }
+
+        if(ReceivedStringFromPi[1]=='A' && ReceivedStringFromPi[2]=='X' && ReceivedStringFromPi[3]=='I' && ReceivedStringFromPi[4]=='N')
+    {
+
+            Init_ax12();
+        }
+
+        if(ReceivedStringFromPi[1]=='F' && ReceivedStringFromPi[2]=='R' && ReceivedStringFromPi[3]=='E' && ReceivedStringFromPi[4]=='E')
+    {
+
+            motion_free();
+        }
+
+
     }
-}
+

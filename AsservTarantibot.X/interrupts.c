@@ -11,9 +11,9 @@
 #include "user.h"
 #include <libpic30.h>
 //#include "tests.h"
-#include "motion.h"
 #include "motor.h"
 #include "user.h"
+#include "lib_asserv/lib_asserv.h"
 //#include "ax12.h"
 //#include "atp-asserv.h"
 //#include "actions_ax12.h"
@@ -161,7 +161,39 @@ void __attribute__((interrupt,auto_psv)) _T2Interrupt(void) {
 //
 //    commande_g=commande_g*(commande_g>0);
 //    commande_d=commande_d*(commande_d>0);
+<<<<<<< HEAD
+/*
+    int tics_d;
+    int tics_g;
+    int tics_d_old=0;
+    int tics_g_old=0;
 
+    int V_d;
+    int V_g;
+    int Vcons_d=100;
+    int Vcons_g=100;
+
+    int erreur_d = 0;
+    int erreur_g = 0;
+
+    int somme_erreur_d = 0 ;
+    int somme_erreur_g = 0 ;
+
+    int erreur_d_old = 0;
+    int erreur_g_old = 0;
+
+    int var_erreur_d = 0;
+    int var_erreur_g = 0;
+
+    float commande_d = 0;
+    float commande_g = 0;
+
+    float Kp=1;
+    float Ki=0;
+    float Kd=0;
+=======
+
+>>>>>>> 6703ba33cc815f8fdc48fdc3614e5c971249346e
 
     ////////////////// ACQUISITION NOUVELLE VALEUR DE VITESSE //////////////////
     V_d = tics_d - tics_d_old;
@@ -198,8 +230,16 @@ void __attribute__((interrupt,auto_psv)) _T2Interrupt(void) {
     //printf("erreur_moy_g%d erreur_moy_d%d \n\r",erreur_moy_g,erreur_moy_d);
     //printf("TicsG%d TicsD%d \n\r",tics_g,tics_d);
     //printf("diff_g%f diff_d%f \n\r",diff_g,diff_d);
+<<<<<<< HEAD
+    printf("diff_cons_g_I%f diff_cons_d_I%f \n\r",diff_cons_g_I,diff_cons_d_I);
+    // on baisse le flag*/
+   motion_step(tics_g,tics_d, &commande_g, &commande_d);
+    // mettre ici les pwm gauche et droit
+   PWM_Moteurs(commande_g, commande_d);
+=======
     //printf("diff_cons_g_I%f diff_cons_d_I%f \n\r",diff_cons_g_I,diff_cons_d_I);
     // on baisse le flag
+>>>>>>> 6703ba33cc815f8fdc48fdc3614e5c971249346e
     _T2IF = 0;
 }
 

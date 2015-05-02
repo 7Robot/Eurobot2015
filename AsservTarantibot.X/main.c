@@ -42,7 +42,8 @@ _FPOR(PWMPIN_ON);
 #include "qei.h"           // QEI definitions for easier use
 #include <libpic30.h>
 #include "ax12.h"
-#include "motion.h"
+#include "lib_asserv/lib_asserv_default.h"
+#include "lib_asserv/lib_asserv.h"
 
 #include "motor.h"
 #include "actions_ax12.h"
@@ -51,6 +52,9 @@ _FPOR(PWMPIN_ON);
 int main(int argc, char** argv) {
     //float valf = 0, sens = 1;
     Init_All();
+    motion_init();
+    Speed test = {0.01,0};
+    motion_speed(test);
 
     PutAX(254, AX_GOAL_POSITION, 512);
     __delay_ms(40);

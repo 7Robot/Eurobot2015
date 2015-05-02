@@ -11,7 +11,7 @@ volatile float motion_initialized = 0;
 volatile MotionState motionState;
 volatile MotionConstraint motionConstraint;
 volatile int blocked; // compteur qui incremente quand on est bloqué par quelquechose
-
+static void(*done)(void); // callback
 volatile MotionSequence motionSequence;
 
 
@@ -74,7 +74,6 @@ float get_vd(){
 
 // consignes de déplacements du robot
 void motion_free(){set_asserv_off();}
-
 void motion_pos(Position pos){
     pos_asserv.stop_distance = DEFAULT_STOP_DISTANCE;
     pos_asserv.done = 0;
@@ -151,8 +150,4 @@ void motion_step(int tics_g, int tics_d, float *commande_g, float *commande_d){
             motion_free();
         }
     }
-}
-
-void done() {
-    printf("done");
 }
