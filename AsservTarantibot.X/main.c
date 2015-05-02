@@ -56,9 +56,13 @@ int main(int argc, char** argv) {
     Speed test = {0.01,0};
     motion_speed(test);
 
+    PutAX(254, AX_GOAL_POSITION, 512);
+    __delay_ms(40);
 
     while (1) // boucle principale
     {
+        PutAX(254, AX_GOAL_POSITION, 512);
+        __delay_ms(40);
     }
 }
 
