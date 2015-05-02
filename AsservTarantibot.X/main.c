@@ -52,9 +52,13 @@ int main(int argc, char** argv) {
     //float valf = 0, sens = 1;
     Init_All();
 
+    PutAX(254, AX_GOAL_POSITION, 512);
+    __delay_ms(40);
 
     while (1) // boucle principale
     {
+        PutAX(254, AX_GOAL_POSITION, 512);
+        __delay_ms(40);
     }
 }
 

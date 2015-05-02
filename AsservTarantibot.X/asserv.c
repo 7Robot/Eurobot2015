@@ -67,8 +67,8 @@ void speed_asserv_step(Speed speed_current,Acceleration acc_current, float *cmg,
 
     //printf("Cv%f Cvt%f \n\r",C_v,C_vt);
 
-    //*cmg = (2*period*C_v-C_vt*spacing*period)/2;
-    //*cmd = (2*period*C_v+C_vt*spacing*period)/2;
+    // *cmg = (2*period*C_v-C_vt*spacing*period)/2;
+    // *cmd = (2*period*C_v+C_vt*spacing*period)/2;
     *cmg = C_v-C_vt;
     *cmd = C_v+C_vt;
 

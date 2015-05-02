@@ -38,16 +38,15 @@ responseAXtype responseAX;
 
 void SetTX() {
     __builtin_write_OSCCONL(OSCCON & 0xBF);
-    _U2RXR = 31;
-    _RP10R = 0b00101;  // RP25 = U2TX (p.167)
+    _U2RXR = 0b11111; // Ignore RX2 (Vss is read)
+    _RP10R = 0b00101;  // RP7 = U2TX (p.167)
     __builtin_write_OSCCONL(OSCCON | 0x40);
 }
 
 void SetRX() {
     __builtin_write_OSCCONL(OSCCON & 0xBF);
-    
-     _RP7R = 0;
-    _U2RXR = 7; // RP5 = U2RX (p.165)
+    _RP10R = 0;  // RP7 = Default usage pin (p.167)
+    _U2RXR = 7; // RP7 = U2RX (p.165)
     __builtin_write_OSCCONL(OSCCON | 0x40);
 }
 
