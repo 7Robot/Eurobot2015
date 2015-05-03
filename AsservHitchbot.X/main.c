@@ -38,7 +38,6 @@ _FPOR(PWMPIN_ON);
 #include <stdbool.h>       // Includes true/false definition
 #include <uart.h>
 #include <math.h>
-#include <libpic30.h>
 
 #include "main.h"
 

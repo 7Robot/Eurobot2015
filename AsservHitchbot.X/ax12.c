@@ -17,7 +17,6 @@
 #include <stdint.h>        /* Includes uint16_t definition                    */
 #include <stdbool.h>
 #include <delay.h>
-#include <libpic30.h>
 
 #include "main.h"
 

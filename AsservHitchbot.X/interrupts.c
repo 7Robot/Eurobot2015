@@ -6,7 +6,6 @@
 #include <uart.h>
 
 //#include "extern_globals.h"
-#include <libpic30.h>
 
 #include "main.h"
 

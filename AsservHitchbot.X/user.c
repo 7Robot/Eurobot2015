@@ -6,7 +6,6 @@
 #include <stdbool.h>         /* For true/false definition                     */
 #include <timer.h>
 
-#include <libpic30.h>
 //#include "tests.h"
 //#include "atp-asserv.h"
 //#include "atp.h"
