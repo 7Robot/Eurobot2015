@@ -14,12 +14,10 @@
  */
 
 #include <uart.h>
-#include "communication.h"
 #include <stdio.h>
 #include <stdlib.h>
-#include "lib_asserv/lib_asserv_default.h"
-#include "lib_asserv/lib_asserv.h"
-#include "actions_ax12.h"
+
+#include "main.h"
 
 char ReceivedStringFromPi[50] = {0};
 int CharFromPiNumber = 0;

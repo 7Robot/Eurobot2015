@@ -20,6 +20,8 @@
 
 void choose_arm(int);
 void init_ax12(void);
-void charg_gobelet(void);
+void deploy(void);
+void lacher(void);
+void ranger(void);
 
 #endif	/* ACTIONS_AX12_H */

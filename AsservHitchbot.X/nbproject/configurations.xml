@@ -21,6 +21,7 @@
       <itemPath>ax12.h</itemPath>
       <itemPath>actions_ax12.h</itemPath>
       <itemPath>communication.h</itemPath>
+      <itemPath>main.h</itemPath>
     </logicalFolder>
     <logicalFolder name="LinkerScript"
                    displayName="Linker Files"
