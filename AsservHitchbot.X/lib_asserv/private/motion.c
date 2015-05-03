@@ -6,6 +6,7 @@
 #include "uart.h"
 #include "../lib_asserv_default.h"
 #include <math.h>
+
 #include "../../communication.h"
 
 /******************************    Variables    *******************************/
@@ -141,6 +142,7 @@ void check_blocked(Speed speed,Speed order){
 
 // renvoie les commandes des roues gauche et droite (appelé par l'interruption toutes les 5 ms)
 void motion_step(int tics_g, int tics_d, float *commande_g, float *commande_d){
+    int needToSendDone = 0;
     if (!motion_initialized){*commande_g = 0; *commande_d = 0;}
     else {
         // maj de l'odométrie
@@ -149,8 +151,9 @@ void motion_step(int tics_g, int tics_d, float *commande_g, float *commande_d){
         asserv_step(&odo, commande_g, commande_d);
         // indique si on est arrivé
         if (asserv_done()){
-            if (asserv_mode != ASSERV_MODE_OFF){SendDone();}
+            if (asserv_mode != ASSERV_MODE_OFF){needToSendDone = 1;}
             motion_free();
+            if(needToSendDone == 1){SendDone();}
         }
     }
 }

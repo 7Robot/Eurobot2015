@@ -8,7 +8,7 @@
 #include <delay.h>
 #include "actions_ax12.h"
 
-#define maxtork 400
+#define maxtork 900
 
 /******************************************************************************/
 /*************************** Arm Specification ********************************/
@@ -24,64 +24,96 @@ void choose_arm(int arm) {
 
 void init_ax12() {
 
-    PutAX(rab, AX_TORQUE_LIMIT, maxtork);
+    PutAX(socle, AX_TORQUE_LIMIT, maxtork);
     __delay_ms(40);
-    PutAX(pince, AX_TORQUE_LIMIT, 500);
+    PutAX(haut, AX_TORQUE_LIMIT, maxtork);
     __delay_ms(40);
-    PutAX(asc, AX_TORQUE_LIMIT, 900);
+    PutAX(verseur_d, AX_TORQUE_LIMIT, 400);
     __delay_ms(40);
-    PutAX(tub, AX_TORQUE_LIMIT, 600);
+    PutAX(pince_d, AX_TORQUE_LIMIT, 500);
     __delay_ms(40);
-
-
-    PutAX(rab, AX_MOVING_SPEED, 500);
+    PutAX(coude, AX_TORQUE_LIMIT, 400);
     __delay_ms(40);
-    PutAX(pince, AX_MOVING_SPEED, 500);
+    PutAX(verseur_g, AX_TORQUE_LIMIT, 400);
     __delay_ms(40);
-    PutAX(asc, AX_MOVING_SPEED, 800);
-    __delay_ms(40);
-    PutAX(tub, AX_MOVING_SPEED, 450);
+    PutAX(pince_g, AX_TORQUE_LIMIT, 500);
     __delay_ms(40);
 
-    PutAX(rab, AX_GOAL_POSITION, 600);
+
+    PutAX(socle, AX_MOVING_SPEED, 500);
+    __delay_ms(40);
+    PutAX(haut, AX_MOVING_SPEED, 500);
+    __delay_ms(40);
+    PutAX(verseur_d, AX_MOVING_SPEED, 500);
+    __delay_ms(40);
+    PutAX(pince_d, AX_MOVING_SPEED, 500);
+    __delay_ms(40);
+    PutAX(coude, AX_MOVING_SPEED, 500);
+    __delay_ms(40);
+    PutAX(verseur_g, AX_MOVING_SPEED, 500);
+    __delay_ms(40);
+    PutAX(pince_g, AX_MOVING_SPEED, 500);
+    __delay_ms(40);
+
+    PutAX(socle, AX_GOAL_POSITION, 1088);
+    __delay_ms(40);
+    PutAX(haut, AX_GOAL_POSITION, 311);
+    __delay_ms(40);
+    PutAX(verseur_d, AX_GOAL_POSITION, 311);
+    __delay_ms(40);
+    PutAX(pince_d, AX_GOAL_POSITION, 400);
     __delay_ms(1000);
-    PutAX(pince, AX_GOAL_POSITION, 260);
+    PutAX(verseur_g, AX_GOAL_POSITION, 920);
+    __delay_ms(40);
+    PutAX(pince_g, AX_GOAL_POSITION, 900);
+    __delay_ms(200);
+    PutAX(coude, AX_GOAL_POSITION, 311);
     __delay_ms(1000);
-    PutAX(asc, AX_GOAL_POSITION, 320);
-     __delay_ms(1000);
-    PutAX(tub, AX_GOAL_POSITION, 400);
-
-    __delay_ms(5000);
 
 }
 
-void charg_gobelet(void)
-{
+void deploy (void){
 
-    PutAX(rab,AX_GOAL_POSITION,330); //rabat la piece
-    __delay_ms(2000);
-    PutAX(rab,AX_GOAL_POSITION,600); //reouvre
+    PutAX(coude, AX_GOAL_POSITION, 777);
     __delay_ms(1000);
-    PutAX(tub,AX_GOAL_POSITION,350); //reouvre legerement le tub
+    PutAX(verseur_g, AX_GOAL_POSITION, 311);
     __delay_ms(1000);
-    PutAX(pince,AX_GOAL_POSITION,255); //ouvre la pince
+    PutAX(verseur_g, AX_GOAL_POSITION, 920);
+    __delay_ms(40);
+    PutAX(socle, AX_GOAL_POSITION, 777);
+    __delay_ms(40);
+    PutAX(haut, AX_GOAL_POSITION, 777);
     __delay_ms(1000);
-    PutAX(asc,AX_GOAL_POSITION,945); //descent la pince
+    PutAX(verseur_d, AX_GOAL_POSITION, 920);
     __delay_ms(1000);
-    PutAX(pince,AX_GOAL_POSITION,170); //ferme la pince
-    __delay_ms(2000);
-    PutAX(tub,AX_GOAL_POSITION,400); //remonte a moitié la piece et bloque
+    PutAX(verseur_d, AX_GOAL_POSITION, 311);
     __delay_ms(1000);
-    PutAX(asc,AX_GOAL_POSITION,320); //remonte la pince
-    __delay_ms(2000);
-    PutAX(tub,AX_GOAL_POSITION,270); //referme le tube
-    __delay_ms(2000);
-    PutAX(pince,AX_GOAL_POSITION,255); //ouvre la pince
-    __delay_ms(1000);
+}
 
+void lacher (void){
 
+    PutAX(pince_g, AX_GOAL_POSITION, 777);
+    __delay_ms(40);
+    PutAX(pince_d, AX_GOAL_POSITION, 777);
+    __delay_ms(1000);
+}
 
+void ranger (void){
 
+    PutAX(pince_g, AX_GOAL_POSITION, 900);
+    __delay_ms(40);
+    PutAX(pince_d, AX_GOAL_POSITION, 400);
+    __delay_ms(1000);
+    PutAX(socle, AX_GOAL_POSITION, 1088);
+    __delay_ms(40);
+    PutAX(haut, AX_GOAL_POSITION, 311);
+    __delay_ms(40);
+    PutAX(verseur_d, AX_GOAL_POSITION, 311);
+    __delay_ms(40);
+    PutAX(verseur_g, AX_GOAL_POSITION, 920);
+    __delay_ms(40);
+    PutAX(coude, AX_GOAL_POSITION, 311);
+    __delay_ms(1000);
 }
 
 /******************************************************************************/

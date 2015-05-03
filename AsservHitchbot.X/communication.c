@@ -14,12 +14,10 @@
  */
 
 #include <uart.h>
-#include "communication.h"
 #include <stdio.h>
 #include <stdlib.h>
-#include "lib_asserv/lib_asserv_default.h"
-#include "lib_asserv/lib_asserv.h"
-#include "actions_ax12.h"
+
+#include "main.h"
 
 char ReceivedStringFromPi[50] = {0};
 int CharFromPiNumber = 0;
@@ -32,6 +30,7 @@ void AnalyzeCommandFromPi (void)
     // If byte is "$" symbol, the string can be valid
     if (b=='$')
     {
+        CharFromPiNumber = 0;
         ReceivedStringFromPi[CharFromPiNumber] = b;
         CharFromPiNumber++;
     }
@@ -47,7 +46,6 @@ void AnalyzeCommandFromPi (void)
         ReceivedStringFromPi[CharFromPiNumber] = b;
         /*** Full frame received and available in ReceivedStringFromPi ***/
         SelectActionFromPi();
-        CharFromPiNumber=0;
     }
 }
 
@@ -99,12 +97,24 @@ void SelectActionFromPi()
             charg_spot();
         }
 
+            if(ReceivedStringFromPi[1]=='C' && ReceivedStringFromPi[2]=='H' && ReceivedStringFromPi[3]=='A' && ReceivedStringFromPi[4]=='L')
+    {
+            charg_last_spot();
+        }
+
+
+            if(ReceivedStringFromPi[1]=='R' && ReceivedStringFromPi[2]=='E' && ReceivedStringFromPi[3]=='L' && ReceivedStringFromPi[4]=='E')
+    {
+            release();
+        }
+
+
 
     }
 
 void SendDone(void)
 {
-      int i = 0;
+      __delay_ms(100);
         printf("done");
-        for (i=0;i<10;i++) {}
+      __delay_ms(100);
 }

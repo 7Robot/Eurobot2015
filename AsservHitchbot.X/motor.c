@@ -1,10 +1,9 @@
 /* Device header file */
 #include <xc.h>
 
-#include "motor.h"
 #include <math.h>
-#include "user.h"
-#include "lib_asserv/private/tools.h"
+
+#include "main.h"
 
 void Init_PWM(void)
 {
