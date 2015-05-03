@@ -53,17 +53,13 @@ int main(int argc, char** argv) {
     //float valf = 0, sens = 1;
     Init_All();
     motion_init();
-    Speed test = {0.01,0};
-    motion_speed(test);
-
-    PutAX(254, AX_GOAL_POSITION, 512);
-    __delay_ms(40);
-
-    while (1) // boucle principale
-    {
-        PutAX(254, AX_GOAL_POSITION, 512);
-        __delay_ms(40);
+    init_ax12();
+    while(1){
+        deploy();
+        lacher();
+        ranger();
     }
+
 }
 
 

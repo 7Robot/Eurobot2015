@@ -21,6 +21,7 @@
       <itemPath>ax12.h</itemPath>
       <itemPath>actions_ax12.h</itemPath>
       <itemPath>communication.h</itemPath>
+      <itemPath>sick.h</itemPath>
     </logicalFolder>
     <logicalFolder name="LinkerScript"
                    displayName="Linker Files"
@@ -46,6 +47,7 @@
       <itemPath>ax12.c</itemPath>
       <itemPath>actions_ax12.c</itemPath>
       <itemPath>communication.c</itemPath>
+      <itemPath>sick.c</itemPath>
     </logicalFolder>
     <logicalFolder name="ExternalFiles"
                    displayName="Important Files"
@@ -243,6 +245,7 @@
         <property key="ToolFirmwareOption.UseLatestFirmware" value="true"/>
         <property key="UART 1" value="true"/>
         <property key="UART 2" value="true"/>
+        <property key="firmware.download.all" value="false"/>
         <property key="hwtoolclock.frcindebug" value="false"/>
         <property key="memories.aux" value="false"/>
         <property key="memories.bootflash" value="true"/>
