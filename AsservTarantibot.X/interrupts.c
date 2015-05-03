@@ -13,7 +13,7 @@
 //#include "tests.h"
 #include "motor.h"
 #include "user.h"
-#include "lib_asserv/lib_asserv.h"
+//#include "lib_asserv/lib_asserv.h"
 //#include "ax12.h"
 //#include "atp-asserv.h"
 //#include "actions_ax12.h"
@@ -32,8 +32,8 @@ float V_g=0;
 int erreur_d = 0;
 int erreur_g = 0;
 
-int Vcons_d=0;
-int Vcons_g=0;
+float Vcons_d=0;
+float Vcons_g=0;
 
 int somme_erreur_d = 0 ;
 int somme_erreur_g = 0 ;
@@ -48,7 +48,7 @@ float commande_d = 0;
 float commande_g = 0;
 
 float Kp=8;
-float Ki=1;
+float Ki=1.5;
 float Kd=0;
 
 void InitTimers()
@@ -132,8 +132,12 @@ void __attribute__((interrupt,auto_psv)) _T2Interrupt(void) {
 
 
     ////////////////// ACQUISITION NOUVELLE VALEUR DE VITESSE //////////////////
-    V_d = tics_d - tics_d_old;
-    V_g = tics_g - tics_g_old;
+    //        On suppose que les moteurs tournent dans le sens demandé        //
+    if (Vcons_d>=0)  V_d = tics_d - tics_d_old;
+    else            V_d = -(tics_d - tics_d_old);
+
+    if (Vcons_g>=0) V_g = tics_g - tics_g_old;
+    else            V_g = -(tics_g - tics_g_old);
     ////////////////////////////////////////////////////////////////////////////
 
     ////////////////// ACQUISITION NOUVELLE VALEUR DE VITESSE //////////////////

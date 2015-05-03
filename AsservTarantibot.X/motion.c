@@ -1,3 +1,4 @@
+/*
 #include "config.h"
 #include "motion.h"
 #include "odo.h"
@@ -40,3 +41,4 @@ void motion_speed(Speed speed){
     motion_state=1;// on passe en asserv en vitesse
     init_rampe(speed_current,speed,acc_current);
 }
+*/
