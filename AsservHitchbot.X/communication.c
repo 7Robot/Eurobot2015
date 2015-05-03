@@ -114,8 +114,7 @@ void SelectActionFromPi()
 
 void SendDone(void)
 {
-      int i = 0;
-      __delay_ms(40);
+      __delay_ms(100);
         printf("done");
-      __delay_ms(40);
+      __delay_ms(100);
 }

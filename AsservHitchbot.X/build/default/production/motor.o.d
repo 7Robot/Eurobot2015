@@ -4,7 +4,7 @@ main.h  \
 user.h  \
 ax12.h  \
  lib_asserv/lib_asserv_default.h  \
-lib_asserv/../main.h  \
+lib_asserv/../communication.h  \
  lib_asserv/lib_asserv.h  \
 lib_asserv/private/motion.h  \
  lib_asserv/private/extern_globals_asserv.h  \
