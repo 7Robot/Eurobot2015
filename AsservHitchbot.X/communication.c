@@ -99,12 +99,25 @@ void SelectActionFromPi()
             charg_spot();
         }
 
+            if(ReceivedStringFromPi[1]=='C' && ReceivedStringFromPi[2]=='H' && ReceivedStringFromPi[3]=='A' && ReceivedStringFromPi[4]=='L')
+    {
+            charg_last_spot();
+        }
+
+
+            if(ReceivedStringFromPi[1]=='R' && ReceivedStringFromPi[2]=='E' && ReceivedStringFromPi[3]=='L' && ReceivedStringFromPi[4]=='E')
+    {
+            release();
+        }
+
+
 
     }
 
 void SendDone(void)
 {
       int i = 0;
+      //for (i=0;i<10;i++) {}
         printf("done");
         for (i=0;i<10;i++) {}
 }
