@@ -16,7 +16,7 @@
 #define verseur_g       16  // L'actionneur de la plaque suppérieur gauche
 #define pince_d         2   // L'actionneur de la plaque inférieur droite
 #define pince_g         10  // L'actionneur de la plaque inférieur gauche
-#define coude           13  // L'ax-12 permettant de ranger le bra gauche
+#define coude           13  // L'ax-12 permettant de ranger le bras gauche
 
 void choose_arm(int);
 void init_ax12(void);
