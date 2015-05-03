@@ -47,18 +47,24 @@ _FPOR(PWMPIN_ON);
 #include "motor.h"
 #include "actions_ax12.h"
 
+extern int Vcons_d;
+extern int Vcons_g;
+
+int temp=0;
 
 int main(int argc, char** argv) {
     //float valf = 0, sens = 1;
     Init_All();
+    
+    for (temp=0;temp<5;temp++)
+        __delay_ms(200);
 
-    PutAX(254, AX_GOAL_POSITION, 512);
-    __delay_ms(40);
+    Vcons_d=8;
+    Vcons_g=8;
 
     while (1) // boucle principale
     {
-        PutAX(254, AX_GOAL_POSITION, 512);
-        __delay_ms(40);
+
     }
 }
 
