@@ -161,7 +161,6 @@ void __attribute__((interrupt,auto_psv)) _T2Interrupt(void) {
 //
 //    commande_g=commande_g*(commande_g>0);
 //    commande_d=commande_d*(commande_d>0);
-<<<<<<< HEAD
 /*
     int tics_d;
     int tics_g;
@@ -191,9 +190,6 @@ void __attribute__((interrupt,auto_psv)) _T2Interrupt(void) {
     float Kp=1;
     float Ki=0;
     float Kd=0;
-=======
-
->>>>>>> 6703ba33cc815f8fdc48fdc3614e5c971249346e
 
     ////////////////// ACQUISITION NOUVELLE VALEUR DE VITESSE //////////////////
     V_d = tics_d - tics_d_old;
@@ -230,16 +226,13 @@ void __attribute__((interrupt,auto_psv)) _T2Interrupt(void) {
     //printf("erreur_moy_g%d erreur_moy_d%d \n\r",erreur_moy_g,erreur_moy_d);
     //printf("TicsG%d TicsD%d \n\r",tics_g,tics_d);
     //printf("diff_g%f diff_d%f \n\r",diff_g,diff_d);
-<<<<<<< HEAD
+
     printf("diff_cons_g_I%f diff_cons_d_I%f \n\r",diff_cons_g_I,diff_cons_d_I);
     // on baisse le flag*/
    motion_step(tics_g,tics_d, &commande_g, &commande_d);
     // mettre ici les pwm gauche et droit
    PWM_Moteurs(commande_g, commande_d);
-=======
-    //printf("diff_cons_g_I%f diff_cons_d_I%f \n\r",diff_cons_g_I,diff_cons_d_I);
-    // on baisse le flag
->>>>>>> 6703ba33cc815f8fdc48fdc3614e5c971249346e
+
     _T2IF = 0;
 }
 
