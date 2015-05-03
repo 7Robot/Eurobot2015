@@ -32,8 +32,8 @@ float V_g=0;
 int erreur_d = 0;
 int erreur_g = 0;
 
-float Vcons_d=100;
-int Vcons_g=100;
+int Vcons_d=0;
+int Vcons_g=0;
 
 int somme_erreur_d = 0 ;
 int somme_erreur_g = 0 ;
@@ -47,8 +47,8 @@ int var_erreur_g = 0;
 float commande_d = 0;
 float commande_g = 0;
 
-float Kp=1;
-float Ki=0;
+float Kp=8;
+float Ki=1;
 float Kd=0;
 
 void InitTimers()
@@ -90,7 +90,7 @@ void InitTimers()
                 T2_IDLE_CON &
                 T2_GATE_OFF &
                 T2_PS_1_64 &
-                T2_SOURCE_INT, 3125 ); // 3125 pour 5ms
+                T2_SOURCE_INT, 15625 ); // 625 * x => x ms
     // configuration des interruptions
     ConfigIntTimer2(T2_INT_PRIOR_4 & T2_INT_ON);
     // Ici interruption des actions des bras

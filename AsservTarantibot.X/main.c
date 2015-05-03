@@ -48,6 +48,10 @@ _FPOR(PWMPIN_ON);
 #include "motor.h"
 #include "actions_ax12.h"
 
+extern int Vcons_d;
+extern int Vcons_g;
+
+int temp=0;
 
 int main(int argc, char** argv) {
     //float valf = 0, sens = 1;
@@ -67,9 +71,7 @@ int main(int argc, char** argv) {
         //lacher();
         //ranger();
         //__delay_ms(2000);
-
     }
-
 }
 
 
