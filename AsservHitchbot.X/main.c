@@ -38,15 +38,9 @@ _FPOR(PWMPIN_ON);
 #include <stdbool.h>       // Includes true/false definition
 #include <uart.h>
 #include <math.h>
-#include "user.h"          // User funct/params, such as InitApp
-#include "qei.h"           // QEI definitions for easier use
 #include <libpic30.h>
-#include "ax12.h"
-#include "lib_asserv/lib_asserv_default.h"
-#include "lib_asserv/lib_asserv.h"
-#include "motor.h"
-#include "actions_ax12.h"
-#include "communication.h"
+
+#include "main.h"
 
 
 

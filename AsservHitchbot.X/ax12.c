@@ -16,9 +16,10 @@
 #include <p33Fxxxx.h>      /* Includes device header file                     */
 #include <stdint.h>        /* Includes uint16_t definition                    */
 #include <stdbool.h>
-#include "ax12.h"
 #include <delay.h>
 #include <libpic30.h>
+
+#include "main.h"
 
 /******************************************************************************
  * Global Variables

@@ -6,11 +6,9 @@
 #include <uart.h>
 
 //#include "extern_globals.h"
-#include "user.h"
 #include <libpic30.h>
-#include "lib_asserv/lib_asserv.h"
-#include "motor.h"
-#include "communication.h"
+
+#include "main.h"
 
 //debug
 #include "uart.h"

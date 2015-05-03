@@ -6,16 +6,13 @@
 #include <stdbool.h>         /* For true/false definition                     */
 #include <timer.h>
 
-#include "user.h"          /* User funct/params, such as InitApp              */
-#include "qei.h"           /* QEI definitions for easier use                  */
 #include <libpic30.h>
 //#include "tests.h"
-#include "lib_asserv/lib_asserv.h"
 //#include "atp-asserv.h"
 //#include "atp.h"
 //#include "sick.h"
-#include "actions_ax12.h"
-#include "motor.h"
+
+#include "main.h"
 
 /******************************************************************************/
 /* User Functions                                                             */
