@@ -1,5 +1,6 @@
 build/default/production/main.o:  \
 main.c  \
+main.h  \
 user.h  \
 ax12.h  \
  lib_asserv/lib_asserv_default.h  \
@@ -13,4 +14,5 @@ lib_asserv/private/odo.h  \
  lib_asserv/private/debug.h  \
 motor.h  \
 actions_ax12.h  \
-communication.h 
+communication.h  \
+ lib_asserv/private/tools.h 
