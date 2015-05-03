@@ -8,6 +8,7 @@
 #include "lib_asserv/lib_asserv_default.h"
 #include "lib_asserv/lib_asserv.h"
 #include "motor.h"
+#include "uart.h"
 #include "actions_ax12.h"
 #include "communication.h"
 #include "lib_asserv/private/tools.h"

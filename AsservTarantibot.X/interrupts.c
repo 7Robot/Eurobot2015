@@ -32,8 +32,8 @@ float V_g=0;
 int erreur_d = 0;
 int erreur_g = 0;
 
-float Vcons_d=100;
-int Vcons_g=100;
+int Vcons_d=0;
+int Vcons_g=0;
 
 int somme_erreur_d = 0 ;
 int somme_erreur_g = 0 ;
@@ -47,8 +47,8 @@ int var_erreur_g = 0;
 float commande_d = 0;
 float commande_g = 0;
 
-float Kp=1;
-float Ki=0;
+float Kp=8;
+float Ki=1;
 float Kd=0;
 
 void InitTimers()
@@ -90,7 +90,7 @@ void InitTimers()
                 T2_IDLE_CON &
                 T2_GATE_OFF &
                 T2_PS_1_64 &
-                T2_SOURCE_INT, 3125 ); // 3125 pour 5ms
+                T2_SOURCE_INT, 15625 ); // 625 * x => x ms
     // configuration des interruptions
     ConfigIntTimer2(T2_INT_PRIOR_4 & T2_INT_ON);
     // Ici interruption des actions des bras
@@ -136,6 +136,10 @@ void __attribute__((interrupt,auto_psv)) _T2Interrupt(void) {
     V_g = tics_g - tics_g_old;
     ////////////////////////////////////////////////////////////////////////////
 
+    ////////////////// ACQUISITION NOUVELLE VALEUR DE VITESSE //////////////////
+    tics_d_old=tics_d;
+    tics_g_old=tics_g;
+    ////////////////////////////////////////////////////////////////////////////
 
     /////////////// ERREURS DE VITESSE PAR RAPPORT A LA CONSIGNE ///////////////
     erreur_d = Vcons_d - V_d;
@@ -154,26 +158,20 @@ void __attribute__((interrupt,auto_psv)) _T2Interrupt(void) {
     erreur_d_old = erreur_d;
     erreur_g_old = erreur_g;
 
-
+/*
     if (commande_g>0) MOTOR_BREAK1=0;
     else MOTOR_BREAK1=1;
-
     if (commande_d>0) MOTOR_BREAK2=0;
     else MOTOR_BREAK2=1;
+*/
+    PWM_Moteurs(commande_g, commande_d);
 
-    //PWM_Moteurs(commande_g, commande_d);
-
-    //printf("erreur_moy_g%d erreur_moy_d%d \n\r",erreur_moy_g,erreur_moy_d);
+    printf("erreur_g%d erreur_d%d \n\r",erreur_g,erreur_d);
     //printf("TicsG%d TicsD%d \n\r",tics_g,tics_d);
     //printf("diff_g%f diff_d%f \n\r",diff_g,diff_d);
 
     //printf("diff_cons_g_I%f diff_cons_d_I%f \n\r",diff_cons_g_I,diff_cons_d_I);
-    // on baisse le flag*/
-   motion_step(tics_g,tics_d, &commande_g, &commande_d);
-    // mettre ici les pwm gauche et droit
-   PWM_Moteurs(commande_g, commande_d);
-
-    _T2IF = 0;
+    _T2IF = 0;    // on baisse le flag
 }
 
 /*************************************************

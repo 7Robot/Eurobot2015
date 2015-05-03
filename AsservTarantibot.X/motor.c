@@ -93,7 +93,7 @@ void Init_QEI(void)
 void PWM_Moteurs(float DC_gauche, float DC_droit)
 {
     // variable temporaire servant a connaitre le signe des Duty-Cycle
-    int DC_positif;
+    //int DC_positif;
 
     // pins de sens du moteur gauche
 
@@ -114,7 +114,7 @@ void PWM_Moteurs(float DC_gauche, float DC_droit)
 
 
     // pins de sens du moteur droit
-    DC_positif = (DC_gauche < 0);
+    //DC_positif = (DC_gauche < 0);
 
     P1TPER = 1500;
 

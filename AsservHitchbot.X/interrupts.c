@@ -189,7 +189,7 @@ void Init_CN()
 
 void __attribute__((interrupt,auto_psv)) _T2Interrupt(void) {
     // on baisse le flag
-    
+
     // compteurs QEI gauche et droit
     static volatile int tics_g, tics_d;
     // commandes gauches et droite
@@ -202,7 +202,7 @@ void __attribute__((interrupt,auto_psv)) _T2Interrupt(void) {
    motion_step(tics_g,tics_d, &commande_g, &commande_d);
     // mettre ici les pwm gauche et droit
    PWM_Moteurs(commande_g, commande_d);
-   
+
    _T2IF = 0;
 }
 

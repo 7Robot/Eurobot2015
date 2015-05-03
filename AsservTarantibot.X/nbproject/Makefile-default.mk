@@ -45,17 +45,17 @@ OBJECTDIR=build/${CND_CONF}/${IMAGE_TYPE}
 DISTDIR=dist/${CND_CONF}/${IMAGE_TYPE}
 
 # Source Files Quoted if spaced
-SOURCEFILES_QUOTED_IF_SPACED=lib_asserv/private/asserv.c lib_asserv/private/debug.c lib_asserv/private/motion.c lib_asserv/private/odo.c lib_asserv/private/pid.c lib_asserv/private/tools.c user.c interrupts.c main.c motor.c ax12.c actions_ax12.c
+SOURCEFILES_QUOTED_IF_SPACED=asserv.c motion.c odo.c user.c interrupts.c main.c motor.c ax12.c actions_ax12.c tools.c
 
 # Object Files Quoted if spaced
-OBJECTFILES_QUOTED_IF_SPACED=${OBJECTDIR}/lib_asserv/private/asserv.o ${OBJECTDIR}/lib_asserv/private/debug.o ${OBJECTDIR}/lib_asserv/private/motion.o ${OBJECTDIR}/lib_asserv/private/odo.o ${OBJECTDIR}/lib_asserv/private/pid.o ${OBJECTDIR}/lib_asserv/private/tools.o ${OBJECTDIR}/user.o ${OBJECTDIR}/interrupts.o ${OBJECTDIR}/main.o ${OBJECTDIR}/motor.o ${OBJECTDIR}/ax12.o ${OBJECTDIR}/actions_ax12.o
-POSSIBLE_DEPFILES=${OBJECTDIR}/lib_asserv/private/asserv.o.d ${OBJECTDIR}/lib_asserv/private/debug.o.d ${OBJECTDIR}/lib_asserv/private/motion.o.d ${OBJECTDIR}/lib_asserv/private/odo.o.d ${OBJECTDIR}/lib_asserv/private/pid.o.d ${OBJECTDIR}/lib_asserv/private/tools.o.d ${OBJECTDIR}/user.o.d ${OBJECTDIR}/interrupts.o.d ${OBJECTDIR}/main.o.d ${OBJECTDIR}/motor.o.d ${OBJECTDIR}/ax12.o.d ${OBJECTDIR}/actions_ax12.o.d
+OBJECTFILES_QUOTED_IF_SPACED=${OBJECTDIR}/asserv.o ${OBJECTDIR}/motion.o ${OBJECTDIR}/odo.o ${OBJECTDIR}/user.o ${OBJECTDIR}/interrupts.o ${OBJECTDIR}/main.o ${OBJECTDIR}/motor.o ${OBJECTDIR}/ax12.o ${OBJECTDIR}/actions_ax12.o ${OBJECTDIR}/tools.o
+POSSIBLE_DEPFILES=${OBJECTDIR}/asserv.o.d ${OBJECTDIR}/motion.o.d ${OBJECTDIR}/odo.o.d ${OBJECTDIR}/user.o.d ${OBJECTDIR}/interrupts.o.d ${OBJECTDIR}/main.o.d ${OBJECTDIR}/motor.o.d ${OBJECTDIR}/ax12.o.d ${OBJECTDIR}/actions_ax12.o.d ${OBJECTDIR}/tools.o.d
 
 # Object Files
-OBJECTFILES=${OBJECTDIR}/lib_asserv/private/asserv.o ${OBJECTDIR}/lib_asserv/private/debug.o ${OBJECTDIR}/lib_asserv/private/motion.o ${OBJECTDIR}/lib_asserv/private/odo.o ${OBJECTDIR}/lib_asserv/private/pid.o ${OBJECTDIR}/lib_asserv/private/tools.o ${OBJECTDIR}/user.o ${OBJECTDIR}/interrupts.o ${OBJECTDIR}/main.o ${OBJECTDIR}/motor.o ${OBJECTDIR}/ax12.o ${OBJECTDIR}/actions_ax12.o
+OBJECTFILES=${OBJECTDIR}/asserv.o ${OBJECTDIR}/motion.o ${OBJECTDIR}/odo.o ${OBJECTDIR}/user.o ${OBJECTDIR}/interrupts.o ${OBJECTDIR}/main.o ${OBJECTDIR}/motor.o ${OBJECTDIR}/ax12.o ${OBJECTDIR}/actions_ax12.o ${OBJECTDIR}/tools.o
 
 # Source Files
-SOURCEFILES=lib_asserv/private/asserv.c lib_asserv/private/debug.c lib_asserv/private/motion.c lib_asserv/private/odo.c lib_asserv/private/pid.c lib_asserv/private/tools.c user.c interrupts.c main.c motor.c ax12.c actions_ax12.c
+SOURCEFILES=asserv.c motion.c odo.c user.c interrupts.c main.c motor.c ax12.c actions_ax12.c tools.c
 
 
 CFLAGS=
@@ -82,47 +82,26 @@ MP_LINKER_FILE_OPTION=,--script=p33FJ128MC804.gld
 # ------------------------------------------------------------------------------------
 # Rules for buildStep: compile
 ifeq ($(TYPE_IMAGE), DEBUG_RUN)
-${OBJECTDIR}/lib_asserv/private/asserv.o: lib_asserv/private/asserv.c  nbproject/Makefile-${CND_CONF}.mk
-	@${MKDIR} "${OBJECTDIR}/lib_asserv/private" 
-	@${RM} ${OBJECTDIR}/lib_asserv/private/asserv.o.d 
-	@${RM} ${OBJECTDIR}/lib_asserv/private/asserv.o 
-	${MP_CC} $(MP_EXTRA_CC_PRE)  lib_asserv/private/asserv.c  -o ${OBJECTDIR}/lib_asserv/private/asserv.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MMD -MF "${OBJECTDIR}/lib_asserv/private/asserv.o.d"      -g -D__DEBUG -D__MPLAB_DEBUGGER_PK3=1    -omf=elf -mlarge-code -mlarge-data -O0 -msmart-io=1 -Wall -msfr-warn=off
-	@${FIXDEPS} "${OBJECTDIR}/lib_asserv/private/asserv.o.d" $(SILENT)  -rsi ${MP_CC_DIR}../ 
+${OBJECTDIR}/asserv.o: asserv.c  nbproject/Makefile-${CND_CONF}.mk
+	@${MKDIR} "${OBJECTDIR}" 
+	@${RM} ${OBJECTDIR}/asserv.o.d 
+	@${RM} ${OBJECTDIR}/asserv.o 
+	${MP_CC} $(MP_EXTRA_CC_PRE)  asserv.c  -o ${OBJECTDIR}/asserv.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MMD -MF "${OBJECTDIR}/asserv.o.d"      -g -D__DEBUG -D__MPLAB_DEBUGGER_PK3=1    -omf=elf -mlarge-code -mlarge-data -O0 -msmart-io=1 -Wall -msfr-warn=off
+	@${FIXDEPS} "${OBJECTDIR}/asserv.o.d" $(SILENT)  -rsi ${MP_CC_DIR}../ 
 	
-${OBJECTDIR}/lib_asserv/private/debug.o: lib_asserv/private/debug.c  nbproject/Makefile-${CND_CONF}.mk
-	@${MKDIR} "${OBJECTDIR}/lib_asserv/private" 
-	@${RM} ${OBJECTDIR}/lib_asserv/private/debug.o.d 
-	@${RM} ${OBJECTDIR}/lib_asserv/private/debug.o 
-	${MP_CC} $(MP_EXTRA_CC_PRE)  lib_asserv/private/debug.c  -o ${OBJECTDIR}/lib_asserv/private/debug.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MMD -MF "${OBJECTDIR}/lib_asserv/private/debug.o.d"      -g -D__DEBUG -D__MPLAB_DEBUGGER_PK3=1    -omf=elf -mlarge-code -mlarge-data -O0 -msmart-io=1 -Wall -msfr-warn=off
-	@${FIXDEPS} "${OBJECTDIR}/lib_asserv/private/debug.o.d" $(SILENT)  -rsi ${MP_CC_DIR}../ 
+${OBJECTDIR}/motion.o: motion.c  nbproject/Makefile-${CND_CONF}.mk
+	@${MKDIR} "${OBJECTDIR}" 
+	@${RM} ${OBJECTDIR}/motion.o.d 
+	@${RM} ${OBJECTDIR}/motion.o 
+	${MP_CC} $(MP_EXTRA_CC_PRE)  motion.c  -o ${OBJECTDIR}/motion.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MMD -MF "${OBJECTDIR}/motion.o.d"      -g -D__DEBUG -D__MPLAB_DEBUGGER_PK3=1    -omf=elf -mlarge-code -mlarge-data -O0 -msmart-io=1 -Wall -msfr-warn=off
+	@${FIXDEPS} "${OBJECTDIR}/motion.o.d" $(SILENT)  -rsi ${MP_CC_DIR}../ 
 	
-${OBJECTDIR}/lib_asserv/private/motion.o: lib_asserv/private/motion.c  nbproject/Makefile-${CND_CONF}.mk
-	@${MKDIR} "${OBJECTDIR}/lib_asserv/private" 
-	@${RM} ${OBJECTDIR}/lib_asserv/private/motion.o.d 
-	@${RM} ${OBJECTDIR}/lib_asserv/private/motion.o 
-	${MP_CC} $(MP_EXTRA_CC_PRE)  lib_asserv/private/motion.c  -o ${OBJECTDIR}/lib_asserv/private/motion.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MMD -MF "${OBJECTDIR}/lib_asserv/private/motion.o.d"      -g -D__DEBUG -D__MPLAB_DEBUGGER_PK3=1    -omf=elf -mlarge-code -mlarge-data -O0 -msmart-io=1 -Wall -msfr-warn=off
-	@${FIXDEPS} "${OBJECTDIR}/lib_asserv/private/motion.o.d" $(SILENT)  -rsi ${MP_CC_DIR}../ 
-	
-${OBJECTDIR}/lib_asserv/private/odo.o: lib_asserv/private/odo.c  nbproject/Makefile-${CND_CONF}.mk
-	@${MKDIR} "${OBJECTDIR}/lib_asserv/private" 
-	@${RM} ${OBJECTDIR}/lib_asserv/private/odo.o.d 
-	@${RM} ${OBJECTDIR}/lib_asserv/private/odo.o 
-	${MP_CC} $(MP_EXTRA_CC_PRE)  lib_asserv/private/odo.c  -o ${OBJECTDIR}/lib_asserv/private/odo.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MMD -MF "${OBJECTDIR}/lib_asserv/private/odo.o.d"      -g -D__DEBUG -D__MPLAB_DEBUGGER_PK3=1    -omf=elf -mlarge-code -mlarge-data -O0 -msmart-io=1 -Wall -msfr-warn=off
-	@${FIXDEPS} "${OBJECTDIR}/lib_asserv/private/odo.o.d" $(SILENT)  -rsi ${MP_CC_DIR}../ 
-	
-${OBJECTDIR}/lib_asserv/private/pid.o: lib_asserv/private/pid.c  nbproject/Makefile-${CND_CONF}.mk
-	@${MKDIR} "${OBJECTDIR}/lib_asserv/private" 
-	@${RM} ${OBJECTDIR}/lib_asserv/private/pid.o.d 
-	@${RM} ${OBJECTDIR}/lib_asserv/private/pid.o 
-	${MP_CC} $(MP_EXTRA_CC_PRE)  lib_asserv/private/pid.c  -o ${OBJECTDIR}/lib_asserv/private/pid.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MMD -MF "${OBJECTDIR}/lib_asserv/private/pid.o.d"      -g -D__DEBUG -D__MPLAB_DEBUGGER_PK3=1    -omf=elf -mlarge-code -mlarge-data -O0 -msmart-io=1 -Wall -msfr-warn=off
-	@${FIXDEPS} "${OBJECTDIR}/lib_asserv/private/pid.o.d" $(SILENT)  -rsi ${MP_CC_DIR}../ 
-	
-${OBJECTDIR}/lib_asserv/private/tools.o: lib_asserv/private/tools.c  nbproject/Makefile-${CND_CONF}.mk
-	@${MKDIR} "${OBJECTDIR}/lib_asserv/private" 
-	@${RM} ${OBJECTDIR}/lib_asserv/private/tools.o.d 
-	@${RM} ${OBJECTDIR}/lib_asserv/private/tools.o 
-	${MP_CC} $(MP_EXTRA_CC_PRE)  lib_asserv/private/tools.c  -o ${OBJECTDIR}/lib_asserv/private/tools.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MMD -MF "${OBJECTDIR}/lib_asserv/private/tools.o.d"      -g -D__DEBUG -D__MPLAB_DEBUGGER_PK3=1    -omf=elf -mlarge-code -mlarge-data -O0 -msmart-io=1 -Wall -msfr-warn=off
-	@${FIXDEPS} "${OBJECTDIR}/lib_asserv/private/tools.o.d" $(SILENT)  -rsi ${MP_CC_DIR}../ 
+${OBJECTDIR}/odo.o: odo.c  nbproject/Makefile-${CND_CONF}.mk
+	@${MKDIR} "${OBJECTDIR}" 
+	@${RM} ${OBJECTDIR}/odo.o.d 
+	@${RM} ${OBJECTDIR}/odo.o 
+	${MP_CC} $(MP_EXTRA_CC_PRE)  odo.c  -o ${OBJECTDIR}/odo.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MMD -MF "${OBJECTDIR}/odo.o.d"      -g -D__DEBUG -D__MPLAB_DEBUGGER_PK3=1    -omf=elf -mlarge-code -mlarge-data -O0 -msmart-io=1 -Wall -msfr-warn=off
+	@${FIXDEPS} "${OBJECTDIR}/odo.o.d" $(SILENT)  -rsi ${MP_CC_DIR}../ 
 	
 ${OBJECTDIR}/user.o: user.c  nbproject/Makefile-${CND_CONF}.mk
 	@${MKDIR} "${OBJECTDIR}" 
@@ -166,48 +145,34 @@ ${OBJECTDIR}/actions_ax12.o: actions_ax12.c  nbproject/Makefile-${CND_CONF}.mk
 	${MP_CC} $(MP_EXTRA_CC_PRE)  actions_ax12.c  -o ${OBJECTDIR}/actions_ax12.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MMD -MF "${OBJECTDIR}/actions_ax12.o.d"      -g -D__DEBUG -D__MPLAB_DEBUGGER_PK3=1    -omf=elf -mlarge-code -mlarge-data -O0 -msmart-io=1 -Wall -msfr-warn=off
 	@${FIXDEPS} "${OBJECTDIR}/actions_ax12.o.d" $(SILENT)  -rsi ${MP_CC_DIR}../ 
 	
+${OBJECTDIR}/tools.o: tools.c  nbproject/Makefile-${CND_CONF}.mk
+	@${MKDIR} "${OBJECTDIR}" 
+	@${RM} ${OBJECTDIR}/tools.o.d 
+	@${RM} ${OBJECTDIR}/tools.o 
+	${MP_CC} $(MP_EXTRA_CC_PRE)  tools.c  -o ${OBJECTDIR}/tools.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MMD -MF "${OBJECTDIR}/tools.o.d"      -g -D__DEBUG -D__MPLAB_DEBUGGER_PK3=1    -omf=elf -mlarge-code -mlarge-data -O0 -msmart-io=1 -Wall -msfr-warn=off
+	@${FIXDEPS} "${OBJECTDIR}/tools.o.d" $(SILENT)  -rsi ${MP_CC_DIR}../ 
+	
 else
-${OBJECTDIR}/lib_asserv/private/asserv.o: lib_asserv/private/asserv.c  nbproject/Makefile-${CND_CONF}.mk
-	@${MKDIR} "${OBJECTDIR}/lib_asserv/private" 
-	@${RM} ${OBJECTDIR}/lib_asserv/private/asserv.o.d 
-	@${RM} ${OBJECTDIR}/lib_asserv/private/asserv.o 
-	${MP_CC} $(MP_EXTRA_CC_PRE)  lib_asserv/private/asserv.c  -o ${OBJECTDIR}/lib_asserv/private/asserv.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MMD -MF "${OBJECTDIR}/lib_asserv/private/asserv.o.d"        -g -omf=elf -mlarge-code -mlarge-data -O0 -msmart-io=1 -Wall -msfr-warn=off
-	@${FIXDEPS} "${OBJECTDIR}/lib_asserv/private/asserv.o.d" $(SILENT)  -rsi ${MP_CC_DIR}../ 
+${OBJECTDIR}/asserv.o: asserv.c  nbproject/Makefile-${CND_CONF}.mk
+	@${MKDIR} "${OBJECTDIR}" 
+	@${RM} ${OBJECTDIR}/asserv.o.d 
+	@${RM} ${OBJECTDIR}/asserv.o 
+	${MP_CC} $(MP_EXTRA_CC_PRE)  asserv.c  -o ${OBJECTDIR}/asserv.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MMD -MF "${OBJECTDIR}/asserv.o.d"        -g -omf=elf -mlarge-code -mlarge-data -O0 -msmart-io=1 -Wall -msfr-warn=off
+	@${FIXDEPS} "${OBJECTDIR}/asserv.o.d" $(SILENT)  -rsi ${MP_CC_DIR}../ 
 	
-${OBJECTDIR}/lib_asserv/private/debug.o: lib_asserv/private/debug.c  nbproject/Makefile-${CND_CONF}.mk
-	@${MKDIR} "${OBJECTDIR}/lib_asserv/private" 
-	@${RM} ${OBJECTDIR}/lib_asserv/private/debug.o.d 
-	@${RM} ${OBJECTDIR}/lib_asserv/private/debug.o 
-	${MP_CC} $(MP_EXTRA_CC_PRE)  lib_asserv/private/debug.c  -o ${OBJECTDIR}/lib_asserv/private/debug.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MMD -MF "${OBJECTDIR}/lib_asserv/private/debug.o.d"        -g -omf=elf -mlarge-code -mlarge-data -O0 -msmart-io=1 -Wall -msfr-warn=off
-	@${FIXDEPS} "${OBJECTDIR}/lib_asserv/private/debug.o.d" $(SILENT)  -rsi ${MP_CC_DIR}../ 
+${OBJECTDIR}/motion.o: motion.c  nbproject/Makefile-${CND_CONF}.mk
+	@${MKDIR} "${OBJECTDIR}" 
+	@${RM} ${OBJECTDIR}/motion.o.d 
+	@${RM} ${OBJECTDIR}/motion.o 
+	${MP_CC} $(MP_EXTRA_CC_PRE)  motion.c  -o ${OBJECTDIR}/motion.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MMD -MF "${OBJECTDIR}/motion.o.d"        -g -omf=elf -mlarge-code -mlarge-data -O0 -msmart-io=1 -Wall -msfr-warn=off
+	@${FIXDEPS} "${OBJECTDIR}/motion.o.d" $(SILENT)  -rsi ${MP_CC_DIR}../ 
 	
-${OBJECTDIR}/lib_asserv/private/motion.o: lib_asserv/private/motion.c  nbproject/Makefile-${CND_CONF}.mk
-	@${MKDIR} "${OBJECTDIR}/lib_asserv/private" 
-	@${RM} ${OBJECTDIR}/lib_asserv/private/motion.o.d 
-	@${RM} ${OBJECTDIR}/lib_asserv/private/motion.o 
-	${MP_CC} $(MP_EXTRA_CC_PRE)  lib_asserv/private/motion.c  -o ${OBJECTDIR}/lib_asserv/private/motion.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MMD -MF "${OBJECTDIR}/lib_asserv/private/motion.o.d"        -g -omf=elf -mlarge-code -mlarge-data -O0 -msmart-io=1 -Wall -msfr-warn=off
-	@${FIXDEPS} "${OBJECTDIR}/lib_asserv/private/motion.o.d" $(SILENT)  -rsi ${MP_CC_DIR}../ 
-	
-${OBJECTDIR}/lib_asserv/private/odo.o: lib_asserv/private/odo.c  nbproject/Makefile-${CND_CONF}.mk
-	@${MKDIR} "${OBJECTDIR}/lib_asserv/private" 
-	@${RM} ${OBJECTDIR}/lib_asserv/private/odo.o.d 
-	@${RM} ${OBJECTDIR}/lib_asserv/private/odo.o 
-	${MP_CC} $(MP_EXTRA_CC_PRE)  lib_asserv/private/odo.c  -o ${OBJECTDIR}/lib_asserv/private/odo.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MMD -MF "${OBJECTDIR}/lib_asserv/private/odo.o.d"        -g -omf=elf -mlarge-code -mlarge-data -O0 -msmart-io=1 -Wall -msfr-warn=off
-	@${FIXDEPS} "${OBJECTDIR}/lib_asserv/private/odo.o.d" $(SILENT)  -rsi ${MP_CC_DIR}../ 
-	
-${OBJECTDIR}/lib_asserv/private/pid.o: lib_asserv/private/pid.c  nbproject/Makefile-${CND_CONF}.mk
-	@${MKDIR} "${OBJECTDIR}/lib_asserv/private" 
-	@${RM} ${OBJECTDIR}/lib_asserv/private/pid.o.d 
-	@${RM} ${OBJECTDIR}/lib_asserv/private/pid.o 
-	${MP_CC} $(MP_EXTRA_CC_PRE)  lib_asserv/private/pid.c  -o ${OBJECTDIR}/lib_asserv/private/pid.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MMD -MF "${OBJECTDIR}/lib_asserv/private/pid.o.d"        -g -omf=elf -mlarge-code -mlarge-data -O0 -msmart-io=1 -Wall -msfr-warn=off
-	@${FIXDEPS} "${OBJECTDIR}/lib_asserv/private/pid.o.d" $(SILENT)  -rsi ${MP_CC_DIR}../ 
-	
-${OBJECTDIR}/lib_asserv/private/tools.o: lib_asserv/private/tools.c  nbproject/Makefile-${CND_CONF}.mk
-	@${MKDIR} "${OBJECTDIR}/lib_asserv/private" 
-	@${RM} ${OBJECTDIR}/lib_asserv/private/tools.o.d 
-	@${RM} ${OBJECTDIR}/lib_asserv/private/tools.o 
-	${MP_CC} $(MP_EXTRA_CC_PRE)  lib_asserv/private/tools.c  -o ${OBJECTDIR}/lib_asserv/private/tools.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MMD -MF "${OBJECTDIR}/lib_asserv/private/tools.o.d"        -g -omf=elf -mlarge-code -mlarge-data -O0 -msmart-io=1 -Wall -msfr-warn=off
-	@${FIXDEPS} "${OBJECTDIR}/lib_asserv/private/tools.o.d" $(SILENT)  -rsi ${MP_CC_DIR}../ 
+${OBJECTDIR}/odo.o: odo.c  nbproject/Makefile-${CND_CONF}.mk
+	@${MKDIR} "${OBJECTDIR}" 
+	@${RM} ${OBJECTDIR}/odo.o.d 
+	@${RM} ${OBJECTDIR}/odo.o 
+	${MP_CC} $(MP_EXTRA_CC_PRE)  odo.c  -o ${OBJECTDIR}/odo.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MMD -MF "${OBJECTDIR}/odo.o.d"        -g -omf=elf -mlarge-code -mlarge-data -O0 -msmart-io=1 -Wall -msfr-warn=off
+	@${FIXDEPS} "${OBJECTDIR}/odo.o.d" $(SILENT)  -rsi ${MP_CC_DIR}../ 
 	
 ${OBJECTDIR}/user.o: user.c  nbproject/Makefile-${CND_CONF}.mk
 	@${MKDIR} "${OBJECTDIR}" 
@@ -250,6 +215,13 @@ ${OBJECTDIR}/actions_ax12.o: actions_ax12.c  nbproject/Makefile-${CND_CONF}.mk
 	@${RM} ${OBJECTDIR}/actions_ax12.o 
 	${MP_CC} $(MP_EXTRA_CC_PRE)  actions_ax12.c  -o ${OBJECTDIR}/actions_ax12.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MMD -MF "${OBJECTDIR}/actions_ax12.o.d"        -g -omf=elf -mlarge-code -mlarge-data -O0 -msmart-io=1 -Wall -msfr-warn=off
 	@${FIXDEPS} "${OBJECTDIR}/actions_ax12.o.d" $(SILENT)  -rsi ${MP_CC_DIR}../ 
+	
+${OBJECTDIR}/tools.o: tools.c  nbproject/Makefile-${CND_CONF}.mk
+	@${MKDIR} "${OBJECTDIR}" 
+	@${RM} ${OBJECTDIR}/tools.o.d 
+	@${RM} ${OBJECTDIR}/tools.o 
+	${MP_CC} $(MP_EXTRA_CC_PRE)  tools.c  -o ${OBJECTDIR}/tools.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MMD -MF "${OBJECTDIR}/tools.o.d"        -g -omf=elf -mlarge-code -mlarge-data -O0 -msmart-io=1 -Wall -msfr-warn=off
+	@${FIXDEPS} "${OBJECTDIR}/tools.o.d" $(SILENT)  -rsi ${MP_CC_DIR}../ 
 	
 endif
 

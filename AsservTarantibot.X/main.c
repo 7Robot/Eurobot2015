@@ -48,22 +48,30 @@ _FPOR(PWMPIN_ON);
 #include "motor.h"
 #include "actions_ax12.h"
 
+extern int Vcons_d;
+extern int Vcons_g;
+
+int temp=0;
 
 int main(int argc, char** argv) {
     //float valf = 0, sens = 1;
     Init_All();
+    
+    for (temp=0;temp<5;temp++)
+        __delay_ms(200);
+
+
     init_ax12();
 
-//    while(1){
-//        deploy();
-//        lacher();
-//        ranger();
-//
-//        __delay_ms(2000);
-//    }
-    
-    
+    while(1){
+        Vcons_d=8;
+        Vcons_g=8;
 
+        //deploy();
+        //lacher();
+        //ranger();
+        //__delay_ms(2000);
+    }
 }
 
 
