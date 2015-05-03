@@ -52,13 +52,17 @@ _FPOR(PWMPIN_ON);
 int main(int argc, char** argv) {
     //float valf = 0, sens = 1;
     Init_All();
-    motion_init();
     init_ax12();
-    while(1){
-        deploy();
-        lacher();
-        ranger();
-    }
+
+//    while(1){
+//        deploy();
+//        lacher();
+//        ranger();
+//
+//        __delay_ms(2000);
+//    }
+    
+    
 
 }
 

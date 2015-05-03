@@ -130,66 +130,6 @@ void Init_CN()
 
 void __attribute__((interrupt,auto_psv)) _T2Interrupt(void) {
 
-    // compteurs QEI gauche et droit
-    // commandes gauches et droite
-
-   // récupération des données des compteurs qei gauche et droit
-   // tics_g = (int)POS1CNT;
-   // tics_d = (int)POS2CNT;
-   // effectuer un pas de déplacement
-   //motion_step(tics_g,tics_d, &commande_g, &commande_d);
-   //printf("TicsG%d TicsD%d \n\r",tics_g,tics_d);
-   // mettre ici les pwm gauche et droit
-
-//    float diff_g=100*(tics_g-old_tics_g);
-//    float diff_d=100*(tics_d-old_tics_d);
-//
-//    float diff_cons_g=100*0.01;
-//    float diff_cons_d=100*0.01;
-//
-//    old_tics_g=tics_g;
-//    old_tics_d=tics_d;
-//
-//    float erreur_g=diff_cons_g-diff_g;
-//    float erreur_d=diff_cons_d-diff_d;
-//
-//    diff_cons_g_I=diff_cons_g_I+erreur_g;
-//    diff_cons_d_I=diff_cons_d_I+erreur_g;
-//
-//    commande_g=400*erreur_g+diff_cons_g_I;
-//    commande_d=400*erreur_d+diff_cons_d_I;
-//
-//    commande_g=commande_g*(commande_g>0);
-//    commande_d=commande_d*(commande_d>0);
-/*
-    int tics_d;
-    int tics_g;
-    int tics_d_old=0;
-    int tics_g_old=0;
-
-    int V_d;
-    int V_g;
-    int Vcons_d=100;
-    int Vcons_g=100;
-
-    int erreur_d = 0;
-    int erreur_g = 0;
-
-    int somme_erreur_d = 0 ;
-    int somme_erreur_g = 0 ;
-
-    int erreur_d_old = 0;
-    int erreur_g_old = 0;
-
-    int var_erreur_d = 0;
-    int var_erreur_g = 0;
-
-    float commande_d = 0;
-    float commande_g = 0;
-
-    float Kp=1;
-    float Ki=0;
-    float Kd=0;
 
     ////////////////// ACQUISITION NOUVELLE VALEUR DE VITESSE //////////////////
     V_d = tics_d - tics_d_old;
@@ -227,7 +167,7 @@ void __attribute__((interrupt,auto_psv)) _T2Interrupt(void) {
     //printf("TicsG%d TicsD%d \n\r",tics_g,tics_d);
     //printf("diff_g%f diff_d%f \n\r",diff_g,diff_d);
 
-    printf("diff_cons_g_I%f diff_cons_d_I%f \n\r",diff_cons_g_I,diff_cons_d_I);
+    //printf("diff_cons_g_I%f diff_cons_d_I%f \n\r",diff_cons_g_I,diff_cons_d_I);
     // on baisse le flag*/
    motion_step(tics_g,tics_d, &commande_g, &commande_d);
     // mettre ici les pwm gauche et droit
