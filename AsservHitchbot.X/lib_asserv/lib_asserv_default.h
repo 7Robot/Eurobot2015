@@ -1,6 +1,8 @@
 #ifndef _LIB_ASSERV_DEFAULT_H_
 #define _LIB_ASSERV_DEFAULT_H_
 
+#include "../communication.h"
+
 #ifndef NULL
 #define NULL 0
 #endif
@@ -31,7 +33,7 @@
 #endif
 
 #ifndef DEFAULT_PERIOD
-#define DEFAULT_PERIOD 0.005
+#define DEFAULT_PERIOD 0.01
 #endif
 
 /*############################################################################*/
@@ -42,7 +44,7 @@
 #define DEFAULT_ASSERV_MODE ASSERV_MODE_OFF
 #endif
 #ifndef DEFAULT_STOP_DISTANCE
-#define DEFAULT_STOP_DISTANCE 0.0008
+#define DEFAULT_STOP_DISTANCE 0.001
 #endif
 
 /*############################################################################*/
