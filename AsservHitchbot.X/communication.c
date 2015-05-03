@@ -94,6 +94,17 @@ void SelectActionFromPi()
             motion_free();
         }
 
+        if(ReceivedStringFromPi[1]=='C' && ReceivedStringFromPi[2]=='H' && ReceivedStringFromPi[3]=='A' && ReceivedStringFromPi[4]=='R')
+    {
+            charg_spot();
+        }
+
 
     }
 
+void SendDone(void)
+{
+      int i = 0;
+        printf("done");
+        for (i=0;i<10;i++) {}
+}

@@ -53,15 +53,9 @@ _FPOR(PWMPIN_ON);
 int main(int argc, char** argv) {
     Init_All();
 
-    Position test = {0.1,0,0};
-
-    motion_pos(test);
-    __delay_ms(1000);
-    test.x = 0.2;
-
-
     while (1) // boucle principale
     {
+        __delay_ms(10);
     }
 }
 
