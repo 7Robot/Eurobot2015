@@ -87,7 +87,6 @@ void motion_angle(float abs_angle); // tourner pour être à un angle (absolu) a
 
 // checker si le déplacement est terminé
 int motion_done();
-void done(); // callback
 
 // vérifier qu'on est pas bloqué par un obstacle
 void check_blocked(Speed speed,Speed order);

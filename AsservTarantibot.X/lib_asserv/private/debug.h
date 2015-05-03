@@ -1,7 +1,7 @@
 #ifndef _DEBUG_H_
 #define _DEBUG_H_
 
-#define DEBUG_COUNT_MAX 100
+#define DEBUG_COUNT_MAX 800
 
 // pour le réglage de l'asserv (tableaux à récupérer en mode debug)
 typedef struct {

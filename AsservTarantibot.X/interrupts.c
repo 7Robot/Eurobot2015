@@ -11,9 +11,9 @@
 #include "user.h"
 #include <libpic30.h>
 //#include "tests.h"
-#include "motion.h"
 #include "motor.h"
 #include "user.h"
+#include "lib_asserv/lib_asserv.h"
 //#include "ax12.h"
 //#include "atp-asserv.h"
 //#include "actions_ax12.h"
@@ -130,6 +130,7 @@ void Init_CN()
 
 void __attribute__((interrupt,auto_psv)) _T2Interrupt(void) {
 
+
     ////////////////// ACQUISITION NOUVELLE VALEUR DE VITESSE //////////////////
     V_d = tics_d - tics_d_old;
     V_g = tics_g - tics_g_old;
@@ -169,8 +170,8 @@ void __attribute__((interrupt,auto_psv)) _T2Interrupt(void) {
     printf("erreur_g%d erreur_d%d \n\r",erreur_g,erreur_d);
     //printf("TicsG%d TicsD%d \n\r",tics_g,tics_d);
     //printf("diff_g%f diff_d%f \n\r",diff_g,diff_d);
-    //printf("diff_cons_g_I%f diff_cons_d_I%f \n\r",diff_cons_g_I,diff_cons_d_I);
 
+    //printf("diff_cons_g_I%f diff_cons_d_I%f \n\r",diff_cons_g_I,diff_cons_d_I);
     _T2IF = 0;    // on baisse le flag
 }
 

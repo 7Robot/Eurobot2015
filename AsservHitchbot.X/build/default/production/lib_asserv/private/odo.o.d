@@ -7,4 +7,5 @@ lib_asserv/private/motion.h  \
 lib_asserv/private/odo.h  \
  lib_asserv/private/debug.h  \
 lib_asserv/private/../lib_asserv_default.h  \
- lib_asserv/private/tools.h 
+ lib_asserv/private/../../communication.h  \
+lib_asserv/private/tools.h 

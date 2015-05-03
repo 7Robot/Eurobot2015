@@ -19,5 +19,7 @@
 void choose_arm(int);
 void Init_ax12(void);
 void charg_spot(void);
+void charg_last_spot(void);
+void release (void);
 
 #endif	/* ACTIONS_AX12_H */

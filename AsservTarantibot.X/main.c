@@ -42,7 +42,8 @@ _FPOR(PWMPIN_ON);
 #include "qei.h"           // QEI definitions for easier use
 #include <libpic30.h>
 #include "ax12.h"
-#include "motion.h"
+#include "lib_asserv/lib_asserv_default.h"
+#include "lib_asserv/lib_asserv.h"
 
 #include "motor.h"
 #include "actions_ax12.h"
@@ -59,11 +60,17 @@ int main(int argc, char** argv) {
     for (temp=0;temp<5;temp++)
         __delay_ms(200);
 
-    Vcons_d=8;
-    Vcons_g=8;
 
-    while (1) // boucle principale
-    {
+    init_ax12();
+
+    while(1){
+        Vcons_d=8;
+        Vcons_g=8;
+
+        //deploy();
+        //lacher();
+        //ranger();
+        //__delay_ms(2000);
 
     }
 }
