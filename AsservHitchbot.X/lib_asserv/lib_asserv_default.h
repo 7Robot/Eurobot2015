@@ -1,6 +1,8 @@
 #ifndef _LIB_ASSERV_DEFAULT_H_
 #define _LIB_ASSERV_DEFAULT_H_
 
+#include "../communication.h"
+
 #ifndef NULL
 #define NULL 0
 #endif
@@ -31,7 +33,7 @@
 #endif
 
 #ifndef DEFAULT_PERIOD
-#define DEFAULT_PERIOD 0.005
+#define DEFAULT_PERIOD 0.01
 #endif
 
 /*############################################################################*/

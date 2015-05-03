@@ -6,7 +6,6 @@
 #include "uart.h"
 #include "../lib_asserv_default.h"
 #include <math.h>
-
 #include "../../communication.h"
 
 /******************************    Variables    *******************************/
