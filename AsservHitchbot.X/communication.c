@@ -30,6 +30,7 @@ void AnalyzeCommandFromPi (void)
     // If byte is "$" symbol, the string can be valid
     if (b=='$')
     {
+        CharFromPiNumber = 0;
         ReceivedStringFromPi[CharFromPiNumber] = b;
         CharFromPiNumber++;
     }
@@ -45,7 +46,6 @@ void AnalyzeCommandFromPi (void)
         ReceivedStringFromPi[CharFromPiNumber] = b;
         /*** Full frame received and available in ReceivedStringFromPi ***/
         SelectActionFromPi();
-        CharFromPiNumber=0;
     }
 }
 
