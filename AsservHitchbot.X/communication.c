@@ -97,6 +97,18 @@ void SelectActionFromPi()
             charg_spot();
         }
 
+            if(ReceivedStringFromPi[1]=='C' && ReceivedStringFromPi[2]=='H' && ReceivedStringFromPi[3]=='A' && ReceivedStringFromPi[4]=='L')
+    {
+            charg_last_spot();
+        }
+
+
+            if(ReceivedStringFromPi[1]=='R' && ReceivedStringFromPi[2]=='E' && ReceivedStringFromPi[3]=='L' && ReceivedStringFromPi[4]=='E')
+    {
+            release();
+        }
+
+
 
     }
 

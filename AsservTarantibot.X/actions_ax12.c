@@ -50,7 +50,7 @@ void init_ax12() {
     __delay_ms(40);
     PutAX(coude, AX_MOVING_SPEED, 500);
     __delay_ms(40);
-    PutAX(verseur_g, AX_MOVING_SPEED, 5000);
+    PutAX(verseur_g, AX_MOVING_SPEED, 500);
     __delay_ms(40);
     PutAX(pince_g, AX_MOVING_SPEED, 500);
     __delay_ms(40);

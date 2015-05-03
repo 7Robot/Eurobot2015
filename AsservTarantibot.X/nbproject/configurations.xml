@@ -5,15 +5,17 @@
                    displayName="Header Files"
                    projectFiles="true">
       <logicalFolder name="f1" displayName="H_Asservissement" projectFiles="true">
-        <itemPath>asserv.h</itemPath>
-        <itemPath>config.h</itemPath>
-        <itemPath>odo.h</itemPath>
+        <itemPath>lib_asserv/private/asserv.h</itemPath>
+        <itemPath>lib_asserv/private/debug.h</itemPath>
+        <itemPath>lib_asserv/private/extern_globals_asserv.h</itemPath>
+        <itemPath>lib_asserv/private/motion.h</itemPath>
+        <itemPath>lib_asserv/private/odo.h</itemPath>
+        <itemPath>lib_asserv/private/pid.h</itemPath>
+        <itemPath>lib_asserv/private/tools.h</itemPath>
       </logicalFolder>
       <itemPath>user.h</itemPath>
       <itemPath>ax12.h</itemPath>
       <itemPath>actions_ax12.h</itemPath>
-      <itemPath>motion.h</itemPath>
-      <itemPath>tools.h</itemPath>
     </logicalFolder>
     <logicalFolder name="LinkerScript"
                    displayName="Linker Files"
@@ -23,9 +25,12 @@
                    displayName="Source Files"
                    projectFiles="true">
       <logicalFolder name="f2" displayName="Asservissement" projectFiles="true">
-        <itemPath>asserv.c</itemPath>
-        <itemPath>motion.c</itemPath>
-        <itemPath>odo.c</itemPath>
+        <itemPath>lib_asserv/private/asserv.c</itemPath>
+        <itemPath>lib_asserv/private/debug.c</itemPath>
+        <itemPath>lib_asserv/private/motion.c</itemPath>
+        <itemPath>lib_asserv/private/odo.c</itemPath>
+        <itemPath>lib_asserv/private/pid.c</itemPath>
+        <itemPath>lib_asserv/private/tools.c</itemPath>
       </logicalFolder>
       <logicalFolder name="f1" displayName="ConfigurationSRC" projectFiles="true">
         <itemPath>user.c</itemPath>
@@ -35,7 +40,6 @@
       <itemPath>motor.c</itemPath>
       <itemPath>ax12.c</itemPath>
       <itemPath>actions_ax12.c</itemPath>
-      <itemPath>tools.c</itemPath>
     </logicalFolder>
     <logicalFolder name="ExternalFiles"
                    displayName="Important Files"
@@ -57,7 +61,7 @@
         <targetPluginBoard></targetPluginBoard>
         <platformTool>PICkit3PlatformTool</platformTool>
         <languageToolchain>XC16</languageToolchain>
-        <languageToolchainVersion>1.24</languageToolchainVersion>
+        <languageToolchainVersion>1.23</languageToolchainVersion>
         <platform>2</platform>
       </toolsSet>
       <compileType>

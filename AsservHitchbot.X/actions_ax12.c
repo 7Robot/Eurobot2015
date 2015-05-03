@@ -52,7 +52,7 @@ void Init_ax12() {
     __delay_ms(500);
     PutAX(pince, AX_GOAL_POSITION, 260);
     __delay_ms(500);
-    PutAX(tub, AX_GOAL_POSITION, 400);
+    PutAX(tub, AX_GOAL_POSITION, 350);
 
     __delay_ms(40);
 
@@ -61,12 +61,12 @@ void Init_ax12() {
 void charg_spot(void)
 {
 //int k;
-    PutAX(rabd,AX_GOAL_POSITION,450); //rabat la piece 700
+    PutAX(rabd,AX_GOAL_POSITION,300); //rabat la piece 700
     __delay_ms(700);
 //        while (  != 330) GetAX(rab,AX_PRESENT_POSITION); 200
-    PutAX(rabd,AX_GOAL_POSITION,600); //reouvre
+    PutAX(rabd,AX_GOAL_POSITION,700); //reouvre
     __delay_ms(700);
-    PutAX(rabg,AX_GOAL_POSITION,690); //rabat la piece 700
+    PutAX(rabg,AX_GOAL_POSITION,850); //rabat la piece 700
     __delay_ms(700);
 //        while (  != 330) GetAX(rab,AX_PRESENT_POSITION); 200
     PutAX(rabg,AX_GOAL_POSITION,390); //reouvre
@@ -86,6 +86,7 @@ void charg_spot(void)
 //        while (   != 170) GetAX(pince,AX_PRESENT_POSITION);
     PutAX(asc,AX_GOAL_POSITION,320); //remonte la pince
     __delay_ms(1000);
+    
 //        while (   != 320) GetAX(asc,AX_PRESENT_POSITION);
     PutAX(tub,AX_GOAL_POSITION,270); //referme le tube
     __delay_ms(1000);
@@ -93,6 +94,43 @@ void charg_spot(void)
     PutAX(pince,AX_GOAL_POSITION,255); //ouvre la pince
     __delay_ms(1000);
 //        while (   != 255) GetAX(pince,AX_PRESENT_POSITION);
+
+    SendDone();
+}
+
+void charg_last_spot(void)
+{
+//int k;
+    PutAX(rabd,AX_GOAL_POSITION,300); //rabat la piece 700
+    __delay_ms(700);
+//        while (  != 330) GetAX(rab,AX_PRESENT_POSITION); 200
+    PutAX(rabd,AX_GOAL_POSITION,700); //reouvre
+    __delay_ms(700);
+    PutAX(rabg,AX_GOAL_POSITION,850); //rabat la piece 700
+    __delay_ms(700);
+//        while (  != 330) GetAX(rab,AX_PRESENT_POSITION); 200
+    PutAX(rabg,AX_GOAL_POSITION,390); //reouvre
+    __delay_ms(50);
+//        while (  != 350) GetAX(tub,AX_PRESENT_POSITION);
+    PutAX(pince,AX_GOAL_POSITION,255); //ouvre la pince
+    __delay_ms(50);
+//        while (   != 255) GetAX(pince,AX_PRESENT_POSITION);
+    PutAX(asc,AX_GOAL_POSITION,945); //descent la pince
+    __delay_ms(1000);
+//        while (   != 945) GetAX(asc,AX_PRESENT_POSITION);
+    PutAX(pince,AX_GOAL_POSITION,170); //ferme la pince
+    __delay_ms(1000);
+
+    SendDone();
+}
+
+void release (void) {
+
+    PutAX(tub,AX_GOAL_POSITION,930); //ouvre reservoir
+    __delay_ms(700);
+    PutAX(pince,AX_GOAL_POSITION,630); //ouvre pince
+    __delay_ms(700);
+
     SendDone();
 }
 

@@ -44,7 +44,7 @@
 #define DEFAULT_ASSERV_MODE ASSERV_MODE_OFF
 #endif
 #ifndef DEFAULT_STOP_DISTANCE
-#define DEFAULT_STOP_DISTANCE 0.0008
+#define DEFAULT_STOP_DISTANCE 0.001
 #endif
 
 /*############################################################################*/
