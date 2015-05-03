@@ -1,6 +1,8 @@
 #ifndef _LIB_ASSERV_DEFAULT_H_
 #define _LIB_ASSERV_DEFAULT_H_
 
+#include "../main.h"
+
 #ifndef NULL
 #define NULL 0
 #endif

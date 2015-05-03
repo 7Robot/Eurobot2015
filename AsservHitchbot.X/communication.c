@@ -103,6 +103,7 @@ void SelectActionFromPi()
 void SendDone(void)
 {
       int i = 0;
+      __delay_ms(40);
         printf("done");
-        for (i=0;i<10;i++) {}
+      __delay_ms(40);
 }
