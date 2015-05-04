@@ -1,7 +1,7 @@
 /*
 * Sick
 * Compiler : Microchip xC16
-* �C : 33FJ64MC804
+* �C : 33FJ64MC804
 * Mai 2014
 *    ____________      _           _
 *   |___  /| ___ \    | |         | |
@@ -45,7 +45,7 @@ volatile int channel = 0;		// canal de conversion actuel
 volatile uint16_t Value_Sick[NUMBER_OF_SICK] = {0};		// full of 0	// récupère la valeur de l'ADC
 volatile uint16_t Old_Sector[NUMBER_OF_SICK] = {0};		// full of 0	// tout ou rien sur les seuils
 
-volatile uint16_t Threshold[NUMBER_OF_SICK] = {DEFAULT_THRESHOLD, DEFAULT_THRESHOLD, DEFAULT_THRESHOLD, DEFAULT_THRESHOLD};
+volatile uint16_t Threshold[NUMBER_OF_SICK] = {DEFAULT_THRESHOLD};
 
 /******************************************************************************/
 /* User Functions                                                             */
