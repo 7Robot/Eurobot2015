@@ -70,9 +70,7 @@ int main(int argc, char** argv) {
     char done_d=0;
     char done_g=0;
 
-    //init_ax12();
-
-    deploy();
+    init_ax12();
 
     while(1){
 
@@ -137,7 +135,8 @@ int main(int argc, char** argv) {
                     done_d=0;
                     done_g=0;
                     reset_asserv=1;
-                    __delay_ms(1500);
+                    deploy();
+                    __delay_ms(1000);
                     reset_asserv=0;
                 }
             }
@@ -146,13 +145,13 @@ int main(int argc, char** argv) {
             ////////////////////////////////////////////////////////////////////
             else if (state==2)
             {
-                if (tics_d<900) Vcons_d=3;
+                if (tics_d<400) Vcons_d=3;
                 else
                 {
                     Vcons_d=0;
                     done_d=1;
                 }
-                if (tics_g<900) Vcons_g=3;
+                if (tics_g<400) Vcons_g=3;
                 else
                 {
                     Vcons_g=0;
@@ -165,11 +164,38 @@ int main(int argc, char** argv) {
                     done_d=0;
                     done_g=0;
                     reset_asserv=1;
+                    __delay_ms(2000);
+                    reset_asserv=0;
+                }
+            }
+            ///////////////////////// QUATRIEME ETAT ///////////////////////////
+            //            On finit de monter les fucking marches              //
+            ////////////////////////////////////////////////////////////////////
+            else if (state==3)
+            {
+                if (tics_d<500) Vcons_d=3;
+                else
+                {
+                    Vcons_d=0;
+                    done_d=1;
+                }
+                if (tics_g<500) Vcons_g=3;
+                else
+                {
+                    Vcons_g=0;
+                    done_g=1;
+                }
+                // Fin du deuxième état si le compte est bon à gauche et à droite
+                if (done_d==1 && done_g==1)
+                {
+                    state=4;
+                    done_d=0;
+                    done_g=0;
+                    reset_asserv=1;
                     __delay_ms(1000);
                     reset_asserv=0;
                 }
             }
-
         }
 
         ////////////////////////////////////////////////////////////////////////
