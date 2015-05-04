@@ -116,14 +116,14 @@ void SelectActionFromPi()
 
 void SendDone(void)
 {
-      __delay_ms(100);
+      __delay_ms(50);
         printf("$DONE;");
-      __delay_ms(100);
+      __delay_ms(50);
 }
 
 void SendFailAX12(void)
 {
-      __delay_ms(100);
+      __delay_ms(50);
         printf("$FAAX;");
-      __delay_ms(100);
+      __delay_ms(50);
 }
