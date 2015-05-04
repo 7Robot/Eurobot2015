@@ -9,6 +9,7 @@
 #include "lib_asserv/lib_asserv.h"
 #include "motor.h"
 #include "uart.h"
+#include "sick.h"
 #include "actions_ax12.h"
 #include "communication.h"
 #include "lib_asserv/private/tools.h"

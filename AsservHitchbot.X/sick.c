@@ -1,7 +1,7 @@
 /*
 * Sick
 * Compiler : Microchip xC16
-* ï¿½C : 33FJ64MC804
+* µC : 33FJ64MC804
 * Mai 2014
 *    ____________      _           _
 *   |___  /| ___ \    | |         | |
@@ -42,7 +42,7 @@ volatile int channel = 0;
 volatile uint16_t Sector[NUMBER_OF_SICK] = {0,0,0,0};
 volatile uint16_t Old_Sector[NUMBER_OF_SICK] = {0,0,0,0};
 
-volatile uint16_t Threshold[NUMBER_OF_SICK] = {DEFAULT_THRESHOLD, DEFAULT_THRESHOLD, DEFAULT_THRESHOLD, DEFAULT_THRESHOLD};
+volatile uint16_t Threshold[NUMBER_OF_SICK] = {DEFAULT_THRESHOLD};
 
 /******************************************************************************/
 /* User Functions                                                             */

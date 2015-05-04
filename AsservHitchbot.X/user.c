@@ -34,7 +34,7 @@ void ConfigureOscillator(void)
 
 
 // initialize all things
-void Init_All(){
+void Init_All(int callback){
     /* Configure the oscillator for the device */
     ConfigureOscillator();
     /* Initialize IO ports and peripherals */
@@ -43,10 +43,12 @@ void Init_All(){
     Init_PWM();
     Init_QEI();
     Init_ax12();
-    //InitSick();
+    InitSick();
     motion_init(); // start asserv
     //Init_CN();
-
+    if(callback) {
+        SendDone();
+    }
 }
 
 /*

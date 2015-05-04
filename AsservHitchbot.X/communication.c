@@ -75,46 +75,48 @@ void SelectActionFromPi()
         ReceivedStringFromPi[cursorPosition+floatLength] = ';';
         
         motion_pos(MOVE);
-       // for (k=0;k<50;k++) {
-        //   ReceivedStringFromPi[k]=0;
-       // }
-        }
-
-        if(ReceivedStringFromPi[1]=='A' && ReceivedStringFromPi[2]=='X' && ReceivedStringFromPi[3]=='I' && ReceivedStringFromPi[4]=='N')
-    {
-
-            Init_ax12();
-        }
-
-        if(ReceivedStringFromPi[1]=='F' && ReceivedStringFromPi[2]=='R' && ReceivedStringFromPi[3]=='E' && ReceivedStringFromPi[4]=='E')
-    {
-
-            motion_free();
-        }
-
-        if(ReceivedStringFromPi[1]=='C' && ReceivedStringFromPi[2]=='H' && ReceivedStringFromPi[3]=='A' && ReceivedStringFromPi[4]=='R')
-    {
-            charg_spot();
-        }
-
-            if(ReceivedStringFromPi[1]=='C' && ReceivedStringFromPi[2]=='H' && ReceivedStringFromPi[3]=='A' && ReceivedStringFromPi[4]=='L')
-    {
-            charg_last_spot();
-        }
-
-
-            if(ReceivedStringFromPi[1]=='R' && ReceivedStringFromPi[2]=='E' && ReceivedStringFromPi[3]=='L' && ReceivedStringFromPi[4]=='E')
-    {
-            release();
-        }
-
-
-
     }
+
+    // AXIN
+    if(ReceivedStringFromPi[1]=='A' && ReceivedStringFromPi[2]=='X' && ReceivedStringFromPi[3]=='I' && ReceivedStringFromPi[4]=='N')
+    {
+        Init_ax12();
+    }
+
+    // FREE
+    if(ReceivedStringFromPi[1]=='F' && ReceivedStringFromPi[2]=='R' && ReceivedStringFromPi[3]=='E' && ReceivedStringFromPi[4]=='E')
+    {
+        motion_free();
+    }
+
+    // CHAR
+    if(ReceivedStringFromPi[1]=='C' && ReceivedStringFromPi[2]=='H' && ReceivedStringFromPi[3]=='A' && ReceivedStringFromPi[4]=='R')
+    {
+        charg_spot();
+    }
+
+    // CHAL
+    if(ReceivedStringFromPi[1]=='C' && ReceivedStringFromPi[2]=='H' && ReceivedStringFromPi[3]=='A' && ReceivedStringFromPi[4]=='L')
+    {
+        charg_last_spot();
+    }
+
+    // RELE
+    if(ReceivedStringFromPi[1]=='R' && ReceivedStringFromPi[2]=='E' && ReceivedStringFromPi[3]=='L' && ReceivedStringFromPi[4]=='E')
+    {
+        release();
+    }
+
+    // INIT
+    if(ReceivedStringFromPi[1]=='I' && ReceivedStringFromPi[2]=='N' && ReceivedStringFromPi[3]=='I' && ReceivedStringFromPi[4]=='T')
+    {
+        Init_All(1);
+    }
+}
 
 void SendDone(void)
 {
       __delay_ms(100);
-        printf("done");
+        printf("$DONE;");
       __delay_ms(100);
 }

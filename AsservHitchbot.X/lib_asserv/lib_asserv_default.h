@@ -17,7 +17,7 @@
 #endif
 
 #ifndef DEFAULT_CONSTRAINT_A_MAX
-#define DEFAULT_CONSTRAINT_A_MAX {0.5, 0.5, 0.10}
+#define DEFAULT_CONSTRAINT_A_MAX {0.2, 0.2, 0.10}
 #endif
 
 #ifndef BLOCK_LIMIT
