@@ -19,7 +19,7 @@
 #define BAUDRATEAX12 57600
 #define BRGVALAX12 ((FCY / BAUDRATEAX12 / 16) - 1)
 
-
+#define DEBUG_SICK
 
 /******************************************************************************/
 /* System Function Prototypes                                                 */

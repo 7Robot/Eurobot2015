@@ -21,13 +21,14 @@
 
 #define NUMBER_OF_SICK 4
 
-#define SICK_AVANT_GAUCHE   4 //AN4
-#define SICK_AVANT_DROIT    5 //AN5
-#define SICK_ARRIERE_GAUCHE 6 //AN6
-#define SICK_ARRIERE_DROIT  7 //AN7
+#define AN_CH_SICK_ARRIERE_DROIT  7 //AN7		=> // an_sick 1
+#define AN_CH_SICK_ARRIERE_GAUCHE 6 //AN6		=> // an_sick 2
+#define AN_CH_SICK_AVANT_DROIT    5 //AN5		=> // an_sick 3
+#define AN_CH_SICK_AVANT_GAUCHE   4 //AN4		=> // an_sick 4
+
 
 #define DEFAULT_THRESHOLD 100 // 300 ~> 16 cm
-#define MARGIN_SICK 30
+#define MARGIN_SICK 30		// en réalité, plutot un triger de schmitt
 
 /******************************************************************************/
 /* Function Prototypes                                                        */

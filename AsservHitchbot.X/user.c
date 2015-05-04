@@ -9,7 +9,7 @@
 //#include "tests.h"
 //#include "atp-asserv.h"
 //#include "atp.h"
-//#include "sick.h"
+#include "sick.h"
 
 #include "main.h"
 
