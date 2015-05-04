@@ -120,3 +120,10 @@ void SendDone(void)
         printf("$DONE;");
       __delay_ms(100);
 }
+
+void SendFailAX12(void)
+{
+      __delay_ms(100);
+        printf("$FAAX;");
+      __delay_ms(100);
+}

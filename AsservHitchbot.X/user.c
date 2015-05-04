@@ -45,6 +45,7 @@ void Init_All(int callback){
     Init_ax12();
     InitSick();
     motion_init(); // start asserv
+    TRISAbits.TRISA9 = 1;
     //Init_CN();
     if(callback) {
         SendDone();
