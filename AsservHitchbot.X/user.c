@@ -9,7 +9,7 @@
 //#include "tests.h"
 //#include "atp-asserv.h"
 //#include "atp.h"
-//#include "sick.h"
+#include "sick.h"
 
 #include "main.h"
 
@@ -43,7 +43,7 @@ void Init_All(){
     Init_PWM();
     Init_QEI();
     Init_ax12();
-    //InitSick();
+    InitSick();
     motion_init(); // start asserv
     //Init_CN();
 

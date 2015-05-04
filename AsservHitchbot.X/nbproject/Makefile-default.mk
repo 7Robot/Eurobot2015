@@ -19,7 +19,7 @@ endif
 endif
 
 # Environment
-MKDIR=mkdir -p
+MKDIR=gnumkdir -p
 RM=rm -f 
 MV=mv 
 CP=cp 
@@ -45,17 +45,17 @@ OBJECTDIR=build/${CND_CONF}/${IMAGE_TYPE}
 DISTDIR=dist/${CND_CONF}/${IMAGE_TYPE}
 
 # Source Files Quoted if spaced
-SOURCEFILES_QUOTED_IF_SPACED=lib_asserv/private/asserv.c lib_asserv/private/debug.c lib_asserv/private/motion.c lib_asserv/private/odo.c lib_asserv/private/pid.c lib_asserv/private/tools.c user.c interrupts.c main.c motor.c ax12.c actions_ax12.c communication.c
+SOURCEFILES_QUOTED_IF_SPACED=lib_asserv/private/asserv.c lib_asserv/private/debug.c lib_asserv/private/motion.c lib_asserv/private/odo.c lib_asserv/private/pid.c lib_asserv/private/tools.c user.c interrupts.c main.c motor.c ax12.c actions_ax12.c communication.c sick.c
 
 # Object Files Quoted if spaced
-OBJECTFILES_QUOTED_IF_SPACED=${OBJECTDIR}/lib_asserv/private/asserv.o ${OBJECTDIR}/lib_asserv/private/debug.o ${OBJECTDIR}/lib_asserv/private/motion.o ${OBJECTDIR}/lib_asserv/private/odo.o ${OBJECTDIR}/lib_asserv/private/pid.o ${OBJECTDIR}/lib_asserv/private/tools.o ${OBJECTDIR}/user.o ${OBJECTDIR}/interrupts.o ${OBJECTDIR}/main.o ${OBJECTDIR}/motor.o ${OBJECTDIR}/ax12.o ${OBJECTDIR}/actions_ax12.o ${OBJECTDIR}/communication.o
-POSSIBLE_DEPFILES=${OBJECTDIR}/lib_asserv/private/asserv.o.d ${OBJECTDIR}/lib_asserv/private/debug.o.d ${OBJECTDIR}/lib_asserv/private/motion.o.d ${OBJECTDIR}/lib_asserv/private/odo.o.d ${OBJECTDIR}/lib_asserv/private/pid.o.d ${OBJECTDIR}/lib_asserv/private/tools.o.d ${OBJECTDIR}/user.o.d ${OBJECTDIR}/interrupts.o.d ${OBJECTDIR}/main.o.d ${OBJECTDIR}/motor.o.d ${OBJECTDIR}/ax12.o.d ${OBJECTDIR}/actions_ax12.o.d ${OBJECTDIR}/communication.o.d
+OBJECTFILES_QUOTED_IF_SPACED=${OBJECTDIR}/lib_asserv/private/asserv.o ${OBJECTDIR}/lib_asserv/private/debug.o ${OBJECTDIR}/lib_asserv/private/motion.o ${OBJECTDIR}/lib_asserv/private/odo.o ${OBJECTDIR}/lib_asserv/private/pid.o ${OBJECTDIR}/lib_asserv/private/tools.o ${OBJECTDIR}/user.o ${OBJECTDIR}/interrupts.o ${OBJECTDIR}/main.o ${OBJECTDIR}/motor.o ${OBJECTDIR}/ax12.o ${OBJECTDIR}/actions_ax12.o ${OBJECTDIR}/communication.o ${OBJECTDIR}/sick.o
+POSSIBLE_DEPFILES=${OBJECTDIR}/lib_asserv/private/asserv.o.d ${OBJECTDIR}/lib_asserv/private/debug.o.d ${OBJECTDIR}/lib_asserv/private/motion.o.d ${OBJECTDIR}/lib_asserv/private/odo.o.d ${OBJECTDIR}/lib_asserv/private/pid.o.d ${OBJECTDIR}/lib_asserv/private/tools.o.d ${OBJECTDIR}/user.o.d ${OBJECTDIR}/interrupts.o.d ${OBJECTDIR}/main.o.d ${OBJECTDIR}/motor.o.d ${OBJECTDIR}/ax12.o.d ${OBJECTDIR}/actions_ax12.o.d ${OBJECTDIR}/communication.o.d ${OBJECTDIR}/sick.o.d
 
 # Object Files
-OBJECTFILES=${OBJECTDIR}/lib_asserv/private/asserv.o ${OBJECTDIR}/lib_asserv/private/debug.o ${OBJECTDIR}/lib_asserv/private/motion.o ${OBJECTDIR}/lib_asserv/private/odo.o ${OBJECTDIR}/lib_asserv/private/pid.o ${OBJECTDIR}/lib_asserv/private/tools.o ${OBJECTDIR}/user.o ${OBJECTDIR}/interrupts.o ${OBJECTDIR}/main.o ${OBJECTDIR}/motor.o ${OBJECTDIR}/ax12.o ${OBJECTDIR}/actions_ax12.o ${OBJECTDIR}/communication.o
+OBJECTFILES=${OBJECTDIR}/lib_asserv/private/asserv.o ${OBJECTDIR}/lib_asserv/private/debug.o ${OBJECTDIR}/lib_asserv/private/motion.o ${OBJECTDIR}/lib_asserv/private/odo.o ${OBJECTDIR}/lib_asserv/private/pid.o ${OBJECTDIR}/lib_asserv/private/tools.o ${OBJECTDIR}/user.o ${OBJECTDIR}/interrupts.o ${OBJECTDIR}/main.o ${OBJECTDIR}/motor.o ${OBJECTDIR}/ax12.o ${OBJECTDIR}/actions_ax12.o ${OBJECTDIR}/communication.o ${OBJECTDIR}/sick.o
 
 # Source Files
-SOURCEFILES=lib_asserv/private/asserv.c lib_asserv/private/debug.c lib_asserv/private/motion.c lib_asserv/private/odo.c lib_asserv/private/pid.c lib_asserv/private/tools.c user.c interrupts.c main.c motor.c ax12.c actions_ax12.c communication.c
+SOURCEFILES=lib_asserv/private/asserv.c lib_asserv/private/debug.c lib_asserv/private/motion.c lib_asserv/private/odo.c lib_asserv/private/pid.c lib_asserv/private/tools.c user.c interrupts.c main.c motor.c ax12.c actions_ax12.c communication.c sick.c
 
 
 CFLAGS=
@@ -173,6 +173,13 @@ ${OBJECTDIR}/communication.o: communication.c  nbproject/Makefile-${CND_CONF}.mk
 	${MP_CC} $(MP_EXTRA_CC_PRE)  communication.c  -o ${OBJECTDIR}/communication.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MMD -MF "${OBJECTDIR}/communication.o.d"      -g -D__DEBUG -D__MPLAB_DEBUGGER_PK3=1    -omf=elf -mlarge-code -mlarge-data -O0 -msmart-io=1 -Wall -msfr-warn=off
 	@${FIXDEPS} "${OBJECTDIR}/communication.o.d" $(SILENT)  -rsi ${MP_CC_DIR}../ 
 	
+${OBJECTDIR}/sick.o: sick.c  nbproject/Makefile-${CND_CONF}.mk
+	@${MKDIR} "${OBJECTDIR}" 
+	@${RM} ${OBJECTDIR}/sick.o.d 
+	@${RM} ${OBJECTDIR}/sick.o 
+	${MP_CC} $(MP_EXTRA_CC_PRE)  sick.c  -o ${OBJECTDIR}/sick.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MMD -MF "${OBJECTDIR}/sick.o.d"      -g -D__DEBUG -D__MPLAB_DEBUGGER_PK3=1    -omf=elf -mlarge-code -mlarge-data -O0 -msmart-io=1 -Wall -msfr-warn=off
+	@${FIXDEPS} "${OBJECTDIR}/sick.o.d" $(SILENT)  -rsi ${MP_CC_DIR}../ 
+	
 else
 ${OBJECTDIR}/lib_asserv/private/asserv.o: lib_asserv/private/asserv.c  nbproject/Makefile-${CND_CONF}.mk
 	@${MKDIR} "${OBJECTDIR}/lib_asserv/private" 
@@ -265,6 +272,13 @@ ${OBJECTDIR}/communication.o: communication.c  nbproject/Makefile-${CND_CONF}.mk
 	${MP_CC} $(MP_EXTRA_CC_PRE)  communication.c  -o ${OBJECTDIR}/communication.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MMD -MF "${OBJECTDIR}/communication.o.d"        -g -omf=elf -mlarge-code -mlarge-data -O0 -msmart-io=1 -Wall -msfr-warn=off
 	@${FIXDEPS} "${OBJECTDIR}/communication.o.d" $(SILENT)  -rsi ${MP_CC_DIR}../ 
 	
+${OBJECTDIR}/sick.o: sick.c  nbproject/Makefile-${CND_CONF}.mk
+	@${MKDIR} "${OBJECTDIR}" 
+	@${RM} ${OBJECTDIR}/sick.o.d 
+	@${RM} ${OBJECTDIR}/sick.o 
+	${MP_CC} $(MP_EXTRA_CC_PRE)  sick.c  -o ${OBJECTDIR}/sick.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MMD -MF "${OBJECTDIR}/sick.o.d"        -g -omf=elf -mlarge-code -mlarge-data -O0 -msmart-io=1 -Wall -msfr-warn=off
+	@${FIXDEPS} "${OBJECTDIR}/sick.o.d" $(SILENT)  -rsi ${MP_CC_DIR}../ 
+	
 endif
 
 # ------------------------------------------------------------------------------------
@@ -290,7 +304,7 @@ else
 dist/${CND_CONF}/${IMAGE_TYPE}/AsservHitchbot.X.${IMAGE_TYPE}.${OUTPUT_SUFFIX}: ${OBJECTFILES}  nbproject/Makefile-${CND_CONF}.mk   
 	@${MKDIR} dist/${CND_CONF}/${IMAGE_TYPE} 
 	${MP_CC} $(MP_EXTRA_LD_PRE)  -o dist/${CND_CONF}/${IMAGE_TYPE}/AsservHitchbot.X.${IMAGE_TYPE}.${DEBUGGABLE_SUFFIX}  ${OBJECTFILES_QUOTED_IF_SPACED}      -mcpu=$(MP_PROCESSOR_OPTION)        -omf=elf -Wl,,--defsym=__MPLAB_BUILD=1,$(MP_LINKER_FILE_OPTION),--stack=16,--check-sections,--data-init,--pack-data,--handles,--isr,--no-gc-sections,--fill-upper=0,--stackguard=16,--no-force-link,--smart-io,-Map="${DISTDIR}/${PROJECTNAME}.${IMAGE_TYPE}.map",--report-mem$(MP_EXTRA_LD_POST) 
-	${MP_CC_DIR}/xc16-bin2hex dist/${CND_CONF}/${IMAGE_TYPE}/AsservHitchbot.X.${IMAGE_TYPE}.${DEBUGGABLE_SUFFIX} -a  -omf=elf  
+	${MP_CC_DIR}\\xc16-bin2hex dist/${CND_CONF}/${IMAGE_TYPE}/AsservHitchbot.X.${IMAGE_TYPE}.${DEBUGGABLE_SUFFIX} -a  -omf=elf  
 	
 endif
 
@@ -310,7 +324,7 @@ endif
 # Enable dependency checking
 .dep.inc: .depcheck-impl
 
-DEPFILES=$(shell "${PATH_TO_IDE_BIN}"mplabwildcard ${POSSIBLE_DEPFILES})
+DEPFILES=$(shell mplabwildcard ${POSSIBLE_DEPFILES})
 ifneq (${DEPFILES},)
 include ${DEPFILES}
 endif

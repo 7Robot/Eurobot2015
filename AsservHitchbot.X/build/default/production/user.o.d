@@ -1,5 +1,6 @@
 build/default/production/user.o:  \
 user.c  \
+sick.h  \
 main.h  \
 user.h  \
 ax12.h  \
