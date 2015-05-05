@@ -102,6 +102,7 @@ void charg_spot(void)
     SendDone();
     }
     else {
+        SendFailAX12();
 
 
     }

@@ -12,10 +12,13 @@
 *.sym
 *.obj
 *.o
-*.o.d
 *.sdb
 *.obj.dmp
 *.map
+# ajout pepino :
+*.hex
+*.elf
+*.o.d
 
 # MPLAB-X folders
 nbproject

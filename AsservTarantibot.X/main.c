@@ -55,6 +55,7 @@ int tics_now_g=0;
 extern float Vcons_d;
 extern float Vcons_g;
 
+char reset_asserv=0;
 
 int temp=0;
 
@@ -62,7 +63,7 @@ int main(int argc, char** argv) {
     //float valf = 0, sens = 1;
     Init_All();
 
-    for (temp=0;temp<5;temp++)
+    for (temp=0;temp<4;temp++)
         __delay_ms(200);
 
     int state=0;
@@ -72,59 +73,194 @@ int main(int argc, char** argv) {
     init_ax12();
 
     while(1){
-        ///////////////////////////// PREMIER ETAT /////////////////////////////
-        if (state==0)
+
+    int BoutonCouleur=1;   // !!!!A REMPLACER PAR LA PIN DU BOUTON COULEUR !!!!
+
+        ////////////////////////////////////////////////////////////////////////
+        ///////////////////////////// EQUIPE VERTE /////////////////////////////
+        ////////////////////////////////////////////////////////////////////////
+
+        if (BoutonCouleur==1)
         {
-            if (tics_d-tics_now_d<1000) Vcons_d=8;
-            else
+            /////////////////////////// PREMIER ETAT ///////////////////////////
+            //                      On sort tout droit                        //
+            ////////////////////////////////////////////////////////////////////
+
+            if (state==0)
             {
-                Vcons_d=0;
-                done_d=1;
+                if (tics_d<1000) Vcons_d=4;
+                else
+                {
+                    Vcons_d=0;
+                    done_d=1;
+                }
+                if (tics_g<1000) Vcons_g=4;
+                else
+                {
+                    Vcons_g=0;
+                    done_g=1;
+                }
+                // Fin du premier état si le compte est bon à gauche et à droite
+                if (done_d==1 && done_g==1)
+                {
+                    state=1;
+                    done_d=0;
+                    done_g=0;
+                    reset_asserv=1;
+                    __delay_ms(1000);
+                    reset_asserv=0;
+                }
             }
-            if (tics_g-tics_now_g<1000) Vcons_g=8;
-            else
+            ////////////////////////// DEUXIEME ETAT ///////////////////////////
+            //                 On tourne de 45 degres a gauche                //
+            ////////////////////////////////////////////////////////////////////
+            else if (state==1)
             {
-                Vcons_g=0;
-                done_g=1;
+                if (tics_d<115) Vcons_d=3;
+                else
+                {
+                    Vcons_d=0;
+                    done_d=1;
+                }
+                if (tics_g<115) Vcons_g=-3;
+                else
+                {
+                    Vcons_g=-0.001;
+                    done_g=1;
+                }
+                // Fin du deuxième état si le compte est bon à gauche et à droite
+                if (done_d==1 && done_g==1)
+                {
+                    state=2;
+                    done_d=0;
+                    done_g=0;
+                    reset_asserv=1;
+                    deploy();
+                    __delay_ms(1000);
+                    reset_asserv=0;
+                }
             }
-            // Fin du premier état si le compte est bon à gauche et à droite
-            if (done_d==1 && done_g==1)
+            ///////////////////////// TROISIEME ETAT ///////////////////////////
+            //              On monte un peu les fucking marches               //
+            ////////////////////////////////////////////////////////////////////
+            else if (state==2)
             {
-                state=1;
-                done_d=0;
-                done_g=0;
-                tics_now_d=tics_d;
-                tics_now_g=tics_g;
-                __delay_ms(1000);
+                if (tics_d<400) Vcons_d=3;
+                else
+                {
+                    Vcons_d=0;
+                    done_d=1;
+                }
+                if (tics_g<400) Vcons_g=3;
+                else
+                {
+                    Vcons_g=0;
+                    done_g=1;
+                }
+                // Fin du deuxième état si le compte est bon à gauche et à droite
+                if (done_d==1 && done_g==1)
+                {
+                    state=3;
+                    done_d=0;
+                    done_g=0;
+                    reset_asserv=1;
+                    __delay_ms(2000);
+                    reset_asserv=0;
+                }
+            }
+            ///////////////////////// QUATRIEME ETAT ///////////////////////////
+            //            On finit de monter les fucking marches              //
+            ////////////////////////////////////////////////////////////////////
+            else if (state==3)
+            {
+                if (tics_d<500) Vcons_d=3;
+                else
+                {
+                    Vcons_d=0;
+                    done_d=1;
+                }
+                if (tics_g<500) Vcons_g=3;
+                else
+                {
+                    Vcons_g=0;
+                    done_g=1;
+                }
+                // Fin du deuxième état si le compte est bon à gauche et à droite
+                if (done_d==1 && done_g==1)
+                {
+                    state=4;
+                    done_d=0;
+                    done_g=0;
+                    reset_asserv=1;
+                    __delay_ms(1000);
+                    reset_asserv=0;
+                }
             }
         }
-        //////////////////////////// DEUXIEME ETAT /////////////////////////////
-        else if (state==1)
+
+        ////////////////////////////////////////////////////////////////////////
+        ///////////////////////////// EQUIPE JAUNE /////////////////////////////
+        ////////////////////////////////////////////////////////////////////////
+
+        else
         {
-            if (tics_d-tics_now_d<1000) Vcons_d=-8;
-            else
+            /////////////////////////// PREMIER ETAT ///////////////////////////
+            //                      On sort tout droit                        //
+            ////////////////////////////////////////////////////////////////////
+            if (state==0)
             {
-                Vcons_d=-0.01;
-                done_d=1;
+                if (tics_d-tics_now_d<1000) Vcons_d=8;
+                else
+                {
+                    Vcons_d=0;
+                    done_d=1;
+                }
+                if (tics_g-tics_now_g<1000) Vcons_g=8;
+                else
+                {
+                    Vcons_g=0;
+                    done_g=1;
+                }
+                // Fin du premier état si le compte est bon à gauche et à droite
+                if (done_d==1 && done_g==1)
+                {
+                    state=1;
+                    done_d=0;
+                    done_g=0;
+                    tics_now_d=tics_d;
+                    tics_now_g=tics_g;
+                    __delay_ms(1000);
+                }
             }
-            if (tics_g-tics_now_g<1000) Vcons_g=-8;
-            else
+            ////////////////////////// DEUXIEME ETAT ///////////////////////////
+            //                                                                //
+            ////////////////////////////////////////////////////////////////////
+            else if (state==1)
             {
-                Vcons_g=-0.01;
-                done_g=1;
-            }
-            // Fin du deuxième état si le compte est bon à gauche et à droite
-            if (done_d==1 && done_g==1)
-            {
-                state=2;
-                done_d=0;
-                done_g=0;
-                tics_now_d=tics_d;
-                tics_now_g=tics_g;
-                __delay_ms(1000);
+                if (tics_d-tics_now_d<50) Vcons_d=-6;
+                else
+                {
+                    Vcons_d=-0.01;
+                    done_d=1;
+                }
+                if (tics_g-tics_now_g<50) Vcons_g=6;
+                else
+                {
+                    Vcons_g=0;
+                    done_g=1;
+                }
+                // Fin du deuxième état si le compte est bon à gauche et à droite
+                if (done_d==1 && done_g==1)
+                {
+                    state=2;
+                    done_d=0;
+                    done_g=0;
+                    tics_now_d=tics_d;
+                    tics_now_g=tics_g;
+                    __delay_ms(1000);
+                }
             }
         }
-        //deploy();
         //lacher();
         //ranger();
         //__delay_ms(2000);

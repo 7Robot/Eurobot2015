@@ -47,9 +47,11 @@ int var_erreur_g = 0;
 float commande_d = 0;
 float commande_g = 0;
 
-float Kp=8;
-float Ki=1.5;
+float Kp=11;
+float Ki=2;
 float Kd=0;
+
+extern int reset_asserv;
 
 void InitTimers()
 {
@@ -130,6 +132,37 @@ void Init_CN()
 
 void __attribute__((interrupt,auto_psv)) _T2Interrupt(void) {
 
+    ////////////////// RESET DE L'ASSERV ENTRE DEUX COMMANDES //////////////////
+    if (reset_asserv==1)
+    {
+        tics_d=0;
+        tics_g=0;
+        tics_d_old=0;
+        tics_g_old=0;
+
+        V_d=0;
+        V_g=0;
+
+        erreur_d = 0;
+        erreur_g = 0;
+
+        Vcons_d=0;
+        Vcons_g=0;
+
+        somme_erreur_d = 0 ;
+        somme_erreur_g = 0 ;
+
+        erreur_d_old = 0;
+        erreur_g_old = 0;
+
+        var_erreur_d = 0;
+        var_erreur_g = 0;
+
+        commande_d = 0;
+        commande_g = 0;
+    }
+    ////////////////////////////////////////////////////////////////////////////
+
 
     ////////////////// ACQUISITION NOUVELLE VALEUR DE VITESSE //////////////////
     //        On suppose que les moteurs tournent dans le sens demandé        //
@@ -140,7 +173,7 @@ void __attribute__((interrupt,auto_psv)) _T2Interrupt(void) {
     else            V_g = -(tics_g - tics_g_old);
     ////////////////////////////////////////////////////////////////////////////
 
-    ////////////////// ACQUISITION NOUVELLE VALEUR DE VITESSE //////////////////
+    ////////////////////// ACQUISITION NOUVELLE POSITION ///////////////////////
     tics_d_old=tics_d;
     tics_g_old=tics_g;
     ////////////////////////////////////////////////////////////////////////////
@@ -150,17 +183,25 @@ void __attribute__((interrupt,auto_psv)) _T2Interrupt(void) {
     erreur_g = Vcons_g - V_g;
     ////////////////////////////////////////////////////////////////////////////
 
+    ////////////// SOMME DES ERREURS DE VITESSE POUR INTEGRATION ///////////////
     somme_erreur_d += erreur_d;
     somme_erreur_g += erreur_g;
+    ////////////////////////////////////////////////////////////////////////////
 
+    //////// DIFFERENCE DES DERNIERES ERREURS DE VITESSE POUR DERIVATION ///////
     var_erreur_d = erreur_d - erreur_d_old;
     var_erreur_g = erreur_g - erreur_g_old;
+    ////////////////////////////////////////////////////////////////////////////
 
+    //////////// COMMANDE PROPOTIONNELLE, INTEGRALE, DERIVEE (PID)  ////////////
     commande_d = Kp*erreur_d + Ki*somme_erreur_d + Kd*var_erreur_d;
     commande_g = Kp*erreur_g + Ki*somme_erreur_g + Kd*var_erreur_g;
+    ////////////////////////////////////////////////////////////////////////////
 
+    /////////////////// ACTUALISATION DE L'ERREUR PRECEDENTE ///////////////////
     erreur_d_old = erreur_d;
     erreur_g_old = erreur_g;
+    ////////////////////////////////////////////////////////////////////////////
 
 /*
     if (commande_g>0) MOTOR_BREAK1=0;
@@ -170,7 +211,7 @@ void __attribute__((interrupt,auto_psv)) _T2Interrupt(void) {
 */
     PWM_Moteurs(commande_g, commande_d);
 
-    printf("erreur_g%d erreur_d%d \n\r",erreur_g,erreur_d);
+    //printf("erreur_g%d erreur_d%d \n\r",erreur_g,erreur_d);
     //printf("TicsG%d TicsD%d \n\r",tics_g,tics_d);
     //printf("diff_g%f diff_d%f \n\r",diff_g,diff_d);
 
@@ -179,7 +220,7 @@ void __attribute__((interrupt,auto_psv)) _T2Interrupt(void) {
 }
 
 /*************************************************
-* TX et RX Interrupt *
+*                 TX et RX Interrupt             *
 *************************************************/
 void __attribute__((interrupt, no_auto_psv)) _U2RXInterrupt(void){
     _U2RXIF = 0; // On baisse le FLAG
