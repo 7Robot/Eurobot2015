@@ -261,10 +261,12 @@ int main(int argc, char** argv) {
                 }
             }
         }
-        //lacher();
-        //ranger();
-        //__delay_ms(2000);
+        
     }
+//    deploy();
+//    lacher();
+//    ranger();
+//    __delay_ms(2000);
 }
 
 

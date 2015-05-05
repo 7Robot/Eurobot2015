@@ -21,9 +21,9 @@
 *.o.d
 
 # MPLAB-X folders
-nbproject
-build
-dist
+#nbproject
+#build
+#dist
 
 # Sublime text
 *.sublime-project
