@@ -12,6 +12,7 @@
 *.sym
 *.obj
 *.o
+*.o.d
 *.sdb
 *.obj.dmp
 *.map
