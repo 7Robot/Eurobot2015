@@ -3,6 +3,7 @@
 
 #include "user.h"          // User funct/params, such as InitApp
 #include <libpic30.h>
+#include <stdint.h>
 #include "qei.h"           // QEI definitions for easier use
 #include "ax12.h"
 #include "lib_asserv/lib_asserv_default.h"
