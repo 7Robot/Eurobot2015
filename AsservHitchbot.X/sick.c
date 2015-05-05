@@ -147,9 +147,10 @@ void OnAskSick(unsigned char id){
 /******************************************************************************/
 
 void __attribute__ ((interrupt, auto_psv)) _ADC1Interrupt(void)
- {
+{
     static uint16_t i_debug_sick = 0;
     uint16_t val16 = ADC1BUF0;// récupération valeur depuis ADC
+
 
     Sum_Value_Sick[channel] -= Value_Sick[channel][i_moy_sick];     // enl�ve la valeur de X coups d'avant
     Sum_Value_Sick[channel] += val16;                               // ajoute la valeur de maintenant
@@ -169,16 +170,17 @@ void __attribute__ ((interrupt, auto_psv)) _ADC1Interrupt(void)
         }
     }
 
-    if (i_debug_sick == 2000) {
-        #ifdef DEBUG_SICK
+    #ifdef DEBUG_SICK
+        if (i_debug_sick == 2000) {
             printf ("\nSick 1 : %ld\nSick 2 : %ld\nSick 3 : %ld\nSick 4 : %ld\n", (Sum_Value_Sick[0] >> 4), (Sum_Value_Sick[1] >> 4), (Sum_Value_Sick[2] >> 4), (Sum_Value_Sick[3] >> 4));
-        #endif
-        i_debug_sick = 0;
-    } else {
-        i_debug_sick ++;
-    }
+            i_debug_sick = 0;
+        } else {
+            i_debug_sick ++;
+        }
+    #endif
 
-    switch(channel)     // Select next sensor
+    // Select next sensor 
+    switch(channel)     
     {
         case 0:
             _CH0SA = AN_CH_SICK_ARRIERE_GAUCHE;		// sick 2
@@ -203,3 +205,22 @@ void __attribute__ ((interrupt, auto_psv)) _ADC1Interrupt(void)
     }
     _AD1IF = 0;        //Clear the interrupt flag
  }
+
+uint16_t Get_Sick(uint8_t Sick_Voulu)
+{
+    if (Sick_Voulu < NUMBER_OF_SICK) {
+        return (uint16_t)(Sum_Value_Sick[Sick_Voulu] >> 4);
+    } else {
+        return 0;
+    }
+}
+
+uint16_t Get_Sick_Sector (uint8_t Sick_Voulu)
+{
+    if (Sick_Voulu < NUMBER_OF_SICK) {
+        return Old_Sector[Sick_Voulu];
+    } else {
+        return 0;
+    }
+}
+
