@@ -41,8 +41,9 @@
 /******************************************************************************/
 
 volatile int channel = 0;		// canal de conversion actuel
-
-volatile uint16_t Value_Sick[NUMBER_OF_SICK] = {0};		// full of 0	// récupère la valeur de l'ADC
+volatile uint8_t i_moy_sick = 0;
+volatile uint16_t Value_Sick[NUMBER_OF_SICK][NUMBER_OF_POINTS_MOY_SICK];	// r�cup�rere la valeur de l'ADC du sick, puis fait une moyenne tournante
+volatile uint32_t Sum_Value_Sick[NUMBER_OF_SICK];
 volatile uint16_t Old_Sector[NUMBER_OF_SICK] = {0};		// full of 0	// tout ou rien sur les seuils
 
 volatile uint16_t Threshold[NUMBER_OF_SICK] = {DEFAULT_THRESHOLD};
@@ -53,60 +54,76 @@ volatile uint16_t Threshold[NUMBER_OF_SICK] = {DEFAULT_THRESHOLD};
 
 void InitSick()
 {
-	
-   //Configuration du convertisseur Analog to Digital (ADC) du dspic33f
-   //Cf page 286 dspic33f Data Sheet
+    uint8_t i, j;
+    
+    // si utilisation en r�-init : on tue l'IT d'abord...
+    CloseTimer5();
+    _AD1IF = 0;        //Clear the interrupt flag
 
-   //AD1CON1 Configuration
-   AD1CON1bits.ADON = 0;    //Eteindre A/D converter pour la configuration
-   AD1CON1bits.FORM = 0;    //Configure le format de la sortie de l'ADC ( 3=signed float, 2=unsigned float, 1=signed integer, 0=unsigned integer
-   AD1CON1bits.SSRC = 4;    //Config de l'échantillonnage : Timer5
-   AD1CON1bits.SIMSAM = 0;  //Simultaneously Sample CH0
-   AD1CON1bits.ASAM = 1;    //Début d'échantillonnage (1=tout de suite  0=dès que AD1CON1bits.SAMP est activé)
-   AD1CON1bits.AD12B = 0;   //Choix du type de converter (10 ou 12 bits) 0 = 10 bits , 1 = 12bits
+    // reset des systemes de moyenne tournante
+    for (j = 0; j < NUMBER_OF_SICK; j++ ) {
+        for (i = 0; i < NUMBER_OF_POINTS_MOY_SICK; i++){
+            Value_Sick[j][i] = 0;
+        }
+        Sum_Value_Sick[j] = 0;
+    }
+    channel = 0;
+    i_moy_sick = 0;
 
-   //AD1CON2 Configuration
-   AD1CON2bits.ALTS = 0;     //Always sampling on channel A
-   AD1CON2bits.CHPS = 0;    //Select CH0
 
-   //AD1CON3 Configuration
-   AD1CON3bits.ADRC = 1;        //Choix du type de clock interne (=1) ou externe (=0)
+    //Configuration du convertisseur Analog to Digital (ADC) du dspic33f
+    //Cf page 286 dspic33f Data Sheet
 
-   
-   channel = 0;
-   //Choix des références de tensions
-							// Choix du (+) de la mesure pour le channel CH0, commençant par le sick 1 
-   AD1CHS0bits.CH0SA = AN_CH_SICK_ARRIERE_DROIT;	
-   AD1CHS0bits.CH0NA = 0;	// Choix du (-) de la mesure pour le channel CH0 (0 = Masse interne pic)
+    //AD1CON1 Configuration
+    AD1CON1bits.ADON = 0;    //Eteindre A/D converter pour la configuration
+    AD1CON1bits.FORM = 0;    //Configure le format de la sortie de l'ADC ( 3=signed float, 2=unsigned float, 1=signed integer, 0=unsigned integer
+    AD1CON1bits.SSRC = 4;    //Config de l'échantillonnage : Timer5
+    AD1CON1bits.SIMSAM = 0;  //Simultaneously Sample CH0
+    AD1CON1bits.ASAM = 1;    //Début d'échantillonnage (1=tout de suite  0=dès que AD1CON1bits.SAMP est activé)
+    AD1CON1bits.AD12B = 0;   //Choix du type de converter (10 ou 12 bits) 0 = 10 bits , 1 = 12bits
 
-   //Configuration des pins analogiques
-   //AD1PCFGL = 0xFFFF;   //Met tous les ports AN en Digital Input
-   //AD1PCFGLbits.PCFG0 = 0;
-   //AD1PCFGLbits.PCFG2 = 0;
-   //AD1PCFGLbits.PCFG3 = 0;
-   //AD1PCFGLbits.PCFG4 = 0;
-   //AD1PCFGLbits.PCFG5 = 0;
-   /* COM A ENLEVER SUR DSPIC AVEC 8 PINS ANALOGIQUES */
-   AD1PCFGLbits.PCFG4 = 0;
-   AD1PCFGLbits.PCFG5 = 0;
-   AD1PCFGLbits.PCFG6 = 0;
-   AD1PCFGLbits.PCFG7 = 0;
+    //AD1CON2 Configuration
+    AD1CON2bits.ALTS = 0;     //Always sampling on channel A
+    AD1CON2bits.CHPS = 0;    //Select CH0
 
-   
-   //Configuration du Timer 5, pour l'ADC 
+    //AD1CON3 Configuration
+    AD1CON3bits.ADRC = 1;        //Choix du type de clock interne (=1) ou externe (=0)
+
+
+    //Choix des références de tensions
+                                                        // Choix du (+) de la mesure pour le channel CH0, commençant par le sick 1
+    AD1CHS0bits.CH0SA = AN_CH_SICK_ARRIERE_DROIT;
+    AD1CHS0bits.CH0NA = 0;	// Choix du (-) de la mesure pour le channel CH0 (0 = Masse interne pic)
+
+    //Configuration des pins analogiques
+    //AD1PCFGL = 0xFFFF;   //Met tous les ports AN en Digital Input
+    //AD1PCFGLbits.PCFG0 = 0;
+    //AD1PCFGLbits.PCFG2 = 0;
+    //AD1PCFGLbits.PCFG3 = 0;
+    //AD1PCFGLbits.PCFG4 = 0;
+    //AD1PCFGLbits.PCFG5 = 0;
+    /* COM A ENLEVER SUR DSPIC AVEC 8 PINS ANALOGIQUES */
+    AD1PCFGLbits.PCFG4 = 0;
+    AD1PCFGLbits.PCFG5 = 0;
+    AD1PCFGLbits.PCFG6 = 0;
+    AD1PCFGLbits.PCFG7 = 0;
+
+
+    //Configuration du Timer 5, pour l'ADC
     // OpenTimer5(T5_ON & T5_GATE_OFF & T5_PS_1_256 & T5_SOURCE_INT, 15625); from 2014
-    OpenTimer5(T5_ON & T5_GATE_OFF & T5_PS_1_64 & T5_SOURCE_INT, 3125 ); // for 2015
-	// FCY = 40Meg
-	// prescaller à 64 et comparaison à 3125 => 40M / (64*3125) = 200 => 200 départ de comparaison / sec
-	// avec 4 canaux, ça fait 50 detections / sec
-	
+    OpenTimer5(T5_ON & T5_GATE_OFF & T5_PS_1_8 & T5_SOURCE_INT, 3125 ); // for 2015
+    // FCY = 40Meg
+    // prescaller à 8 et comparaison à 3125 => 40M / (8*3125) = 1600 => 1600 départ de comparaison / sec
+    // avec 4 canaux, ça fait 400 detections / sec 
+    // attention : (moyennage sur 16)
 
-   //Configuration des interuption
-   IFS0bits.AD1IF = 0;      //Mise à 0 du flag d'interrupt de ADC1
-   IEC0bits.AD1IE = 1;      //Enable les interruptions d'ADC1
-   IPC3bits.AD1IP = 2;      //Et les priorités (ici prio = 2)
-   AD1CON1bits.SAMP = 0;
-   AD1CON1bits.ADON = 1;    // Turn on the A/D converter
+
+    //Configuration des interuption
+    IFS0bits.AD1IF = 0;      //Mise à 0 du flag d'interrupt de ADC1
+    IEC0bits.AD1IE = 1;      //Enable les interruptions d'ADC1
+    IPC3bits.AD1IP = 2;      //Et les priorités (ici prio = 2)
+    AD1CON1bits.SAMP = 0;
+    AD1CON1bits.ADON = 1;    // Turn on the A/D converter
 }
 
 void OnSickThreshold(unsigned char id, unsigned int threshold)
@@ -132,21 +149,29 @@ void OnAskSick(unsigned char id){
 void __attribute__ ((interrupt, auto_psv)) _ADC1Interrupt(void)
  {
     static uint16_t i_debug_sick = 0;
+    uint16_t val16 = ADC1BUF0;// récupération valeur depuis ADC
 
-    Value_Sick[channel] = ADC1BUF0; 	// récupération valeur depuis ADC
-	
-    if(  (Value_Sick[channel] > (Threshold[channel] + MARGIN_SICK))  &&  (Old_Sector[channel] == 0)  ) {		// si on repasse au dela de seuil + fenetre, on repasse dans la zone "ext"
-        Old_Sector[channel] = 1;
-       // SendSick(channel);
-    } else if(  (Value_Sick[channel] < (Threshold[channel] - MARGIN_SICK)) &&  (Old_Sector[channel] == 1)  ) {	  // si on repasse en deça de seuil - fenetre, on repasse dans la zone "int" = danger
-        Old_Sector[channel] = 0;
-        motion_free();
-        //SendFreepath(channel);
+    Sum_Value_Sick[channel] -= Value_Sick[channel][i_moy_sick];     // enl�ve la valeur de X coups d'avant
+    Sum_Value_Sick[channel] += val16;                               // ajoute la valeur de maintenant
+
+    Value_Sick[channel][i_moy_sick] = val16;                        // enregistrement de la valeur lue
+
+    val16 = (uint16_t)(Sum_Value_Sick[channel] >> 4);   // r�cup de la somme et division par 16
+
+    if (Old_Sector[channel] == 0) {     // si on consid�re pour l'instant qu'il y a un truc "pres"
+        if (val16 > (Threshold[channel] + MARGIN_SICK)) {  // si la valeur repasse au dessus de seuil + marge
+            Old_Sector[channel] = 1;        // on repasse en zone "s�re"
+        }
+    } else {    // if old = 1   // si, pour l'instant, il n'y a pas de truc "pres"
+        if (val16 < (Threshold[channel] - MARGIN_SICK)) {   // si on vient de detecter un truc
+           Old_Sector[channel] = 0;     // on passe en zone "pas s�re"
+            motion_free();                  // et on gueule aupr�s de l'asserve
+        }
     }
-	
-    if (i_debug_sick == 200) {
+
+    if (i_debug_sick == 2000) {
         #ifdef DEBUG_SICK
-            printf ("\nSick 1 : %d\nSick 2 : %d\nSick 3 : %d\nSick 4 : %d\n", Value_Sick[0], Value_Sick[1], Value_Sick[2], Value_Sick[3]);
+            printf ("\nSick 1 : %ld\nSick 2 : %ld\nSick 3 : %ld\nSick 4 : %ld\n", (Sum_Value_Sick[0] >> 4), (Sum_Value_Sick[1] >> 4), (Sum_Value_Sick[2] >> 4), (Sum_Value_Sick[3] >> 4));
         #endif
         i_debug_sick = 0;
     } else {
@@ -157,19 +182,24 @@ void __attribute__ ((interrupt, auto_psv)) _ADC1Interrupt(void)
     {
         case 0:
             _CH0SA = AN_CH_SICK_ARRIERE_GAUCHE;		// sick 2
+            channel = 1;
             break;
         case 1:
             _CH0SA = AN_CH_SICK_AVANT_DROIT;		// sick 3
+            channel = 2;
             break;
         case 2:
             _CH0SA = AN_CH_SICK_AVANT_GAUCHE;		// sick 4
+            channel = 3;
             break;
         case 3:
             _CH0SA = AN_CH_SICK_ARRIERE_DROIT;		// sick 1
+            channel = 0;
+            i_moy_sick++;
+            if (i_moy_sick == NUMBER_OF_POINTS_MOY_SICK) {
+                i_moy_sick = 0;
+            }
             break;
     }
-
-    channel = (channel+1) % NUMBER_OF_SICK;
-
     _AD1IF = 0;        //Clear the interrupt flag
  }

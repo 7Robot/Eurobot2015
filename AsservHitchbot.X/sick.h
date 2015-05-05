@@ -20,6 +20,7 @@
 /******************************************************************************/
 
 #define NUMBER_OF_SICK 4
+#define NUMBER_OF_POINTS_MOY_SICK 16
 
 #define AN_CH_SICK_ARRIERE_DROIT  7 //AN7		=> // an_sick 1
 #define AN_CH_SICK_ARRIERE_GAUCHE 6 //AN6		=> // an_sick 2
@@ -29,6 +30,9 @@
 
 #define DEFAULT_THRESHOLD 100 // 300 ~> 16 cm
 #define MARGIN_SICK 30		// en réalité, plutot un triger de schmitt
+
+
+// #define DEBUG_SICK
 
 /******************************************************************************/
 /* Function Prototypes                                                        */
