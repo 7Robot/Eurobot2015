@@ -144,3 +144,13 @@ void SendFailAX12(void)
         printf("$FAAX;");
       __delay_ms(50);
 }
+
+void SendSick(int channel)
+{
+    switch(channel){
+        case 0 : printf("$DET1;");
+        case 1 : printf("$DET2;");
+        case 2 : printf("$DET3;");
+        case 3 : printf("$DET4;");
+    }
+}
