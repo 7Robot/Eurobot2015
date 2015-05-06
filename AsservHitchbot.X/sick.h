@@ -49,5 +49,7 @@ void InitSick();
 uint16_t Get_Sick(uint8_t Sick_Voulu);
 uint16_t Get_Sick_Sector (uint8_t Sick_Voulu);
 
+void Start_Stop_Debug_Sick(void);
+
 #endif	/* SICK_H */
 

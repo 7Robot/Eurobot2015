@@ -46,6 +46,9 @@ volatile uint16_t Old_Sector[NUMBER_OF_SICK] = {0};		// full of 0	// tout ou rie
 
 volatile uint16_t Threshold[NUMBER_OF_SICK] = {DEFAULT_THRESHOLD, DEFAULT_THRESHOLD, DEFAULT_THRESHOLD, DEFAULT_THRESHOLD};
 
+
+
+volatile uint8_t debug_sick_on = 0;
 /******************************************************************************/
 /* User Functions                                                             */
 /******************************************************************************/
@@ -150,7 +153,7 @@ void OnAskSick(unsigned char id){
 
 void __attribute__ ((interrupt, auto_psv)) _ADC1Interrupt(void)
 {
-    
+    static uint16_t i_debug_sick = 0;
     uint16_t val16 = ADC1BUF0;// récupération valeur depuis ADC
 
 
@@ -174,15 +177,15 @@ void __attribute__ ((interrupt, auto_psv)) _ADC1Interrupt(void)
         }
     }
 
-    #ifdef DEBUG_SICK
-        static uint16_t i_debug_sick = 0;
+
+    if (debug_sick_on) {
         if (i_debug_sick == 3000) {
             printf ("Sick 1 : %ld\nSick 2 : %ld\nSick 3 : %ld\nSick 4 : %ld;", (Sum_Value_Sick[0]), (Sum_Value_Sick[1]), (Sum_Value_Sick[2]), (Sum_Value_Sick[3]) );
             i_debug_sick = 0;
         } else {
             i_debug_sick ++;
         }
-    #endif
+    }
 
     // Select next sensor 
     switch(channel)     
@@ -229,3 +232,11 @@ uint16_t Get_Sick_Sector (uint8_t Sick_Voulu)
     }
 }
 
+void Start_Stop_Debug_Sick(void)
+{
+    if (debug_sick_on) {
+        debug_sick_on = 0;
+    } else {
+        debug_sick_on = 1;
+    }
+}
