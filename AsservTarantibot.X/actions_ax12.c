@@ -59,15 +59,15 @@ void init_ax12() {
     __delay_ms(40);
     PutAX(haut, AX_GOAL_POSITION, 204);
     __delay_ms(40);
-    PutAX(verseur_d, AX_GOAL_POSITION, 250);
+    PutAX(verseur_d, AX_GOAL_POSITION, 235);
     __delay_ms(40);
-    PutAX(pince_d, AX_GOAL_POSITION, 550);
+    PutAX(pince_d, AX_GOAL_POSITION, 520);
     __delay_ms(1000);
     PutAX(verseur_g, AX_GOAL_POSITION, 800);
     __delay_ms(40);
-    PutAX(pince_g, AX_GOAL_POSITION, 400);
+    PutAX(pince_g, AX_GOAL_POSITION, 435);
     __delay_ms(200);
-    PutAX(coude, AX_GOAL_POSITION, 250);
+    PutAX(coude, AX_GOAL_POSITION, 215);
     __delay_ms(1000);
 
 }
@@ -84,17 +84,17 @@ void deploy (void){
     __delay_ms(40);
     PutAX(verseur_d, AX_GOAL_POSITION, 550);
     __delay_ms(1000);
-    PutAX(verseur_g, AX_GOAL_POSITION, 800);
+    PutAX(verseur_g, AX_GOAL_POSITION, 780);
     __delay_ms(40);
-    PutAX(verseur_d, AX_GOAL_POSITION, 250);
+    PutAX(verseur_d, AX_GOAL_POSITION, 270);
     __delay_ms(1000);
 }
 
 void lacher (void){
 
-    PutAX(pince_g, AX_GOAL_POSITION, 350);
+    PutAX(pince_g, AX_GOAL_POSITION, 325);
     __delay_ms(40);
-    PutAX(pince_d, AX_GOAL_POSITION, 600);
+    PutAX(pince_d, AX_GOAL_POSITION, 620);
     __delay_ms(1000);
 }
 
