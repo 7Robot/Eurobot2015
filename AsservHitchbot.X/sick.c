@@ -146,7 +146,7 @@ void OnAskSick(unsigned char id){
 
 void __attribute__ ((interrupt, auto_psv)) _ADC1Interrupt(void)
 {
-    static uint16_t i_debug_sick = 0;
+    
     uint16_t val16 = ADC1BUF0;// r√©cup√©ration valeur depuis ADC
 
 
@@ -164,11 +164,13 @@ void __attribute__ ((interrupt, auto_psv)) _ADC1Interrupt(void)
     } else {    // if old = 1   // si, pour l'instant, il n'y a pas de truc "pres"
         if ( (val16 < (Threshold[channel] - MARGIN_SICK))  && (val16 > SICK_LIMIT_MIN)  ) {   // si on vient de detecter un truc
            Old_Sector[channel] = 0;     // on passe en zone "pas s˚re"
-        //    motion_free();                  // et on gueule auprËs de l'asserve
+           motion_free();                  // et on gueule auprËs de l'asserve
+           SendSick(channel);
         }
     }
 
     #ifdef DEBUG_SICK
+        static uint16_t i_debug_sick = 0;
         if (i_debug_sick == 2000) {
             printf ("\nSick 1 : %ld\nSick 2 : %ld\nSick 3 : %ld\nSick 4 : %ld\n", (Sum_Value_Sick[0] >> 4), (Sum_Value_Sick[1] >> 4), (Sum_Value_Sick[2] >> 4), (Sum_Value_Sick[3] >> 4));
             i_debug_sick = 0;
