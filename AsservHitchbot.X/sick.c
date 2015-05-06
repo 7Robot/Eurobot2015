@@ -164,7 +164,7 @@ void __attribute__ ((interrupt, auto_psv)) _ADC1Interrupt(void)
             Old_Sector[channel] = 1;        // on repasse en zone "sûre"
         }
     } else {    // if old = 1   // si, pour l'instant, il n'y a pas de truc "pres"
-        if (val16 < (Threshold[channel] - MARGIN_SICK)) {   // si on vient de detecter un truc
+        if ( (val16 < (Threshold[channel] - MARGIN_SICK))  && (val16 > SICK_LIMIT_MIN)  ) {   // si on vient de detecter un truc
            Old_Sector[channel] = 0;     // on passe en zone "pas sûre"
             motion_free();                  // et on gueule auprès de l'asserve
         }
