@@ -144,6 +144,13 @@ void SendDone(void)
       __delay_ms(50);
 }
 
+void SendStart(void)
+{
+      __delay_ms(50);
+        printf("$STRT;");
+      __delay_ms(50);
+}
+
 void SendFailAX12(void)
 {
       __delay_ms(50);

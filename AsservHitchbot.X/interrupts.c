@@ -115,10 +115,10 @@ void Init_CN()
 /* _T5Interrupt        _U1ErrInterrupt                                        */
 /* _INT2Interrupt      _U2ErrInterrupt                                        */
 /* _U2RXInterrupt      _DMA6Interrupt                                         */
-/* _U2TXInterrupt      _DMA7Interrupt                                         */
+/* _U2TXInterrupt      _DPIN_LAISSEMA7Interrupt                                         */
 /* _SPI2ErrInterrupt   _C1TxReqInterrupt                                      */
 /* _SPI2Interrupt      _C2TxReqInterrupt                                      */
-/* _C1RxRdyInterrupt                                                          */
+/* _C1RxRdyInterrupt     PIN_LAISSE                                                     */
 /*                                                                            */
 /* dsPIC33E Primary Interrupt Vector Names:                                   */
 /*                                                                            */
@@ -239,14 +239,13 @@ void __attribute__((interrupt, no_auto_psv)) _SPI2Interrupt(void){
 
 void __attribute__ ((__interrupt__, no_auto_psv)) _CNInterrupt(void)
 {
-/*    if (!PIN_LAISSE)
+    if (!PIN_LAISSE)
     {
-       SendStart(BOUTON_COULEUR);
+       SendStart();
     }
     else
     {
         __delay_ms(500);
     }
-  */
     IFS1bits.CNIF = 0; // Clear CN interrupt
 }
