@@ -19,6 +19,7 @@
 *.hex
 *.elf
 *.o.d
+*genesis.properties
 
 # MPLAB-X folders
 #nbproject
