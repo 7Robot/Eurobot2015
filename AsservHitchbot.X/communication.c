@@ -52,6 +52,7 @@ void AnalyzeCommandFromPi (void)
 void SelectActionFromPi()
 {
     int cursorPosition, floatLength;
+    float ANGLE;
     Position MOVE;
 
     if(ReceivedStringFromPi[1]=='M' && ReceivedStringFromPi[2]=='O' && ReceivedStringFromPi[3]=='V' && ReceivedStringFromPi[4]=='E')
@@ -76,7 +77,27 @@ void SelectActionFromPi()
         
         motion_pos(MOVE);
     }
+    
+        if(ReceivedStringFromPi[1]=='A' && ReceivedStringFromPi[2]=='N' && ReceivedStringFromPi[3]=='G' && ReceivedStringFromPi[4]=='L')
+    {
+        cursorPosition=6;
 
+        for(floatLength=0;ReceivedStringFromPi[cursorPosition+floatLength]!=';';floatLength++); // Return the number of char taken by the float in the command line
+        ReceivedStringFromPi[cursorPosition+floatLength] = 0;
+        ANGLE = atof(&ReceivedStringFromPi[cursorPosition]);
+        ReceivedStringFromPi[cursorPosition+floatLength] = ';';
+        
+        motion_angle(ANGLE);
+    }
+
+
+
+    // INIT
+    if(ReceivedStringFromPi[1]=='I' && ReceivedStringFromPi[2]=='N' && ReceivedStringFromPi[3]=='I' && ReceivedStringFromPi[4]=='T')
+    {
+        Init_All(1);
+    }
+    
     // AXIN
     if(ReceivedStringFromPi[1]=='A' && ReceivedStringFromPi[2]=='X' && ReceivedStringFromPi[3]=='I' && ReceivedStringFromPi[4]=='N')
     {
@@ -107,11 +128,7 @@ void SelectActionFromPi()
         release();
     }
 
-    // INIT
-    if(ReceivedStringFromPi[1]=='I' && ReceivedStringFromPi[2]=='N' && ReceivedStringFromPi[3]=='I' && ReceivedStringFromPi[4]=='T')
-    {
-        Init_All(1);
-    }
+
 }
 
 void SendDone(void)
@@ -126,4 +143,14 @@ void SendFailAX12(void)
       __delay_ms(50);
         printf("$FAAX;");
       __delay_ms(50);
+}
+
+void SendSick(int channel)
+{
+    switch(channel){
+        case 0 : printf("$DET1;");
+        case 1 : printf("$DET2;");
+        case 2 : printf("$DET3;");
+        case 3 : printf("$DET4;");
+    }
 }

@@ -30,11 +30,9 @@
 #include <stdio.h>
 #include <stdbool.h>       /* Includes true/false definition                  */
 
-#include "sick.h"
-#include "lib_asserv/lib_asserv.h"
+#include "main.h"
 #include <timer.h>
 
-#include "user.h"
 
 /******************************************************************************/
 /* Global Variable Declaration                                                */
