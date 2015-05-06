@@ -17,7 +17,7 @@
 #endif
 
 #ifndef DEFAULT_CONSTRAINT_A_MAX
-#define DEFAULT_CONSTRAINT_A_MAX {0.3, 0.3, 0.10}
+#define DEFAULT_CONSTRAINT_A_MAX {0.4, 0.3, 0.10}
 #endif
 
 #ifndef BLOCK_LIMIT
@@ -53,7 +53,7 @@
 
 // 4 asserv différentes (position et vitese pour chaque roue) donc 4 PID
 #ifndef DEFAULT_PID_COEFS_DELTA
-#define DEFAULT_PID_COEFS_DELTA {200,10,0,0,0} //{200,70,900,0.3,0.8}{130,90,3000,0.5,0.9}
+#define DEFAULT_PID_COEFS_DELTA {200,30,0,0,0} //{200,70,900,0.3,0.8}{130,90,3000,0.5,0.9}
 #endif
 #ifndef DEFAULT_PID_COEFS_ALPHA
 #define DEFAULT_PID_COEFS_ALPHA {10,5.5,30,0.5,0.9} //{10,5,30,0,0.7}
