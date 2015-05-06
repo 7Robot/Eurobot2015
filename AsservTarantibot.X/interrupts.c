@@ -48,7 +48,7 @@ float commande_d = 0;
 float commande_g = 0;
 
 float Kp=11;
-float Ki=2;
+float Ki=2.3;
 float Kd=0;
 
 extern int reset_asserv;

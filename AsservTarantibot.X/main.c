@@ -77,10 +77,10 @@ int main(int argc, char** argv) {
     while(1){
 
         ////////////////////////////////////////////////////////////////////////
-        ///////////////////////////// EQUIPE VERTE /////////////////////////////
+        ///////////////////////////// EQUIPE JAUNE /////////////////////////////
         ////////////////////////////////////////////////////////////////////////
 
-        if (BoutonCouleur==1)
+        if (BoutonCouleur==0)
         {
             /////////////////////////// PREMIER ETAT ///////////////////////////
             //                      On sort tout droit                        //
@@ -88,13 +88,13 @@ int main(int argc, char** argv) {
 
             if (state==0)
             {
-                if (tics_d<1000) Vcons_d=4;
+                if (tics_d<1075) Vcons_d=4;
                 else
                 {
                     Vcons_d=0;
                     done_d=1;
                 }
-                if (tics_g<1000) Vcons_g=4;
+                if (tics_g<1075) Vcons_g=4;
                 else
                 {
                     Vcons_g=0;
@@ -145,13 +145,13 @@ int main(int argc, char** argv) {
             ////////////////////////////////////////////////////////////////////
             else if (state==2)
             {
-                if (tics_d<400) Vcons_d=3;
+                if (tics_d<700) Vcons_d=3;
                 else
                 {
                     Vcons_d=0;
                     done_d=1;
                 }
-                if (tics_g<400) Vcons_g=3;
+                if (tics_g<700) Vcons_g=3;
                 else
                 {
                     Vcons_g=0;
@@ -164,6 +164,7 @@ int main(int argc, char** argv) {
                     done_d=0;
                     done_g=0;
                     reset_asserv=1;
+                    lacher();
                     __delay_ms(2000);
                     reset_asserv=0;
                 }
@@ -173,13 +174,13 @@ int main(int argc, char** argv) {
             ////////////////////////////////////////////////////////////////////
             else if (state==3)
             {
-                if (tics_d<500) Vcons_d=3;
+                if (tics_d<200) Vcons_d=3;
                 else
                 {
                     Vcons_d=0;
                     done_d=1;
                 }
-                if (tics_g<500) Vcons_g=3;
+                if (tics_g<200) Vcons_g=3;
                 else
                 {
                     Vcons_g=0;
@@ -199,7 +200,7 @@ int main(int argc, char** argv) {
         }
 
         ////////////////////////////////////////////////////////////////////////
-        ///////////////////////////// EQUIPE JAUNE /////////////////////////////
+        ///////////////////////////// EQUIPE VERTE /////////////////////////////
         ////////////////////////////////////////////////////////////////////////
 
         else
@@ -210,13 +211,13 @@ int main(int argc, char** argv) {
 
             if (state==0)
             {
-                if (tics_d<1000) Vcons_d=4;
+                if (tics_d<1075) Vcons_d=4;
                 else
                 {
                     Vcons_d=0;
                     done_d=1;
                 }
-                if (tics_g<1000) Vcons_g=4;
+                if (tics_g<1075) Vcons_g=4;
                 else
                 {
                     Vcons_g=0;
@@ -234,7 +235,7 @@ int main(int argc, char** argv) {
                 }
             }
             ////////////////////////// DEUXIEME ETAT ///////////////////////////
-            //                 On tourne de 45 degres a gauche                //
+            //                 On tourne de 45 degres a droite                //
             ////////////////////////////////////////////////////////////////////
             else if (state==1)
             {
@@ -267,13 +268,13 @@ int main(int argc, char** argv) {
             ////////////////////////////////////////////////////////////////////
             else if (state==2)
             {
-                if (tics_d<400) Vcons_d=3;
+                if (tics_d<700) Vcons_d=3;
                 else
                 {
                     Vcons_d=0;
                     done_d=1;
                 }
-                if (tics_g<400) Vcons_g=3;
+                if (tics_g<700) Vcons_g=3;
                 else
                 {
                     Vcons_g=0;
@@ -286,6 +287,7 @@ int main(int argc, char** argv) {
                     done_d=0;
                     done_g=0;
                     reset_asserv=1;
+                    lacher();
                     __delay_ms(2000);
                     reset_asserv=0;
                 }
@@ -295,13 +297,13 @@ int main(int argc, char** argv) {
             ////////////////////////////////////////////////////////////////////
             else if (state==3)
             {
-                if (tics_d<500) Vcons_d=3;
+                if (tics_d<200) Vcons_d=3;
                 else
                 {
                     Vcons_d=0;
                     done_d=1;
                 }
-                if (tics_g<500) Vcons_g=3;
+                if (tics_g<200) Vcons_g=3;
                 else
                 {
                     Vcons_g=0;
