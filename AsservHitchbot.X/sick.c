@@ -169,20 +169,15 @@ void __attribute__ ((interrupt, auto_psv)) _ADC1Interrupt(void)
     } else {    // if old = 1   // si, pour l'instant, il n'y a pas de truc "pres"
         if ( (val16 < (Threshold[channel] - MARGIN_SICK))  && (val16 > SICK_LIMIT_MIN)  ) {   // si on vient de detecter un truc
            Old_Sector[channel] = 0;     // on passe en zone "pas sûre"
-<<<<<<< HEAD
-        //   motion_free();                  // et on gueule auprès de l'asserve
-        //   SendSick(channel);
-=======
            motion_free();                  // et on gueule auprès de l'asserve
            DetectSick(channel);				// on previent la PI
->>>>>>> 3e409a2af147008003ac28891f4c9c29b6249335
         }
     }
 
     #ifdef DEBUG_SICK
         static uint16_t i_debug_sick = 0;
-        if (i_debug_sick == 2000) {
-            printf ("\nSick 1 : %ld\nSick 2 : %ld\nSick 3 : %ld\nSick 4 : %ld\n", (Sum_Value_Sick[0] >> 4), (Sum_Value_Sick[1] >> 4), (Sum_Value_Sick[2] >> 4), (Sum_Value_Sick[3] >> 4));
+        if (i_debug_sick == 3000) {
+            printf ("Sick 1 : %ld\nSick 2 : %ld\nSick 3 : %ld\nSick 4 : %ld;", (Sum_Value_Sick[0]), (Sum_Value_Sick[1]), (Sum_Value_Sick[2]), (Sum_Value_Sick[3]) );
             i_debug_sick = 0;
         } else {
             i_debug_sick ++;

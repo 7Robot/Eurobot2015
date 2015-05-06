@@ -55,7 +55,7 @@ void SelectActionFromPi()
     float ANGLE;
     Position MOVE;
 	uint8_t val8;
-	
+
 	// MOVE
     if(ReceivedStringFromPi[1]=='M' && ReceivedStringFromPi[2]=='O' && ReceivedStringFromPi[3]=='V' && ReceivedStringFromPi[4]=='E')
     {
@@ -76,10 +76,10 @@ void SelectActionFromPi()
         ReceivedStringFromPi[cursorPosition+floatLength] = 0;
         MOVE.t = atof(&ReceivedStringFromPi[cursorPosition]);
         ReceivedStringFromPi[cursorPosition+floatLength] = ';';
-        
+
         motion_pos(MOVE);
     }
-    
+
 	// ANGL
     if(ReceivedStringFromPi[1]=='A' && ReceivedStringFromPi[2]=='N' && ReceivedStringFromPi[3]=='G' && ReceivedStringFromPi[4]=='L')
     {
@@ -89,7 +89,7 @@ void SelectActionFromPi()
         ReceivedStringFromPi[cursorPosition+floatLength] = 0;
         ANGLE = atof(&ReceivedStringFromPi[cursorPosition]);
         ReceivedStringFromPi[cursorPosition+floatLength] = ';';
-        
+
         motion_angle(ANGLE);
     }
 
@@ -100,7 +100,7 @@ void SelectActionFromPi()
     {
         Init_All(1);
     }
-    
+
     // AXIN
     if(ReceivedStringFromPi[1]=='A' && ReceivedStringFromPi[2]=='X' && ReceivedStringFromPi[3]=='I' && ReceivedStringFromPi[4]=='N')
     {
@@ -130,7 +130,7 @@ void SelectActionFromPi()
     {
         release();
     }
-<<<<<<< HEAD
+
     // CLOSE
     if(ReceivedStringFromPi[1]=='C' && ReceivedStringFromPi[2]=='L' && ReceivedStringFromPi[3]=='O' && ReceivedStringFromPi[4]=='S')
     {
@@ -139,8 +139,6 @@ void SelectActionFromPi()
 
 
 
-=======
-	
     // SIK?			// demande status sick
     if(ReceivedStringFromPi[1]=='S' && ReceivedStringFromPi[2]=='I' && ReceivedStringFromPi[3]=='K' && ReceivedStringFromPi[4]=='?')
     {
@@ -148,57 +146,50 @@ void SelectActionFromPi()
         if (val8 >= NUMBER_OF_SICK) {
                 val8 = 0;
         }
-        printf("$SI,%d,%d,%d;", val8, Get_Sick(val8), Get_Sick_Sector(val8) );
+        __delay_ms(50);
+        for (val8 = 0; val8 < 4; val8 ++) {
+            printf("$SICK,%d,%d,%d;", val8, Get_Sick(val8), Get_Sick_Sector(val8) );
+        }
+        __delay_ms(50);
     }
->>>>>>> 3e409a2af147008003ac28891f4c9c29b6249335
+
 }
 
 void SendDone(void)
 {
-      __delay_ms(50);
-        printf("$DONE;");
-      __delay_ms(50);
+    __delay_ms(50);
+    printf("$DONE;");
+    __delay_ms(50);
 }
 
 void SendStart(void)
 {
-      __delay_ms(50);
-        printf("$STRT;");
-      __delay_ms(50);
+    __delay_ms(50);
+    printf("$STRT;");
+    __delay_ms(50);
 }
 
 void SendFailAX12(void)
 {
-      __delay_ms(50);
-        printf("$FAAX;");
-      __delay_ms(50);
+    printf("$FAAX;");
 }
 
 void DetectSick(int channel)
 {
-          __delay_ms(50);
     switch(channel){
-<<<<<<< HEAD
-        case 0 : printf("$DET0;");
-        case 1 : printf("$DET1;");
-        case 2 : printf("$DET2;");
-        case 3 : printf("$DET3;");
-=======
-        case 0 : printf("$DSI0;");
-        case 1 : printf("$DSI1;");
-        case 2 : printf("$DSI2;");
-        case 3 : printf("$DSI3;");
+        case 0 : printf("$DSI0;");  break;
+        case 1 : printf("$DSI1;");  break;
+        case 2 : printf("$DSI2;");  break;
+        case 3 : printf("$DSI3;");  break;
     }
 }
 
 void ReleaseSick (int channel)
 {
 	switch(channel){
-        case 0 : printf("$RSI0;");
-        case 1 : printf("$RSI1;");
-        case 2 : printf("$RSI2;");
-        case 3 : printf("$RSI3;");
->>>>>>> 3e409a2af147008003ac28891f4c9c29b6249335
+        case 0 : printf("$RSI0;");  break;
+        case 1 : printf("$RSI1;");  break;
+        case 2 : printf("$RSI2;");  break;
+        case 3 : printf("$RSI3;");  break;
     }
-          __delay_ms(50);
 }

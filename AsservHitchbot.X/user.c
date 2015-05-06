@@ -43,10 +43,11 @@ void Init_All(int callback){
     Init_PWM();
     Init_QEI();
     Init_ax12();
-    //InitSick();
+    InitSick();
     motion_init(); // start asserv
     TRISAbits.TRISA9 = 1;
-    //Init_CN();
+
+    Init_CN();
     if(callback) {
         SendDone();
     }
