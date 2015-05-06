@@ -21,5 +21,6 @@ void Init_ax12(void);
 void charg_spot(void);
 void charg_last_spot(void);
 void release (void);
+void close_claws(void);
 
 #endif	/* ACTIONS_AX12_H */

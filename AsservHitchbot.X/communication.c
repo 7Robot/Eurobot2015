@@ -127,6 +127,12 @@ void SelectActionFromPi()
     {
         release();
     }
+    // CLOSE
+    if(ReceivedStringFromPi[1]=='C' && ReceivedStringFromPi[2]=='L' && ReceivedStringFromPi[3]=='O' && ReceivedStringFromPi[4]=='S')
+    {
+        close_claws();
+    }
+
 
 
 }
@@ -147,10 +153,12 @@ void SendFailAX12(void)
 
 void SendSick(int channel)
 {
+          __delay_ms(50);
     switch(channel){
-        case 0 : printf("$DET1;");
-        case 1 : printf("$DET2;");
-        case 2 : printf("$DET3;");
-        case 3 : printf("$DET4;");
+        case 0 : printf("$DET0;");
+        case 1 : printf("$DET1;");
+        case 2 : printf("$DET2;");
+        case 3 : printf("$DET3;");
     }
+          __delay_ms(50);
 }
