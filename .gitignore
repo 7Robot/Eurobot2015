@@ -15,6 +15,11 @@
 *.sdb
 *.obj.dmp
 *.map
+# ajout pepino :
+*.hex
+*.elf
+*.o.d
+*genesis.properties
 
 # MPLAB-X folders
 #nbproject

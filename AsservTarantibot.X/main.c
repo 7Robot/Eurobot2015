@@ -70,11 +70,11 @@ int main(int argc, char** argv) {
     char done_d=0;
     char done_g=0;
 
+    int BoutonCouleur=_RC3;
+
     init_ax12();
 
     while(1){
-
-    int BoutonCouleur=1;   // !!!!A REMPLACER PAR LA PIN DU BOUTON COULEUR !!!!
 
         ////////////////////////////////////////////////////////////////////////
         ///////////////////////////// EQUIPE VERTE /////////////////////////////
@@ -207,15 +207,16 @@ int main(int argc, char** argv) {
             /////////////////////////// PREMIER ETAT ///////////////////////////
             //                      On sort tout droit                        //
             ////////////////////////////////////////////////////////////////////
+
             if (state==0)
             {
-                if (tics_d-tics_now_d<1000) Vcons_d=8;
+                if (tics_d<1000) Vcons_d=4;
                 else
                 {
                     Vcons_d=0;
                     done_d=1;
                 }
-                if (tics_g-tics_now_g<1000) Vcons_g=8;
+                if (tics_g<1000) Vcons_g=4;
                 else
                 {
                     Vcons_g=0;
@@ -227,23 +228,23 @@ int main(int argc, char** argv) {
                     state=1;
                     done_d=0;
                     done_g=0;
-                    tics_now_d=tics_d;
-                    tics_now_g=tics_g;
+                    reset_asserv=1;
                     __delay_ms(1000);
+                    reset_asserv=0;
                 }
             }
             ////////////////////////// DEUXIEME ETAT ///////////////////////////
-            //                                                                //
+            //                 On tourne de 45 degres a gauche                //
             ////////////////////////////////////////////////////////////////////
             else if (state==1)
             {
-                if (tics_d-tics_now_d<50) Vcons_d=-6;
+                if (tics_d<115) Vcons_d=-3;
                 else
                 {
-                    Vcons_d=-0.01;
+                    Vcons_d=-0.001;
                     done_d=1;
                 }
-                if (tics_g-tics_now_g<50) Vcons_g=6;
+                if (tics_g<115) Vcons_g=3;
                 else
                 {
                     Vcons_g=0;
@@ -255,9 +256,66 @@ int main(int argc, char** argv) {
                     state=2;
                     done_d=0;
                     done_g=0;
-                    tics_now_d=tics_d;
-                    tics_now_g=tics_g;
+                    reset_asserv=1;
+                    deploy();
                     __delay_ms(1000);
+                    reset_asserv=0;
+                }
+            }
+            ///////////////////////// TROISIEME ETAT ///////////////////////////
+            //              On monte un peu les fucking marches               //
+            ////////////////////////////////////////////////////////////////////
+            else if (state==2)
+            {
+                if (tics_d<400) Vcons_d=3;
+                else
+                {
+                    Vcons_d=0;
+                    done_d=1;
+                }
+                if (tics_g<400) Vcons_g=3;
+                else
+                {
+                    Vcons_g=0;
+                    done_g=1;
+                }
+                // Fin du deuxième état si le compte est bon à gauche et à droite
+                if (done_d==1 && done_g==1)
+                {
+                    state=3;
+                    done_d=0;
+                    done_g=0;
+                    reset_asserv=1;
+                    __delay_ms(2000);
+                    reset_asserv=0;
+                }
+            }
+            ///////////////////////// QUATRIEME ETAT ///////////////////////////
+            //            On finit de monter les fucking marches              //
+            ////////////////////////////////////////////////////////////////////
+            else if (state==3)
+            {
+                if (tics_d<500) Vcons_d=3;
+                else
+                {
+                    Vcons_d=0;
+                    done_d=1;
+                }
+                if (tics_g<500) Vcons_g=3;
+                else
+                {
+                    Vcons_g=0;
+                    done_g=1;
+                }
+                // Fin du deuxième état si le compte est bon à gauche et à droite
+                if (done_d==1 && done_g==1)
+                {
+                    state=4;
+                    done_d=0;
+                    done_g=0;
+                    reset_asserv=1;
+                    __delay_ms(1000);
+                    reset_asserv=0;
                 }
             }
         }
