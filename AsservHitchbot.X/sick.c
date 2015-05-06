@@ -44,7 +44,7 @@ volatile uint16_t Value_Sick[NUMBER_OF_SICK][NUMBER_OF_POINTS_MOY_SICK];	// récu
 volatile uint32_t Sum_Value_Sick[NUMBER_OF_SICK];
 volatile uint16_t Old_Sector[NUMBER_OF_SICK] = {0};		// full of 0	// tout ou rien sur les seuils
 
-volatile uint16_t Threshold[NUMBER_OF_SICK] = {DEFAULT_THRESHOLD};
+volatile uint16_t Threshold[NUMBER_OF_SICK] = {DEFAULT_THRESHOLD, DEFAULT_THRESHOLD, DEFAULT_THRESHOLD, DEFAULT_THRESHOLD};
 
 /******************************************************************************/
 /* User Functions                                                             */
