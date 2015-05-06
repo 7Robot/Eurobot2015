@@ -59,11 +59,15 @@ void InitSick()
     _AD1IF = 0;        //Clear the interrupt flag
 
     // reset des systemes de moyenne tournante
+	// chargement de valeurs grosses, histoire que ça déclenche pas lors de l'init
     for (j = 0; j < NUMBER_OF_SICK; j++ ) {
-        for (i = 0; i < NUMBER_OF_POINTS_MOY_SICK; i++){
-            Value_Sick[j][i] = 0;
-        }
+        Threshold[j] = DEFAULT_THRESHOLD;
         Sum_Value_Sick[j] = 0;
+        for (i = 0; i < NUMBER_OF_POINTS_MOY_SICK; i++){
+            Value_Sick[j][i] = 512;
+            Sum_Value_Sick[j] += 512;
+        }
+		
     }
     channel = 0;
     i_moy_sick = 0;
@@ -160,12 +164,13 @@ void __attribute__ ((interrupt, auto_psv)) _ADC1Interrupt(void)
     if (Old_Sector[channel] == 0) {     // si on considère pour l'instant qu'il y a un truc "pres"
         if (val16 > (Threshold[channel] + MARGIN_SICK)) {  // si la valeur repasse au dessus de seuil + marge
             Old_Sector[channel] = 1;        // on repasse en zone "sûre"
+            ReleaseSick(channel);			// on previent la PI
         }
     } else {    // if old = 1   // si, pour l'instant, il n'y a pas de truc "pres"
         if ( (val16 < (Threshold[channel] - MARGIN_SICK))  && (val16 > SICK_LIMIT_MIN)  ) {   // si on vient de detecter un truc
            Old_Sector[channel] = 0;     // on passe en zone "pas sûre"
            motion_free();                  // et on gueule auprès de l'asserve
-           SendSick(channel);
+           DetectSick(channel);				// on previent la PI
         }
     }
 
