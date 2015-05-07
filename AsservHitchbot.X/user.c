@@ -46,7 +46,7 @@ void Init_All(int callback){
     InitSick();
     motion_init(); // start asserv
     TRISAbits.TRISA9 = 1;
-
+    _TRISC4 = 1;  // input for bouton jaune/vert
     Init_CN();
     if(callback) {
         SendDone();

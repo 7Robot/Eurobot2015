@@ -137,7 +137,11 @@ void SelectActionFromPi()
         close_claws();
     }
 
-
+    // TEAM
+    if(ReceivedStringFromPi[1]=='T' && ReceivedStringFromPi[2]=='E' && ReceivedStringFromPi[3]=='A' && ReceivedStringFromPi[4]=='M')
+    {
+        SendTeam(PIN_TEAM);
+    }
 
     // SIK?			// demande status sick
     if(ReceivedStringFromPi[1]=='S' && ReceivedStringFromPi[2]=='I' && ReceivedStringFromPi[3]=='K' && ReceivedStringFromPi[4]=='?')
@@ -176,25 +180,41 @@ void SendStart(void)
 
 void SendFailAX12(void)
 {
+    __delay_ms(50);
     printf("$FAAX;");
+    __delay_ms(50);
 }
 
 void DetectSick(int channel)
 {
+    __delay_ms(50);
     switch(channel){
         case 0 : printf("$DSI0;");  break;
         case 1 : printf("$DSI1;");  break;
         case 2 : printf("$DSI2;");  break;
         case 3 : printf("$DSI3;");  break;
     }
+    __delay_ms(50);
 }
 
 void ReleaseSick (int channel)
 {
+    __delay_ms(50);
 	switch(channel){
         case 0 : printf("$RSI0;");  break;
         case 1 : printf("$RSI1;");  break;
         case 2 : printf("$RSI2;");  break;
         case 3 : printf("$RSI3;");  break;
     }
+    __delay_ms(50);
+}
+
+void SendTeam (int team)
+{
+    __delay_ms(50);
+    switch(team) {
+        case 0 : printf("$YELL;");  break;
+        case 1 : printf("$GREE;");  break;
+    }
+    __delay_ms(50);
 }
