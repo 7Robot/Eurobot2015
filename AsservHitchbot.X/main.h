@@ -10,7 +10,7 @@
 #include "lib_asserv/lib_asserv.h"
 #include "motor.h"
 #include "uart.h"
-#include "sick.h"
+#include "Sick_VBat.h"
 #include "ultrason.h"
 #include "actions_ax12.h"
 #include "communication.h"

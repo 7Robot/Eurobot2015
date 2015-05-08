@@ -40,7 +40,9 @@
 #define SICK_LIMIT_MIN 30	// limite minimum qui fait passer un sick en off
 
 
-#define TIMER_FOR_VBAT  1999    //  400 / sec, donc 2000 donne toutes les 5 secondes
+#define TIMER_FOR_VBAT  399    //  400 / sec, donc 2000 donne toutes les 5 secondes
+#define NUMBER_MEAS_VBAT 8
+
 
 //#define DEBUG_SICK
 
