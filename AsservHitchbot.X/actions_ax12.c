@@ -6,15 +6,13 @@
 
 #include "main.h"
 
-#define maxtork 400
+#define maxtork_claw 500
+#define maxspeed_claw 700
 
 /******************************************************************************/
 /*************************** Arm Specification ********************************/
 /******************************************************************************/
 
-void choose_arm(int arm) {
-
-}
 
 /******************************************************************************/
 /****************************** Init Position *********************************/
@@ -22,9 +20,9 @@ void choose_arm(int arm) {
 
 void Init_ax12() {
 
-    PutAX(rabd, AX_TORQUE_LIMIT, maxtork);
+    PutAX(rabd, AX_TORQUE_LIMIT, maxtork_claw);
     __delay_ms(40);
-    PutAX(rabg, AX_TORQUE_LIMIT, 400);
+    PutAX(rabg, AX_TORQUE_LIMIT, maxtork_claw);
     __delay_ms(40);
     PutAX(pince, AX_TORQUE_LIMIT, 500);
     __delay_ms(40);
@@ -32,10 +30,13 @@ void Init_ax12() {
     __delay_ms(40);
     PutAX(tub, AX_TORQUE_LIMIT, 600);
     __delay_ms(40);
-
-    PutAX(rabd, AX_MOVING_SPEED, 900);
+    PutAX(clap, AX_TORQUE_LIMIT, maxtork_claw);
     __delay_ms(40);
-    PutAX(rabg, AX_MOVING_SPEED, 900);
+
+
+    PutAX(rabd, AX_MOVING_SPEED, maxspeed_claw);
+    __delay_ms(40);
+    PutAX(rabg, AX_MOVING_SPEED, maxspeed_claw);
     __delay_ms(40);
     PutAX(pince, AX_MOVING_SPEED, 800);
     __delay_ms(40);
@@ -43,6 +44,10 @@ void Init_ax12() {
     __delay_ms(40);
     PutAX(tub, AX_MOVING_SPEED, 450);
     __delay_ms(40);
+    PutAX(clap, AX_MOVING_SPEED, maxspeed_claw);
+    __delay_ms(40);
+
+
 
     PutAX(asc, AX_GOAL_POSITION, 320);
     __delay_ms(500);
@@ -53,7 +58,8 @@ void Init_ax12() {
     PutAX(pince, AX_GOAL_POSITION, 260);
     __delay_ms(40);
     PutAX(tub, AX_GOAL_POSITION, 350);
-
+    __delay_ms(40);
+    PutAX(clap, AX_GOAL_POSITION, 512);
     __delay_ms(40);
 
 }
@@ -152,6 +158,16 @@ void close_claws(void) { // fonction qui permet la fermeture des pinces à la vol
     PutAX(rabd,AX_GOAL_POSITION,300); //rabat la piece 700
     __delay_ms(700);
     PutAX(rabg,AX_GOAL_POSITION,850); //rabat la piece 700
+    __delay_ms(700);
+}
+
+void open_clap(void) {
+    PutAX(clap,AX_GOAL_POSITION,830); //rabat la piece 700
+    __delay_ms(700);
+}
+
+void close_clap(void) {
+    PutAX(clap,AX_GOAL_POSITION,512); //rabat la piece 700
     __delay_ms(700);
 }
 /******************************************************************************/
