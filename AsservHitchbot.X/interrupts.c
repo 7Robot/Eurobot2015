@@ -189,10 +189,11 @@ void Init_CN()
 /* TODO Add interrupt routine code here. */
 
 void __attribute__((interrupt,auto_psv)) _T2Interrupt(void) {
-    // on baisse le flag
+    
+    
 
     // compteurs QEI gauche et droit
-    static volatile int tics_g, tics_d;
+    static int tics_g, tics_d;
     // commandes gauches et droite
     static float commande_g, commande_d;
 
@@ -204,7 +205,7 @@ void __attribute__((interrupt,auto_psv)) _T2Interrupt(void) {
     // mettre ici les pwm gauche et droit
    PWM_Moteurs(commande_g, commande_d);
 
-   _T2IF = 0;
+   _T2IF = 0;   // on baisse le flag
 }
 
 /*************************************************

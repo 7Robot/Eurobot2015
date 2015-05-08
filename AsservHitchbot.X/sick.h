@@ -26,6 +26,7 @@
 #define AN_CH_SICK_ARRIERE_GAUCHE 6 //AN6		=> // an_sick 2
 #define AN_CH_SICK_AVANT_DROIT    5 //AN5		=> // an_sick 3
 #define AN_CH_SICK_AVANT_GAUCHE   4 //AN4		=> // an_sick 4
+#define AN_CH_V_BAT               0
 
 #define SICK_AV_DROIT   2   //sick 3
 #define SICK_AV_GAUCHE  3   //sick 4
@@ -38,18 +39,23 @@
 #define MARGIN_SICK 30		// en réalité, plutot un triger de schmitt
 #define SICK_LIMIT_MIN 30	// limite minimum qui fait passer un sick en off
 
+
+#define TIMER_FOR_VBAT  1999    //  400 / sec, donc 2000 donne toutes les 5 secondes
+
 //#define DEBUG_SICK
 
 /******************************************************************************/
 /* Function Prototypes                                                        */
 /******************************************************************************/
 
-void InitSick();
+void InitSick_VBat();
 
 uint16_t Get_Sick(uint8_t Sick_Voulu);
 uint16_t Get_Sick_Sector (uint8_t Sick_Voulu);
 
 void Start_Stop_Debug_Sick(void);
+
+extern volatile uint16_t V_Bat;
 
 #endif	/* SICK_H */
 

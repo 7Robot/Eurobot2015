@@ -171,7 +171,18 @@ void SelectActionFromPi()
     if(ReceivedStringFromPi[1]=='D' && ReceivedStringFromPi[2]=='B' && ReceivedStringFromPi[3]=='U' && ReceivedStringFromPi[4]=='S')
     {
         Start_Stop_Debug_Ultrason();
+    } 
+        
+    // VBAT			// récupère la tension baterie
+    if(ReceivedStringFromPi[1]=='V' && ReceivedStringFromPi[2]=='B' && ReceivedStringFromPi[3]=='A' && ReceivedStringFromPi[4]=='T')
+    {
+        __delay_ms(50);
+        printf("$VBAT,%d;", V_Bat);
+        __delay_ms(50);
     }
+
+
+
 }
 
 void SendDone(void)
