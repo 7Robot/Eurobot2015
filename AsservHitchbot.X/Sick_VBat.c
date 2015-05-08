@@ -47,6 +47,7 @@ volatile uint16_t Old_Sector[NUMBER_OF_SICK] = {0};		// full of 0	// tout ou rie
 volatile uint16_t Threshold[NUMBER_OF_SICK] = {DEFAULT_THRESHOLD, DEFAULT_THRESHOLD, DEFAULT_THRESHOLD, DEFAULT_THRESHOLD};
 
 volatile uint16_t V_Bat = 0;
+volatile uint16_t V_Bat_Tab[NUMBER_MEAS_VBAT];
 
 volatile uint8_t debug_sick_on = 0;
 /******************************************************************************/
@@ -71,12 +72,13 @@ void InitSick_VBat()
             Value_Sick[j][i] = 512;
             Sum_Value_Sick[j] += 512;
         }
-
-		
     }
     channel = 0;
     i_moy_sick = 0;
 
+    for (j = 0; j < NUMBER_MEAS_VBAT; j++) {
+        V_Bat_Tab[j] = 40000;
+    }
 
     //Configuration du convertisseur Analog to Digital (ADC) du dspic33f
     //Cf page 286 dspic33f Data Sheet
@@ -157,6 +159,9 @@ void OnAskSick(unsigned char id){
 void __attribute__ ((interrupt, auto_psv)) _ADC1Interrupt(void)
 {
     static uint16_t timer_for_VBat = TIMER_FOR_VBAT;
+    static uint8_t i_V_Bat_tab = 0;
+    uint8_t i;
+    uint32_t val32;
 
     static uint16_t i_debug_sick = 0;
     uint16_t val16 = ADC1BUF0;// récupération valeur depuis ADC
@@ -197,8 +202,19 @@ void __attribute__ ((interrupt, auto_psv)) _ADC1Interrupt(void)
         // => 35.44.... mV de baterie par point
         // = * 9075  puis div par 512  soit >> 8
 
-
-        V_Bat = (uint16_t)(((9075 * ((uint32_t)(val16))) >> 8));
+        V_Bat_Tab[i_V_Bat_tab] = (uint16_t)(((9075 * ((uint32_t)(val16))) >> 8));
+        
+        i_V_Bat_tab ++;
+        if (i_V_Bat_tab == NUMBER_MEAS_VBAT) {
+            i_V_Bat_tab = 0;
+        }
+        
+        val32 = 0;
+        for (i = 0; i < NUMBER_MEAS_VBAT; i++) {
+            val32 += V_Bat_Tab[i];
+        }
+        val32 = val32 >> 3;
+        V_Bat = (uint16_t)(val32);
     }
 
     // Select next sensor 
@@ -226,7 +242,6 @@ void __attribute__ ((interrupt, auto_psv)) _ADC1Interrupt(void)
                _CH0SA = AN_CH_V_BAT;                            // V BAT
                channel = 4;
             }
-
             i_moy_sick++;
             if (i_moy_sick == NUMBER_OF_POINTS_MOY_SICK) {
                 i_moy_sick = 0;

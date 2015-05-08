@@ -22,7 +22,6 @@
       <itemPath>actions_ax12.h</itemPath>
       <itemPath>communication.h</itemPath>
       <itemPath>main.h</itemPath>
-      <itemPath>sick.h</itemPath>
       <itemPath>ultrason.h</itemPath>
     </logicalFolder>
     <logicalFolder name="LinkerScript"
@@ -49,7 +48,6 @@
       <itemPath>ax12.c</itemPath>
       <itemPath>actions_ax12.c</itemPath>
       <itemPath>communication.c</itemPath>
-      <itemPath>sick.c</itemPath>
       <itemPath>ultrason.c</itemPath>
     </logicalFolder>
     <logicalFolder name="ExternalFiles"
