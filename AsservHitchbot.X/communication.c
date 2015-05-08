@@ -172,9 +172,6 @@ void SelectActionFromPi()
     {
         Start_Stop_Debug_Ultrason();
     }
-
-
-
 }
 
 void SendDone(void)
