@@ -53,10 +53,10 @@
 
 // 4 asserv différentes (position et vitese pour chaque roue) donc 4 PID
 #ifndef DEFAULT_PID_COEFS_DELTA
-#define DEFAULT_PID_COEFS_DELTA {200,25,0,0,0} //{200,70,900,0.3,0.8}{130,90,3000,0.5,0.9}
+#define DEFAULT_PID_COEFS_DELTA {200,15,0,0,0} //{200,70,900,0.3,0.8}{130,90,3000,0.5,0.9}
 #endif
 #ifndef DEFAULT_PID_COEFS_ALPHA
-#define DEFAULT_PID_COEFS_ALPHA {10,5.5,30,0.5,0.9} //{10,5,30,0,0.7}
+#define DEFAULT_PID_COEFS_ALPHA {10,5,5,0,0} //{10,5,30,0,0.7}
 #endif
 /*
 #ifndef DEFAULT_PID_COEFS_VG
@@ -77,10 +77,10 @@
 
 // ainsi que les conditions d'arrêt des PID en position et vitesse
 #ifndef DEFAULT_PID_EPS_DELTA
-#define DEFAULT_PID_EPS_DELTA {0.01,0.02}
+#define DEFAULT_PID_EPS_DELTA {0.02,0.02}
 #endif
 #ifndef DEFAULT_PID_EPS_ALPHA
-#define DEFAULT_PID_EPS_ALPHA {0.01,0.02}
+#define DEFAULT_PID_EPS_ALPHA {0.02,0.02}
 #endif
 
 /*############################################################################*/
