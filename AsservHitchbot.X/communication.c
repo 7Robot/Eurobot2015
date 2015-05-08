@@ -180,9 +180,19 @@ void SelectActionFromPi()
         printf("$VBAT,%d;", V_Bat);
         __delay_ms(50);
     }
-
-
-
+	
+	// CLAO
+    if(ReceivedStringFromPi[1]=='C' && ReceivedStringFromPi[2]=='L' && ReceivedStringFromPi[3]=='A' && ReceivedStringFromPi[4]=='O')
+    {
+        open_clap();
+    }
+	
+	// CLAC
+    if(ReceivedStringFromPi[1]=='C' && ReceivedStringFromPi[2]=='L' && ReceivedStringFromPi[3]=='A' && ReceivedStringFromPi[4]=='C')
+    {
+        close_clap();
+    }
+	
 }
 
 void SendDone(void)

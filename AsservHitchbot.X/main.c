@@ -48,7 +48,7 @@ int main(int argc, char** argv) {
 
     while (1) // boucle principale
     {
-        __delay_ms(10);
+        __delay_ms(20);
     }
 }
 
