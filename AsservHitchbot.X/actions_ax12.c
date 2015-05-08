@@ -160,9 +160,9 @@ void release (void) {
 }
 
 void close_claws(void) { // fonction qui permet la fermeture des pinces à la volée
-    PutAX(rabd,AX_GOAL_POSITION,300); //rabat la piece 700
+    PutAX(rabd,AX_GOAL_POSITION,300); 
     __delay_ms(700);
-    PutAX(rabg,AX_GOAL_POSITION,850); //rabat la piece 700
+    PutAX(rabg,AX_GOAL_POSITION,750);
     __delay_ms(700);
 }
 
