@@ -45,10 +45,11 @@ _FPOR(PWMPIN_ON);
 
 int main(int argc, char** argv) {
     Init_All(0);
+    
 
     while (1) // boucle principale
     {
-        __delay_ms(20);
+        __delay_ms(10);
     }
 }
 

@@ -32,6 +32,8 @@ void Init_ax12() {
     __delay_ms(40);
     PutAX(clap, AX_TORQUE_LIMIT, maxtork_claw);
     __delay_ms(40);
+    PutAX(popcorn, AX_TORQUE_LIMIT, maxtork_claw);
+    __delay_ms(40);
 
 
     PutAX(rabd, AX_MOVING_SPEED, maxspeed_claw);
@@ -46,7 +48,8 @@ void Init_ax12() {
     __delay_ms(40);
     PutAX(clap, AX_MOVING_SPEED, maxspeed_claw);
     __delay_ms(40);
-
+    PutAX(popcorn, AX_MOVING_SPEED, maxspeed_claw);
+    __delay_ms(40);
 
 
     PutAX(asc, AX_GOAL_POSITION, 320);
@@ -60,6 +63,8 @@ void Init_ax12() {
     PutAX(tub, AX_GOAL_POSITION, 350);
     __delay_ms(40);
     PutAX(clap, AX_GOAL_POSITION, 512);
+    __delay_ms(40);
+    PutAX(popcorn, AX_GOAL_POSITION, 512);
     __delay_ms(40);
 
 }
@@ -169,6 +174,18 @@ void open_clap(void) {
 
 void close_clap(void) {
     PutAX(clap,AX_GOAL_POSITION,512); //rabat la piece 700
+    __delay_ms(700);
+    SendDone();
+}
+
+void open_popcorn(void) {
+    PutAX(popcorn,AX_GOAL_POSITION,150); //rabat la piece 700
+    __delay_ms(700);
+    SendDone();
+}
+
+void close_popcorn(void) {
+    PutAX(popcorn,AX_GOAL_POSITION,512); //rabat la piece 700
     __delay_ms(700);
     SendDone();
 }

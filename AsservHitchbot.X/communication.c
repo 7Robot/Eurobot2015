@@ -192,6 +192,17 @@ void SelectActionFromPi()
     {
         close_clap();
     }
+
+    if(ReceivedStringFromPi[1]=='P' && ReceivedStringFromPi[2]=='O' && ReceivedStringFromPi[3]=='P' && ReceivedStringFromPi[4]=='O')
+    {
+        open_clap();
+    }
+
+	// CLAC
+    if(ReceivedStringFromPi[1]=='P' && ReceivedStringFromPi[2]=='O' && ReceivedStringFromPi[3]=='P' && ReceivedStringFromPi[4]=='C')
+    {
+        close_clap();
+    }
 	
 }
 
