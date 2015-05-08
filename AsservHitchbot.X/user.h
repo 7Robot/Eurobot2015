@@ -6,6 +6,8 @@
 /******************************************************************************/
 #define led _LATA2
 #define PIN_LAISSE _RC3         // 5V num 4
+#define PIN_TEAM _RC4
+// ultrason : en RC4 aussi BUG
 #define BOUTON_COULEUR _RA9
 
 /******************************************************************************/

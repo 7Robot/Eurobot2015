@@ -46,7 +46,7 @@ void InitTimers()
 
     ConfigIntUART1(UART_RX_INT_PR6 & UART_RX_INT_EN
                  & UART_TX_INT_PR6 & UART_TX_INT_DIS);
-    
+
     // activation du Timer2
     OpenTimer2(T2_ON &
                 T2_IDLE_CON &

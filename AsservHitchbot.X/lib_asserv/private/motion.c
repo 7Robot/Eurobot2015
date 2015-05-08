@@ -150,9 +150,10 @@ void motion_step(int tics_g, int tics_d, float *commande_g, float *commande_d){
         asserv_step(&odo, commande_g, commande_d);
         // indique si on est arrivé
         if (asserv_done()){
-            if (asserv_mode != ASSERV_MODE_OFF){needToSendDone = 1;}
-            motion_free();
-            if(needToSendDone == 1){SendDone();}
+            if (asserv_mode != ASSERV_MODE_OFF){
+                motion_free();
+                SendDone();
+            }
         }
     }
 }
