@@ -48,7 +48,7 @@ void Init_All(int callback){
     Init_Ultrasons();
     TRISAbits.TRISA9 = 1;
     
-    _TRISC4 = 1;  // input for bouton jaune/vert
+    TRIS_TEAM = 1;  // input for bouton jaune/vert
     Init_CN();
 
     if(callback) {
