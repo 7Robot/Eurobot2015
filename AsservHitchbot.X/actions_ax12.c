@@ -164,10 +164,12 @@ void close_claws(void) { // fonction qui permet la fermeture des pinces à la vol
 void open_clap(void) {
     PutAX(clap,AX_GOAL_POSITION,830); //rabat la piece 700
     __delay_ms(700);
+    SendDone();
 }
 
 void close_clap(void) {
     PutAX(clap,AX_GOAL_POSITION,512); //rabat la piece 700
     __delay_ms(700);
+    SendDone();
 }
 /******************************************************************************/

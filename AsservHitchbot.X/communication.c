@@ -181,8 +181,6 @@ void SelectActionFromPi()
     {
         close_clap();
     }
-
-
 }
 
 void SendDone(void)
