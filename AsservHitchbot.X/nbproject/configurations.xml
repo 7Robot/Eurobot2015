@@ -23,6 +23,7 @@
       <itemPath>communication.h</itemPath>
       <itemPath>main.h</itemPath>
       <itemPath>sick.h</itemPath>
+      <itemPath>ultrason.h</itemPath>
     </logicalFolder>
     <logicalFolder name="LinkerScript"
                    displayName="Linker Files"
@@ -49,6 +50,7 @@
       <itemPath>actions_ax12.c</itemPath>
       <itemPath>communication.c</itemPath>
       <itemPath>sick.c</itemPath>
+      <itemPath>ultrason.c</itemPath>
     </logicalFolder>
     <logicalFolder name="ExternalFiles"
                    displayName="Important Files"

@@ -147,16 +147,31 @@ void SelectActionFromPi()
                 val8 = 0;
         }
         __delay_ms(50);
-        printf("$SICK,%d,%d,%d;", val8, Get_Sick(val8), Get_Sick_Sector(val8) );
+        SendSick_Status(val8);
         __delay_ms(50);
     }
-
 
     // DBSI			// start/stop debug sick
     if(ReceivedStringFromPi[1]=='D' && ReceivedStringFromPi[2]=='B' && ReceivedStringFromPi[3]=='S' && ReceivedStringFromPi[4]=='I')
     {
         Start_Stop_Debug_Sick();
     }
+
+    // ULS?			// demande status sick
+    if(ReceivedStringFromPi[1]=='U' && ReceivedStringFromPi[2]=='L' && ReceivedStringFromPi[3]=='S' && ReceivedStringFromPi[4]=='?')
+    {
+        __delay_ms(50);
+        SendUltrason_Status();
+        __delay_ms(50);
+    }
+
+    // DBUS			// start/stop debug ultrason
+    if(ReceivedStringFromPi[1]=='D' && ReceivedStringFromPi[2]=='B' && ReceivedStringFromPi[3]=='U' && ReceivedStringFromPi[4]=='S')
+    {
+        Start_Stop_Debug_Ultrason();
+    }
+
+
 
 }
 
@@ -198,3 +213,24 @@ void ReleaseSick (int channel)
         case 3 : printf("$RSI3;");  break;
     }
 }
+
+void SendSick_Status(int val8)
+{
+    printf("$SICK,%d,%d,%d;", val8, Get_Sick(val8), Get_Sick_Sector(val8) );
+}
+
+void DetectUltrason(void)
+{
+    printf("$DULS;");
+}
+
+void ReleaseUltrason(void)
+{
+    printf("$RULS;");
+}
+
+void SendUltrason_Status(void)
+{
+    printf("$SULS,%d,%d,%d;", Sector_Ultrason, Mesure_Distance_Ultrason, Mesure_Timer_Ultrason);
+}
+

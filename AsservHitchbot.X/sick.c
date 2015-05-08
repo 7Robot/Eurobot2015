@@ -2,7 +2,7 @@
 * Sick
 * Compiler : Microchip xC16
 * µC : 33FJ64MC804
-* Mai 2014
+* Mai 2015
 *    ____________      _           _
 *   |___  /| ___ \    | |         | |
 *      / / | |_/ /___ | |__   ___ | |_
@@ -66,10 +66,12 @@ void InitSick()
     for (j = 0; j < NUMBER_OF_SICK; j++ ) {
         Threshold[j] = DEFAULT_THRESHOLD;
         Sum_Value_Sick[j] = 0;
+        Old_Sector[j] = 1;
         for (i = 0; i < NUMBER_OF_POINTS_MOY_SICK; i++){
             Value_Sick[j][i] = 512;
             Sum_Value_Sick[j] += 512;
         }
+
 		
     }
     channel = 0;
@@ -223,6 +225,8 @@ uint16_t Get_Sick(uint8_t Sick_Voulu)
     }
 }
 
+// return 1 si rien devant
+// return 0 si detection
 uint16_t Get_Sick_Sector (uint8_t Sick_Voulu)
 {
     if (Sick_Voulu < NUMBER_OF_SICK) {

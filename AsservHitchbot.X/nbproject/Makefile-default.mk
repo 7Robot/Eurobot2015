@@ -45,17 +45,17 @@ OBJECTDIR=build/${CND_CONF}/${IMAGE_TYPE}
 DISTDIR=dist/${CND_CONF}/${IMAGE_TYPE}
 
 # Source Files Quoted if spaced
-SOURCEFILES_QUOTED_IF_SPACED=lib_asserv/private/asserv.c lib_asserv/private/debug.c lib_asserv/private/motion.c lib_asserv/private/odo.c lib_asserv/private/pid.c lib_asserv/private/tools.c user.c interrupts.c main.c motor.c ax12.c actions_ax12.c communication.c sick.c
+SOURCEFILES_QUOTED_IF_SPACED=lib_asserv/private/asserv.c lib_asserv/private/debug.c lib_asserv/private/motion.c lib_asserv/private/odo.c lib_asserv/private/pid.c lib_asserv/private/tools.c user.c interrupts.c main.c motor.c ax12.c actions_ax12.c communication.c sick.c ultrason.c
 
 # Object Files Quoted if spaced
-OBJECTFILES_QUOTED_IF_SPACED=${OBJECTDIR}/lib_asserv/private/asserv.o ${OBJECTDIR}/lib_asserv/private/debug.o ${OBJECTDIR}/lib_asserv/private/motion.o ${OBJECTDIR}/lib_asserv/private/odo.o ${OBJECTDIR}/lib_asserv/private/pid.o ${OBJECTDIR}/lib_asserv/private/tools.o ${OBJECTDIR}/user.o ${OBJECTDIR}/interrupts.o ${OBJECTDIR}/main.o ${OBJECTDIR}/motor.o ${OBJECTDIR}/ax12.o ${OBJECTDIR}/actions_ax12.o ${OBJECTDIR}/communication.o ${OBJECTDIR}/sick.o
-POSSIBLE_DEPFILES=${OBJECTDIR}/lib_asserv/private/asserv.o.d ${OBJECTDIR}/lib_asserv/private/debug.o.d ${OBJECTDIR}/lib_asserv/private/motion.o.d ${OBJECTDIR}/lib_asserv/private/odo.o.d ${OBJECTDIR}/lib_asserv/private/pid.o.d ${OBJECTDIR}/lib_asserv/private/tools.o.d ${OBJECTDIR}/user.o.d ${OBJECTDIR}/interrupts.o.d ${OBJECTDIR}/main.o.d ${OBJECTDIR}/motor.o.d ${OBJECTDIR}/ax12.o.d ${OBJECTDIR}/actions_ax12.o.d ${OBJECTDIR}/communication.o.d ${OBJECTDIR}/sick.o.d
+OBJECTFILES_QUOTED_IF_SPACED=${OBJECTDIR}/lib_asserv/private/asserv.o ${OBJECTDIR}/lib_asserv/private/debug.o ${OBJECTDIR}/lib_asserv/private/motion.o ${OBJECTDIR}/lib_asserv/private/odo.o ${OBJECTDIR}/lib_asserv/private/pid.o ${OBJECTDIR}/lib_asserv/private/tools.o ${OBJECTDIR}/user.o ${OBJECTDIR}/interrupts.o ${OBJECTDIR}/main.o ${OBJECTDIR}/motor.o ${OBJECTDIR}/ax12.o ${OBJECTDIR}/actions_ax12.o ${OBJECTDIR}/communication.o ${OBJECTDIR}/sick.o ${OBJECTDIR}/ultrason.o
+POSSIBLE_DEPFILES=${OBJECTDIR}/lib_asserv/private/asserv.o.d ${OBJECTDIR}/lib_asserv/private/debug.o.d ${OBJECTDIR}/lib_asserv/private/motion.o.d ${OBJECTDIR}/lib_asserv/private/odo.o.d ${OBJECTDIR}/lib_asserv/private/pid.o.d ${OBJECTDIR}/lib_asserv/private/tools.o.d ${OBJECTDIR}/user.o.d ${OBJECTDIR}/interrupts.o.d ${OBJECTDIR}/main.o.d ${OBJECTDIR}/motor.o.d ${OBJECTDIR}/ax12.o.d ${OBJECTDIR}/actions_ax12.o.d ${OBJECTDIR}/communication.o.d ${OBJECTDIR}/sick.o.d ${OBJECTDIR}/ultrason.o.d
 
 # Object Files
-OBJECTFILES=${OBJECTDIR}/lib_asserv/private/asserv.o ${OBJECTDIR}/lib_asserv/private/debug.o ${OBJECTDIR}/lib_asserv/private/motion.o ${OBJECTDIR}/lib_asserv/private/odo.o ${OBJECTDIR}/lib_asserv/private/pid.o ${OBJECTDIR}/lib_asserv/private/tools.o ${OBJECTDIR}/user.o ${OBJECTDIR}/interrupts.o ${OBJECTDIR}/main.o ${OBJECTDIR}/motor.o ${OBJECTDIR}/ax12.o ${OBJECTDIR}/actions_ax12.o ${OBJECTDIR}/communication.o ${OBJECTDIR}/sick.o
+OBJECTFILES=${OBJECTDIR}/lib_asserv/private/asserv.o ${OBJECTDIR}/lib_asserv/private/debug.o ${OBJECTDIR}/lib_asserv/private/motion.o ${OBJECTDIR}/lib_asserv/private/odo.o ${OBJECTDIR}/lib_asserv/private/pid.o ${OBJECTDIR}/lib_asserv/private/tools.o ${OBJECTDIR}/user.o ${OBJECTDIR}/interrupts.o ${OBJECTDIR}/main.o ${OBJECTDIR}/motor.o ${OBJECTDIR}/ax12.o ${OBJECTDIR}/actions_ax12.o ${OBJECTDIR}/communication.o ${OBJECTDIR}/sick.o ${OBJECTDIR}/ultrason.o
 
 # Source Files
-SOURCEFILES=lib_asserv/private/asserv.c lib_asserv/private/debug.c lib_asserv/private/motion.c lib_asserv/private/odo.c lib_asserv/private/pid.c lib_asserv/private/tools.c user.c interrupts.c main.c motor.c ax12.c actions_ax12.c communication.c sick.c
+SOURCEFILES=lib_asserv/private/asserv.c lib_asserv/private/debug.c lib_asserv/private/motion.c lib_asserv/private/odo.c lib_asserv/private/pid.c lib_asserv/private/tools.c user.c interrupts.c main.c motor.c ax12.c actions_ax12.c communication.c sick.c ultrason.c
 
 
 CFLAGS=
@@ -180,6 +180,13 @@ ${OBJECTDIR}/sick.o: sick.c  nbproject/Makefile-${CND_CONF}.mk
 	${MP_CC} $(MP_EXTRA_CC_PRE)  sick.c  -o ${OBJECTDIR}/sick.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MMD -MF "${OBJECTDIR}/sick.o.d"      -g -D__DEBUG -D__MPLAB_DEBUGGER_PK3=1    -omf=elf -mlarge-code -mlarge-data -O0 -msmart-io=1 -Wall -msfr-warn=off
 	@${FIXDEPS} "${OBJECTDIR}/sick.o.d" $(SILENT)  -rsi ${MP_CC_DIR}../ 
 	
+${OBJECTDIR}/ultrason.o: ultrason.c  nbproject/Makefile-${CND_CONF}.mk
+	@${MKDIR} "${OBJECTDIR}" 
+	@${RM} ${OBJECTDIR}/ultrason.o.d 
+	@${RM} ${OBJECTDIR}/ultrason.o 
+	${MP_CC} $(MP_EXTRA_CC_PRE)  ultrason.c  -o ${OBJECTDIR}/ultrason.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MMD -MF "${OBJECTDIR}/ultrason.o.d"      -g -D__DEBUG -D__MPLAB_DEBUGGER_PK3=1    -omf=elf -mlarge-code -mlarge-data -O0 -msmart-io=1 -Wall -msfr-warn=off
+	@${FIXDEPS} "${OBJECTDIR}/ultrason.o.d" $(SILENT)  -rsi ${MP_CC_DIR}../ 
+	
 else
 ${OBJECTDIR}/lib_asserv/private/asserv.o: lib_asserv/private/asserv.c  nbproject/Makefile-${CND_CONF}.mk
 	@${MKDIR} "${OBJECTDIR}/lib_asserv/private" 
@@ -278,6 +285,13 @@ ${OBJECTDIR}/sick.o: sick.c  nbproject/Makefile-${CND_CONF}.mk
 	@${RM} ${OBJECTDIR}/sick.o 
 	${MP_CC} $(MP_EXTRA_CC_PRE)  sick.c  -o ${OBJECTDIR}/sick.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MMD -MF "${OBJECTDIR}/sick.o.d"        -g -omf=elf -mlarge-code -mlarge-data -O0 -msmart-io=1 -Wall -msfr-warn=off
 	@${FIXDEPS} "${OBJECTDIR}/sick.o.d" $(SILENT)  -rsi ${MP_CC_DIR}../ 
+	
+${OBJECTDIR}/ultrason.o: ultrason.c  nbproject/Makefile-${CND_CONF}.mk
+	@${MKDIR} "${OBJECTDIR}" 
+	@${RM} ${OBJECTDIR}/ultrason.o.d 
+	@${RM} ${OBJECTDIR}/ultrason.o 
+	${MP_CC} $(MP_EXTRA_CC_PRE)  ultrason.c  -o ${OBJECTDIR}/ultrason.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MMD -MF "${OBJECTDIR}/ultrason.o.d"        -g -omf=elf -mlarge-code -mlarge-data -O0 -msmart-io=1 -Wall -msfr-warn=off
+	@${FIXDEPS} "${OBJECTDIR}/ultrason.o.d" $(SILENT)  -rsi ${MP_CC_DIR}../ 
 	
 endif
 

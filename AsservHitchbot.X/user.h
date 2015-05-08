@@ -5,7 +5,7 @@
 /* User Level #define Macros                                                  */
 /******************************************************************************/
 #define led _LATA2
-#define PIN_LAISSE _RC3
+#define PIN_LAISSE _RC3         // 5V num 4
 #define BOUTON_COULEUR _RA9
 
 /******************************************************************************/
