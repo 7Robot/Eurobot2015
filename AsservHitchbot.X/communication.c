@@ -172,6 +172,17 @@ void SelectActionFromPi()
     {
         Start_Stop_Debug_Ultrason();
     }
+        
+    if(ReceivedStringFromPi[1]=='C' && ReceivedStringFromPi[2]=='L' && ReceivedStringFromPi[3]=='A' && ReceivedStringFromPi[4]=='O')
+    {
+        open_clap();
+    }
+    if(ReceivedStringFromPi[1]=='C' && ReceivedStringFromPi[2]=='L' && ReceivedStringFromPi[3]=='A' && ReceivedStringFromPi[4]=='C')
+    {
+        close_clap();
+    }
+
+
 }
 
 void SendDone(void)
