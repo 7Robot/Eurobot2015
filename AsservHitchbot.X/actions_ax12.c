@@ -8,6 +8,7 @@
 
 #define maxtork_claw 500
 #define maxspeed_claw 500
+#define delay_ax 30
 
 /******************************************************************************/
 /*************************** Arm Specification ********************************/
@@ -21,35 +22,35 @@
 void Init_ax12() {
 
     PutAX(rabd, AX_TORQUE_LIMIT, maxtork_claw);
-    __delay_ms(40);
+    __delay_ms(delay_ax);
     PutAX(rabg, AX_TORQUE_LIMIT, maxtork_claw);
-    __delay_ms(40);
+    __delay_ms(delay_ax);
     PutAX(pince, AX_TORQUE_LIMIT, 500);
-    __delay_ms(40);
+    __delay_ms(delay_ax);
     PutAX(asc, AX_TORQUE_LIMIT, 900);
-    __delay_ms(40);
+    __delay_ms(delay_ax);
     PutAX(tub, AX_TORQUE_LIMIT, 600);
-    __delay_ms(40);
+    __delay_ms(delay_ax);
     PutAX(clap, AX_TORQUE_LIMIT, maxtork_claw);
-    __delay_ms(40);
+    __delay_ms(delay_ax);
     PutAX(popcorn, AX_TORQUE_LIMIT, maxtork_claw);
-    __delay_ms(40);
+    __delay_ms(delay_ax);
 
 
     PutAX(rabd, AX_MOVING_SPEED, maxspeed_claw);
-    __delay_ms(40);
+    __delay_ms(delay_ax);
     PutAX(rabg, AX_MOVING_SPEED, maxspeed_claw);
-    __delay_ms(40);
+    __delay_ms(delay_ax);
     PutAX(pince, AX_MOVING_SPEED, 400);
-    __delay_ms(40);
+    __delay_ms(delay_ax);
     PutAX(asc, AX_MOVING_SPEED, 600);
-    __delay_ms(40);
+    __delay_ms(delay_ax);
     PutAX(tub, AX_MOVING_SPEED, 450);
-    __delay_ms(40);
+    __delay_ms(delay_ax);
     PutAX(clap, AX_MOVING_SPEED, maxspeed_claw);
-    __delay_ms(40);
+    __delay_ms(delay_ax);
     PutAX(popcorn, AX_MOVING_SPEED, maxspeed_claw);
-    __delay_ms(40);
+    __delay_ms(delay_ax);
 
 
     PutAX(asc, AX_GOAL_POSITION, 320);
@@ -164,9 +165,9 @@ void release (void) {
 }
 
 void close_claws(void) { // fonction qui permet la fermeture des pinces à la volée
-    PutAX(rabd,AX_GOAL_POSITION,250);
+    PutAX(rabd,AX_GOAL_POSITION,200);
     __delay_ms(700);
-    PutAX(rabg,AX_GOAL_POSITION,700);
+    PutAX(rabg,AX_GOAL_POSITION,750);
     __delay_ms(700);
 }
 
