@@ -136,6 +136,12 @@ void SelectActionFromPi()
     {
         close_claws();
     }
+        
+    if(ReceivedStringFromPi[1]=='O' && ReceivedStringFromPi[2]=='P' && ReceivedStringFromPi[3]=='E' && ReceivedStringFromPi[4]=='S')
+    {
+        close_claws();
+    }
+
 
     // TEAM
     if(ReceivedStringFromPi[1]=='T' && ReceivedStringFromPi[2]=='E' && ReceivedStringFromPi[3]=='A' && ReceivedStringFromPi[4]=='M')

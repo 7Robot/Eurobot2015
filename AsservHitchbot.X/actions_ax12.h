@@ -23,6 +23,7 @@ void charg_spot(void);
 void charg_last_spot(void);
 void release (void);
 void close_claws(void);
+void open_claws(void);
 void close_clap(void);
 void open_clap(void);
 void open_popcorn(void);

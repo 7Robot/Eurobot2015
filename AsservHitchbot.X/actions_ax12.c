@@ -54,10 +54,14 @@ void Init_ax12() {
 
     PutAX(asc, AX_GOAL_POSITION, 320);
     __delay_ms(500);
-    PutAX(rabd, AX_GOAL_POSITION, 620);
-    __delay_ms(500);
-    PutAX(rabg, AX_GOAL_POSITION, 390);
-    __delay_ms(500);
+    PutAX(rabd,AX_GOAL_POSITION,300);
+    __delay_ms(700);
+    PutAX(rabg,AX_GOAL_POSITION,650);
+    __delay_ms(700);
+    //PutAX(rabd, AX_GOAL_POSITION, 620);
+    //__delay_ms(500);
+    //PutAX(rabg, AX_GOAL_POSITION, 390);
+    //__delay_ms(500);
     PutAX(pince, AX_GOAL_POSITION, 260);
     __delay_ms(40);
     PutAX(tub, AX_GOAL_POSITION, 350);
@@ -160,10 +164,17 @@ void release (void) {
 }
 
 void close_claws(void) { // fonction qui permet la fermeture des pinces à la volée
-    PutAX(rabd,AX_GOAL_POSITION,300); 
+    PutAX(rabd,AX_GOAL_POSITION,250);
     __delay_ms(700);
-    PutAX(rabg,AX_GOAL_POSITION,650);
+    PutAX(rabg,AX_GOAL_POSITION,700);
     __delay_ms(700);
+}
+
+void open_claws(void) { // fonction qui permet la fermeture des pinces à la volée
+    PutAX(rabd, AX_GOAL_POSITION, 620);
+    __delay_ms(500);
+    PutAX(rabg, AX_GOAL_POSITION, 390);
+    __delay_ms(500);
 }
 
 void open_clap(void) {
