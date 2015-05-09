@@ -13,11 +13,11 @@
 /*############################################################################*/
 
 #ifndef DEFAULT_CONSTRAINT_V_MAX
-#define DEFAULT_CONSTRAINT_V_MAX {0.6, 5}
+#define DEFAULT_CONSTRAINT_V_MAX {1.2, 6}
 #endif
 
 #ifndef DEFAULT_CONSTRAINT_A_MAX
-#define DEFAULT_CONSTRAINT_A_MAX {0.1, 0.15, 0.30}
+#define DEFAULT_CONSTRAINT_A_MAX {0.50, 0.50, 0.30}
 #endif
 
 #ifndef BLOCK_LIMIT
@@ -33,7 +33,7 @@
 #endif
 
 #ifndef DEFAULT_PERIOD
-#define DEFAULT_PERIOD 0.005
+#define DEFAULT_PERIOD 0.008
 #endif
 
 /*############################################################################*/
@@ -44,7 +44,7 @@
 #define DEFAULT_ASSERV_MODE ASSERV_MODE_OFF
 #endif
 #ifndef DEFAULT_STOP_DISTANCE
-#define DEFAULT_STOP_DISTANCE 0.001
+#define DEFAULT_STOP_DISTANCE 0.008
 #endif
 
 /*############################################################################*/

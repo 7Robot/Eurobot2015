@@ -7,7 +7,7 @@
 #include "main.h"
 
 #define maxtork_claw 500
-#define maxspeed_claw 700
+#define maxspeed_claw 600
 
 /******************************************************************************/
 /*************************** Arm Specification ********************************/
@@ -40,9 +40,9 @@ void Init_ax12() {
     __delay_ms(40);
     PutAX(rabg, AX_MOVING_SPEED, maxspeed_claw);
     __delay_ms(40);
-    PutAX(pince, AX_MOVING_SPEED, 800);
+    PutAX(pince, AX_MOVING_SPEED, 600);
     __delay_ms(40);
-    PutAX(asc, AX_MOVING_SPEED, 800);
+    PutAX(asc, AX_MOVING_SPEED, 600);
     __delay_ms(40);
     PutAX(tub, AX_MOVING_SPEED, 450);
     __delay_ms(40);
