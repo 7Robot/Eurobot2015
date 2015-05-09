@@ -47,6 +47,7 @@ _FPOR(PWMPIN_ON);
 
 #include "motor.h"
 #include "actions_ax12.h"
+#include "ultrason.h"
 
 extern volatile int tics_d;
 extern volatile int tics_g;

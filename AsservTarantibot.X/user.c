@@ -18,6 +18,7 @@
 //#include "sick.h"
 #include "motor.h"
 #include "uart.h"
+#include "ultrason.h"
 
 
 /******************************************************************************/
@@ -48,6 +49,7 @@ void Init_All(){
     InitTimers();
     __delay_ms(500);
     Init_PWM();
+    Init_Ultrasons();
     //InitSick();
     //motion_init(); // start asserv
     //AtpInit();
