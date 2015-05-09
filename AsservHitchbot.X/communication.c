@@ -139,7 +139,7 @@ void SelectActionFromPi()
         
     if(ReceivedStringFromPi[1]=='O' && ReceivedStringFromPi[2]=='P' && ReceivedStringFromPi[3]=='E' && ReceivedStringFromPi[4]=='S')
     {
-        close_claws();
+        open_claws();
     }
 
 

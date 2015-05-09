@@ -54,9 +54,9 @@ void Init_ax12() {
 
     PutAX(asc, AX_GOAL_POSITION, 320);
     __delay_ms(500);
-    PutAX(rabd,AX_GOAL_POSITION,300);
+    PutAX(rabd,AX_GOAL_POSITION,200);
     __delay_ms(700);
-    PutAX(rabg,AX_GOAL_POSITION,650);
+    PutAX(rabg,AX_GOAL_POSITION,750);
     __delay_ms(700);
     //PutAX(rabd, AX_GOAL_POSITION, 620);
     //__delay_ms(500);
@@ -171,9 +171,9 @@ void close_claws(void) { // fonction qui permet la fermeture des pinces à la vol
 }
 
 void open_claws(void) { // fonction qui permet la fermeture des pinces à la volée
-    PutAX(rabd, AX_GOAL_POSITION, 620);
-    __delay_ms(500);
     PutAX(rabg, AX_GOAL_POSITION, 390);
+    __delay_ms(500);
+    PutAX(rabd, AX_GOAL_POSITION, 620);
     __delay_ms(500);
 }
 
