@@ -195,13 +195,14 @@ void SelectActionFromPi()
 
     if(ReceivedStringFromPi[1]=='P' && ReceivedStringFromPi[2]=='O' && ReceivedStringFromPi[3]=='P' && ReceivedStringFromPi[4]=='O')
     {
-        open_popcorn();
+
+       close_popcorn();
     }
 
 	// CLAC
     if(ReceivedStringFromPi[1]=='P' && ReceivedStringFromPi[2]=='O' && ReceivedStringFromPi[3]=='P' && ReceivedStringFromPi[4]=='C')
     {
-        close_popcorn();
+       open_popcorn();
     }
 	
 }
