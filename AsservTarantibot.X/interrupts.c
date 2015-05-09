@@ -13,12 +13,14 @@
 //#include "tests.h"
 #include "motor.h"
 #include "user.h"
+
+#include "actions_ax12.h"
 //#include "lib_asserv/lib_asserv.h"
 //#include "ax12.h"
 //#include "atp-asserv.h"
 //#include "actions_ax12.h"
 
-
+/*
 char msg[16]="";
 
 volatile int tics_d=0;
@@ -47,11 +49,19 @@ int var_erreur_g = 0;
 float commande_d = 0;
 float commande_g = 0;
 
-float Kp=11;
-float Ki=2.3;
-float Kd=0;
-
+float Kp=15;
+float Ki=4;
+float Kd=1;
 extern int reset_asserv;
+*/
+int time_tics;
+
+extern int BoutonCouleur;
+extern char start;
+
+char start=0;
+
+int state=0;
 
 void InitTimers()
 {
@@ -110,11 +120,12 @@ void InitTimers()
 
 void Init_CN()
 {
-    _TRISA9 = 1;  // input for button
-    _TRISC3 = 1;  // input for laisse
+    _TRISC4 = 1;  // input for button
+    _TRISC3 = 1;  // input for button
     _TRISC9 = 1;  // input for motor sensor
     _TRISC8 = 1;  // input for motor sensor
 
+    _CN25IE = 1; // Enable CN25 pin for interrupt detection
     _CN28IE = 1; // Enable CN28 pin for interrupt detection
     _CN20IE = 1; // Enable CN20 pin for interrupt detection (motor sensor)
     _CN19IE = 1; // Enable CN19 pin for interrupt detection (motor sensor)
@@ -131,7 +142,7 @@ void Init_CN()
 /* TODO Add interrupt routine code here. */
 
 void __attribute__((interrupt,auto_psv)) _T2Interrupt(void) {
-
+/*
     ////////////////// RESET DE L'ASSERV ENTRE DEUX COMMANDES //////////////////
     if (reset_asserv==1)
     {
@@ -194,28 +205,168 @@ void __attribute__((interrupt,auto_psv)) _T2Interrupt(void) {
     ////////////////////////////////////////////////////////////////////////////
 
     //////////// COMMANDE PROPOTIONNELLE, INTEGRALE, DERIVEE (PID)  ////////////
-    commande_d = Kp*erreur_d + Ki*somme_erreur_d + Kd*var_erreur_d;
-    commande_g = Kp*erreur_g + Ki*somme_erreur_g + Kd*var_erreur_g;
+    commande_d = Kp*erreur_d + Ki*somme_erreur_d - Kd*var_erreur_d;
+    commande_g = Kp*erreur_g + Ki*somme_erreur_g - Kd*var_erreur_g;
     ////////////////////////////////////////////////////////////////////////////
 
     /////////////////// ACTUALISATION DE L'ERREUR PRECEDENTE ///////////////////
     erreur_d_old = erreur_d;
     erreur_g_old = erreur_g;
     ////////////////////////////////////////////////////////////////////////////
-
+*/
 /*
     if (commande_g>0) MOTOR_BREAK1=0;
     else MOTOR_BREAK1=1;
     if (commande_d>0) MOTOR_BREAK2=0;
     else MOTOR_BREAK2=1;
 */
-    PWM_Moteurs(commande_g, commande_d);
+    if (start==1)
+    {
+        ////////////////////////////////////////////////////////////////////////
+        ///////////////////////////// EQUIPE JAUNE /////////////////////////////
+        ////////////////////////////////////////////////////////////////////////
 
+        if (BoutonCouleur==0)
+        {
+            /////////////////////////// PREMIER ETAT ///////////////////////////
+            //                      On sort tout droit                        //
+            ////////////////////////////////////////////////////////////////////
+
+            if (state==0)
+            {
+                PWM_Moteurs(17, 19);
+                if (time_tics>300)
+                {
+                    PWM_Moteurs(0, 0);
+                    state++;
+                    time_tics=0;
+                    __delay_ms(1000)
+                }
+            }
+            ////////////////////////// DEUXIEME ETAT ///////////////////////////
+            //                 On tourne de 90 degres a gauche                //
+            ////////////////////////////////////////////////////////////////////
+            else if (state==1)
+            {
+                PWM_Moteurs(-17, 19);
+                if (time_tics>56)
+                {
+                    PWM_Moteurs(0, 0);
+                    state++;
+                    time_tics=0;
+                    deploy();
+                    __delay_ms(1000)
+                }
+            }
+            ///////////////////////// TROISIEME ETAT ///////////////////////////
+            //              On monte un peu les fucking marches               //
+            ////////////////////////////////////////////////////////////////////
+            else if (state==2)
+            {
+                PWM_Moteurs(17, 18);
+                if (time_tics>320)
+                {
+                    PWM_Moteurs(0, 0);
+                    state++;
+                    time_tics=0;
+                    lacher();
+                    __delay_ms(1000)
+                }
+            }
+            ///////////////////////// QUATRIEME ETAT ///////////////////////////
+            //            On finit de monter les fucking marches              //
+            ////////////////////////////////////////////////////////////////////
+            else if (state==3)
+            {
+                PWM_Moteurs(17, 18);
+                if (time_tics>80)
+                {
+                    PWM_Moteurs(0, 0);
+                    state++;
+                    time_tics=0;
+                    lacher();
+                    __delay_ms(1000)
+                }
+            }
+        }
+
+        ////////////////////////////////////////////////////////////////////////
+        ///////////////////////////// EQUIPE VERTE /////////////////////////////
+        ////////////////////////////////////////////////////////////////////////
+
+        else
+        {
+            /////////////////////////// PREMIER ETAT ///////////////////////////
+            //                      On sort tout droit                        //
+            ////////////////////////////////////////////////////////////////////
+
+            if (state==0)
+            {
+                PWM_Moteurs(17, 19);
+                if (time_tics>300)
+                {
+                    PWM_Moteurs(0, 0);
+                    state++;
+                    time_tics=0;
+                    __delay_ms(1000)
+                }
+            }
+            ////////////////////////// DEUXIEME ETAT ///////////////////////////
+            //                 On tourne de 90 degres a droite                //
+            ////////////////////////////////////////////////////////////////////
+            else if (state==1)
+            {
+                PWM_Moteurs(17, -19);
+                if (time_tics>56)
+                {
+                    PWM_Moteurs(0, 0);
+                    state++;
+                    time_tics=0;
+                    deploy();
+                    __delay_ms(1000)
+                }
+            }
+            ///////////////////////// TROISIEME ETAT ///////////////////////////
+            //              On monte un peu les fucking marches               //
+            ////////////////////////////////////////////////////////////////////
+            else if (state==2)
+            {
+                PWM_Moteurs(17, 18);
+                if (time_tics>320)
+                {
+                    PWM_Moteurs(0, 0);
+                    state++;
+                    time_tics=0;
+                    lacher();
+                    __delay_ms(1000)
+                }
+            }
+            ///////////////////////// QUATRIEME ETAT ///////////////////////////
+            //            On finit de monter les fucking marches              //
+            ////////////////////////////////////////////////////////////////////
+            else if (state==3)
+            {
+                PWM_Moteurs(17, 18);
+                if (time_tics>80)
+                {
+                    PWM_Moteurs(0, 0);
+                    state++;
+                    time_tics=0;
+                    lacher();
+                    __delay_ms(1000)
+                }
+            }
+        }
+
+        time_tics++;
+    }
+    ////////////////////////////////// DEBUG ///////////////////////////////////
     //printf("erreur_g%d erreur_d%d \n\r",erreur_g,erreur_d);
     //printf("TicsG%d TicsD%d \n\r",tics_g,tics_d);
     //printf("diff_g%f diff_d%f \n\r",diff_g,diff_d);
-
     //printf("diff_cons_g_I%f diff_cons_d_I%f \n\r",diff_cons_g_I,diff_cons_d_I);
+    ////////////////////////////////////////////////////////////////////////////
+
     _T2IF = 0;    // on baisse le flag
 }
 
@@ -249,23 +400,25 @@ void __attribute__((interrupt, no_auto_psv)) _SPI2Interrupt(void){
 /**********************************************/
 /* CN interrupt for boutons and motor sensor  */
 /**********************************************/
-
+/*
 char lastMotorStateL=0;
 char lastMotorStateR=0;
-
+*/
 void __attribute__ ((__interrupt__, no_auto_psv)) _CNInterrupt(void)
 {
 
-/*
+
     if (!PIN_LAISSE)
     {
-        SendStart(BOUTON_COULEUR);
+        __delay_ms(2000);
+        start=1;
     }
     else
     {
-        __delay_ms(500);
+        __delay_ms(200);
     }
-*/
+
+/*
     if (MOT_SENSOR_PIN_L != lastMotorStateL)
     {
         lastMotorStateL=MOT_SENSOR_PIN_L;
@@ -276,6 +429,7 @@ void __attribute__ ((__interrupt__, no_auto_psv)) _CNInterrupt(void)
         lastMotorStateR=MOT_SENSOR_PIN_R;
         tics_d ++;
     }
+*/
     //printf("TicsG%d TicsD%d \n\r",tics_g,tics_d);
 
     IFS1bits.CNIF = 0; // Clear CN interrupt

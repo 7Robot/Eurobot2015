@@ -57,7 +57,7 @@ void init_ax12() {
 
     PutAX(socle, AX_GOAL_POSITION, 800);
     __delay_ms(40);
-    PutAX(haut, AX_GOAL_POSITION, 204);
+    PutAX(haut, AX_GOAL_POSITION, 220);
     __delay_ms(40);
     PutAX(verseur_d, AX_GOAL_POSITION, 235);
     __delay_ms(40);
@@ -78,7 +78,7 @@ void deploy (void){
     __delay_ms(1000);
     PutAX(socle, AX_GOAL_POSITION, 551);
     __delay_ms(40);
-    PutAX(haut, AX_GOAL_POSITION, 471);
+    PutAX(haut, AX_GOAL_POSITION, 480);
     __delay_ms(1500);
     PutAX(verseur_g, AX_GOAL_POSITION, 471);
     __delay_ms(40);
