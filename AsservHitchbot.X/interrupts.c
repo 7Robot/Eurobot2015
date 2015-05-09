@@ -243,13 +243,22 @@ void __attribute__ ((__interrupt__, no_auto_psv)) _CNInterrupt(void)
 {
     uint32_t val32;
     uint8_t old_Pin_Laisse = 0;
+    
+    // baisse le flag puis récup des etats de pins, 
+    // si les pins rebougent durant ce laps tres court, ça redéclenchera une IT directe apres,
+    // mais avec old_ ça doit tenir
+    IFS1bits.CNIF = 0; // Clear CN interrupt
+    uint8_t Etat_Pin_Laisse = PIN_LAISSE;
+    uint8_t Etat_Pin_Ultrason = PIN_ULTRASON;
+
+
     if (old_Pin_Laisse) {
-        if (!PIN_LAISSE) {
+        if (!Etat_Pin_Laisse) {
             SendStart();
             old_Pin_Laisse = 0;
         }
     } else {
-        if (PIN_LAISSE) {
+        if (Etat_Pin_Laisse) {
             __delay_ms(50);
             old_Pin_Laisse = 1;
         }
@@ -257,7 +266,7 @@ void __attribute__ ((__interrupt__, no_auto_psv)) _CNInterrupt(void)
 
     // si Etat_Ultrason mérite que l'on s'occupe de lui
     if (Etat_Ultrason & (U_ETAT_WAIT1 + U_ETAT_WAIT0 + U_ETAT_WAIT0_OVERSHOOT)) {
-        if (PIN_ULTRASON) {
+        if (Etat_Pin_Ultrason) {
             if (Etat_Ultrason & U_ETAT_WAIT1) {
                 //if (!count_Debug_Ultrason && Debug_Ultrason) { printf("$START_MESURE;"); }
                 TMR4 = 0;                       // restart du timer pour la mesure
@@ -278,7 +287,7 @@ void __attribute__ ((__interrupt__, no_auto_psv)) _CNInterrupt(void)
                 if (Sector_Ultrason) {
                     if (Mesure_Distance_Ultrason < (ULTRASON_THRESOLD - ULTRASON_THRESOLD_TRIGGER)) {
                         motion_free();
-                        Sector_Ultrason = 0;            // passage en sector
+                        Sector_Ultrason = 0;            // passage en sector  occupé
                         DetectUltrason();		// on previent la PI
                     }
                 } else {
@@ -297,5 +306,4 @@ void __attribute__ ((__interrupt__, no_auto_psv)) _CNInterrupt(void)
             }
         }
     }
-    IFS1bits.CNIF = 0; // Clear CN interrupt
 }
