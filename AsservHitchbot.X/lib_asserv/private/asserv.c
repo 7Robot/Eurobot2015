@@ -4,7 +4,7 @@
 #include "pid.h"
 #include "../lib_asserv_default.h"
 #include "debug.h"
-#include "tools.h"
+#include "tools.h"//48mm de diametre 150,79
 #include <math.h>
 
 
@@ -235,10 +235,10 @@ void pos_asserv_step(Odo *odo, float *commande_g, float *commande_d){
         }
         
         if (fabs(d)<0.1){
-            v_o = pos_asserv.kp * d * (1-0.636619772*fabs(dt)); // 0.636619772 = 1/(pi/2)
+            v_o = pos_asserv.kp * d/2 * (1-0.636619772*fabs(dt)); // 0.636619772 = 1/(pi/2)
             vt_o = pos_asserv.kp * 20 * dt * fabs(d);
         } else {
-            v_o = pos_asserv.kp * d;
+            v_o = pos_asserv.kp * d/2;
             vt_o = 2 * pos_asserv.kp * dt;
         }
         // appliquer les contraintes puis revérifier la priorité rotation
