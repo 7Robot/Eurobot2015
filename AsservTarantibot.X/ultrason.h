@@ -9,9 +9,9 @@ void Init_Ultrasons (void);
 #define ULTRASON_THRESOLD_TRIGGER   50      // zone du triger de schmitt
 
 
-#define PIN_ULTRASON        _RC4            // RC4 = connecteur 5V n3?
-#define TRIS_ULTRASON       _TRISC4
-#define PIN_CN_ULTRASON_IE  _CN25IE
+#define PIN_ULTRASON        _RC5            // RC5 = connecteur 5V n2?
+#define TRIS_ULTRASON       _TRISC5
+#define PIN_CN_ULTRASON_IE  _CN26IE
 
 #define U_ETAT_OFF              0x00
 #define U_ETAT_FOR_SEND1        0x01

@@ -23,7 +23,6 @@ int time_tics=0;
 extern int BoutonCouleur;
 extern char start;
 
-char last_Etat_Pin_Laisse = 1;
 char start=0;
 
 int state=0;
@@ -294,10 +293,17 @@ void __attribute__((interrupt, no_auto_psv)) _SPI2Interrupt(void){
 void __attribute__ ((__interrupt__, no_auto_psv)) _CNInterrupt(void)
 {
 
+    static char last_Etat_Pin_Laisse = 1;
+    uint32_t val32;
 
-    if (PIN_LAISSE != last_Etat_Pin_Laisse) {
-        last_Etat_Pin_Laisse = PIN_LAISSE;
-        if (!PIN_LAISSE) {
+    IFS1bits.CNIF = 0; // Clear CN interrupt
+    char Etat_Pin_Laisse = PIN_LAISSE;
+    uint8_t Etat_Pin_Ultrason = PIN_ULTRASON;
+
+
+    if (Etat_Pin_Laisse != last_Etat_Pin_Laisse) {
+        last_Etat_Pin_Laisse = Etat_Pin_Laisse;
+        if (!Etat_Pin_Laisse) {
             __delay_ms(10);
             start=1;
         } else {
@@ -305,11 +311,10 @@ void __attribute__ ((__interrupt__, no_auto_psv)) _CNInterrupt(void)
         }
     }
 
-    IFS1bits.CNIF = 0; // Clear CN interrupt
+    //printf("TicsG%d TicsD%d \n\r",tics_g,tics_d);
     
-    uint8_t Etat_Pin_Ultrason = PIN_ULTRASON;
-    uint32_t val32;
-/*
+
+
     // si Etat_Ultrason mérite que l'on s'occupe de lui
     if (Etat_Ultrason & (U_ETAT_WAIT1 + U_ETAT_WAIT0 + U_ETAT_WAIT0_OVERSHOOT)) {
         if (Etat_Pin_Ultrason) {
@@ -354,9 +359,6 @@ void __attribute__ ((__interrupt__, no_auto_psv)) _CNInterrupt(void)
             }
         }
     }
-*/
-    //printf("TicsG%d TicsD%d \n\r",tics_g,tics_d);
-
 }
 
 
