@@ -130,7 +130,7 @@ int motion_done(){
 void check_blocked(Speed speed,Speed order){
     if (fabs(speed.v - order.v)>0.1 || fabs(speed.vt - order.vt)>0.4 ){
         if (blocked == BLOCK_LIMIT){
-            motion_free();
+            //motion_free();
         }
         if (blocked < BLOCK_LIMIT+1){blocked++;}
     } else {
