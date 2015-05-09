@@ -47,6 +47,8 @@ uint8_t Sector_Ultrason = 0;
 volatile uint8_t Debug_Ultrason = 0;
 volatile uint16_t count_Debug_Ultrason = 0;
 
+volatile char Ative_Motion_Free_Ultrason = 1;
+
 // pas en externe
 volatile uint8_t nb_Coups_Timers = 0;
 
@@ -120,7 +122,8 @@ void __attribute__((interrupt,auto_psv)) _T4Interrupt(void) {
     _T4IF = 0;  // baisse du flag
 }
 
-void Start_Stop_Debug_Ultrason(void) {
+void Start_Stop_Debug_Ultrason(void)
+{
     if (Debug_Ultrason) {
         Debug_Ultrason = 0;
     } else {
@@ -128,6 +131,9 @@ void Start_Stop_Debug_Ultrason(void) {
     }
 }
 
-
+void Enable_Ultrason (char enable)
+{
+    Ative_Motion_Free_Ultrason = enable;
+}
 
 
