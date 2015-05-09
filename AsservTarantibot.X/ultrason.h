@@ -29,15 +29,11 @@ extern uint8_t Sector_Ultrason;
 
 extern volatile uint8_t Debug_Ultrason;
 extern volatile uint16_t count_Debug_Ultrason;
-extern volatile char Ative_Motion_Free_Ultrason;
-
-
-extern volatile char UltraSon_Detect;
 
 void Init_Ultrasons(void);
 
 void Start_Stop_Debug_Ultrason(void);
-void Enable_Ultrason (char enable);
+
 
 
 #endif

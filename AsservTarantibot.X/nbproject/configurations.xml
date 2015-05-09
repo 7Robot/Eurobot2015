@@ -14,6 +14,8 @@
       <itemPath>actions_ax12.h</itemPath>
       <itemPath>motion.h</itemPath>
       <itemPath>tools.h</itemPath>
+      <itemPath>ultrason.h</itemPath>
+      <itemPath>motor.h</itemPath>
     </logicalFolder>
     <logicalFolder name="LinkerScript"
                    displayName="Linker Files"
@@ -36,6 +38,7 @@
       <itemPath>ax12.c</itemPath>
       <itemPath>actions_ax12.c</itemPath>
       <itemPath>tools.c</itemPath>
+      <itemPath>ultrason.c</itemPath>
     </logicalFolder>
     <logicalFolder name="ExternalFiles"
                    displayName="Important Files"
@@ -58,7 +61,7 @@
         <platformTool>PICkit3PlatformTool</platformTool>
         <languageToolchain>XC16</languageToolchain>
         <languageToolchainVersion>1.24</languageToolchainVersion>
-        <platform>2</platform>
+        <platform>3</platform>
       </toolsSet>
       <compileType>
         <linkerTool>

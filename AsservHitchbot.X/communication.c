@@ -161,6 +161,13 @@ void SelectActionFromPi()
         Start_Stop_Debug_Sick();
     }
 
+    // ENSI         // active ou pas le motion_free des sicks
+    if(ReceivedStringFromPi[1]=='E' && ReceivedStringFromPi[2]=='N' && ReceivedStringFromPi[3]=='S' && ReceivedStringFromPi[4]=='I')
+    {
+        Enable_Sicks(ReceivedStringFromPi[6] != '0');
+    }
+
+
     // ULS?			// demande status sick
     if(ReceivedStringFromPi[1]=='U' && ReceivedStringFromPi[2]=='L' && ReceivedStringFromPi[3]=='S' && ReceivedStringFromPi[4]=='?')
     {
@@ -172,7 +179,13 @@ void SelectActionFromPi()
     {
         Start_Stop_Debug_Ultrason();
     } 
-        
+
+    // ENUS         // active ou pas le motion_free de l'ultrason
+    if(ReceivedStringFromPi[1]=='E' && ReceivedStringFromPi[2]=='N' && ReceivedStringFromPi[3]=='U' && ReceivedStringFromPi[4]=='S')
+    {
+        Enable_Ultrason(ReceivedStringFromPi[6] != '0');
+    }
+
     // VBAT			// récupère la tension baterie
     if(ReceivedStringFromPi[1]=='V' && ReceivedStringFromPi[2]=='B' && ReceivedStringFromPi[3]=='A' && ReceivedStringFromPi[4]=='T')
     {
@@ -195,13 +208,14 @@ void SelectActionFromPi()
 
     if(ReceivedStringFromPi[1]=='P' && ReceivedStringFromPi[2]=='O' && ReceivedStringFromPi[3]=='P' && ReceivedStringFromPi[4]=='O')
     {
-        open_popcorn();
+
+       close_popcorn();
     }
 
 	// CLAC
     if(ReceivedStringFromPi[1]=='P' && ReceivedStringFromPi[2]=='O' && ReceivedStringFromPi[3]=='P' && ReceivedStringFromPi[4]=='C')
     {
-        close_popcorn();
+       open_popcorn();
     }
 	
 }

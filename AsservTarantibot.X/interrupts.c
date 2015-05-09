@@ -8,60 +8,27 @@
 #include <uart.h>
 
 //#include "extern_globals.h"
+
+#include "lib_asserv/lib_asserv.h"
 #include "user.h"
 #include <libpic30.h>
-//#include "tests.h"
 #include "motor.h"
 #include "user.h"
-
 #include "actions_ax12.h"
-//#include "lib_asserv/lib_asserv.h"
-//#include "ax12.h"
-//#include "atp-asserv.h"
-//#include "actions_ax12.h"
+#include "ultrason.h"
 
-/*
-char msg[16]="";
 
-volatile int tics_d=0;
-volatile int tics_g=0;
-int tics_d_old=0;
-int tics_g_old=0;
-
-float V_d=0;
-float V_g=0;
-
-int erreur_d = 0;
-int erreur_g = 0;
-
-float Vcons_d=0;
-float Vcons_g=0;
-
-int somme_erreur_d = 0 ;
-int somme_erreur_g = 0 ;
-
-int erreur_d_old = 0;
-int erreur_g_old = 0;
-
-int var_erreur_d = 0;
-int var_erreur_g = 0;
-
-float commande_d = 0;
-float commande_g = 0;
-
-float Kp=15;
-float Ki=4;
-float Kd=1;
-extern int reset_asserv;
-*/
-int time_tics;
+int time_tics=0;
 
 extern int BoutonCouleur;
 extern char start;
 
+char last_Etat_Pin_Laisse = 1;
 char start=0;
 
 int state=0;
+
+volatile char UltraSon_Detect = 0;
 
 void InitTimers()
 {
@@ -130,7 +97,7 @@ void Init_CN()
     _CN20IE = 1; // Enable CN20 pin for interrupt detection (motor sensor)
     _CN19IE = 1; // Enable CN19 pin for interrupt detection (motor sensor)
 
-    IPC4bits.CNIP = 6; //Interrupt level 3
+    IPC4bits.CNIP = 6; //Interrupt level 6
     IEC1bits.CNIE = 1; // Enable CN interrupts
     IFS1bits.CNIF = 0; // Reset CN interrupt
 }
@@ -142,84 +109,7 @@ void Init_CN()
 /* TODO Add interrupt routine code here. */
 
 void __attribute__((interrupt,auto_psv)) _T2Interrupt(void) {
-/*
-    ////////////////// RESET DE L'ASSERV ENTRE DEUX COMMANDES //////////////////
-    if (reset_asserv==1)
-    {
-        tics_d=0;
-        tics_g=0;
-        tics_d_old=0;
-        tics_g_old=0;
 
-        V_d=0;
-        V_g=0;
-
-        erreur_d = 0;
-        erreur_g = 0;
-
-        Vcons_d=0;
-        Vcons_g=0;
-
-        somme_erreur_d = 0 ;
-        somme_erreur_g = 0 ;
-
-        erreur_d_old = 0;
-        erreur_g_old = 0;
-
-        var_erreur_d = 0;
-        var_erreur_g = 0;
-
-        commande_d = 0;
-        commande_g = 0;
-    }
-    ////////////////////////////////////////////////////////////////////////////
-
-
-    ////////////////// ACQUISITION NOUVELLE VALEUR DE VITESSE //////////////////
-    //        On suppose que les moteurs tournent dans le sens demandé        //
-    if (Vcons_d>=0)  V_d = tics_d - tics_d_old;
-    else            V_d = -(tics_d - tics_d_old);
-
-    if (Vcons_g>=0) V_g = tics_g - tics_g_old;
-    else            V_g = -(tics_g - tics_g_old);
-    ////////////////////////////////////////////////////////////////////////////
-
-    ////////////////////// ACQUISITION NOUVELLE POSITION ///////////////////////
-    tics_d_old=tics_d;
-    tics_g_old=tics_g;
-    ////////////////////////////////////////////////////////////////////////////
-
-    /////////////// ERREURS DE VITESSE PAR RAPPORT A LA CONSIGNE ///////////////
-    erreur_d = Vcons_d - V_d;
-    erreur_g = Vcons_g - V_g;
-    ////////////////////////////////////////////////////////////////////////////
-
-    ////////////// SOMME DES ERREURS DE VITESSE POUR INTEGRATION ///////////////
-    somme_erreur_d += erreur_d;
-    somme_erreur_g += erreur_g;
-    ////////////////////////////////////////////////////////////////////////////
-
-    //////// DIFFERENCE DES DERNIERES ERREURS DE VITESSE POUR DERIVATION ///////
-    var_erreur_d = erreur_d - erreur_d_old;
-    var_erreur_g = erreur_g - erreur_g_old;
-    ////////////////////////////////////////////////////////////////////////////
-
-    //////////// COMMANDE PROPOTIONNELLE, INTEGRALE, DERIVEE (PID)  ////////////
-    commande_d = Kp*erreur_d + Ki*somme_erreur_d - Kd*var_erreur_d;
-    commande_g = Kp*erreur_g + Ki*somme_erreur_g - Kd*var_erreur_g;
-    ////////////////////////////////////////////////////////////////////////////
-
-    /////////////////// ACTUALISATION DE L'ERREUR PRECEDENTE ///////////////////
-    erreur_d_old = erreur_d;
-    erreur_g_old = erreur_g;
-    ////////////////////////////////////////////////////////////////////////////
-*/
-/*
-    if (commande_g>0) MOTOR_BREAK1=0;
-    else MOTOR_BREAK1=1;
-    if (commande_d>0) MOTOR_BREAK2=0;
-    else MOTOR_BREAK2=1;
-*/
     if (start==1)
     {
         ////////////////////////////////////////////////////////////////////////
@@ -235,7 +125,7 @@ void __attribute__((interrupt,auto_psv)) _T2Interrupt(void) {
             if (state==0)
             {
                 PWM_Moteurs(17, 19);
-                if (time_tics>300)
+                if (time_tics>320)
                 {
                     PWM_Moteurs(0, 0);
                     state++;
@@ -303,7 +193,7 @@ void __attribute__((interrupt,auto_psv)) _T2Interrupt(void) {
             if (state==0)
             {
                 PWM_Moteurs(17, 19);
-                if (time_tics>300)
+                if (time_tics>320)
                 {
                     PWM_Moteurs(0, 0);
                     state++;
@@ -400,39 +290,73 @@ void __attribute__((interrupt, no_auto_psv)) _SPI2Interrupt(void){
 /**********************************************/
 /* CN interrupt for boutons and motor sensor  */
 /**********************************************/
-/*
-char lastMotorStateL=0;
-char lastMotorStateR=0;
-*/
+
 void __attribute__ ((__interrupt__, no_auto_psv)) _CNInterrupt(void)
 {
 
 
-    if (!PIN_LAISSE)
-    {
-        __delay_ms(2000);
-        start=1;
-    }
-    else
-    {
-        __delay_ms(200);
+    if (PIN_LAISSE != last_Etat_Pin_Laisse) {
+        last_Etat_Pin_Laisse = PIN_LAISSE;
+        if (!PIN_LAISSE) {
+            __delay_ms(10);
+            start=1;
+        } else {
+            __delay_ms(80);
+        }
     }
 
+    IFS1bits.CNIF = 0; // Clear CN interrupt
+    
+    uint8_t Etat_Pin_Ultrason = PIN_ULTRASON;
+    uint32_t val32;
 /*
-    if (MOT_SENSOR_PIN_L != lastMotorStateL)
-    {
-        lastMotorStateL=MOT_SENSOR_PIN_L;
-        tics_g ++;
-    }
-    if (MOT_SENSOR_PIN_R != lastMotorStateR)
-    {
-        lastMotorStateR=MOT_SENSOR_PIN_R;
-        tics_d ++;
+    // si Etat_Ultrason mérite que l'on s'occupe de lui
+    if (Etat_Ultrason & (U_ETAT_WAIT1 + U_ETAT_WAIT0 + U_ETAT_WAIT0_OVERSHOOT)) {
+        if (Etat_Pin_Ultrason) {
+            if (Etat_Ultrason & U_ETAT_WAIT1) {
+                //if (!count_Debug_Ultrason && Debug_Ultrason) { printf("$START_MESURE;"); }
+                TMR4 = 0;                       // restart du timer pour la mesure
+                Etat_Ultrason = U_ETAT_WAIT0;
+            }
+        } else {
+            if (Etat_Ultrason & U_ETAT_WAIT0) {     // si attente standard => récup mesure
+                PIN_CN_ULTRASON_IE = 0;     // desactivation de cette IT
+                Mesure_Timer_Ultrason = TMR4;       // 1 = 0.2us
+                //if (!count_Debug_Ultrason && Debug_Ultrason) { printf("$END_MESURE;"); }
+                // à base de vitesse du son (/2 pour l'aller-retour)  340.29 m/s
+                // => 1 coup = 34 us
+                // pour avoir distance en mm, il faut diviser par 29.39
+                // donc multiplication par 1115 puis division par 32768 (2^15)
+                // passage obligé en 32 bits
+                val32 = 1115 * (uint32_t)(Mesure_Timer_Ultrason);
+                Mesure_Distance_Ultrason = (uint16_t)((val32 >> 15));
+                if (Sector_Ultrason) {
+                    if (Mesure_Distance_Ultrason < (ULTRASON_THRESOLD - ULTRASON_THRESOLD_TRIGGER)) {
+                        //motion_free();
+                        UltraSon_Detect = 1;
+                        Sector_Ultrason = 0;            // passage en sector  occupé
+                        //DetectUltrason();		// on previent la PI  // pas de PI sur tarant'
+                    }
+                } else {
+                    if (Mesure_Distance_Ultrason > (ULTRASON_THRESOLD + ULTRASON_THRESOLD_TRIGGER)) {
+                        UltraSon_Detect = 0;
+                        Sector_Ultrason = 1;    // passage en sector ok
+                        //ReleaseUltrason();              // on previent la PI  // pas de PI sur tarant'
+                    }
+                }
+                Etat_Ultrason = U_ETAT_WAIT_FOR_RESTART;   // attente fin du timer pour restart...
+            } else if (Etat_Ultrason & U_ETAT_WAIT0_OVERSHOOT) {    // si attente overshoot => fabrication d'une mesure max
+                //if (!count_Debug_Ultrason && Debug_Ultrason) { printf("$END_MESURE_OVER;"); }
+                PIN_CN_ULTRASON_IE = 0;     // desactivation de cette IT
+                Mesure_Timer_Ultrason = 0xFFFF;
+                Mesure_Distance_Ultrason = 3000;            // 3m
+                Etat_Ultrason = U_ETAT_WAIT_FOR_RESTART;    // attente fin du timer pour restart...
+            }
+        }
     }
 */
     //printf("TicsG%d TicsD%d \n\r",tics_g,tics_d);
 
-    IFS1bits.CNIF = 0; // Clear CN interrupt
 }
 
 

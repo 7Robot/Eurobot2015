@@ -47,6 +47,7 @@ _FPOR(PWMPIN_ON);
 
 #include "motor.h"
 #include "actions_ax12.h"
+#include "ultrason.h"
 
 int temp=0;
 int BoutonCouleur=0;
@@ -58,9 +59,6 @@ int main(int argc, char** argv) {
     Init_All();
 
     init_ax12();
-
-    for (temp=0;temp<4;temp++)
-        __delay_ms(200);
     
     while(1){
         }
