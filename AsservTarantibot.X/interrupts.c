@@ -8,11 +8,15 @@
 #include <uart.h>
 
 //#include "extern_globals.h"
+
+#include "lib_asserv/lib_asserv.h"
 #include "user.h"
 #include <libpic30.h>
-//#include "tests.h"
 #include "motor.h"
-#include "user.h"
+#include "ultrason.h"
+// #include "motion.h"
+
+//#include "tests.h"
 //#include "lib_asserv/lib_asserv.h"
 //#include "ax12.h"
 //#include "atp-asserv.h"
@@ -52,6 +56,8 @@ float Ki=2.3;
 float Kd=0;
 
 extern int reset_asserv;
+
+volatile char UltraSon_Detect = 0;
 
 void InitTimers()
 {
@@ -250,35 +256,86 @@ void __attribute__((interrupt, no_auto_psv)) _SPI2Interrupt(void){
 /* CN interrupt for boutons and motor sensor  */
 /**********************************************/
 
-char lastMotorStateL=0;
-char lastMotorStateR=0;
-
 void __attribute__ ((__interrupt__, no_auto_psv)) _CNInterrupt(void)
 {
+    static char lastMotorStateL = 0;
+    static char lastMotorStateR = 0;
+    static char last_Etat_Pin_Laisse = 0;
 
-/*
-    if (!PIN_LAISSE)
-    {
-        SendStart(BOUTON_COULEUR);
-    }
-    else
-    {
-        __delay_ms(500);
-    }
-*/
-    if (MOT_SENSOR_PIN_L != lastMotorStateL)
-    {
-        lastMotorStateL=MOT_SENSOR_PIN_L;
-        tics_g ++;
-    }
-    if (MOT_SENSOR_PIN_R != lastMotorStateR)
-    {
-        lastMotorStateR=MOT_SENSOR_PIN_R;
-        tics_d ++;
-    }
-    //printf("TicsG%d TicsD%d \n\r",tics_g,tics_d);
 
     IFS1bits.CNIF = 0; // Clear CN interrupt
+    char Etat_Pin_Laisse = PIN_LAISSE;
+    char Etat_Pin_Sensor_L = MOT_SENSOR_PIN_L;
+    char Etat_Pin_Sensor_R = MOT_SENSOR_PIN_R;
+    uint8_t Etat_Pin_Ultrason = PIN_ULTRASON;
+    uint32_t val32;
+
+    if (Etat_Pin_Laisse != last_Etat_Pin_Laisse) {
+        last_Etat_Pin_Laisse = Etat_Pin_Laisse;
+        if (!Etat_Pin_Laisse) {
+            // mettre commande start
+        } else {
+            __delay_ms(50);
+        }
+    }
+
+    if (Etat_Pin_Sensor_L != lastMotorStateL) {
+        lastMotorStateL=Etat_Pin_Sensor_L;
+        tics_g ++;
+    }
+    if (Etat_Pin_Sensor_R != lastMotorStateR) {
+        lastMotorStateR=Etat_Pin_Sensor_R;
+        tics_d ++;
+    }
+
+
+    // si Etat_Ultrason mérite que l'on s'occupe de lui
+    if (Etat_Ultrason & (U_ETAT_WAIT1 + U_ETAT_WAIT0 + U_ETAT_WAIT0_OVERSHOOT)) {
+        if (Etat_Pin_Ultrason) {
+            if (Etat_Ultrason & U_ETAT_WAIT1) {
+                //if (!count_Debug_Ultrason && Debug_Ultrason) { printf("$START_MESURE;"); }
+                TMR4 = 0;                       // restart du timer pour la mesure
+                Etat_Ultrason = U_ETAT_WAIT0;
+            }
+        } else {
+            if (Etat_Ultrason & U_ETAT_WAIT0) {     // si attente standard => récup mesure
+                PIN_CN_ULTRASON_IE = 0;     // desactivation de cette IT
+                Mesure_Timer_Ultrason = TMR4;       // 1 = 0.2us
+                //if (!count_Debug_Ultrason && Debug_Ultrason) { printf("$END_MESURE;"); }
+                // à base de vitesse du son (/2 pour l'aller-retour)  340.29 m/s
+                // => 1 coup = 34 us
+                // pour avoir distance en mm, il faut diviser par 29.39
+                // donc multiplication par 1115 puis division par 32768 (2^15)
+                // passage obligé en 32 bits
+                val32 = 1115 * (uint32_t)(Mesure_Timer_Ultrason);
+                Mesure_Distance_Ultrason = (uint16_t)((val32 >> 15));
+                if (Sector_Ultrason) {
+                    if (Mesure_Distance_Ultrason < (ULTRASON_THRESOLD - ULTRASON_THRESOLD_TRIGGER)) {
+                        //motion_free();
+                        UltraSon_Detect = 1;
+                        Sector_Ultrason = 0;            // passage en sector  occupé
+                        //DetectUltrason();		// on previent la PI  // pas de PI sur tarant'
+                    }
+                } else {
+                    if (Mesure_Distance_Ultrason > (ULTRASON_THRESOLD + ULTRASON_THRESOLD_TRIGGER)) {
+                        UltraSon_Detect = 0;
+                        Sector_Ultrason = 1;    // passage en sector ok
+                        //ReleaseUltrason();              // on previent la PI  // pas de PI sur tarant'
+                    }
+                }
+                Etat_Ultrason = U_ETAT_WAIT_FOR_RESTART;   // attente fin du timer pour restart...
+            } else if (Etat_Ultrason & U_ETAT_WAIT0_OVERSHOOT) {    // si attente overshoot => fabrication d'une mesure max
+                //if (!count_Debug_Ultrason && Debug_Ultrason) { printf("$END_MESURE_OVER;"); }
+                PIN_CN_ULTRASON_IE = 0;     // desactivation de cette IT
+                Mesure_Timer_Ultrason = 0xFFFF;
+                Mesure_Distance_Ultrason = 3000;            // 3m
+                Etat_Ultrason = U_ETAT_WAIT_FOR_RESTART;    // attente fin du timer pour restart...
+            }
+        }
+    }
+
+    //printf("TicsG%d TicsD%d \n\r",tics_g,tics_d);
+
 }
 
 

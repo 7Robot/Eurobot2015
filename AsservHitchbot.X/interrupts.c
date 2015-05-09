@@ -286,7 +286,9 @@ void __attribute__ ((__interrupt__, no_auto_psv)) _CNInterrupt(void)
                 Mesure_Distance_Ultrason = (uint16_t)((val32 >> 15));
                 if (Sector_Ultrason) {
                     if (Mesure_Distance_Ultrason < (ULTRASON_THRESOLD - ULTRASON_THRESOLD_TRIGGER)) {
-                        motion_free();
+                        if (Ative_Motion_Free_Ultrason) {
+                            motion_free();
+                        }
                         Sector_Ultrason = 0;            // passage en sector  occupé
                         DetectUltrason();		// on previent la PI
                     }

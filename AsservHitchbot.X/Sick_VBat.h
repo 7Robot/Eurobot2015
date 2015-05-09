@@ -59,5 +59,7 @@ void Start_Stop_Debug_Sick(void);
 
 extern volatile uint16_t V_Bat;
 
+void Enable_Sicks(char enable);
+
 #endif	/* SICK_H */
 
