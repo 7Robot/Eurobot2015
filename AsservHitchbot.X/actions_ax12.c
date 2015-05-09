@@ -7,7 +7,7 @@
 #include "main.h"
 
 #define maxtork_claw 500
-#define maxspeed_claw 600
+#define maxspeed_claw 500
 
 /******************************************************************************/
 /*************************** Arm Specification ********************************/
@@ -40,7 +40,7 @@ void Init_ax12() {
     __delay_ms(40);
     PutAX(rabg, AX_MOVING_SPEED, maxspeed_claw);
     __delay_ms(40);
-    PutAX(pince, AX_MOVING_SPEED, 600);
+    PutAX(pince, AX_MOVING_SPEED, 400);
     __delay_ms(40);
     PutAX(asc, AX_MOVING_SPEED, 600);
     __delay_ms(40);
@@ -64,7 +64,7 @@ void Init_ax12() {
     __delay_ms(40);
     PutAX(clap, AX_GOAL_POSITION, 512);
     __delay_ms(40);
-    PutAX(popcorn, AX_GOAL_POSITION, 512);
+    PutAX(popcorn, AX_GOAL_POSITION, 612);
     __delay_ms(40);
 
 }
@@ -179,13 +179,13 @@ void close_clap(void) {
 }
 
 void open_popcorn(void) {
-    PutAX(popcorn,AX_GOAL_POSITION,150); //rabat la piece 700
+    PutAX(popcorn,AX_GOAL_POSITION,250); //rabat la piece 700
     __delay_ms(700);
     SendDone();
 }
 
 void close_popcorn(void) {
-    PutAX(popcorn,AX_GOAL_POSITION,512); //rabat la piece 700
+    PutAX(popcorn,AX_GOAL_POSITION,612); //rabat la piece 700
     __delay_ms(700);
     SendDone();
 }

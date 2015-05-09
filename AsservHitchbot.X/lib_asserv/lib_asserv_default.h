@@ -21,7 +21,7 @@
 #endif
 
 #ifndef BLOCK_LIMIT
-#define BLOCK_LIMIT 5000000
+#define BLOCK_LIMIT 500000
 #endif
 
 /*############################################################################*/
