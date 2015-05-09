@@ -179,7 +179,7 @@ void close_clap(void) {
 }
 
 void open_popcorn(void) {
-    PutAX(popcorn,AX_GOAL_POSITION,250); //rabat la piece 700
+    PutAX(popcorn,AX_GOAL_POSITION,420); //rabat la piece 700
     __delay_ms(700);
     SendDone();
 }
