@@ -35,7 +35,7 @@
 
 
 
-#define DEFAULT_THRESHOLD 380 // 300 ~> 16 cm
+#define DEFAULT_THRESHOLD 430 // 300 ~> 16 cm
 #define MARGIN_SICK 30		// en réalité, plutot un triger de schmitt
 #define SICK_LIMIT_MIN 30	// limite minimum qui fait passer un sick en off
 
