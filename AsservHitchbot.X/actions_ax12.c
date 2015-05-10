@@ -1,6 +1,7 @@
 #include <p33Fxxxx.h>      /* Includes device header file                     */
 #include <stdint.h>        /* Includes uint16_t definition                    */
 #include <stdbool.h>       /* Includes true/false definition                  */
+#include <stdio.h>
 #include <uart.h>
 #include <delay.h>
 
@@ -199,14 +200,26 @@ void close_clap(void) {
 }
 
 void open_popcorn(void) {
-    PutAX(popcorn,AX_GOAL_POSITION,420); //rabat la piece 700
+    char rep;
+    rep = PutAX_Pepino(popcorn,AX_GOAL_POSITION,420); //rabat la piece 700
     __delay_ms(50);
     SendDone();
+    if (rep){
+        printf("$OK  ;");
+    } else {
+        printf("$FAIL;");
+    }
 }
 
 void close_popcorn(void) {
-    PutAX(popcorn,AX_GOAL_POSITION,612); //rabat la piece 700
+    char rep;
+    rep = PutAX_Pepino(popcorn,AX_GOAL_POSITION,612); //rabat la piece 700
     __delay_ms(50);
     SendDone();
+    if (rep){
+        printf("$OK  ;");
+    } else {
+        printf("$FAIL;");
+    }
 }
 /******************************************************************************/
