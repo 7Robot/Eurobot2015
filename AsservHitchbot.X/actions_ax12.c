@@ -45,7 +45,7 @@ void Faire_Actions_AX12(void)
             num = 0;
         }
         Action_ToDo = Tab_Actions_ToDo[num];
-        switch (num)
+        switch (Action_ToDo)
         {
             case AX12_INIT_AX12 :
                 Init_ax12();
