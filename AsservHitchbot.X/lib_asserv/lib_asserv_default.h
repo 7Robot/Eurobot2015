@@ -13,7 +13,7 @@
 /*############################################################################*/
 
 #ifndef DEFAULT_CONSTRAINT_V_MAX
-#define DEFAULT_CONSTRAINT_V_MAX {0.5, 6} // 1.2 normal, 0.5 homologation
+#define DEFAULT_CONSTRAINT_V_MAX {1.2, 6} // 1.2 normal, 0.5 homologation
 #endif
 
 #ifndef DEFAULT_CONSTRAINT_A_MAX
