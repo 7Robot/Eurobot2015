@@ -55,6 +55,19 @@ void InitTimers()
                 T2_SOURCE_INT, 3125 ); // 3125 pour 5ms
     // configuration des interruptions
     ConfigIntTimer2(T2_INT_PRIOR_4 & T2_INT_ON);
+
+    // activation du Timer3
+    OpenTimer3(T3_ON &
+                T3_IDLE_CON &
+                T3_GATE_OFF &
+                T3_PS_1_64 &
+                T3_SOURCE_INT, 625 ); // 625 pour 1ms
+    // configuration des interruptions
+    ConfigIntTimer3(T3_INT_PRIOR_2 & T3_INT_ON);
+    TMR3 = 312;     // pour déphasage de entre Timer2 et 3...
+
+    // info : timer 5 est utilisé par la mesure des sicks
+    // info : timer 4 est utilisé par la mesure de l'ultrason
     
     // Ici interruption des actions des bras
     //IFS2bits.SPI2IF = 0; // Flag SPI2 Event Interrupt Priority
@@ -213,7 +226,7 @@ void __attribute__((interrupt,auto_psv)) _T2Interrupt(void) {
 *************************************************/
 void __attribute__((interrupt, no_auto_psv)) _U2RXInterrupt(void){
     _U2RXIF = 0; // On baisse le FLAG
-//    InterruptAX();
+    InterruptAX();          // RX des AX12
 }
 
 void __attribute__((__interrupt__, no_auto_psv)) _U2TXInterrupt(void){
@@ -309,3 +322,16 @@ void __attribute__ ((__interrupt__, no_auto_psv)) _CNInterrupt(void)
         }
     }
 }
+
+
+// every ms
+void __attribute__((interrupt,auto_psv)) _T3Interrupt(void) {
+
+    if (Delay_TimeOut_AX12) {
+        Delay_TimeOut_AX12 --;
+    }
+
+   _T3IF = 0;   // on baisse le flag
+}
+
+

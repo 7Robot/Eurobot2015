@@ -26,6 +26,10 @@
 byte checksumAX;
 int posAX = -5;
 
+
+
+volatile int Delay_TimeOut_AX12 = 0;
+
 /*
  * Public global variables, which have to be declared volatile.
  */
@@ -38,16 +42,15 @@ responseAXtype responseAX;
 
 void SetTX() {
     __builtin_write_OSCCONL(OSCCON & 0xBF);
-    _U2RXR = 31;
-    _RP10R = 0b00101;  // RP25 = U2TX (p.167)
+    _U2RXR = 31;                        // disable RX
+    PIN_REMAPABLE_AX12_OUT = 0b00101;   // RP10 = U2TX (p.167)      TX => RP10
     __builtin_write_OSCCONL(OSCCON | 0x40);
 }
 
 void SetRX() {
     __builtin_write_OSCCONL(OSCCON & 0xBF);
-
-    _U2RXR = 10; // RP5 = U2RX (p.165)
-    _RP7R = 31;
+    _U2RXR = PIN_REMAPABLE_AX12_IN;     // RP10 = U2RX (p.165)      RX <= RP10
+    PIN_REMAPABLE_AX12_OUT = 31;        // disable TX
     __builtin_write_OSCCONL(OSCCON | 0x40);
 }
 
@@ -92,8 +95,6 @@ void PushFooterAX() {
     SetRX();
 }
 
-int expected = 0;
-int received = 0;
 /**/
 void InterruptAX() {
     while(DataRdyUART2()) {
@@ -206,4 +207,31 @@ void GetAX(byte id, byte address) {
     ReadAX(id, address, RegisterLenAX(address));
 }
 
+
+/* Write a value to a registry, guessing its width. */
+char PutAX_Pepino(byte id, byte address, int value) {
+    char Reponse_Ok = 1;
+    responseReadyAX = 0;
+    WriteAX(id, address, RegisterLenAX(address), (byte*)&value );
+
+
+    Delay_TimeOut_AX12 = 10;
+    while (Delay_TimeOut_AX12 && !responseReadyAX);
+    if (responseReadyAX) {
+        if (responseAX.id != id) {
+            Reponse_Ok = 0;
+        }
+
+        if (    responseAX.error.input_voltage  || responseAX.error.angle_limit     ||
+                responseAX.error.overheating    || responseAX.error.range           ||
+                responseAX.error.cheksum        || responseAX.error.overload        ||
+                responseAX.error.instruction        ) {
+            Reponse_Ok = 0;
+        }
+    } else {
+        Reponse_Ok = 0;
+    }
+
+    return Reponse_Ok;
+}
 
