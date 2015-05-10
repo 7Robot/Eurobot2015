@@ -242,7 +242,7 @@ void __attribute__((interrupt, no_auto_psv)) _SPI2Interrupt(void){
 void __attribute__ ((__interrupt__, no_auto_psv)) _CNInterrupt(void)
 {
     uint32_t val32;
-    static uint8_t old_Pin_Laisse = 0;
+    static uint8_t old_Pin_Laisse = 1;
     
     // baisse le flag puis récup des etats de pins, 
     // si les pins rebougent durant ce laps tres court, ça redéclenchera une IT directe apres,
