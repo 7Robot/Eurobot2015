@@ -55,7 +55,7 @@ def reset_pic():
 	GPIO.output(17, True)
 	sleep(2)
 	GPIO.output(17, False)
-	sleep(4) # temps d'init du pic
+	sleep(6) # temps d'init du pic
 
 def spot_catch(ser): # attraper un spot
 	command = "$CHAR;"
@@ -96,6 +96,11 @@ def pince_open(ser):
 
 def pince_close(ser):
 	command = "$CLOS;"
+	ser.write(bytes(command, "ascii"))
+	print (command)
+
+def tube_close(ser):
+	command = "$CLTB;"
 	ser.write(bytes(command, "ascii"))
 	print (command)
 
