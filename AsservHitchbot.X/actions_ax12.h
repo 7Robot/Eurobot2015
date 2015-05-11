@@ -44,5 +44,7 @@ void open_clap(void);
 void open_popcorn(void);
 #define AX12_CLOSE_POPCORN       10
 void close_popcorn(void);
+#define AX12_CLOSE_TUB           11 //CLTB asynchrone
+void close_tub(void);            
 
 #endif	/* ACTIONS_AX12_H */

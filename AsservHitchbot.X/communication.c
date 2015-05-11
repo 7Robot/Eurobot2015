@@ -222,6 +222,12 @@ void SelectActionFromPi()
     {
         Add_Action_AX12(AX12_OPEN_POPCORN);
     }
+
+    if(ReceivedStringFromPi[1]=='C' && ReceivedStringFromPi[2]=='L' && ReceivedStringFromPi[3]=='T' && ReceivedStringFromPi[4]=='B')
+    {
+        Add_Action_AX12(AX12_CLOSE_TUB);
+    }
+
 	
 }
 

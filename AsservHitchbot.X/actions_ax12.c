@@ -77,6 +77,9 @@ void Faire_Actions_AX12(void)
             case AX12_CLOSE_POPCORN:
                 close_popcorn();
                 break;
+            case AX12_CLOSE_TUB:
+                close_tub();
+                break;
         }
         Num_Action_Done = num;
     }
@@ -271,5 +274,10 @@ void close_popcorn(void) {
     PutAX(popcorn,AX_GOAL_POSITION,612); //rabat la piece 700
     __delay_ms(50);
     SendDone();
+}
+
+void close_tub(void) { // fonction qui permet de refermer le tub de manière asynchrone
+    PutAX(tub,AX_GOAL_POSITION,270); //referme le tube
+    __delay_ms(250);
 }
 /******************************************************************************/
