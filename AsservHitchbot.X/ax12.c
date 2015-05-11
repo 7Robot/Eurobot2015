@@ -197,8 +197,11 @@ byte RegisterLenAX(byte address) {
 /* Write a value to a registry, guessing its width. */
 void PutAX(byte id, byte address, int value) {
     responseReadyAX = 0;
-    WriteAX(id, address, RegisterLenAX(address),
-                   (byte*)&value /* C18 and AX12 are little-endian */);
+    WriteAX(id, address, RegisterLenAX(address), (byte*)&value);
+    #ifdef DOUBLE_COMMANDE
+        __delay_ms(7);
+        WriteAX(id, address, RegisterLenAX(address), (byte*)&value);
+    #endif
 }
 
 /* Read a value from a registry, guessing its width. */
@@ -215,8 +218,10 @@ char PutAX_Pepino(byte id, byte address, int value) {
     WriteAX(id, address, RegisterLenAX(address), (byte*)&value );
 
 
-    Delay_TimeOut_AX12 = 10;
+    Delay_TimeOut_AX12 = 100;
+
     while (Delay_TimeOut_AX12 && !responseReadyAX);
+
     if (responseReadyAX) {
         if (responseAX.id != id) {
             Reponse_Ok = 0;

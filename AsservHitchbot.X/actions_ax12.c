@@ -7,6 +7,7 @@
 
 #include "main.h"
 
+
 #define maxtork_claw 500
 #define maxspeed_claw 650
 #define delay_ax 30
@@ -272,8 +273,17 @@ void open_popcorn(void) {
 
 void close_popcorn(void) {
     PutAX(popcorn,AX_GOAL_POSITION,612); //rabat la piece 700
+    /*
+    if (PutAX_Pepino(popcorn,AX_GOAL_POSITION,612)) { //rabat la piece 700
+        __delay_ms(50);
+        printf("$AXOK;");
+    } else {
+        __delay_ms(50);
+        printf("$AX_PAS_OK;");
+    }*/
     __delay_ms(50);
     SendDone();
+    //__delay_ms(10);
 }
 
 void close_tub(void) { // fonction qui permet de refermer le tub de manière asynchrone

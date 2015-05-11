@@ -24,7 +24,7 @@
 #define PIN_REMAPABLE_AX12_IN   10
 
 
-
+#define DOUBLE_COMMANDE
 
 
 typedef unsigned char byte;
