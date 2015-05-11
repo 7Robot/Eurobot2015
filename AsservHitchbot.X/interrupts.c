@@ -33,6 +33,9 @@ void InitTimers()
 
     ConfigIntUART2(UART_RX_INT_PR5 & UART_RX_INT_EN
                  & UART_TX_INT_PR5 & UART_TX_INT_DIS);
+
+    TRIS_PIN_REMAPABLE_AX12 = 1;    // pin AX12 en IN pour remapable IN
+    OPEN_DRAIN_PIN_REMAPABLE_AX12 = 1; 
     
     OpenUART1(UART_EN & UART_IDLE_CON & UART_IrDA_DISABLE & UART_MODE_FLOW
         & UART_UEN_00 & UART_DIS_WAKE & UART_DIS_LOOPBACK
@@ -224,9 +227,9 @@ void __attribute__((interrupt,auto_psv)) _T2Interrupt(void) {
 /*************************************************
 * TX et RX Interrupt *
 *************************************************/
-void __attribute__((interrupt, no_auto_psv)) _U2RXInterrupt(void){
-    _U2RXIF = 0; // On baisse le FLAG
+void __attribute__((__interrupt__, no_auto_psv)) _U2RXInterrupt(void){
     InterruptAX();          // RX des AX12
+    _U2RXIF = 0; // On baisse le FLAG
 }
 
 void __attribute__((__interrupt__, no_auto_psv)) _U2TXInterrupt(void){

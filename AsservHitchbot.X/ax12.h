@@ -20,11 +20,13 @@
 #ifndef _AX12_H
 #define _AX12_H
 
-#define PIN_REMAPABLE_AX12_OUT  _RP10R
-#define PIN_REMAPABLE_AX12_IN   10
+#define PIN_REMAPABLE_AX12_OUT          _RP10R
+#define PIN_REMAPABLE_AX12_IN           10
+#define TRIS_PIN_REMAPABLE_AX12         _TRISB10
+#define OPEN_DRAIN_PIN_REMAPABLE_AX12   _ODCB10
 
 
-#define DOUBLE_COMMANDE
+// #define DOUBLE_COMMANDE
 
 
 typedef unsigned char byte;

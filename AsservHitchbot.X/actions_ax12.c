@@ -273,6 +273,8 @@ void open_popcorn(void) {
 
 void close_popcorn(void) {
     PutAX(popcorn,AX_GOAL_POSITION,612); //rabat la piece 700
+    __delay_ms(50);
+    SendDone();
     /*
     if (PutAX_Pepino(popcorn,AX_GOAL_POSITION,612)) { //rabat la piece 700
         __delay_ms(50);
@@ -280,10 +282,10 @@ void close_popcorn(void) {
     } else {
         __delay_ms(50);
         printf("$AX_PAS_OK;");
-    }*/
+    }
     __delay_ms(50);
     SendDone();
-    //__delay_ms(10);
+    __delay_ms(10);*/
 }
 
 void close_tub(void) { // fonction qui permet de refermer le tub de manière asynchrone

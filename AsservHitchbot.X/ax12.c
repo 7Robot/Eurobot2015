@@ -40,18 +40,26 @@ responseAXtype responseAX;
  * Wiring dependent functions, that you should customize
  ******************************************************************************/
 
+// du coup, le bit IOLOCK est à 0 au reset du pic,
+// donc on va pas y toucher, ça permet de tout faire marcher facile....
+
 void SetTX() {
-    __builtin_write_OSCCONL(OSCCON & 0xBF);
+    //__builtin_write_OSCCONL(0x46);
+    //__builtin_write_OSCCONL(0x57);
+    //__builtin_write_OSCCONL(OSCCON & 0xBF);
     _U2RXR = 31;                        // disable RX
     PIN_REMAPABLE_AX12_OUT = 0b00101;   // RP10 = U2TX (p.167)      TX => RP10
-    __builtin_write_OSCCONL(OSCCON | 0x40);
+    //__builtin_write_OSCCONL(OSCCON | 0x40);
 }
 
 void SetRX() {
-    __builtin_write_OSCCONL(OSCCON & 0xBF);
+    //__builtin_write_OSCCONL(0x46);
+    //__builtin_write_OSCCONL(0x57);
+    //__builtin_write_OSCCONL(OSCCON & 0xBF);     // IOLOCK = 0
     _U2RXR = PIN_REMAPABLE_AX12_IN;     // RP10 = U2RX (p.165)      RX <= RP10
-    PIN_REMAPABLE_AX12_OUT = 31;        // disable TX
-    __builtin_write_OSCCONL(OSCCON | 0x40);
+    PIN_REMAPABLE_AX12_OUT = 0;         // disable TX
+    // __builtin_write_OSCCONL(OSCCON | 0x40);
+
 }
 
 /******************************************************************************
