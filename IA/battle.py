@@ -23,7 +23,7 @@ team = functions.ask_team(ser)
 functions.move_pos(ser,-0.2,0)
 answer = functions.get_ans(ser)
 while answer != "$DONE;":
-    if (functions.Sicks==0):
+    if (functions.Sicks==0 or functions.Sicks==8 or functions.Sicks==4): # On ignore le sick devant tarantibot (pour les deux côtés)
         functions.move_pos(ser,-0.2,0)
     answer = functions.get_ans(ser)
 
@@ -49,8 +49,8 @@ while functions.get_ans(ser) != "$DONE;":
 
 # On ouvre les pinces
 functions.pince_open(ser)
-while functions.get_ans(ser) != "$DONE;":
-    pass
+#while functions.get_ans(ser) != "$DONE;":
+#    pass
 
 # Rotation
 functions.rotate(ser,(6.283+team*1.68)%6.283)
@@ -150,13 +150,13 @@ while answer != "$DONE;" and answer != "$FAAX;":
 
 # On ferme les pinces
 functions.pince_close(ser)
-while functions.get_ans(ser) != "$DONE;":
-    pass
+#while functions.get_ans(ser) != "$DONE;":
+#    pass
 
 # On ouvre les claps
 functions.clap_open(ser)
-while functions.get_ans(ser) != "$DONE;":
-    pass
+#while functions.get_ans(ser) != "$DONE;":
+#    pass
 
 # Rotation
 functions.rotate(ser,(6.283+team*1.65)%6.283)
@@ -198,9 +198,10 @@ while answer != "$DONE;":
 
 # On ouvre les pinces
 functions.pince_open(ser)
-while functions.get_ans(ser) != "$DONE;":
-    pass
+#while functions.get_ans(ser) != "$DONE;":
+#    pass
 
+'''
 # Déplacement
 functions.move_pos(ser,0,team*0.74)
 answer = functions.get_ans(ser)
@@ -208,6 +209,7 @@ while answer != "$DONE;":
     if (functions.Sicks==0):
         functions.move_pos(ser,0,team*0.74)
     answer = functions.get_ans(ser)
+
 
 # On ferme les claps
 functions.clap_close(ser)
@@ -234,6 +236,19 @@ while answer != "$DONE;":
     if (functions.Sicks==0):
         functions.move_pos(ser,-0.5,team*0.78)
     answer = functions.get_ans(ser)
+'''
+
+# Déplacement
+functions.move_pos(ser,-0.5,team*0.78)
+sleep(0.2)
+functions.clap_close(ser)
+sleep(1.2)
+functions.clap_open(ser)
+answer = functions.get_ans(ser)
+while answer != "$DONE;":
+    if (functions.Sicks==0):
+        functions.move_pos(ser,-0.5,team*0.78)
+    answer = functions.get_ans(ser)
 
 # On attrape le dernier spot
 functions.spot_catch_last(ser)
@@ -243,8 +258,8 @@ while answer != "$DONE;" and answer != "$FAAX;":
 
 # On ferme les claps
 functions.clap_close(ser)
-while functions.get_ans(ser) != "$DONE;":
-    pass
+#while functions.get_ans(ser) != "$DONE;":
+#    pass
 
 # Déplacement
 functions.move_pos(ser,-0.625,team*0.80)
@@ -263,9 +278,15 @@ while functions.get_ans(ser) != "$DONE;":
 functions.move_pos(ser,-0.40,team*0.78)
 answer = functions.get_ans(ser)
 while answer != "$DONE;":
-    if (functions.Sicks==0):
+    if (functions.Sicks==0 or functions.Sicks==4): # On ignore aussi le sick qu'il y a derrière la goutière
         functions.move_pos(ser,-0.40,team*0.78)
     answer = functions.get_ans(ser)
+
+# On ferme les pinces
+functions.pince_close(ser)
+
+# On ferme la goutière
+functions.tube_close(ser)
 
 # Rotation
 functions.rotate(ser,(6.283+team*4.71)%6.283)
@@ -310,11 +331,29 @@ while functions.get_ans(ser) != "$DONE;":
     pass
 
 # Déplacement
-functions.move_pos(ser,-0.5,0.0)
+functions.move_pos(ser,-2.33,team*0.84)
 answer = functions.get_ans(ser)
 while answer != "$DONE;":
     if (functions.Sicks==0):
-        functions.move_pos(ser,-0.5,0.0)
+        functions.move_pos(ser,-2.33,team*0.84)
+    answer = functions.get_ans(ser)
+
+# Rotation
+functions.rotate(ser,3.14)
+answer = functions.get_ans(ser)
+while answer != "$DONE;":
+    functions.rotate(ser,3.14)
+    answer = functions.get_ans(ser)
+
+# On ouvre le clap
+functions.clap_open(ser)
+
+# Déplacement
+functions.move_pos(ser,-1.9,team*0.84)
+answer = functions.get_ans(ser)
+while answer != "$DONE;":
+    if (functions.Sicks==0):
+        functions.move_pos(ser,-1.9,team*0.84)
     answer = functions.get_ans(ser)
 
 ser.close()
