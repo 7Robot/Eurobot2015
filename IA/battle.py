@@ -23,7 +23,7 @@ team = functions.ask_team(ser)
 functions.move_pos(ser,-0.2,0)
 answer = functions.get_ans(ser)
 while answer != "$DONE;":
-    if (functions.Sicks==0):
+    if (functions.Sicks==0 or functions.Sicks==8 or functions.Sicks==4): # On ignore le sick devant tarantibot (pour les deux côtés)
         functions.move_pos(ser,-0.2,0)
     answer = functions.get_ans(ser)
 
