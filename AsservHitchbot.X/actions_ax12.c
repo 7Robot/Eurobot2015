@@ -1,6 +1,7 @@
 #include <p33Fxxxx.h>      /* Includes device header file                     */
 #include <stdint.h>        /* Includes uint16_t definition                    */
 #include <stdbool.h>       /* Includes true/false definition                  */
+#include <stdio.h>
 #include <uart.h>
 #include <delay.h>
 
@@ -18,6 +19,72 @@
 /******************************************************************************/
 /****************************** Init Position *********************************/
 /******************************************************************************/
+
+volatile int Num_Action_Done = 0;
+volatile int Num_Action_ToDo = 0;
+volatile char Tab_Actions_ToDo [NUM_ACTIONS_BUFFER] = {0};
+
+void Add_Action_AX12(char Action_ToDo)
+{
+    int num = Num_Action_ToDo;
+    num++;
+    if (num == NUM_ACTIONS_BUFFER) {
+        num = 0;
+    }
+    Tab_Actions_ToDo[num] = Action_ToDo;
+    Num_Action_ToDo = num;
+}
+
+void Faire_Actions_AX12(void)
+{
+    int num = Num_Action_Done;
+    char Action_ToDo;
+    if (num != Num_Action_ToDo) {
+        num++;
+        if (num == NUM_ACTIONS_BUFFER) {
+            num = 0;
+        }
+        Action_ToDo = Tab_Actions_ToDo[num];
+        switch (Action_ToDo)
+        {
+            case AX12_INIT_AX12 :
+                Init_ax12();
+                break;
+            case AX12_CHARG_SPOT :
+                charg_spot();
+                break;
+            case AX12_CHARG_LAST_SPOT :
+                charg_last_spot();
+                break;
+            case AX12_RELEASE:
+                release();
+                break;
+            case AX12_CLOSE_CLAWS:
+                close_claws();
+                break;
+            case AX12_OPEN_CLAWS:
+                open_claws();
+                break;
+            case AX12_CLOSE_CLAP:
+                close_clap();
+                break;
+            case AX12_OPEN_CLAP:
+                open_clap();
+                break;
+            case AX12_OPEN_POPCORN:
+                open_popcorn();
+                break;
+            case AX12_CLOSE_POPCORN:
+                close_popcorn();
+                break;
+        }
+        Num_Action_Done = num;
+    }
+}
+
+
+
+
 
 void Init_ax12() {
 
@@ -202,11 +269,22 @@ void open_popcorn(void) {
     PutAX(popcorn,AX_GOAL_POSITION,405); //rabat la piece 700
     __delay_ms(50);
     SendDone();
+    if (rep){
+        printf("$OK  ;");
+    } else {
+        printf("$FAIL;");
+    }
 }
 
 void close_popcorn(void) {
-    PutAX(popcorn,AX_GOAL_POSITION,612); //rabat la piece 700
+    char rep;
+    rep = PutAX_Pepino(popcorn,AX_GOAL_POSITION,612); //rabat la piece 700
     __delay_ms(50);
     SendDone();
+    if (rep){
+        printf("$OK  ;");
+    } else {
+        printf("$FAIL;");
+    }
 }
 /******************************************************************************/
