@@ -56,7 +56,7 @@ void SelectActionFromPi()
     Position MOVE;
 	uint8_t val8;
 
-	// MOVE
+    // MOVE
     if(ReceivedStringFromPi[1]=='M' && ReceivedStringFromPi[2]=='O' && ReceivedStringFromPi[3]=='V' && ReceivedStringFromPi[4]=='E')
     {
         cursorPosition=6;
@@ -80,7 +80,7 @@ void SelectActionFromPi()
         motion_pos(MOVE);
     }
 
-	// ANGL
+    // ANGL
     if(ReceivedStringFromPi[1]=='A' && ReceivedStringFromPi[2]=='N' && ReceivedStringFromPi[3]=='G' && ReceivedStringFromPi[4]=='L')
     {
         cursorPosition=6;

@@ -114,7 +114,7 @@ void Init_ax12() {
     __delay_ms(delay_ax);
     PutAX(tub, AX_MOVING_SPEED, 450);
     __delay_ms(delay_ax);
-    PutAX(clap, AX_MOVING_SPEED, maxspeed_claw);
+    PutAX(clap, AX_MOVING_SPEED, 1000);
     __delay_ms(delay_ax);
     PutAX(popcorn, AX_MOVING_SPEED, maxspeed_claw);
     __delay_ms(delay_ax);
@@ -242,7 +242,6 @@ void close_claws(void) { // fonction qui permet la fermeture des pinces à la vol
     __delay_ms(500);
     PutAX(rabg,AX_GOAL_POSITION,750);
     __delay_ms(50);
-    SendDone();
 }
 
 void open_claws(void) { // fonction qui permet la fermeture des pinces à la volée
@@ -250,41 +249,27 @@ void open_claws(void) { // fonction qui permet la fermeture des pinces à la volé
     __delay_ms(500);
     PutAX(rabd, AX_GOAL_POSITION, 620);
     __delay_ms(50);
-    SendDone();
 }
 
 void open_clap(void) {
     PutAX(clap,AX_GOAL_POSITION,830); //rabat la piece 700
     __delay_ms(100);
-    SendDone();
 }
 
 void close_clap(void) {
     PutAX(clap,AX_GOAL_POSITION,512); //rabat la piece 700
     __delay_ms(100);
-    SendDone();
 }
 
 void open_popcorn(void) {
     PutAX(popcorn,AX_GOAL_POSITION,405); //rabat la piece 700
     __delay_ms(50);
     SendDone();
-    if (rep){
-        printf("$OK  ;");
-    } else {
-        printf("$FAIL;");
-    }
 }
 
 void close_popcorn(void) {
-    char rep;
-    rep = PutAX_Pepino(popcorn,AX_GOAL_POSITION,612); //rabat la piece 700
+    PutAX(popcorn,AX_GOAL_POSITION,612); //rabat la piece 700
     __delay_ms(50);
     SendDone();
-    if (rep){
-        printf("$OK  ;");
-    } else {
-        printf("$FAIL;");
-    }
 }
 /******************************************************************************/
