@@ -56,6 +56,7 @@ void SelectActionFromPi()
     float valf;
     Position MOVE;
     uint8_t val8;
+    char valc;
 
     // MOVE
     if(ReceivedStringFromPi[1]=='M' && ReceivedStringFromPi[2]=='O' && ReceivedStringFromPi[3]=='V' && ReceivedStringFromPi[4]=='E')
@@ -167,11 +168,20 @@ void SelectActionFromPi()
     {
         Start_Stop_Debug_Sick();
     }
-
-    // ENSI         // active ou pas le motion_free des sicks
+    
+    // ENSI         // active ou pas le motion_free des sicks  à l'unitée
     if(ReceivedStringFromPi[1]=='E' && ReceivedStringFromPi[2]=='N' && ReceivedStringFromPi[3]=='S' && ReceivedStringFromPi[4]=='I')
     {
-        Enable_Sicks(ReceivedStringFromPi[6] != '0');
+        // l'utilisateur a juste droit à de 0 à F
+        valc = ReceivedStringFromPi[6];
+        if (valc >= '0' && valc <= '9') {
+            valc -= '0';
+        } else if (valc >= 'A' && valc <= 'F') {
+            valc -= 'A';
+        } else {
+            valc = 0x0F;
+        }
+        Choose_Enabled_Sicks(valc);
     }
 
 
@@ -240,6 +250,7 @@ void SelectActionFromPi()
         ReceivedStringFromPi[cursorPosition+floatLength] = ';';
         set_Constraint_vitesse_max(valf);
     }
+
 }
 
 void SendDone(void)
