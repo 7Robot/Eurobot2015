@@ -56,7 +56,7 @@ void SelectActionFromPi()
     Position MOVE;
 	uint8_t val8;
 
-	// MOVE
+    // MOVE
     if(ReceivedStringFromPi[1]=='M' && ReceivedStringFromPi[2]=='O' && ReceivedStringFromPi[3]=='V' && ReceivedStringFromPi[4]=='E')
     {
         cursorPosition=6;
@@ -80,7 +80,7 @@ void SelectActionFromPi()
         motion_pos(MOVE);
     }
 
-	// ANGL
+    // ANGL
     if(ReceivedStringFromPi[1]=='A' && ReceivedStringFromPi[2]=='N' && ReceivedStringFromPi[3]=='G' && ReceivedStringFromPi[4]=='L')
     {
         cursorPosition=6;
@@ -104,7 +104,7 @@ void SelectActionFromPi()
     // AXIN
     if(ReceivedStringFromPi[1]=='A' && ReceivedStringFromPi[2]=='X' && ReceivedStringFromPi[3]=='I' && ReceivedStringFromPi[4]=='N')
     {
-        Init_ax12();
+        Add_Action_AX12(AX12_INIT_AX12);
     }
 
     // FREE
@@ -116,30 +116,30 @@ void SelectActionFromPi()
     // CHAR
     if(ReceivedStringFromPi[1]=='C' && ReceivedStringFromPi[2]=='H' && ReceivedStringFromPi[3]=='A' && ReceivedStringFromPi[4]=='R')
     {
-        charg_spot();
+        Add_Action_AX12(AX12_CHARG_SPOT);
     }
 
     // CHAL
     if(ReceivedStringFromPi[1]=='C' && ReceivedStringFromPi[2]=='H' && ReceivedStringFromPi[3]=='A' && ReceivedStringFromPi[4]=='L')
     {
-        charg_last_spot();
+        Add_Action_AX12(AX12_CHARG_LAST_SPOT);
     }
 
     // RELE
     if(ReceivedStringFromPi[1]=='R' && ReceivedStringFromPi[2]=='E' && ReceivedStringFromPi[3]=='L' && ReceivedStringFromPi[4]=='E')
     {
-        release();
+        Add_Action_AX12(AX12_RELEASE);
     }
 
     // CLOSE
     if(ReceivedStringFromPi[1]=='C' && ReceivedStringFromPi[2]=='L' && ReceivedStringFromPi[3]=='O' && ReceivedStringFromPi[4]=='S')
     {
-        close_claws();
+        Add_Action_AX12(AX12_CLOSE_CLAWS);
     }
         
     if(ReceivedStringFromPi[1]=='O' && ReceivedStringFromPi[2]=='P' && ReceivedStringFromPi[3]=='E' && ReceivedStringFromPi[4]=='S')
     {
-        close_claws();
+        Add_Action_AX12(AX12_OPEN_CLAWS);
     }
 
 
@@ -203,26 +203,31 @@ void SelectActionFromPi()
 	// CLAO
     if(ReceivedStringFromPi[1]=='C' && ReceivedStringFromPi[2]=='L' && ReceivedStringFromPi[3]=='A' && ReceivedStringFromPi[4]=='O')
     {
-        open_clap();
+        Add_Action_AX12(AX12_OPEN_CLAP);
     }
 	
 	// CLAC
     if(ReceivedStringFromPi[1]=='C' && ReceivedStringFromPi[2]=='L' && ReceivedStringFromPi[3]=='A' && ReceivedStringFromPi[4]=='C')
     {
-        close_clap();
+        Add_Action_AX12(AX12_CLOSE_CLAP);
     }
 
     if(ReceivedStringFromPi[1]=='P' && ReceivedStringFromPi[2]=='O' && ReceivedStringFromPi[3]=='P' && ReceivedStringFromPi[4]=='O')
     {
-
-       close_popcorn();
+        Add_Action_AX12(AX12_CLOSE_POPCORN);
     }
 
 	// CLAC
     if(ReceivedStringFromPi[1]=='P' && ReceivedStringFromPi[2]=='O' && ReceivedStringFromPi[3]=='P' && ReceivedStringFromPi[4]=='C')
     {
-       open_popcorn();
+        Add_Action_AX12(AX12_OPEN_POPCORN);
     }
+
+    if(ReceivedStringFromPi[1]=='C' && ReceivedStringFromPi[2]=='L' && ReceivedStringFromPi[3]=='T' && ReceivedStringFromPi[4]=='B')
+    {
+        Add_Action_AX12(AX12_CLOSE_TUB);
+    }
+
 	
 }
 

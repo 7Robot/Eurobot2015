@@ -14,6 +14,7 @@
 #include "ultrason.h"
 #include "actions_ax12.h"
 #include "communication.h"
+#include "ax12.h"
 #include "lib_asserv/private/tools.h"
 
 #endif	/* MAIN_H */

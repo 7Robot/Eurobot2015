@@ -33,6 +33,9 @@ void InitTimers()
 
     ConfigIntUART2(UART_RX_INT_PR5 & UART_RX_INT_EN
                  & UART_TX_INT_PR5 & UART_TX_INT_DIS);
+
+    TRIS_PIN_REMAPABLE_AX12 = 1;    // pin AX12 en IN pour remapable IN
+    OPEN_DRAIN_PIN_REMAPABLE_AX12 = 1; 
     
     OpenUART1(UART_EN & UART_IDLE_CON & UART_IrDA_DISABLE & UART_MODE_FLOW
         & UART_UEN_00 & UART_DIS_WAKE & UART_DIS_LOOPBACK
@@ -55,6 +58,19 @@ void InitTimers()
                 T2_SOURCE_INT, 3125 ); // 3125 pour 5ms
     // configuration des interruptions
     ConfigIntTimer2(T2_INT_PRIOR_4 & T2_INT_ON);
+
+    // activation du Timer3
+    OpenTimer3(T3_ON &
+                T3_IDLE_CON &
+                T3_GATE_OFF &
+                T3_PS_1_64 &
+                T3_SOURCE_INT, 625 ); // 625 pour 1ms
+    // configuration des interruptions
+    ConfigIntTimer3(T3_INT_PRIOR_2 & T3_INT_ON);
+    TMR3 = 312;     // pour déphasage de entre Timer2 et 3...
+
+    // info : timer 5 est utilisé par la mesure des sicks
+    // info : timer 4 est utilisé par la mesure de l'ultrason
     
     // Ici interruption des actions des bras
     //IFS2bits.SPI2IF = 0; // Flag SPI2 Event Interrupt Priority
@@ -211,9 +227,9 @@ void __attribute__((interrupt,auto_psv)) _T2Interrupt(void) {
 /*************************************************
 * TX et RX Interrupt *
 *************************************************/
-void __attribute__((interrupt, no_auto_psv)) _U2RXInterrupt(void){
+void __attribute__((__interrupt__, no_auto_psv)) _U2RXInterrupt(void){
+    InterruptAX();          // RX des AX12
     _U2RXIF = 0; // On baisse le FLAG
-//    InterruptAX();
 }
 
 void __attribute__((__interrupt__, no_auto_psv)) _U2TXInterrupt(void){
@@ -242,7 +258,7 @@ void __attribute__((interrupt, no_auto_psv)) _SPI2Interrupt(void){
 void __attribute__ ((__interrupt__, no_auto_psv)) _CNInterrupt(void)
 {
     uint32_t val32;
-    static uint8_t old_Pin_Laisse = 0;
+    static uint8_t old_Pin_Laisse = 1;
     
     // baisse le flag puis récup des etats de pins, 
     // si les pins rebougent durant ce laps tres court, ça redéclenchera une IT directe apres,
@@ -309,3 +325,16 @@ void __attribute__ ((__interrupt__, no_auto_psv)) _CNInterrupt(void)
         }
     }
 }
+
+
+// every ms
+void __attribute__((interrupt,auto_psv)) _T3Interrupt(void) {
+
+    if (Delay_TimeOut_AX12) {
+        Delay_TimeOut_AX12 --;
+    }
+
+   _T3IF = 0;   // on baisse le flag
+}
+
+

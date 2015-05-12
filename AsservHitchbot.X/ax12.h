@@ -20,8 +20,16 @@
 #ifndef _AX12_H
 #define _AX12_H
 
-typedef unsigned char byte;
+#define PIN_REMAPABLE_AX12_OUT          _RP10R
+#define PIN_REMAPABLE_AX12_IN           10
+#define TRIS_PIN_REMAPABLE_AX12         _TRISB10
+#define OPEN_DRAIN_PIN_REMAPABLE_AX12   _ODCB10
 
+
+// #define DOUBLE_COMMANDE
+
+
+typedef unsigned char byte;
 
 // EEPROM Registers
 #define AX_MODEL_NUMBER             0
@@ -107,7 +115,7 @@ typedef volatile struct {
     byte id;
     byte len;
     errorAX error;
-    byte params[4]; // Could be larger.
+    byte params[10]; // Could be larger.
 } responseAXtype;
 extern responseAXtype responseAX;
 
@@ -135,6 +143,11 @@ void     ResetAX(byte id);
 byte   RegisterLenAX(byte address);
 void  GetAX(byte id, byte address);
 void  PutAX(byte id, byte address, int value);
+
+
+extern volatile int Delay_TimeOut_AX12;
+
+char  PutAX_Pepino(byte id, byte address, int value);
 
 
 

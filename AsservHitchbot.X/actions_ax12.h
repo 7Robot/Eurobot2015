@@ -18,15 +18,33 @@
 #define clap           4
 #define popcorn       17
 
+#define NUM_ACTIONS_BUFFER 20
+
+
+void Add_Action_AX12(char Action_ToDo);
+void Faire_Actions_AX12(void);
+
+#define AX12_INIT_AX12           1
 void Init_ax12(void);
+#define AX12_CHARG_SPOT          2
 void charg_spot(void);
+#define AX12_CHARG_LAST_SPOT     3
 void charg_last_spot(void);
+#define AX12_RELEASE             4
 void release (void);
+#define AX12_CLOSE_CLAWS         5
 void close_claws(void);
+#define AX12_OPEN_CLAWS          6
 void open_claws(void);
+#define AX12_CLOSE_CLAP          7
 void close_clap(void);
+#define AX12_OPEN_CLAP           8
 void open_clap(void);
+#define AX12_OPEN_POPCORN        9
 void open_popcorn(void);
+#define AX12_CLOSE_POPCORN       10
 void close_popcorn(void);
+#define AX12_CLOSE_TUB           11 //CLTB asynchrone
+void close_tub(void);            
 
 #endif	/* ACTIONS_AX12_H */
