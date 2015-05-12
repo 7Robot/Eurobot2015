@@ -5,8 +5,8 @@
 
 void Init_Ultrasons (void);
 
-#define ULTRASON_THRESOLD  300      // seuil d'alarme en mm
-#define ULTRASON_THRESOLD_TRIGGER   50      // zone du triger de schmitt
+#define ULTRASON_THRESOLD  250      // seuil d'alarme en mm
+#define ULTRASON_THRESOLD_TRIGGER   25      // zone du triger de schmitt
 
 
 #define PIN_ULTRASON        _RC5            // RC5 = connecteur 5V n2?

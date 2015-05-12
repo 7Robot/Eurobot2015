@@ -109,7 +109,7 @@ void Init_CN()
 
 void __attribute__((interrupt,auto_psv)) _T2Interrupt(void) {
 
-    if (start==1)
+    if (start==1 && UltraSon_Detect==0)
     {
         ////////////////////////////////////////////////////////////////////////
         ///////////////////////////// EQUIPE JAUNE /////////////////////////////
@@ -124,7 +124,7 @@ void __attribute__((interrupt,auto_psv)) _T2Interrupt(void) {
             if (state==0)
             {
                 PWM_Moteurs(17, 19);
-                if (time_tics>320)
+                if (time_tics>345)
                 {
                     PWM_Moteurs(0, 0);
                     state++;
@@ -138,7 +138,7 @@ void __attribute__((interrupt,auto_psv)) _T2Interrupt(void) {
             else if (state==1)
             {
                 PWM_Moteurs(-17, 19);
-                if (time_tics>56)
+                if (time_tics>54)
                 {
                     PWM_Moteurs(0, 0);
                     state++;
@@ -152,8 +152,8 @@ void __attribute__((interrupt,auto_psv)) _T2Interrupt(void) {
             ////////////////////////////////////////////////////////////////////
             else if (state==2)
             {
-                PWM_Moteurs(17, 18);
-                if (time_tics>320)
+                PWM_Moteurs(18, 20);
+                if (time_tics>327)
                 {
                     PWM_Moteurs(0, 0);
                     state++;
@@ -167,8 +167,8 @@ void __attribute__((interrupt,auto_psv)) _T2Interrupt(void) {
             ////////////////////////////////////////////////////////////////////
             else if (state==3)
             {
-                PWM_Moteurs(17, 18);
-                if (time_tics>80)
+                PWM_Moteurs(18, 20);
+                if (time_tics>60)
                 {
                     PWM_Moteurs(0, 0);
                     state++;
@@ -192,7 +192,7 @@ void __attribute__((interrupt,auto_psv)) _T2Interrupt(void) {
             if (state==0)
             {
                 PWM_Moteurs(17, 19);
-                if (time_tics>320)
+                if (time_tics>345)
                 {
                     PWM_Moteurs(0, 0);
                     state++;
@@ -206,7 +206,7 @@ void __attribute__((interrupt,auto_psv)) _T2Interrupt(void) {
             else if (state==1)
             {
                 PWM_Moteurs(17, -19);
-                if (time_tics>56)
+                if (time_tics>45)
                 {
                     PWM_Moteurs(0, 0);
                     state++;
@@ -220,8 +220,8 @@ void __attribute__((interrupt,auto_psv)) _T2Interrupt(void) {
             ////////////////////////////////////////////////////////////////////
             else if (state==2)
             {
-                PWM_Moteurs(17, 18);
-                if (time_tics>320)
+                PWM_Moteurs(18, 20);
+                if (time_tics>323)
                 {
                     PWM_Moteurs(0, 0);
                     state++;
@@ -235,8 +235,8 @@ void __attribute__((interrupt,auto_psv)) _T2Interrupt(void) {
             ////////////////////////////////////////////////////////////////////
             else if (state==3)
             {
-                PWM_Moteurs(17, 18);
-                if (time_tics>80)
+                PWM_Moteurs(18, 20);
+                if (time_tics>60)
                 {
                     PWM_Moteurs(0, 0);
                     state++;
@@ -249,6 +249,8 @@ void __attribute__((interrupt,auto_psv)) _T2Interrupt(void) {
 
         time_tics++;
     }
+    else PWM_Moteurs(0, 0); // En attendant le start, ou si l'utrason detecte un truc
+
     ////////////////////////////////// DEBUG ///////////////////////////////////
     //printf("erreur_g%d erreur_d%d \n\r",erreur_g,erreur_d);
     //printf("TicsG%d TicsD%d \n\r",tics_g,tics_d);
@@ -293,7 +295,7 @@ void __attribute__((interrupt, no_auto_psv)) _SPI2Interrupt(void){
 void __attribute__ ((__interrupt__, no_auto_psv)) _CNInterrupt(void)
 {
 
-    static char last_Etat_Pin_Laisse = 1;
+    static char last_Etat_Pin_Laisse = 0;
     uint32_t val32;
 
     IFS1bits.CNIF = 0; // Clear CN interrupt
@@ -304,7 +306,7 @@ void __attribute__ ((__interrupt__, no_auto_psv)) _CNInterrupt(void)
     if (Etat_Pin_Laisse != last_Etat_Pin_Laisse) {
         last_Etat_Pin_Laisse = Etat_Pin_Laisse;
         if (!Etat_Pin_Laisse) {
-            __delay_ms(10);
+            __delay_ms(1000);
             start=1;
         } else {
             __delay_ms(80);
