@@ -20,7 +20,16 @@
 #define FCY             SYS_FREQ/2
 
 #define BAUDRATEAX12 57600
-#define BRGVALAX12 ((FCY / BAUDRATEAX12 / 16) - 1)
+
+//#define TEST_ALEX_UART_SPEED
+
+#ifdef TEST_ALEX_UART_SPEED
+    #define BRGVALAX12 ((FCY / BAUDRATEAX12 / 4) - 1)
+#else
+    #define BRGVALAX12 ((FCY / BAUDRATEAX12 / 16) - 1)
+#endif
+
+
 
  
 
