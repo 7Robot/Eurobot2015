@@ -49,7 +49,6 @@ _FPOR(PWMPIN_ON);
 #include "actions_ax12.h"
 #include "ultrason.h"
 
-int temp=0;
 int BoutonCouleur=0;
 
 int main(int argc, char** argv) {
