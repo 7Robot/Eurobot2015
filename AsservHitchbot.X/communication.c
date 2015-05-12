@@ -53,8 +53,9 @@ void SelectActionFromPi()
 {
     int cursorPosition, floatLength;
     float ANGLE;
+    float valf;
     Position MOVE;
-	uint8_t val8;
+    uint8_t val8;
 
     // MOVE
     if(ReceivedStringFromPi[1]=='M' && ReceivedStringFromPi[2]=='O' && ReceivedStringFromPi[3]=='V' && ReceivedStringFromPi[4]=='E')
@@ -223,12 +224,22 @@ void SelectActionFromPi()
         Add_Action_AX12(AX12_OPEN_POPCORN);
     }
 
+    // CLTB
     if(ReceivedStringFromPi[1]=='C' && ReceivedStringFromPi[2]=='L' && ReceivedStringFromPi[3]=='T' && ReceivedStringFromPi[4]=='B')
     {
         Add_Action_AX12(AX12_CLOSE_TUB);
     }
 
-	
+    // VMAX     choisi une vitesse max
+    if(ReceivedStringFromPi[1]=='V' && ReceivedStringFromPi[2]=='M' && ReceivedStringFromPi[3]=='A' && ReceivedStringFromPi[4]=='X')
+    {
+        cursorPosition=6; 
+        for(floatLength=0;ReceivedStringFromPi[cursorPosition+floatLength]!=';';floatLength++); // Return the number of char taken by the float in the command line
+        ReceivedStringFromPi[cursorPosition+floatLength] = 0;
+        valf = atof(&ReceivedStringFromPi[cursorPosition]);
+        ReceivedStringFromPi[cursorPosition+floatLength] = ';';
+        set_Constraint_vitesse_max(valf);
+    }
 }
 
 void SendDone(void)

@@ -48,6 +48,9 @@ void set_position_x(MotionState *state, float x){state->pos.x = x;}
 void set_position_y(MotionState *state, float y){state->pos.y = y;}
 void set_position_t(MotionState *state, float t){state->pos.t = t;}
 
+// ajout pepino
+void set_Constraint_vitesse_max(float vl_max) { motionConstraint.v_max.v = vl_max; }
+
 // assigner des valeurs à la vitesse (vitesse et vitesse angulaire)
 void set_speed(MotionState *state, Speed speed){state->speed = speed;}
 void set_speed_v(MotionState *state, float v){state->speed.v = v;}
