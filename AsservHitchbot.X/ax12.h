@@ -26,7 +26,9 @@
 #define OPEN_DRAIN_PIN_REMAPABLE_AX12   _ODCB10
 
 
-// #define DOUBLE_COMMANDE
+//#define DOUBLE_COMMANDE_AX12
+
+#define TEST_RECEPTION_AX12
 
 
 typedef unsigned char byte;
@@ -142,12 +144,14 @@ void     ResetAX(byte id);
 
 byte   RegisterLenAX(byte address);
 void  GetAX(byte id, byte address);
-void  PutAX(byte id, byte address, int value);
+//void  PutAX(byte id, byte address, int value);
 
+
+char  PutAX(byte id, byte address, int value);
 
 extern volatile int Delay_TimeOut_AX12;
 
-char  PutAX_Pepino(byte id, byte address, int value);
+char  PutAX_Check(byte id, byte address, int value);
 
 
 
