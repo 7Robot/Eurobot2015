@@ -38,9 +38,11 @@ void Init_All(int callback){
     ConfigureOscillator();
     /* Initialize IO ports and peripherals */
     InitTimers();
+
     __delay_ms(500);
     Init_PWM();
     Init_QEI();
+
     Init_ax12();
     InitSick_VBat();
     motion_init(); // start asserv

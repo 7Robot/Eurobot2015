@@ -5,7 +5,6 @@
 #include <libpic30.h>
 #include <stdint.h>
 #include "qei.h"           // QEI definitions for easier use
-#include "ax12.h"
 #include "lib_asserv/lib_asserv_default.h"
 #include "lib_asserv/lib_asserv.h"
 #include "motor.h"
@@ -16,6 +15,7 @@
 #include "communication.h"
 #include "ax12.h"
 #include "lib_asserv/private/tools.h"
+
 
 #endif	/* MAIN_H */
 

@@ -45,8 +45,8 @@ _FPOR(PWMPIN_ON);
 
 int main(int argc, char** argv) {
     Init_All(0);
-    
 
+    
     while (1) // boucle principale
     {
         Faire_Actions_AX12();

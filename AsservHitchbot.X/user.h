@@ -19,19 +19,16 @@
 #define SYS_FREQ        80000000UL
 #define FCY             SYS_FREQ/2
 
+
+
 #define BAUDRATEAX12 57600
-
-//#define TEST_ALEX_UART_SPEED
-
-#ifdef TEST_ALEX_UART_SPEED
-    #define BRGVALAX12 ((FCY / BAUDRATEAX12 / 4) - 1)
-#else
-    #define BRGVALAX12 ((FCY / BAUDRATEAX12 / 16) - 1)
-#endif
+#define BRGVALAX12 ((FCY / BAUDRATEAX12 / 16) - 1)
 
 
 
- 
+
+extern volatile char Active_Delay_90;
+extern volatile long Delay_90;
 
 /******************************************************************************/
 /* System Function Prototypes                                                 */
