@@ -309,9 +309,11 @@ void SelectActionFromPi()
             Add_Action_AX12(AX12_OPEN_POPCORN_G);
         }
 
-	if(ReceivedStringFromPi[1]=='P' && ReceivedStringFromPi[2]=='O' && ReceivedStringFromPi[3]=='C' && ReceivedStringFromPi[4]=='L')
-	{
+		if(ReceivedStringFromPi[1]=='P' && ReceivedStringFromPi[2]=='O' && ReceivedStringFromPi[3]=='C' && ReceivedStringFromPi[4]=='L')
+		{
             Add_Action_AX12(AX12_CLOSE_POPCORN_G);
+		}
+		
 		if(ReceivedStringFromPi[1]=='P' && ReceivedStringFromPi[2]=='O' && ReceivedStringFromPi[3]=='C' && ReceivedStringFromPi[4]=='L')
 		{
 			Add_Action_AX12(AX12_CLOSE_POPCORN_G);
@@ -337,7 +339,6 @@ void SelectActionFromPi()
             valf = atof(&ReceivedStringFromPi[cursorPosition]);
             ReceivedStringFromPi[cursorPosition+floatLength] = ';';
             set_Constraint_vitesse_max(valf);
-            }
         }
     }
 }
