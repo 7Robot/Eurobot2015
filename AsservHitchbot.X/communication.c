@@ -288,14 +288,14 @@ void SendFailAX12(void)
 
 void DetectSick(int channel)
 {
-   // __delay_ms(50);
+    __delay_ms(2);
     switch(channel){
         case 0 : printf("$DSI0;");  break;
         case 1 : printf("$DSI1;");  break;
         case 2 : printf("$DSI2;");  break;
         case 3 : printf("$DSI3;");  break;
     }
-   // __delay_ms(50);
+   __delay_ms(2);
 }
 
 void ReleaseSick (int channel)
