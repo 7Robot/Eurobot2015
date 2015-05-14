@@ -210,17 +210,29 @@ void SelectActionFromPi()
         printf("$VBAT,%d;", V_Bat);
         __delay_ms(50);
     }
-	
-	// CLAO
-    if(ReceivedStringFromPi[1]=='C' && ReceivedStringFromPi[2]=='L' && ReceivedStringFromPi[3]=='A' && ReceivedStringFromPi[4]=='O')
+
+	// CLRO
+    if(ReceivedStringFromPi[1]=='C' && ReceivedStringFromPi[2]=='L' && ReceivedStringFromPi[3]=='R' && ReceivedStringFromPi[4]=='O')
     {
-        Add_Action_AX12(AX12_OPEN_CLAP);
+        Add_Action_AX12(AX12_OPEN_CLAPR);
     }
-	
-	// CLAC
-    if(ReceivedStringFromPi[1]=='C' && ReceivedStringFromPi[2]=='L' && ReceivedStringFromPi[3]=='A' && ReceivedStringFromPi[4]=='C')
+
+	// CLRC
+    if(ReceivedStringFromPi[1]=='C' && ReceivedStringFromPi[2]=='L' && ReceivedStringFromPi[3]=='R' && ReceivedStringFromPi[4]=='C')
     {
-        Add_Action_AX12(AX12_CLOSE_CLAP);
+        Add_Action_AX12(AX12_CLOSE_CLAPR);
+    }
+
+	// CLLO
+    if(ReceivedStringFromPi[1]=='C' && ReceivedStringFromPi[2]=='L' && ReceivedStringFromPi[3]=='L' && ReceivedStringFromPi[4]=='O')
+    {
+        Add_Action_AX12(AX12_OPEN_CLAPL);
+    }
+
+	// CLLC
+    if(ReceivedStringFromPi[1]=='C' && ReceivedStringFromPi[2]=='L' && ReceivedStringFromPi[3]=='L' && ReceivedStringFromPi[4]=='C')
+    {
+        Add_Action_AX12(AX12_CLOSE_CLAPL);
     }
 
     if(ReceivedStringFromPi[1]=='P' && ReceivedStringFromPi[2]=='O' && ReceivedStringFromPi[3]=='P' && ReceivedStringFromPi[4]=='O')
