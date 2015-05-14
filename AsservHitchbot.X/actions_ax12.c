@@ -108,11 +108,11 @@ void Init_ax12() {
     __delay_ms(delay_ax);
     PutAX(rabg, AX_TORQUE_LIMIT, maxtork_claw);
     __delay_ms(delay_ax);
-    PutAX(pince, AX_TORQUE_LIMIT, 600);
+    PutAX(pince, AX_TORQUE_LIMIT, 850);
     __delay_ms(delay_ax);
-    PutAX(asc, AX_TORQUE_LIMIT, 900);
+    PutAX(asc, AX_TORQUE_LIMIT, 800);
     __delay_ms(delay_ax);
-    PutAX(tub, AX_TORQUE_LIMIT, 900);
+    PutAX(tub, AX_TORQUE_LIMIT, 600);
     __delay_ms(delay_ax);
     PutAX(clapr, AX_TORQUE_LIMIT, maxtork_claw);
     __delay_ms(delay_ax);
@@ -194,28 +194,22 @@ void charg_spot(void)
         __delay_ms(50);
     }
 
-    if (PORTAbits.RA9 == 1) {
-
         PutAX(tub,AX_GOAL_POSITION,350); //reouvre legerement le tub
         __delay_ms(50);
         PutAX(pince,AX_GOAL_POSITION,255); //ouvre la pince
         __delay_ms(50);
-        PutAX(asc,AX_GOAL_POSITION,945); //descent la pince
-        __delay_ms(700);
+        PutAX(asc,AX_GOAL_POSITION,962); //descent la pince
+        __delay_ms(800);
         PutAX(pince,AX_GOAL_POSITION,170); //ferme la pince
         __delay_ms(300);
-        PutAX(asc,AX_GOAL_POSITION,320); //remonte la pince
+        PutAX(asc,AX_GOAL_POSITION,310); //remonte la pince
         __delay_ms(850);
-        PutAX(tub,AX_GOAL_POSITION,255); //referme le tube
+        PutAX(tub,AX_GOAL_POSITION,275); //referme le tube
         __delay_ms(300);
         PutAX(pince,AX_GOAL_POSITION,255); //ouvre la pince
         __delay_ms(50);
 
         SendDone();
-    }
-    else {
-        SendFailAX12();
-    }
 }
 
 void charg_last_spot(void)
@@ -254,11 +248,11 @@ void release (void) {
 
     PutAX(pince,AX_GOAL_POSITION,255); //entre-ouvre pince
     __delay_ms(300);
-    PutAX(asc,AX_GOAL_POSITION,320); //remonte la pince
-    __delay_ms(600);
+    PutAX(asc,AX_GOAL_POSITION,840); //remonte la pince
+    //__delay_ms(600);
     PutAX(tub,AX_GOAL_POSITION,700); //ouvre reservoir
     __delay_ms(300);
-    PutAX(pince,AX_GOAL_POSITION,500); //ouvre pince
+    PutAX(pince,AX_GOAL_POSITION,470); //ouvre pince
     __delay_ms(300);
 
     SendDone();
