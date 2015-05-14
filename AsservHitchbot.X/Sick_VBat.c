@@ -179,7 +179,9 @@ void __attribute__ ((interrupt, auto_psv)) _ADC1Interrupt(void)
         if (Old_Sector[channel] == 0) {     // si on considère pour l'instant qu'il y a un truc "pres"
             if (val16 > (Threshold[channel] + MARGIN_SICK)) {  // si la valeur repasse au dessus de seuil + marge
                 Old_Sector[channel] = 1;        // on repasse en zone "sûre"
-                ReleaseSick(channel);			// on previent la PI
+                if (channel != 3) {
+                    ReleaseSick(channel);			// on previent la PI
+                }
             }
         } else {    // if old = 1   // si, pour l'instant, il n'y a pas de truc "pres"
             if ( (val16 < (Threshold[channel] - MARGIN_SICK))  && (val16 > SICK_LIMIT_MIN)  ) {   // si on vient de detecter un truc
@@ -189,7 +191,9 @@ void __attribute__ ((interrupt, auto_psv)) _ADC1Interrupt(void)
                         motion_free();                  // et on gueule auprès de l'asserv
                    }
                }
-               DetectSick(channel);				// on previent la PI
+               if (channel != 3) {
+                    DetectSick(channel);				// on previent la PI
+               }
             }
         }
 
