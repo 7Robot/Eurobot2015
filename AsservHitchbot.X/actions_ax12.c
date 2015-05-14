@@ -40,7 +40,7 @@ void Faire_Actions_AX12(void)
 {
     int num = Num_Action_Done;
     char Action_ToDo;
-    if (num != Num_Action_ToDo && Delay_90 < 90000) {
+    if (num != Num_Action_ToDo && !Delay_90_Over) {
         num++;
         if (num == NUM_ACTIONS_BUFFER) {
             num = 0;
@@ -305,7 +305,7 @@ void open_popcorn_d(void) {
 }
 
 void close_popcorn_d(void) {
-    PutAX(popcorn_d,AX_GOAL_POSITION,522); //rabat la piece 700
+    PutAX(popcorn_d,AX_GOAL_POSITION,500); //rabat la piece 700
     __delay_ms(50);
     SendDone();
 }
@@ -317,7 +317,7 @@ void open_popcorn_g(void) {
 }
 
 void close_popcorn_g(void) {
-    PutAX(popcorn_g,AX_GOAL_POSITION,502); //ferme l'attrape popkorn
+    PutAX(popcorn_g,AX_GOAL_POSITION,522); //ferme l'attrape popkorn
     __delay_ms(50);
     SendDone();
 }
