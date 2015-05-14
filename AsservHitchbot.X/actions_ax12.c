@@ -219,7 +219,7 @@ void charg_spot(void)
 
 void charg_last_spot(void)
 {
-    if(!PIN_TEAM) {
+    if(PIN_TEAM) {
         PutAX(rabd,AX_GOAL_POSITION,300); //rabat la piece 700
         __delay_ms(700);
         PutAX(rabd,AX_GOAL_POSITION,620); //reouvre
