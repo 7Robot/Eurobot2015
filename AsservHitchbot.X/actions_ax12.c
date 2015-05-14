@@ -326,4 +326,28 @@ void close_tub(void) { // fonction qui permet de refermer le tub de manière asyn
     PutAX(tub,AX_GOAL_POSITION,270); //referme le tube
     __delay_ms(250);
 }
+
+void victory_dance(void) {
+    int k;
+    int j = 1;
+    for (k = 0; k < 5; k++) {
+        if (j = 0) {
+            j = 1;
+            close_claws();
+            __delay_ms(40);
+        } else {
+            j = 0;
+            open_claws();
+            __delay_ms(40);
+        }
+        close_clap_l();
+        __delay_ms(40);
+        close_clap_r();
+        __delay_ms(250);
+        open_clap_l();
+        __delay_ms(40);
+        open_clap_r();
+        __delay_ms(250);
+    }
+}
 /******************************************************************************/
