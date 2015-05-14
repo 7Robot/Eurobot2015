@@ -229,21 +229,25 @@ void SelectActionFromPi()
         Add_Action_AX12(AX12_OPEN_CLAPL);
     }
 
-	// CLLC
-    if(ReceivedStringFromPi[1]=='C' && ReceivedStringFromPi[2]=='L' && ReceivedStringFromPi[3]=='L' && ReceivedStringFromPi[4]=='C')
+	// ouvrir popcorn droit
+    if(ReceivedStringFromPi[1]=='P' && ReceivedStringFromPi[2]=='O' && ReceivedStringFromPi[3]=='O' && ReceivedStringFromPi[4]=='R')
     {
-        Add_Action_AX12(AX12_CLOSE_CLAPL);
+        Add_Action_AX12(AX12_OPEN_POPCORN_D);
     }
 
-    if(ReceivedStringFromPi[1]=='P' && ReceivedStringFromPi[2]=='O' && ReceivedStringFromPi[3]=='P' && ReceivedStringFromPi[4]=='O')
+    if(ReceivedStringFromPi[1]=='P' && ReceivedStringFromPi[2]=='O' && ReceivedStringFromPi[3]=='C' && ReceivedStringFromPi[4]=='R')
     {
-        Add_Action_AX12(AX12_CLOSE_POPCORN);
+        Add_Action_AX12(AX12_CLOSE_POPCORN_D);
+    }
+    	// ouvrir popcorn gauche
+    if(ReceivedStringFromPi[1]=='P' && ReceivedStringFromPi[2]=='O' && ReceivedStringFromPi[3]=='O' && ReceivedStringFromPi[4]=='L')
+    {
+        Add_Action_AX12(AX12_OPEN_POPCORN_G);
     }
 
-	// CLAC
-    if(ReceivedStringFromPi[1]=='P' && ReceivedStringFromPi[2]=='O' && ReceivedStringFromPi[3]=='P' && ReceivedStringFromPi[4]=='C')
+    if(ReceivedStringFromPi[1]=='P' && ReceivedStringFromPi[2]=='O' && ReceivedStringFromPi[3]=='C' && ReceivedStringFromPi[4]=='L')
     {
-        Add_Action_AX12(AX12_OPEN_POPCORN);
+        Add_Action_AX12(AX12_OPEN_POPCORN_G);
     }
 
     // CLTB

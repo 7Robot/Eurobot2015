@@ -66,11 +66,17 @@ void Faire_Actions_AX12(void)
             case AX12_OPEN_CLAWS:
                 open_claws();
                 break;
-            case AX12_OPEN_POPCORN:
-                open_popcorn();
+            case AX12_OPEN_POPCORN_D:
+                open_popcorn_d();
                 break;
-            case AX12_CLOSE_POPCORN:
-                close_popcorn();
+            case AX12_CLOSE_POPCORN_D:
+                close_popcorn_d();
+                break;
+            case AX12_OPEN_POPCORN_G:
+                open_popcorn_g();
+                break;
+            case AX12_CLOSE_POPCORN_G:
+                close_popcorn_g();
                 break;
             case AX12_CLOSE_TUB:
                 close_tub();
@@ -112,7 +118,9 @@ void Init_ax12() {
     __delay_ms(delay_ax);
     PutAX(clapl, AX_TORQUE_LIMIT, maxtork_claw);
     __delay_ms(delay_ax);
-    PutAX(popcorn, AX_TORQUE_LIMIT, maxtork_claw);
+    PutAX(popcorn_d, AX_TORQUE_LIMIT, maxtork_claw);
+    __delay_ms(delay_ax);
+    PutAX(popcorn_g, AX_TORQUE_LIMIT, maxtork_claw);
     __delay_ms(delay_ax);
 
 
@@ -130,7 +138,9 @@ void Init_ax12() {
     __delay_ms(delay_ax);
     PutAX(clapr, AX_MOVING_SPEED, 1000);
     __delay_ms(delay_ax);
-    PutAX(popcorn, AX_MOVING_SPEED, maxspeed_claw);
+    PutAX(popcorn_d, AX_MOVING_SPEED, maxspeed_claw);
+    __delay_ms(delay_ax);
+    PutAX(popcorn_g, AX_MOVING_SPEED, maxspeed_claw);
     __delay_ms(delay_ax);
 
 
@@ -152,7 +162,9 @@ void Init_ax12() {
     __delay_ms(40);
     PutAX(clapr, AX_GOAL_POSITION, 512);
     __delay_ms(40);
-    PutAX(popcorn, AX_GOAL_POSITION, 612);
+    PutAX(popcorn_g, AX_GOAL_POSITION, 412);
+    __delay_ms(40);
+    PutAX(popcorn_d, AX_GOAL_POSITION, 612);
     __delay_ms(40);
 
 }
@@ -285,14 +297,26 @@ void close_clap_l(void) {
     __delay_ms(100);
 }
 
-void open_popcorn(void) {
-    PutAX(popcorn,AX_GOAL_POSITION,405); //rabat la piece 700
+void open_popcorn_d(void) {
+    PutAX(popcorn_d,AX_GOAL_POSITION,612); //rabat la piece 700
     __delay_ms(50);
     SendDone();
 }
 
-void close_popcorn(void) {
-    PutAX(popcorn,AX_GOAL_POSITION,612); //rabat la piece 700
+void close_popcorn_d(void) {
+    PutAX(popcorn_d,AX_GOAL_POSITION,400); //rabat la piece 700
+    __delay_ms(50);
+    SendDone();
+}
+
+void open_popcorn_g(void) {
+    PutAX(popcorn_g,AX_GOAL_POSITION,405); //rabat la piece 700
+    __delay_ms(50);
+    SendDone();
+}
+
+void close_popcorn_g(void) {
+    PutAX(popcorn_g,AX_GOAL_POSITION,612); //rabat la piece 700
     __delay_ms(50);
     SendDone();
 }
