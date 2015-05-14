@@ -217,14 +217,6 @@ void SelectActionFromPi()
             Enable_Ultrason(ReceivedStringFromPi[6] != '0');
         }
 
-        // VBAT			// récupère la tension baterie
-        if(ReceivedStringFromPi[1]=='V' && ReceivedStringFromPi[2]=='B' && ReceivedStringFromPi[3]=='A' && ReceivedStringFromPi[4]=='T')
-        {
-            __delay_ms(50);
-            printf("$VBAT,%d;", V_Bat);
-            __delay_ms(50);
-        }
-
             // CLRO
         if(ReceivedStringFromPi[1]=='C' && ReceivedStringFromPi[2]=='L' && ReceivedStringFromPi[3]=='R' && ReceivedStringFromPi[4]=='O')
         {
@@ -243,30 +235,12 @@ void SelectActionFromPi()
             Add_Action_AX12(AX12_OPEN_CLAPL);
         }
 
-                   // CLLC
+        // CLLC
         if(ReceivedStringFromPi[1]=='C' && ReceivedStringFromPi[2]=='L' && ReceivedStringFromPi[3]=='L' && ReceivedStringFromPi[4]=='C')
         {
             Add_Action_AX12(AX12_CLOSE_CLAPL);
         }
-
-        // ULS?			// demande status sick
-        if(ReceivedStringFromPi[1]=='U' && ReceivedStringFromPi[2]=='L' && ReceivedStringFromPi[3]=='S' && ReceivedStringFromPi[4]=='?')
-        {
-            SendUltrason_Status();
-        }
-
-        // DBUS			// start/stop debug ultrason
-        if(ReceivedStringFromPi[1]=='D' && ReceivedStringFromPi[2]=='B' && ReceivedStringFromPi[3]=='U' && ReceivedStringFromPi[4]=='S')
-        {
-            Start_Stop_Debug_Ultrason();
-        }
-
-        // ENUS         // active ou pas le motion_free de l'ultrason
-        if(ReceivedStringFromPi[1]=='E' && ReceivedStringFromPi[2]=='N' && ReceivedStringFromPi[3]=='U' && ReceivedStringFromPi[4]=='S')
-        {
-            Enable_Ultrason(ReceivedStringFromPi[6] != '0');
-        }
-
+		
         // VBAT			// récupère la tension baterie
         if(ReceivedStringFromPi[1]=='V' && ReceivedStringFromPi[2]=='B' && ReceivedStringFromPi[3]=='A' && ReceivedStringFromPi[4]=='T')
         {
@@ -274,25 +248,7 @@ void SelectActionFromPi()
             printf("$VBAT,%d;", V_Bat);
             __delay_ms(50);
         }
-
-            // CLRO
-        if(ReceivedStringFromPi[1]=='C' && ReceivedStringFromPi[2]=='L' && ReceivedStringFromPi[3]=='R' && ReceivedStringFromPi[4]=='O')
-        {
-            Add_Action_AX12(AX12_OPEN_CLAPR);
-        }
-
-            // CLRC
-        if(ReceivedStringFromPi[1]=='C' && ReceivedStringFromPi[2]=='L' && ReceivedStringFromPi[3]=='R' && ReceivedStringFromPi[4]=='C')
-        {
-            Add_Action_AX12(AX12_CLOSE_CLAPR);
-        }
-
-            // CLLO
-        if(ReceivedStringFromPi[1]=='C' && ReceivedStringFromPi[2]=='L' && ReceivedStringFromPi[3]=='L' && ReceivedStringFromPi[4]=='O')
-        {
-            Add_Action_AX12(AX12_OPEN_CLAPL);
-        }
-
+		
             // ouvrir popcorn droit
         if(ReceivedStringFromPi[1]=='P' && ReceivedStringFromPi[2]=='O' && ReceivedStringFromPi[3]=='O' && ReceivedStringFromPi[4]=='R')
         {
