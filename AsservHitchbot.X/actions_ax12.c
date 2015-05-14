@@ -8,8 +8,8 @@
 #include "main.h"
 
 
-#define maxtork_claw 500
-#define maxspeed_claw 650
+#define maxtork_claw 650
+#define maxspeed_claw 800
 #define delay_ax 30
 
 /******************************************************************************/
@@ -108,11 +108,11 @@ void Init_ax12() {
     __delay_ms(delay_ax);
     PutAX(rabg, AX_TORQUE_LIMIT, maxtork_claw);
     __delay_ms(delay_ax);
-    PutAX(pince, AX_TORQUE_LIMIT, 500);
+    PutAX(pince, AX_TORQUE_LIMIT, 600);
     __delay_ms(delay_ax);
     PutAX(asc, AX_TORQUE_LIMIT, 900);
     __delay_ms(delay_ax);
-    PutAX(tub, AX_TORQUE_LIMIT, 700);
+    PutAX(tub, AX_TORQUE_LIMIT, 800);
     __delay_ms(delay_ax);
     PutAX(clapr, AX_TORQUE_LIMIT, maxtork_claw);
     __delay_ms(delay_ax);

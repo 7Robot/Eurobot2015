@@ -286,7 +286,7 @@ void SendStart(void)
 void SendEnd (void)
 {
     __delay_ms(10);
-    printf("$END90;");
+    printf("$END9;");
     __delay_ms(10);
 }
 
