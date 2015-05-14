@@ -184,7 +184,22 @@ void SelectActionFromPi()
             Choose_Enabled_Sicks(valc);
         }
 
+        // ENSI         // active ou pas le motion_free des sicks  à l'unitée
+        if(ReceivedStringFromPi[1]=='E' && ReceivedStringFromPi[2]=='N' && ReceivedStringFromPi[3]=='S' && ReceivedStringFromPi[4]=='I')
+        {
+            // l'utilisateur a juste droit à de 0 à F
+            valc = ReceivedStringFromPi[6];
+            if (valc >= '0' && valc <= '9') {
+                valc -= '0';
+            } else if (valc >= 'A' && valc <= 'F') {
+                valc -= 'A';
+            } else {
+                valc = 0x0F;
+            }
+            Choose_Enabled_Sicks(valc);
+        }
 
+<<<<<<< HEAD
         // ULS?			// demande status sick
         if(ReceivedStringFromPi[1]=='U' && ReceivedStringFromPi[2]=='L' && ReceivedStringFromPi[3]=='S' && ReceivedStringFromPi[4]=='?')
         {
@@ -235,6 +250,51 @@ void SelectActionFromPi()
             Add_Action_AX12(AX12_CLOSE_CLAPL);
         }
 
+        // ULS?			// demande status sick
+        if(ReceivedStringFromPi[1]=='U' && ReceivedStringFromPi[2]=='L' && ReceivedStringFromPi[3]=='S' && ReceivedStringFromPi[4]=='?')
+        {
+            SendUltrason_Status();
+        }
+
+        // DBUS			// start/stop debug ultrason
+        if(ReceivedStringFromPi[1]=='D' && ReceivedStringFromPi[2]=='B' && ReceivedStringFromPi[3]=='U' && ReceivedStringFromPi[4]=='S')
+        {
+            Start_Stop_Debug_Ultrason();
+        }
+
+        // ENUS         // active ou pas le motion_free de l'ultrason
+        if(ReceivedStringFromPi[1]=='E' && ReceivedStringFromPi[2]=='N' && ReceivedStringFromPi[3]=='U' && ReceivedStringFromPi[4]=='S')
+        {
+            Enable_Ultrason(ReceivedStringFromPi[6] != '0');
+        }
+
+        // VBAT			// récupère la tension baterie
+        if(ReceivedStringFromPi[1]=='V' && ReceivedStringFromPi[2]=='B' && ReceivedStringFromPi[3]=='A' && ReceivedStringFromPi[4]=='T')
+        {
+            __delay_ms(50);
+            printf("$VBAT,%d;", V_Bat);
+            __delay_ms(50);
+        }
+
+            // CLRO
+        if(ReceivedStringFromPi[1]=='C' && ReceivedStringFromPi[2]=='L' && ReceivedStringFromPi[3]=='R' && ReceivedStringFromPi[4]=='O')
+        {
+            Add_Action_AX12(AX12_OPEN_CLAPR);
+        }
+
+            // CLRC
+        if(ReceivedStringFromPi[1]=='C' && ReceivedStringFromPi[2]=='L' && ReceivedStringFromPi[3]=='R' && ReceivedStringFromPi[4]=='C')
+        {
+            Add_Action_AX12(AX12_CLOSE_CLAPR);
+        }
+
+            // CLLO
+        if(ReceivedStringFromPi[1]=='C' && ReceivedStringFromPi[2]=='L' && ReceivedStringFromPi[3]=='L' && ReceivedStringFromPi[4]=='O')
+        {
+            Add_Action_AX12(AX12_OPEN_CLAPL);
+>>>>>>> 95498e2c9ddb9d39b71dba7dedeb8a7d3f7b620b
+        }
+
             // ouvrir popcorn droit
         if(ReceivedStringFromPi[1]=='P' && ReceivedStringFromPi[2]=='O' && ReceivedStringFromPi[3]=='O' && ReceivedStringFromPi[4]=='R')
         {
@@ -251,9 +311,20 @@ void SelectActionFromPi()
             Add_Action_AX12(AX12_OPEN_POPCORN_G);
         }
 		
+<<<<<<< HEAD
 	if(ReceivedStringFromPi[1]=='P' && ReceivedStringFromPi[2]=='O' && ReceivedStringFromPi[3]=='C' && ReceivedStringFromPi[4]=='L')
 	{
             Add_Action_AX12(AX12_CLOSE_POPCORN_G);
+=======
+		if(ReceivedStringFromPi[1]=='P' && ReceivedStringFromPi[2]=='O' && ReceivedStringFromPi[3]=='C' && ReceivedStringFromPi[4]=='L')
+		{
+			Add_Action_AX12(AX12_CLOSE_POPCORN_G);
+		}
+
+        if(ReceivedStringFromPi[1]=='P' && ReceivedStringFromPi[2]=='O' && ReceivedStringFromPi[3]=='C' && ReceivedStringFromPi[4]=='L')
+        {
+            Add_Action_AX12(AX12_OPEN_POPCORN_G);
+>>>>>>> 95498e2c9ddb9d39b71dba7dedeb8a7d3f7b620b
         }
 
         // CLTB
