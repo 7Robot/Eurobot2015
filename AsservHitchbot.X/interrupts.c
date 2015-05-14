@@ -15,6 +15,7 @@
 
 volatile char Active_Delay_90 = 0;
 volatile long Delay_90 = 0;
+volatile char Delay_90_Over = 0;
 
 void InitTimers()
 {
@@ -340,14 +341,23 @@ void __attribute__((interrupt,auto_psv)) _T3Interrupt(void) {
     if (Delay_TimeOut_AX12) {
         Delay_TimeOut_AX12 --;
     }
-    if (Active_Delay_90)  {
-        if (Delay_90 < 90000) {
+    
+    if (Delay_90 < 90000) {
+        if (Active_Delay_90) {
             Delay_90 ++;
-        } else if (Delay_90 == 90000) {
-            Delay_90 ++;
-            SendEnd();
         } else {
-            motion_free();
+            Delay_90 = 0;
+        }
+        Delay_90_Over = 0;
+    } else if (Delay_90 == 90000) {
+        Delay_90 ++;
+        SendEnd();
+        Delay_90_Over = 1;
+    } else {
+        motion_free();
+        Delay_90_Over = 1;
+        if (!Active_Delay_90) {
+            Delay_90 = 0;
         }
     }
 

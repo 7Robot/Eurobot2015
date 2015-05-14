@@ -40,7 +40,7 @@ void Faire_Actions_AX12(void)
 {
     int num = Num_Action_Done;
     char Action_ToDo;
-    if (num != Num_Action_ToDo && Delay_90 < 90000) {
+    if (num != Num_Action_ToDo && !Delay_90_Over) {
         num++;
         if (num == NUM_ACTIONS_BUFFER) {
             num = 0;

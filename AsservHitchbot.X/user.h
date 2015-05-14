@@ -29,6 +29,7 @@
 
 extern volatile char Active_Delay_90;
 extern volatile long Delay_90;
+extern volatile char Delay_90_Over;
 
 /******************************************************************************/
 /* System Function Prototypes                                                 */
