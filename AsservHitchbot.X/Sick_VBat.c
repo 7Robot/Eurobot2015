@@ -185,7 +185,9 @@ void __attribute__ ((interrupt, auto_psv)) _ADC1Interrupt(void)
             if ( (val16 < (Threshold[channel] - MARGIN_SICK))  && (val16 > SICK_LIMIT_MIN)  ) {   // si on vient de detecter un truc
                Old_Sector[channel] = 0;     // on passe en zone "pas sûre"
                if (Motion_Free_Activ_Each & (0x01<<channel)) {      // vérif sick par sick
-                    motion_free();                  // et on gueule auprès de l'asserv
+                   if (channel != 3) {      // TEMPORAIRE INTERDIT DE COMPILER CA POUR UN MATCH
+                        motion_free();                  // et on gueule auprès de l'asserv
+                   }
                }
                DetectSick(channel);				// on previent la PI
             }
