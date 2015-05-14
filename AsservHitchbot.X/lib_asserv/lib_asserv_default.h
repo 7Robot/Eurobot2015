@@ -13,11 +13,11 @@
 /*############################################################################*/
 
 #ifndef DEFAULT_CONSTRAINT_V_MAX
-#define DEFAULT_CONSTRAINT_V_MAX {1.2, 6} // 1.2 normal, 0.5 homologation
+#define DEFAULT_CONSTRAINT_V_MAX {0.7, 6} // 1.2 normal, 0.5 homologation
 #endif
 
 #ifndef DEFAULT_CONSTRAINT_A_MAX
-#define DEFAULT_CONSTRAINT_A_MAX {0.50, 0.50, 0.30}
+#define DEFAULT_CONSTRAINT_A_MAX {0.50, 0.80, 0.30}
 #endif
 
 #ifndef BLOCK_LIMIT
@@ -56,7 +56,7 @@
 #define DEFAULT_PID_COEFS_DELTA {100,20,0,0,0} //{200,70,900,0.3,0.8}{130,90,3000,0.5,0.9}{200,30,30,0,0}{200,20,0,0,0}
 #endif
 #ifndef DEFAULT_PID_COEFS_ALPHA
-#define DEFAULT_PID_COEFS_ALPHA {20,8,0,0,0} //{10,5,30,0,0.7}{20,10,0,0,0}
+#define DEFAULT_PID_COEFS_ALPHA {22,9,0,0,0} //{10,5,30,0,0.7}{20,10,0,0,0}
 #endif
 
 // valeurs max de l'intégrale en position et en vitesse
