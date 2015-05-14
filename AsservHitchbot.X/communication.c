@@ -144,7 +144,6 @@ void SelectActionFromPi()
             Add_Action_AX12(AX12_OPEN_CLAWS);
         }
 
-
         // TEAM
         if(ReceivedStringFromPi[1]=='T' && ReceivedStringFromPi[2]=='E' && ReceivedStringFromPi[3]=='A' && ReceivedStringFromPi[4]=='M')
         {
@@ -167,21 +166,6 @@ void SelectActionFromPi()
         if(ReceivedStringFromPi[1]=='D' && ReceivedStringFromPi[2]=='B' && ReceivedStringFromPi[3]=='S' && ReceivedStringFromPi[4]=='I')
         {
             Start_Stop_Debug_Sick();
-        }
-
-        // ENSI         // active ou pas le motion_free des sicks  à l'unitée
-        if(ReceivedStringFromPi[1]=='E' && ReceivedStringFromPi[2]=='N' && ReceivedStringFromPi[3]=='S' && ReceivedStringFromPi[4]=='I')
-        {
-            // l'utilisateur a juste droit à de 0 à F
-            valc = ReceivedStringFromPi[6];
-            if (valc >= '0' && valc <= '9') {
-                valc -= '0';
-            } else if (valc >= 'A' && valc <= 'F') {
-                valc -= 'A';
-            } else {
-                valc = 0x0F;
-            }
-            Choose_Enabled_Sicks(valc);
         }
 
         // ENSI         // active ou pas le motion_free des sicks  à l'unitée
