@@ -237,7 +237,7 @@ void charg_last_spot(void)
     PutAX(pince,AX_GOAL_POSITION,255); //ouvre la pince
     __delay_ms(50);
     PutAX(asc,AX_GOAL_POSITION,945); //descent la pince
-    __delay_ms(600);
+    __delay_ms(800);
     PutAX(pince,AX_GOAL_POSITION,170); //ferme la pince
     __delay_ms(50);
 
@@ -252,7 +252,7 @@ void release (void) {
     //__delay_ms(600);
     PutAX(tub,AX_GOAL_POSITION,700); //ouvre reservoir
     __delay_ms(300);
-    PutAX(pince,AX_GOAL_POSITION,470); //ouvre pince
+    PutAX(pince,AX_GOAL_POSITION,350); //ouvre pince
     __delay_ms(300);
 
     SendDone();
