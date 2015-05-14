@@ -112,4 +112,18 @@ void ranger (void){
     __delay_ms(1000);
 }
 
+void victory_dance (void){
+    int k;
+    for (k = 0; k < 10 ; k++) {
+        PutAX(verseur_g, AX_GOAL_POSITION, 471);
+        __delay_ms(40);
+        PutAX(verseur_d, AX_GOAL_POSITION, 550);
+        __delay_ms(1200);
+        PutAX(verseur_g, AX_GOAL_POSITION, 780);
+        __delay_ms(40);
+        PutAX(verseur_d, AX_GOAL_POSITION, 270);
+        __delay_ms(1000);
+    }
+}
+
 /******************************************************************************/
