@@ -5,6 +5,7 @@ void AnalyzeCommandFromPi (void);
 void SelectActionFromPi (void);
 void SendDone(void);
 void SendStart(void);
+void SendEnd (void);
 void SendFailAX12(void);
 void SendTeam (int team);
 

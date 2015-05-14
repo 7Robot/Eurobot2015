@@ -345,7 +345,7 @@ void __attribute__((interrupt,auto_psv)) _T3Interrupt(void) {
             Delay_90 ++;
         } else if (Delay_90 == 90000) {
             Delay_90 ++;
-            //SendEnd();
+            SendEnd();
         } else {
             motion_free();
         }

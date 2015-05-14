@@ -283,6 +283,13 @@ void SendStart(void)
     __delay_ms(50);
 }
 
+void SendEnd (void)
+{
+    __delay_ms(10);
+    printf("$END90;");
+    __delay_ms(10);
+}
+
 void SendFailAX12(void)
 {
     __delay_ms(50);
@@ -347,4 +354,3 @@ void SendTeam (int team)
     }
     __delay_ms(50);
 }
-
