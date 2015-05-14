@@ -198,8 +198,7 @@ void SelectActionFromPi()
             }
             Choose_Enabled_Sicks(valc);
         }
-
-<<<<<<< HEAD
+    
         // ULS?			// demande status sick
         if(ReceivedStringFromPi[1]=='U' && ReceivedStringFromPi[2]=='L' && ReceivedStringFromPi[3]=='S' && ReceivedStringFromPi[4]=='?')
         {
@@ -292,7 +291,6 @@ void SelectActionFromPi()
         if(ReceivedStringFromPi[1]=='C' && ReceivedStringFromPi[2]=='L' && ReceivedStringFromPi[3]=='L' && ReceivedStringFromPi[4]=='O')
         {
             Add_Action_AX12(AX12_OPEN_CLAPL);
->>>>>>> 95498e2c9ddb9d39b71dba7dedeb8a7d3f7b620b
         }
 
             // ouvrir popcorn droit
@@ -310,12 +308,10 @@ void SelectActionFromPi()
         {
             Add_Action_AX12(AX12_OPEN_POPCORN_G);
         }
-		
-<<<<<<< HEAD
+
 	if(ReceivedStringFromPi[1]=='P' && ReceivedStringFromPi[2]=='O' && ReceivedStringFromPi[3]=='C' && ReceivedStringFromPi[4]=='L')
 	{
             Add_Action_AX12(AX12_CLOSE_POPCORN_G);
-=======
 		if(ReceivedStringFromPi[1]=='P' && ReceivedStringFromPi[2]=='O' && ReceivedStringFromPi[3]=='C' && ReceivedStringFromPi[4]=='L')
 		{
 			Add_Action_AX12(AX12_CLOSE_POPCORN_G);
@@ -324,7 +320,6 @@ void SelectActionFromPi()
         if(ReceivedStringFromPi[1]=='P' && ReceivedStringFromPi[2]=='O' && ReceivedStringFromPi[3]=='C' && ReceivedStringFromPi[4]=='L')
         {
             Add_Action_AX12(AX12_OPEN_POPCORN_G);
->>>>>>> 95498e2c9ddb9d39b71dba7dedeb8a7d3f7b620b
         }
 
         // CLTB
@@ -342,6 +337,7 @@ void SelectActionFromPi()
             valf = atof(&ReceivedStringFromPi[cursorPosition]);
             ReceivedStringFromPi[cursorPosition+floatLength] = ';';
             set_Constraint_vitesse_max(valf);
+            }
         }
     }
 }
