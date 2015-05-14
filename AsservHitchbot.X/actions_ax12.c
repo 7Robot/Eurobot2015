@@ -8,8 +8,8 @@
 #include "main.h"
 
 
-#define maxtork_claw 650
-#define maxspeed_claw 800
+#define maxtork_claw 550
+#define maxspeed_claw 650
 #define delay_ax 30
 
 /******************************************************************************/
@@ -112,7 +112,7 @@ void Init_ax12() {
     __delay_ms(delay_ax);
     PutAX(asc, AX_TORQUE_LIMIT, 900);
     __delay_ms(delay_ax);
-    PutAX(tub, AX_TORQUE_LIMIT, 800);
+    PutAX(tub, AX_TORQUE_LIMIT, 900);
     __delay_ms(delay_ax);
     PutAX(clapr, AX_TORQUE_LIMIT, maxtork_claw);
     __delay_ms(delay_ax);
@@ -134,9 +134,9 @@ void Init_ax12() {
     __delay_ms(delay_ax);
     PutAX(tub, AX_MOVING_SPEED, 450);
     __delay_ms(delay_ax);
-    PutAX(clapl, AX_MOVING_SPEED, 1000);
+    PutAX(clapl, AX_MOVING_SPEED, 700);
     __delay_ms(delay_ax);
-    PutAX(clapr, AX_MOVING_SPEED, 1000);
+    PutAX(clapr, AX_MOVING_SPEED, 700);
     __delay_ms(delay_ax);
     PutAX(popcorn_d, AX_MOVING_SPEED, maxspeed_claw);
     __delay_ms(delay_ax);
@@ -174,17 +174,17 @@ void charg_spot(void)
 {
 //int k;
     if(!PIN_TEAM) {
-        PutAX(rabd,AX_GOAL_POSITION,300); //rabat la piece 700
+        PutAX(rabd,AX_GOAL_POSITION,300); //too much 300
         __delay_ms(700);
         PutAX(rabd,AX_GOAL_POSITION,620); //reouvre
         __delay_ms(500);
-        PutAX(rabg,AX_GOAL_POSITION,850); //rabat la piece 700
+        PutAX(rabg,AX_GOAL_POSITION,750); //rabat la piece 700
         __delay_ms(700);
         PutAX(rabg,AX_GOAL_POSITION,390); //reouvre
         __delay_ms(50);
     }
     else {
-        PutAX(rabg,AX_GOAL_POSITION,850); //rabat la piece 700
+        PutAX(rabg,AX_GOAL_POSITION,750); //rabat la piece 700
         __delay_ms(700);
         PutAX(rabg,AX_GOAL_POSITION,390); //reouvre
         __delay_ms(500);
@@ -206,7 +206,7 @@ void charg_spot(void)
         __delay_ms(300);
         PutAX(asc,AX_GOAL_POSITION,320); //remonte la pince
         __delay_ms(850);
-        PutAX(tub,AX_GOAL_POSITION,270); //referme le tube
+        PutAX(tub,AX_GOAL_POSITION,255); //referme le tube
         __delay_ms(300);
         PutAX(pince,AX_GOAL_POSITION,255); //ouvre la pince
         __delay_ms(50);
