@@ -304,7 +304,7 @@ void open_popcorn_d(void) {
 }
 
 void close_popcorn_d(void) {
-    PutAX(popcorn_d,AX_GOAL_POSITION,512); //rabat la piece 700
+    PutAX(popcorn_d,AX_GOAL_POSITION,522); //rabat la piece 700
     __delay_ms(50);
     SendDone();
 }
@@ -316,7 +316,7 @@ void open_popcorn_g(void) {
 }
 
 void close_popcorn_g(void) {
-    PutAX(popcorn_g,AX_GOAL_POSITION,512); //ferme l'attrape popkorn
+    PutAX(popcorn_g,AX_GOAL_POSITION,502); //ferme l'attrape popkorn
     __delay_ms(50);
     SendDone();
 }
