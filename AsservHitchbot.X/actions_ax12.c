@@ -174,21 +174,21 @@ void charg_spot(void)
 {
 //int k;
     if(!PIN_TEAM) {
-        PutAX(rabd,AX_GOAL_POSITION,300); //rabat la piece 700
+        PutAX(rabd,AX_GOAL_POSITION,330); //rabat la piece 700      //300
         __delay_ms(700);
         PutAX(rabd,AX_GOAL_POSITION,620); //reouvre
         __delay_ms(500);
-        PutAX(rabg,AX_GOAL_POSITION,850); //rabat la piece 700
+        PutAX(rabg,AX_GOAL_POSITION,820); //rabat la piece 700      //850
         __delay_ms(700);
         PutAX(rabg,AX_GOAL_POSITION,390); //reouvre
         __delay_ms(50);
     }
     else {
-        PutAX(rabg,AX_GOAL_POSITION,850); //rabat la piece 700
+        PutAX(rabg,AX_GOAL_POSITION,820); //rabat la piece 700      //850
         __delay_ms(700);
         PutAX(rabg,AX_GOAL_POSITION,390); //reouvre
         __delay_ms(500);
-        PutAX(rabd,AX_GOAL_POSITION,300); //rabat la piece 700
+        PutAX(rabd,AX_GOAL_POSITION,330); //rabat la piece 700      //300
         __delay_ms(700);
         PutAX(rabd,AX_GOAL_POSITION,620); //reouvre
         __delay_ms(50);
@@ -212,16 +212,16 @@ void charg_spot(void)
         PutAX(pince,AX_GOAL_POSITION,255); //ouvre la pince
         __delay_ms(50);
         // TRY PEPINO
-        PutAX(asc,AX_GOAL_POSITION,450); //descend un peu la pince
-        __delay_ms(200);
+        PutAX(asc,AX_GOAL_POSITION,410); //descend un peu la pince
+        __delay_ms(150);
         PutAX(pince,AX_GOAL_POSITION,170); //ferme la pince
-        __delay_ms(200);
-        PutAX(tub,AX_GOAL_POSITION,350); //reouvre legerement le tub
+        __delay_ms(150);
+        PutAX(tub,AX_GOAL_POSITION,320); //reouvre legerement le tub
         __delay_ms(50);
         PutAX(asc,AX_GOAL_POSITION,320); //remonte la pince
-        __delay_ms(500);
-        PutAX(tub,AX_GOAL_POSITION,270); //referme le tube
         __delay_ms(300);
+        PutAX(tub,AX_GOAL_POSITION,270); //referme le tube
+        __delay_ms(100);
         PutAX(pince,AX_GOAL_POSITION,255); //ouvre la pince
         __delay_ms(50);
 
@@ -235,21 +235,21 @@ void charg_spot(void)
 void charg_last_spot(void)
 {
     if(PIN_TEAM) {
-        PutAX(rabd,AX_GOAL_POSITION,300); //rabat la piece 700
+        PutAX(rabd,AX_GOAL_POSITION,330); //rabat la piece 700      //300
         __delay_ms(700);
         PutAX(rabd,AX_GOAL_POSITION,620); //reouvre
         __delay_ms(500);
-        PutAX(rabg,AX_GOAL_POSITION,850); //rabat la piece 700
+        PutAX(rabg,AX_GOAL_POSITION,820); //rabat la piece 700      //850
         __delay_ms(700);
         PutAX(rabg,AX_GOAL_POSITION,390); //reouvre
         __delay_ms(50);
     }
     else {
-        PutAX(rabg,AX_GOAL_POSITION,850); //rabat la piece 700
+        PutAX(rabg,AX_GOAL_POSITION,820); //rabat la piece 700      //850
         __delay_ms(700);
         PutAX(rabg,AX_GOAL_POSITION,390); //reouvre
         __delay_ms(500);
-        PutAX(rabd,AX_GOAL_POSITION,300); //rabat la piece 700
+        PutAX(rabd,AX_GOAL_POSITION,330); //rabat la piece 700      //300
         __delay_ms(700);
         PutAX(rabd,AX_GOAL_POSITION,620); //reouvre
         __delay_ms(50);
@@ -270,7 +270,7 @@ void release (void) {
     __delay_ms(300);
     PutAX(asc,AX_GOAL_POSITION,600); //remonte la pince
     __delay_ms(600);
-    PutAX(tub,AX_GOAL_POSITION,350); //reouvre legerement le tub
+    PutAX(tub,AX_GOAL_POSITION,320); //reouvre legerement le tub
     __delay_ms(500);
     PutAX(tub,AX_GOAL_POSITION,700); //ouvre reservoir
     __delay_ms(100);
