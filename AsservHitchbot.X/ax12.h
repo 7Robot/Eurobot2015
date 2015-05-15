@@ -134,24 +134,27 @@ void PushHeaderAX(byte id, byte len, byte inst);
 void PushBufferAX(byte len, byte* buf);
 void PushFooterAX(void);
 
-void      PingAX(byte id);
-void      ReadAX(byte id, byte address, byte len);
-void     WriteAX(byte id, byte address, byte len, byte* buf);
-void  RegWriteAX(byte id, byte address, byte len, byte* buf);
-void    ActionAX(byte id);
-void     ResetAX(byte id);
+void PingAX(byte id);
+void ReadAX(byte id, byte address, byte len);
+void WriteAX(byte id, byte address, byte len, byte* buf);
+void RegWriteAX(byte id, byte address, byte len, byte* buf);
+void ActionAX(byte id);
+void ResetAX(byte id);
 //void SyncWriteAX(byte id, ...);
 
-byte   RegisterLenAX(byte address);
-void  GetAX(byte id, byte address);
-//void  PutAX(byte id, byte address, int value);
+byte RegisterLenAX(byte address);
+char GetAX(byte id, byte address);
+//void PutAX(byte id, byte address, int value);
 
 
-char  PutAX(byte id, byte address, int value);
+char PutAX(byte id, byte address, int value);
 
 extern volatile int Delay_TimeOut_AX12;
 
-char  PutAX_Check(byte id, byte address, int value);
+char PutAX_Check(byte id, byte address, int value);
+char GetAX_Check (byte id, byte address);
+
+int GetAX_Pos (byte id);
 
 
 

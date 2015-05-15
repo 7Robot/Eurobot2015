@@ -211,10 +211,22 @@ void PutAX(byte id, byte address, int value) {
  * */
 
 /* Read a value from a registry, guessing its width. */
-void GetAX(byte id, byte address) {
+char GetAX(byte id, byte address) {
+#ifdef TEST_RECEPTION_AX12
+    char i = 0;
+    char OK = 0;
+    while (i < 10 && !OK) {
+        OK = GetAX_Check(id, address);
+        i++;
+    }
+    return (OK == 0);
+#else
     responseReadyAX = 0;
     ReadAX(id, address, RegisterLenAX(address));
+    return 0;
+#endif
 }
+
 
 char PutAX(byte id, byte address, int value) {
 #ifdef DOUBLE_COMMANDE_AX12
@@ -232,6 +244,7 @@ char PutAX(byte id, byte address, int value) {
     }
     return (OK == 0);
 #else
+    responseReadyAX = 0;
     WriteAX(id, address, RegisterLenAX(address), (byte*)&value);
     return 0;
 #endif
@@ -270,5 +283,47 @@ char PutAX_Check(byte id, byte address, int value) {
     }
 
     return Reponse_Ok;
+}
+
+char GetAX_Check (byte id, byte address)
+{
+    char Reponse_Ok = 1;
+    responseReadyAX = 0;    // reset la reception
+    posAX = -5;             // reset BIS
+    ReadAX(id, address, RegisterLenAX(address));
+
+    Delay_TimeOut_AX12 = 10;
+
+    // tant que le timer 10ms a pas d?clench?, et que l'on a pas re?u la r?ponse de l'AX
+    while (Delay_TimeOut_AX12 && !responseReadyAX);
+
+    if (responseReadyAX) {      // si on a eu une r?ponse, on l'analyse
+        if (responseAX.id != id) {
+            Reponse_Ok = 0;
+        }else if (    responseAX.error.input_voltage  || responseAX.error.angle_limit     ||
+                responseAX.error.overheating    || responseAX.error.range           ||
+                responseAX.error.cheksum        || responseAX.error.overload        ||
+                responseAX.error.instruction        ) {
+            Reponse_Ok = 0;
+        }
+    } else {    // si pas de r?ponse
+        Reponse_Ok = 0;
+    }
+
+    return Reponse_Ok;
+}
+
+
+
+int GetAX_Pos (byte id)
+{
+    char OK = 0;
+    OK = GetAX(id, AX_PRESENT_POSITION);
+
+    if (OK) {
+        return responseAX.params[0] + 256*responseAX.params[1];
+    } else {
+        return -1;
+    }
 }
 
