@@ -16,7 +16,7 @@
 #include "user.h"
 #include "actions_ax12.h"
 #include "ultrason.h"
-
+#include "ax12.h"
 
 int time_tics=0;
 
@@ -124,7 +124,7 @@ void __attribute__((interrupt,auto_psv)) _T2Interrupt(void) {
             if (state==0)
             {
                 PWM_Moteurs(17, 19);
-                if (time_tics>345)
+                if (time_tics>342)
                 {
                     PWM_Moteurs(0, 0);
                     state++;
@@ -138,7 +138,7 @@ void __attribute__((interrupt,auto_psv)) _T2Interrupt(void) {
             else if (state==1)
             {
                 PWM_Moteurs(-17, 19);
-                if (time_tics>54)
+                if (time_tics>50)
                 {
                     PWM_Moteurs(0, 0);
                     state++;
@@ -153,7 +153,7 @@ void __attribute__((interrupt,auto_psv)) _T2Interrupt(void) {
             else if (state==2)
             {
                 PWM_Moteurs(18, 20);
-                if (time_tics>327)
+                if (time_tics>315)
                 {
                     PWM_Moteurs(0, 0);
                     state++;
@@ -168,7 +168,7 @@ void __attribute__((interrupt,auto_psv)) _T2Interrupt(void) {
             else if (state==3)
             {
                 PWM_Moteurs(18, 20);
-                if (time_tics>60)
+                if (time_tics>50)
                 {
                     PWM_Moteurs(0, 0);
                     state++;
@@ -192,7 +192,7 @@ void __attribute__((interrupt,auto_psv)) _T2Interrupt(void) {
             if (state==0)
             {
                 PWM_Moteurs(17, 19);
-                if (time_tics>345)
+                if (time_tics>333)
                 {
                     PWM_Moteurs(0, 0);
                     state++;
@@ -206,7 +206,7 @@ void __attribute__((interrupt,auto_psv)) _T2Interrupt(void) {
             else if (state==1)
             {
                 PWM_Moteurs(17, -19);
-                if (time_tics>45)
+                if (time_tics>49)
                 {
                     PWM_Moteurs(0, 0);
                     state++;
@@ -221,7 +221,7 @@ void __attribute__((interrupt,auto_psv)) _T2Interrupt(void) {
             else if (state==2)
             {
                 PWM_Moteurs(18, 20);
-                if (time_tics>323)
+                if (time_tics>315)
                 {
                     PWM_Moteurs(0, 0);
                     state++;
@@ -236,7 +236,7 @@ void __attribute__((interrupt,auto_psv)) _T2Interrupt(void) {
             else if (state==3)
             {
                 PWM_Moteurs(18, 20);
-                if (time_tics>60)
+                if (time_tics>50)
                 {
                     PWM_Moteurs(0, 0);
                     state++;
@@ -245,6 +245,23 @@ void __attribute__((interrupt,auto_psv)) _T2Interrupt(void) {
                     __delay_ms(1000)
                 }
             }
+        }
+        if (state==4)
+        {
+            __delay_ms(400);
+            int k;
+            for (k = 0; k < 4 ; k++)
+            {
+                PutAX(verseur_g, AX_GOAL_POSITION, 471);
+                __delay_ms(300);
+                PutAX(verseur_d, AX_GOAL_POSITION, 550);
+                __delay_ms(300);
+                PutAX(verseur_g, AX_GOAL_POSITION, 780);
+                __delay_ms(300);
+                PutAX(verseur_d, AX_GOAL_POSITION, 270);
+                __delay_ms(300);
+            }
+            state++;
         }
 
         time_tics++;
