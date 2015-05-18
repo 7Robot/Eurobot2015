@@ -13,6 +13,9 @@
 //debug
 #include "uart.h"
 
+volatile char Active_Delay_90 = 0;
+volatile long Delay_90 = 0;
+volatile char Delay_90_Over = 0;
 
 void InitTimers()
 {
@@ -24,7 +27,8 @@ void InitTimers()
 
     OpenUART2(UART_EN & UART_IDLE_CON & UART_IrDA_DISABLE & UART_MODE_FLOW
         & UART_UEN_00 & UART_DIS_WAKE & UART_DIS_LOOPBACK
-        & UART_DIS_ABAUD & UART_UXRX_IDLE_ONE & UART_BRGH_SIXTEEN
+        & UART_DIS_ABAUD & UART_UXRX_IDLE_ONE
+        & UART_BRGH_SIXTEEN
         & UART_NO_PAR_8BIT & UART_1STOPBIT,
           UART_INT_TX_BUF_EMPTY & UART_IrDA_POL_INV_ZERO
         & UART_SYNC_BREAK_DISABLED & UART_TX_ENABLE & UART_TX_BUF_NOT_FUL & UART_INT_RX_CHAR
@@ -270,12 +274,16 @@ void __attribute__ ((__interrupt__, no_auto_psv)) _CNInterrupt(void)
 
     if (old_Pin_Laisse) {
         if (!Etat_Pin_Laisse) {
+            Active_Delay_90 = 1;
+            Delay_90 = 0;
             SendStart();
             old_Pin_Laisse = 0;
         }
     } else {
         if (Etat_Pin_Laisse) {
-            __delay_ms(50);
+            Active_Delay_90 = 0;
+            Delay_90 = 0;
+            __delay_ms(70);
             old_Pin_Laisse = 1;
         }
     }
@@ -332,6 +340,25 @@ void __attribute__((interrupt,auto_psv)) _T3Interrupt(void) {
 
     if (Delay_TimeOut_AX12) {
         Delay_TimeOut_AX12 --;
+    }
+    
+    if (Delay_90 < 90000) {
+        if (Active_Delay_90) {
+            Delay_90 ++;
+        } else {
+            Delay_90 = 0;
+        }
+        Delay_90_Over = 0;
+    } else if (Delay_90 == 90000) {
+        Delay_90 ++;
+        SendEnd();
+        Delay_90_Over = 1;
+    } else {
+        motion_free();
+        Delay_90_Over = 1;
+        if (!Active_Delay_90) {
+            Delay_90 = 0;
+        }
     }
 
    _T3IF = 0;   // on baisse le flag

@@ -51,6 +51,7 @@ volatile uint16_t V_Bat_Tab[NUMBER_MEAS_VBAT];
 
 volatile uint8_t debug_sick_on = 0;
 volatile uint8_t Ative_Motion_Free_Sicks = 1;
+volatile uint8_t Motion_Free_Activ_Each = 0x0F;
 /******************************************************************************/
 /* User Functions                                                             */
 /******************************************************************************/
@@ -183,13 +184,12 @@ void __attribute__ ((interrupt, auto_psv)) _ADC1Interrupt(void)
         } else {    // if old = 1   // si, pour l'instant, il n'y a pas de truc "pres"
             if ( (val16 < (Threshold[channel] - MARGIN_SICK))  && (val16 > SICK_LIMIT_MIN)  ) {   // si on vient de detecter un truc
                Old_Sector[channel] = 0;     // on passe en zone "pas sûre"
-               if (Ative_Motion_Free_Sicks) {
-                   motion_free();                  // et on gueule auprès de l'asserv
+               if (Motion_Free_Activ_Each & (0x01<<channel)) {      // vérif sick par sick
+                    motion_free();                  // et on gueule auprès de l'asserv
                }
-               DetectSick(channel);				// on previent la PI
+                DetectSick(channel);				// on previent la PI
             }
         }
-
 
         if (debug_sick_on) {
             if (i_debug_sick == 3000) {
@@ -287,12 +287,10 @@ void Start_Stop_Debug_Sick(void)
     }
 }
 
-void Enable_Sicks(char enable)
+void Choose_Enabled_Sicks(char Sicks_En)
 {
-    Ative_Motion_Free_Sicks = enable;
+    Motion_Free_Activ_Each = Sicks_En;
 }
-
-
 
    
 

@@ -35,8 +35,8 @@
 
 
 
-#define DEFAULT_THRESHOLD 430 // 300 ~> 16 cm
-#define MARGIN_SICK 30		// en réalité, plutot un triger de schmitt
+#define DEFAULT_THRESHOLD 420 // 300 ~> 16 cm
+#define MARGIN_SICK 20		// en réalité, plutot un triger de schmitt
 #define SICK_LIMIT_MIN 30	// limite minimum qui fait passer un sick en off
 
 
@@ -59,7 +59,7 @@ void Start_Stop_Debug_Sick(void);
 
 extern volatile uint16_t V_Bat;
 
-void Enable_Sicks(char enable);
+void Choose_Enabled_Sicks(char Sicks_En);
 
 #endif	/* SICK_H */
 

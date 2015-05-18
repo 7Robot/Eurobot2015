@@ -11,12 +11,17 @@
 
 
 #define rabd           7  // le rabateur
-#define rabg          14  // le rabateur
+#define rabg           14  // le rabateur
 #define pince          9  // la pince
-#define asc           11 // l'ascenceur
+#define asc            11 // l'ascenceur
 #define tub            1    // le reservoir
-#define clap           4
-#define popcorn       17
+#define clapl          4    // old clap
+#define clapr          22
+#define popcorn_d           17
+#define popcorn_g           20
+
+// CLLC
+// CLRO
 
 #define NUM_ACTIONS_BUFFER 20
 
@@ -36,15 +41,24 @@ void release (void);
 void close_claws(void);
 #define AX12_OPEN_CLAWS          6
 void open_claws(void);
-#define AX12_CLOSE_CLAP          7
-void close_clap(void);
-#define AX12_OPEN_CLAP           8
-void open_clap(void);
-#define AX12_OPEN_POPCORN        9
-void open_popcorn(void);
-#define AX12_CLOSE_POPCORN       10
-void close_popcorn(void);
+#define AX12_OPEN_POPCORN_D      9
+void open_popcorn_d(void);
+#define AX12_CLOSE_POPCORN_D     10
+void close_popcorn_d(void);
 #define AX12_CLOSE_TUB           11 //CLTB asynchrone
 void close_tub(void);            
+#define AX12_CLOSE_CLAPR         12
+void close_clap_r(void);
+#define AX12_OPEN_CLAPR          13
+void open_clap_r(void);
+#define AX12_CLOSE_CLAPL         14
+void close_clap_l(void);
+#define AX12_OPEN_CLAPL          15
+void open_clap_l(void);
+#define AX12_OPEN_POPCORN_G      16
+void open_popcorn_g(void);
+#define AX12_CLOSE_POPCORN_G     17
+void close_popcorn_g(void);
+void victory_dance(void);
 
 #endif	/* ACTIONS_AX12_H */

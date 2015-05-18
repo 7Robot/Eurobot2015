@@ -19,10 +19,17 @@
 #define SYS_FREQ        80000000UL
 #define FCY             SYS_FREQ/2
 
+
+
 #define BAUDRATEAX12 57600
 #define BRGVALAX12 ((FCY / BAUDRATEAX12 / 16) - 1)
 
- 
+
+
+
+extern volatile char Active_Delay_90;
+extern volatile long Delay_90;
+extern volatile char Delay_90_Over;
 
 /******************************************************************************/
 /* System Function Prototypes                                                 */

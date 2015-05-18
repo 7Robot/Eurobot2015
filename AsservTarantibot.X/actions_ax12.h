@@ -23,5 +23,6 @@ void init_ax12(void);
 void deploy(void);
 void lacher(void);
 void ranger(void);
+void victory_dance (void);
 
 #endif	/* ACTIONS_AX12_H */

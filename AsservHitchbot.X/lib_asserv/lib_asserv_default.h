@@ -13,7 +13,7 @@
 /*############################################################################*/
 
 #ifndef DEFAULT_CONSTRAINT_V_MAX
-#define DEFAULT_CONSTRAINT_V_MAX {1.2, 6} // 1.2 normal, 0.5 homologation
+#define DEFAULT_CONSTRAINT_V_MAX {1.2, 6}
 #endif
 
 #ifndef DEFAULT_CONSTRAINT_A_MAX
@@ -51,7 +51,7 @@
 /*                                   PID                                      */
 /*############################################################################*/
 
-// 4 asserv diffÃ©rentes (position et vitese pour chaque roue) donc 4 PID
+// 4 asserv différentes (position et vitese pour chaque roue) donc 4 PID
 #ifndef DEFAULT_PID_COEFS_DELTA
 #define DEFAULT_PID_COEFS_DELTA {100,20,0,0,0} //{200,70,900,0.3,0.8}{130,90,3000,0.5,0.9}{200,30,30,0,0}{200,20,0,0,0}
 #endif
@@ -59,7 +59,7 @@
 #define DEFAULT_PID_COEFS_ALPHA {20,8,0,0,0} //{10,5,30,0,0.7}{20,10,0,0,0}
 #endif
 
-// valeurs max de l'intÃ©grale en position et en vitesse
+// valeurs max de l'intégrale en position et en vitesse
 #ifndef DEFAULT_PID_MAX_INT_DELTA
 #define DEFAULT_PID_MAX_INT_DELTA 0.7 // 0.7
 #endif
@@ -75,7 +75,7 @@
 #endif
  */
 
-// valeurs max de l'intÃ©grale en position et en vitesse
+// valeurs max de l'intégrale en position et en vitesse
 #ifndef DEFAULT_PID_MAX_INT_DELTA
 #define DEFAULT_PID_MAX_INT_DELTA 0.5 // 0.7
 #endif
@@ -83,7 +83,7 @@
 #define DEFAULT_PID_MAX_INT_ALPHA 5
 #endif
 
-// ainsi que les conditions d'arrÃªt des PID en position et vitesse
+// ainsi que les conditions d'arrêt des PID en position et vitesse
 #ifndef DEFAULT_PID_EPS_DELTA
 #define DEFAULT_PID_EPS_DELTA {0.02,0.02}//0.02
 #endif

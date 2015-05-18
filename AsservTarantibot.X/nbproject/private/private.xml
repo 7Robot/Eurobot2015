@@ -1,8 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?><project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/1"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/1">
+<<<<<<< HEAD
         <file>file:/home/robin/7Robot/Eurobot2015/AsservTarantibot.X/main.c</file>
         <file>file:/home/robin/7Robot/Eurobot2015/AsservTarantibot.X/interrupts.c</file>
         <file>file:/home/robin/7Robot/Eurobot2015/AsservTarantibot.X/user.h</file>
+=======
+        <file>file:/C:/Users/Daniel/Documents/n7/7Robot/Eurobot2015/AsservTarantibot.X/actions_ax12.c</file>
+        <file>file:/C:/Users/Daniel/Documents/n7/7Robot/Eurobot2015/AsservTarantibot.X/actions_ax12.h</file>
+>>>>>>> 63655e71c9a2542e62581a6fd76613db8b3daa18
     </open-files>
 </project-private>
