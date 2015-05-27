@@ -227,6 +227,7 @@ char GetAX(byte id, byte address) {
 #endif
 }
 
+
 char PutAX(byte id, byte address, int value) {
 #ifdef DOUBLE_COMMANDE_AX12
     WriteAX(id, address, RegisterLenAX(address), (byte*)&value);
@@ -243,7 +244,7 @@ char PutAX(byte id, byte address, int value) {
     }
     return (OK == 0);
 #else
-    responseReadyAX = 0;    // reset la reception
+    responseReadyAX = 0;
     WriteAX(id, address, RegisterLenAX(address), (byte*)&value);
     return 0;
 #endif
@@ -293,10 +294,10 @@ char GetAX_Check (byte id, byte address)
 
     Delay_TimeOut_AX12 = 10;
 
-    // tant que le timer 10ms a pas déclenché, et que l'on a pas reçu la réponse de l'AX
+    // tant que le timer 10ms a pas d?clench?, et que l'on a pas re?u la r?ponse de l'AX
     while (Delay_TimeOut_AX12 && !responseReadyAX);
 
-    if (responseReadyAX) {      // si on a eu une réponse, on l'analyse
+    if (responseReadyAX) {      // si on a eu une r?ponse, on l'analyse
         if (responseAX.id != id) {
             Reponse_Ok = 0;
         }else if (    responseAX.error.input_voltage  || responseAX.error.angle_limit     ||
@@ -305,7 +306,7 @@ char GetAX_Check (byte id, byte address)
                 responseAX.error.instruction        ) {
             Reponse_Ok = 0;
         }
-    } else {    // si pas de réponse
+    } else {    // si pas de r?ponse
         Reponse_Ok = 0;
     }
 
@@ -325,3 +326,4 @@ int GetAX_Pos (byte id)
         return -1;
     }
 }
+

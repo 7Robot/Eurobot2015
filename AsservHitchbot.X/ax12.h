@@ -143,8 +143,8 @@ void ResetAX(byte id);
 //void SyncWriteAX(byte id, ...);
 
 byte RegisterLenAX(byte address);
-void GetAX(byte id, byte address);
-//void  PutAX(byte id, byte address, int value);
+char GetAX(byte id, byte address);
+//void PutAX(byte id, byte address, int value);
 
 
 char PutAX(byte id, byte address, int value);
@@ -154,8 +154,10 @@ extern volatile int Delay_TimeOut_AX12;
 char PutAX_Check(byte id, byte address, int value);
 char GetAX_Check (byte id, byte address);
 
-
 int GetAX_Pos (byte id);
+
+
+
 
 
 #endif /* _AX12_H */

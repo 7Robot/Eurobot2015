@@ -1,0 +1,43 @@
+objectif : guarder pas mal d'idées, mais en enlevant la possibilité de trajectoire pas prévues.
+
+mise en place d'un buffer (conséquent) d'action : 
+3 "actions" possibles :
+
+- rotation sur lui même
+- ligne droite
+- ligne courbe
+
+chaque élément du buffer a ses contraintes de vitesse max, A max et tout à coté, mises par défaut lors d'un envoi simple
+et passage à la suite en simple ou avec arret
+
+la trajectoire est calculée / définie par l'action
+un point théorique se balade sur la trajectoire prévue, et l'asserv bas level fait ce qu'elle peut pour le suivre
+
+
+
+
+
+
+la vitesse le long de cette trajectoire est définie par le systeme de contraintes de matthieu :
+calcul en temps réel,
+
+mais uniquement sur une des 2 vitesses : linéaires / rotation
+
+rotation sur lui meme définie par les contraintes en rotation
+ligne droite  définie par contraintes en linéaire
+ligne courbe  définie par contraintes en linéaire, mais rabaissées par les contraintes rotation si nécessaire : calcul de la courbe au début
+
+
+les calculs des contraites de vitesse peuvent prendre en compte l'élément suivant : 
+si c'est une rotation => vitesse finale à 0
+si c'est aussi une ligne au départ colinéaire, vitesse finale non nulle
+
+
+
+rajout automatique d'une trajectoire courbe si possible entre 2 bout droits pas trop anguleux?
+calculs peut-être complexes si décélération déja entamée :/
+
+
+
+
+

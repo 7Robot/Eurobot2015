@@ -59,6 +59,5 @@ void open_clap_l(void);
 void open_popcorn_g(void);
 #define AX12_CLOSE_POPCORN_G     17
 void close_popcorn_g(void);
-void victory_dance(void);
 
 #endif	/* ACTIONS_AX12_H */
